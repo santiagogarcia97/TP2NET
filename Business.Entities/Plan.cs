@@ -7,7 +7,7 @@ namespace Business.Entities
 {
     public class Plan : BusinessEntity
     {
-        private String _Descripcionn;
+        private String _Descripcion;
         private int _IDEspecialidad;
 
         public string Descripcion
