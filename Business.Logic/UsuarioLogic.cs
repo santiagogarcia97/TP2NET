@@ -17,8 +17,7 @@ namespace Business.Logic {
         }
 
         public UsuarioLogic() {
-
-
+            UsuarioData = new UsuarioAdapter();
         }
 
         public List<Usuario> GetAll() {
