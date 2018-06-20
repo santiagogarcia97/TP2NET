@@ -14,28 +14,28 @@ namespace Business.Entities {
         private int _Legajo;
         private string _Nombre;
         private string _Telefono;
-        private TiposPersonas _TipoPersona;
+    //    private TiposPersonas _TipoPersona;
 
         public string Apellido {
-            get => default(int);
+            get => default(string);
             set {
             }
         }
 
         public string Direccion {
-            get => default(int);
+            get => default(string);
             set {
             }
         }
 
         public string Email {
-            get => default(int);
+            get => default(string);
             set {
             }
         }
 
         public DateTime FechaNacimiento {
-            get => default(int);
+            get => default(DateTime);
             set {
             }
         }
@@ -53,21 +53,21 @@ namespace Business.Entities {
         }
 
         public string Nombre {
-            get => default(int);
+            get => default(string);
             set {
             }
         }
 
         public string Telefono {
-            get => default(int);
+            get => default(string);
             set {
             }
         }
 
-        public TiposPersonas TipoPersona {
-            get => default(int);
-            set {
-            }
-        }
+      //  public TiposPersonas TipoPersona {
+        //    get => default(int);
+          //  set {
+            //}
+        //}
     }
 }

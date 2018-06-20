@@ -12,7 +12,7 @@ namespace Business.Entities {
         private int _IDPlan;
 
         public string Descripcion {
-            get => default(int);
+            get => default(string);
             set {
             }
         }

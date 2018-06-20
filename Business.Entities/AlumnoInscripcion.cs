@@ -12,7 +12,7 @@ namespace Business.Entities {
         private int _Nota;
 
         public string Condicion {
-            get => default(int);
+            get => default(string);
             set {
             }
         }

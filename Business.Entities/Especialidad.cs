@@ -9,7 +9,7 @@ namespace Business.Entities
         private string _Descripcion;
 
         public string Descripcion {
-            get => default(int);
+            get => default(string);
             set {
             }
         }

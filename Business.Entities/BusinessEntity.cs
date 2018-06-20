@@ -15,7 +15,7 @@ namespace Business.Entities
 
         public BusinessEntity()
         {
-            throw new System.NotImplementedException();
+            
         }
 
         public int ID 
