@@ -19,12 +19,22 @@ namespace UI.Desktop
             InitializeComponent();
         }
 
-        private void button2_Click(object sender, EventArgs e) {
-
-        }
         public void Listar() {
             UsuarioLogic ul = new UsuarioLogic();
             this.dgvUsuarios.DataSource = ul.GetAll();
         }
+
+        private void Usuarios_Load(object sender, EventArgs e) {
+            Listar();
+        }
+
+        private void btnActualizar_Click(object sender, EventArgs e) {
+            Listar();
+        }
+
+        private void btnSalir_Click(object sender, EventArgs e) {
+            this.Close();
+        }
+
     }
 }
