@@ -74,7 +74,7 @@ namespace UI.Desktop {
         }
 
         public override void MapearADatos() {
-            switch (Modo) {                                      //Emprolijar: Evitar repetición de asignaciones
+            switch (Modo) {                                      //Emprolijar: Evitar repetición de asignaciones  
                 case ModoForm.Alta:
                     UsuarioActual = new Usuario();
                     UsuarioActual.Apellido = txtApellido.Text;
