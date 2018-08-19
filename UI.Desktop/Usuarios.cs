@@ -14,9 +14,9 @@ namespace UI.Desktop
 {
     public partial class Usuarios : Form
     {
-        public Usuarios()
-        {
+        public Usuarios(){
             InitializeComponent();
+            this.dgvUsuarios.AutoGenerateColumns = false;
         }
 
         public void Listar() {
@@ -28,9 +28,6 @@ namespace UI.Desktop
             Listar();
         }
 
-        private void btnActualizar_Click(object sender, EventArgs e) {
-            Listar();
-        }
 
         private void btnSalir_Click(object sender, EventArgs e) {
             this.Close();

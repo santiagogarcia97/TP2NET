@@ -5,34 +5,30 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Business.Entities {
-    class Materia : BusinessEntity {
+    public class Materia : BusinessEntity {
         private string _Descripcion;
         private int _HSSemanales;
         private int _HSTotales;
         private int _IDPlan;
 
         public string Descripcion {
-            get => default(string);
-            set {
-            }
+            get { return (_Descripcion); }
+            set { _Descripcion = value; }
         }
 
         public int HSSemanales {
-            get => default(int);
-            set {
-            }
+            get { return (_HSSemanales); }
+            set { _HSSemanales = value; }
         }
 
         public int HSTotales {
-            get => default(int);
-            set {
-            }
+            get { return (_HSTotales); }
+            set { _HSTotales = value; }
         }
 
         public int IDPlan {
-            get => default(int);
-            set {
-            }
+            get { return (_IDPlan); }
+            set { _IDPlan = value; }
         }
     }
 }
