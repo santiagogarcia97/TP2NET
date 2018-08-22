@@ -35,6 +35,9 @@
             this.tsbConsultar = new System.Windows.Forms.ToolStripButton();
             this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.hs_semanales = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.hs_totales = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.id_plan = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tcUsuarios.ContentPanel.SuspendLayout();
             this.tcUsuarios.TopToolStripPanel.SuspendLayout();
             this.tcUsuarios.SuspendLayout();
@@ -96,7 +99,10 @@
             this.dgvMaterias.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvMaterias.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.id,
-            this.descripcion});
+            this.descripcion,
+            this.hs_semanales,
+            this.hs_totales,
+            this.id_plan});
             this.tlMaterias.SetColumnSpan(this.dgvMaterias, 2);
             this.dgvMaterias.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvMaterias.Location = new System.Drawing.Point(3, 3);
@@ -192,6 +198,27 @@
             this.descripcion.Name = "descripcion";
             this.descripcion.ReadOnly = true;
             // 
+            // hs_semanales
+            // 
+            this.hs_semanales.DataPropertyName = "HSSemanales";
+            this.hs_semanales.HeaderText = "Horas Semanales";
+            this.hs_semanales.Name = "hs_semanales";
+            this.hs_semanales.ReadOnly = true;
+            // 
+            // hs_totales
+            // 
+            this.hs_totales.DataPropertyName = "HSTotales";
+            this.hs_totales.HeaderText = "Horas Totales";
+            this.hs_totales.Name = "hs_totales";
+            this.hs_totales.ReadOnly = true;
+            // 
+            // id_plan
+            // 
+            this.id_plan.DataPropertyName = "IDPlan";
+            this.id_plan.HeaderText = "ID Plan";
+            this.id_plan.Name = "id_plan";
+            this.id_plan.ReadOnly = true;
+            // 
             // Materias
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -230,5 +257,8 @@
         private System.Windows.Forms.ToolStripButton tsbConsultar;
         private System.Windows.Forms.DataGridViewTextBoxColumn id;
         private System.Windows.Forms.DataGridViewTextBoxColumn descripcion;
+        private System.Windows.Forms.DataGridViewTextBoxColumn hs_semanales;
+        private System.Windows.Forms.DataGridViewTextBoxColumn hs_totales;
+        private System.Windows.Forms.DataGridViewTextBoxColumn id_plan;
     }
 }

@@ -41,9 +41,12 @@ namespace UI.Desktop {
             chkHabilitado.Checked = UsuarioActual.Habilitado;
 
             switch (Modo) {
-                case ModoForm.Alta:                                 
-                case ModoForm.Modificacion:                     //Equivalente a if(Modo == ModoForm.Alta || Modo == Modoform.Modificacion){...}
+                case ModoForm.Alta:
                     btnAceptar.Text = "Guardar";
+                    break;
+                case ModoForm.Modificacion:    
+                    btnAceptar.Text = "Guardar";
+                    txtClave.ReadOnly = true;
                     break;
                 case ModoForm.Baja:
                     btnAceptar.Text = "Eliminar";
@@ -52,7 +55,6 @@ namespace UI.Desktop {
                     chkHabilitado.Enabled = false;
                     txtConfirmarClave.Text = UsuarioActual.Clave;
                     txtConfirmarClave.ReadOnly = true;
-                    cbPersona.Enabled = false;
                     break;
                 case ModoForm.Consulta:
                     btnAceptar.Text = "Aceptar";
@@ -61,7 +63,6 @@ namespace UI.Desktop {
                     chkHabilitado.Enabled = false;
                     txtConfirmarClave.Text = UsuarioActual.Clave;
                     txtConfirmarClave.ReadOnly = true;
-                    cbPersona.Enabled = false;
                     break;
             }
         }
@@ -100,7 +101,6 @@ namespace UI.Desktop {
             return !(                                     //Si cualquiera de estas condiciones es verdadera, retorna false
             string.IsNullOrEmpty(txtUsuario.Text) ||
             string.IsNullOrEmpty(txtClave.Text) ||
-            string.IsNullOrEmpty(cbPersona.Text) ||
             (txtClave.Text != txtConfirmarClave.Text));
         }
 

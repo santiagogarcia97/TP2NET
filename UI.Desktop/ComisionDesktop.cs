@@ -19,6 +19,11 @@ namespace UI.Desktop {
 
         public ComisionDesktop() {
             InitializeComponent();
+            PlanLogic pl = new PlanLogic();
+            List<Plan> planes = pl.GetAll();
+            foreach (Plan pln in planes) {
+                cbPlan.Items.Add(pln.IDString);
+            }
         }
 
         public ComisionDesktop(ModoForm modo) : this() {
@@ -35,8 +40,10 @@ namespace UI.Desktop {
         public override void MapearDeDatos() {
             txtID.Text = ComisionActual.ID.ToString();
             txtDescripcion.Text = ComisionActual.Descripcion;
-            txtPlan.Text = ComisionActual.IDPlan.ToString();
             txtAnio.Text = ComisionActual.AnioEspecialidad.ToString();
+            PlanLogic pl = new PlanLogic();
+            Plan pln = pl.GetOne(ComisionActual.IDPlan);
+            cbPlan.Text = pln.IDString;
 
             switch (Modo) {
                 case ModoForm.Alta:
@@ -46,10 +53,12 @@ namespace UI.Desktop {
                 case ModoForm.Baja:
                     btnAceptar.Text = "Eliminar";
                     txtDescripcion.ReadOnly = true;
+                    cbPlan.Enabled = false;
                     break;
                 case ModoForm.Consulta:
                     btnAceptar.Text = "Aceptar";
                     txtDescripcion.ReadOnly = true;
+                    cbPlan.Enabled = false;
                     break;
             }
         }
@@ -59,14 +68,14 @@ namespace UI.Desktop {
                 case ModoForm.Alta:
                     ComisionActual = new Comision();
                     ComisionActual.Descripcion = txtDescripcion.Text;
-                    ComisionActual.IDPlan = Int32.Parse(txtPlan.Text);
                     ComisionActual.AnioEspecialidad = Int32.Parse(txtAnio.Text);
+                    ComisionActual.IDPlan = getPlnID(cbPlan.Text);
                     ComisionActual.State = BusinessEntity.States.New;
                     break;
                 case ModoForm.Modificacion:
                     ComisionActual.Descripcion = txtDescripcion.Text;
-                    ComisionActual.IDPlan = Int32.Parse(txtPlan.Text);
                     ComisionActual.AnioEspecialidad = Int32.Parse(txtAnio.Text);
+                    ComisionActual.IDPlan = getPlnID(cbPlan.Text);
                     ComisionActual.State = BusinessEntity.States.Modified;
                     break;
                 case ModoForm.Baja:
@@ -85,7 +94,9 @@ namespace UI.Desktop {
         }
 
         public override bool Validar() {
-            return !(string.IsNullOrEmpty(txtDescripcion.Text));
+            return !(string.IsNullOrEmpty(txtDescripcion.Text) ||
+                     string.IsNullOrEmpty(txtAnio.Text) ||
+                     string.IsNullOrEmpty(cbPlan.Text));
         }
 
         private void btnAceptar_Click(object sender, EventArgs e) {
@@ -101,5 +112,17 @@ namespace UI.Desktop {
         private void btnCancelar_Click(object sender, EventArgs e) {
             this.Close();
         }
+
+        private int getPlnID(string StrID) {
+            PlanLogic pl = new PlanLogic();
+            List<Plan> planes = pl.GetAll();
+            foreach (Plan pln in planes) {
+                if (pln.IDString == StrID) {
+                    return pln.ID;
+                }
+            }
+            return (0);
+        }
+
     }
 }

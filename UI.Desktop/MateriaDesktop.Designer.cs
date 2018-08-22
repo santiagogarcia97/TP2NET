@@ -47,7 +47,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 22.52011F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 77.4799F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 90F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 337F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 339F));
             this.tableLayoutPanel1.Controls.Add(this.IDLabel, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.txtID, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.PlanIDLabel, 0, 1);
@@ -75,7 +75,7 @@
             // 
             this.IDLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.IDLabel.AutoSize = true;
-            this.IDLabel.Location = new System.Drawing.Point(33, 7);
+            this.IDLabel.Location = new System.Drawing.Point(32, 7);
             this.IDLabel.Name = "IDLabel";
             this.IDLabel.Size = new System.Drawing.Size(18, 13);
             this.IDLabel.TabIndex = 0;
@@ -85,17 +85,17 @@
             // txtID
             // 
             this.txtID.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtID.Location = new System.Drawing.Point(87, 3);
+            this.txtID.Location = new System.Drawing.Point(86, 3);
             this.txtID.Name = "txtID";
             this.txtID.ReadOnly = true;
-            this.txtID.Size = new System.Drawing.Size(282, 20);
+            this.txtID.Size = new System.Drawing.Size(281, 20);
             this.txtID.TabIndex = 11;
             // 
             // PlanIDLabel
             // 
             this.PlanIDLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.PlanIDLabel.AutoSize = true;
-            this.PlanIDLabel.Location = new System.Drawing.Point(28, 35);
+            this.PlanIDLabel.Location = new System.Drawing.Point(27, 35);
             this.PlanIDLabel.Name = "PlanIDLabel";
             this.PlanIDLabel.Size = new System.Drawing.Size(28, 13);
             this.PlanIDLabel.TabIndex = 19;
@@ -104,7 +104,7 @@
             // txtDescripcion
             // 
             this.txtDescripcion.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txtDescripcion.Location = new System.Drawing.Point(472, 4);
+            this.txtDescripcion.Location = new System.Drawing.Point(471, 4);
             this.txtDescripcion.Name = "txtDescripcion";
             this.txtDescripcion.Size = new System.Drawing.Size(318, 20);
             this.txtDescripcion.TabIndex = 16;
@@ -113,7 +113,7 @@
             // 
             this.DescLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.DescLabel.AutoSize = true;
-            this.DescLabel.Location = new System.Drawing.Point(385, 7);
+            this.DescLabel.Location = new System.Drawing.Point(383, 7);
             this.DescLabel.Name = "DescLabel";
             this.DescLabel.Size = new System.Drawing.Size(63, 13);
             this.DescLabel.TabIndex = 21;
@@ -123,18 +123,14 @@
             // 
             this.cbPlan.Dock = System.Windows.Forms.DockStyle.Fill;
             this.cbPlan.FormattingEnabled = true;
-            this.cbPlan.Items.AddRange(new object[] {
-            "Plan ejemplo 1",
-            "Plan ejemplo 2",
-            "Plan ejemplo 3"});
-            this.cbPlan.Location = new System.Drawing.Point(87, 31);
+            this.cbPlan.Location = new System.Drawing.Point(86, 31);
             this.cbPlan.Name = "cbPlan";
-            this.cbPlan.Size = new System.Drawing.Size(282, 21);
+            this.cbPlan.Size = new System.Drawing.Size(281, 21);
             this.cbPlan.TabIndex = 22;
             // 
             // btnAceptar
             // 
-            this.btnAceptar.Location = new System.Drawing.Point(375, 87);
+            this.btnAceptar.Location = new System.Drawing.Point(373, 87);
             this.btnAceptar.Name = "btnAceptar";
             this.btnAceptar.Size = new System.Drawing.Size(75, 23);
             this.btnAceptar.TabIndex = 9;
@@ -144,7 +140,7 @@
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(465, 87);
+            this.btnCancelar.Location = new System.Drawing.Point(463, 87);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 23);
             this.btnCancelar.TabIndex = 10;
@@ -166,7 +162,7 @@
             // 
             this.HSTotalesLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.HSTotalesLabel.AutoSize = true;
-            this.HSTotalesLabel.Location = new System.Drawing.Point(388, 63);
+            this.HSTotalesLabel.Location = new System.Drawing.Point(386, 63);
             this.HSTotalesLabel.Name = "HSTotalesLabel";
             this.HSTotalesLabel.Size = new System.Drawing.Size(58, 13);
             this.HSTotalesLabel.TabIndex = 24;
@@ -175,17 +171,17 @@
             // txtHSSemanales
             // 
             this.txtHSSemanales.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtHSSemanales.Location = new System.Drawing.Point(87, 58);
+            this.txtHSSemanales.Location = new System.Drawing.Point(86, 58);
             this.txtHSSemanales.Name = "txtHSSemanales";
-            this.txtHSSemanales.Size = new System.Drawing.Size(282, 20);
+            this.txtHSSemanales.Size = new System.Drawing.Size(281, 20);
             this.txtHSSemanales.TabIndex = 25;
             // 
             // txtHSTotales
             // 
             this.txtHSTotales.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtHSTotales.Location = new System.Drawing.Point(465, 58);
+            this.txtHSTotales.Location = new System.Drawing.Point(463, 58);
             this.txtHSTotales.Name = "txtHSTotales";
-            this.txtHSTotales.Size = new System.Drawing.Size(332, 20);
+            this.txtHSTotales.Size = new System.Drawing.Size(334, 20);
             this.txtHSTotales.TabIndex = 26;
             // 
             // MateriaDesktop

@@ -40,5 +40,14 @@ namespace UI.Desktop
             Materias formMaterias = new Materias();
             formMaterias.ShowDialog();
         }
+
+        private void btnComisiones_Click(object sender, EventArgs e) {
+            Comisiones formComisiones = new Comisiones();
+            formComisiones.ShowDialog();
+        }
+
+        private void btnSalir_Click(object sender, EventArgs e) {
+            this.Close();
+        }
     }
 }

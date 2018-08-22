@@ -22,6 +22,11 @@ namespace UI.Desktop {
 
         public MateriaDesktop() {
             InitializeComponent();
+            PlanLogic pl = new PlanLogic();
+            List<Plan> planes = pl.GetAll();
+            foreach (Plan pln in planes) {
+                cbPlan.Items.Add(pln.IDString);
+            }
         }
         public MateriaDesktop(ModoForm modo) : this() {
             Modo = modo;
@@ -39,10 +44,13 @@ namespace UI.Desktop {
             txtDescripcion.Text = MateriaActual.Descripcion;
             txtHSSemanales.Text = MateriaActual.HSSemanales.ToString(); ;
             txtHSTotales.Text = MateriaActual.HSTotales.ToString(); ;
+            PlanLogic pl = new PlanLogic();
+            Plan pln = pl.GetOne(MateriaActual.IDPlan);
+            cbPlan.Text = pln.IDString;
 
             switch (Modo) {
                 case ModoForm.Alta:
-                case ModoForm.Modificacion:                     //Equivalente a if(Modo == ModoForm.Alta || Modo == Modoform.Modificacion){...}
+                case ModoForm.Modificacion:             //Equivalente a if(Modo == ModoForm.Alta || Modo == Modoform.Modificacion){...}        
                     btnAceptar.Text = "Guardar";
                     break;
                 case ModoForm.Baja:
@@ -70,12 +78,14 @@ namespace UI.Desktop {
                     MateriaActual.Descripcion = txtDescripcion.Text;
                     MateriaActual.HSSemanales = int.Parse(txtHSSemanales.Text);
                     MateriaActual.HSSemanales = int.Parse(txtHSSemanales.Text);
+                    MateriaActual.IDPlan = getPlnID(cbPlan.Text);
                     MateriaActual.State = BusinessEntity.States.New;
                     break;
                 case ModoForm.Modificacion:
                     MateriaActual.Descripcion = txtDescripcion.Text;
                     MateriaActual.HSSemanales = int.Parse(txtHSSemanales.Text);
                     MateriaActual.HSSemanales = int.Parse(txtHSSemanales.Text);
+                    MateriaActual.IDPlan = getPlnID(cbPlan.Text);
                     MateriaActual.State = BusinessEntity.States.Modified;
                     break;
                 case ModoForm.Baja:
@@ -94,7 +104,8 @@ namespace UI.Desktop {
         }
 
         public override bool Validar() {
-            return !(                                     //Si cualquiera de estas condiciones es verdadera, retorna false
+            return !(string.IsNullOrEmpty(txtHSSemanales.Text) ||        //Si cualquiera de estas condiciones es verdadera, retorna false
+            string.IsNullOrEmpty(txtHSTotales.Text) ||
             string.IsNullOrEmpty(txtDescripcion.Text) ||
             string.IsNullOrEmpty(cbPlan.Text));
         }
@@ -111,6 +122,17 @@ namespace UI.Desktop {
 
         private void btnCancelar_Click(object sender, EventArgs e) {
             this.Close();
+        }
+
+        private int getPlnID(string StrID) {
+            PlanLogic pl = new PlanLogic();
+            List<Plan> planes = pl.GetAll();
+            foreach (Plan pln in planes) {
+                if (pln.IDString == StrID) {
+                    return pln.ID;
+                }
+            }
+            return (0);
         }
     }
 }

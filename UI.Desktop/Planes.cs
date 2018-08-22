@@ -14,8 +14,9 @@ namespace UI.Desktop {
     public partial class Planes : Form {
         public Planes() {
             InitializeComponent();
-            this.Listar();
             this.dgvPlanes.AutoGenerateColumns = false;
+            this.Listar();
+            
         }
 
         public void Listar() {

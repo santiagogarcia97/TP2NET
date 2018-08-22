@@ -21,6 +21,11 @@ namespace UI.Desktop {
 
         public PlanDesktop() {
             InitializeComponent();
+            EspecialidadLogic el = new EspecialidadLogic();
+            List<Especialidad> especialidades = el.GetAll();
+            foreach (Especialidad esp in especialidades) {
+                cbEspecialidad.Items.Add(esp.IDString);
+            }
         }
 
         public PlanDesktop(ModoForm modo) : this() {
@@ -37,10 +42,15 @@ namespace UI.Desktop {
         public override void MapearDeDatos() {
             txtID.Text = PlanActual.ID.ToString();
             txtDescripcion.Text = PlanActual.Descripcion;
+            EspecialidadLogic el = new EspecialidadLogic();
+            Especialidad esp = el.GetOne(PlanActual.IDEspecialidad);
+            cbEspecialidad.Text = esp.IDString;
 
             switch (Modo) {
                 case ModoForm.Alta:
-                case ModoForm.Modificacion:                     //Equivalente a if(Modo == ModoForm.Alta || Modo == Modoform.Modificacion){...}
+                    btnAceptar.Text = "Guardar";
+                    break;
+                case ModoForm.Modificacion:           
                     btnAceptar.Text = "Guardar";
                     break;
                 case ModoForm.Baja:
@@ -62,11 +72,13 @@ namespace UI.Desktop {
                 case ModoForm.Alta:
                     PlanActual = new Plan();
                     PlanActual.Descripcion = txtDescripcion.Text;
+                    PlanActual.IDEspecialidad = getEspID(cbEspecialidad.Text);
                     PlanActual.State = BusinessEntity.States.New;
                     break;
                 case ModoForm.Modificacion:
                     PlanActual.Descripcion = txtDescripcion.Text;
                     PlanActual.State = BusinessEntity.States.Modified;
+                    PlanActual.IDEspecialidad = getEspID(cbEspecialidad.Text);
                     break;
                 case ModoForm.Baja:
                     PlanActual.State = BusinessEntity.States.Deleted;
@@ -101,6 +113,17 @@ namespace UI.Desktop {
 
         private void btnCancelar_Click(object sender, EventArgs e) {
             this.Close();
+        }
+
+        private int getEspID(string StrID) {
+            EspecialidadLogic el = new EspecialidadLogic();
+            List<Especialidad> especialidades = el.GetAll();
+            foreach (Especialidad esp in especialidades) {
+                if(esp.IDString == StrID) {
+                    return esp.ID;
+                }
+            }
+            return (0);
         }
     }
 }

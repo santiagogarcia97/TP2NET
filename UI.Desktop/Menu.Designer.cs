@@ -32,6 +32,8 @@
             this.btnPlanes = new System.Windows.Forms.Button();
             this.btnEspecialidades = new System.Windows.Forms.Button();
             this.btnMaterias = new System.Windows.Forms.Button();
+            this.btnComisiones = new System.Windows.Forms.Button();
+            this.btnSalir = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnUsuarios
@@ -74,11 +76,33 @@
             this.btnMaterias.UseVisualStyleBackColor = true;
             this.btnMaterias.Click += new System.EventHandler(this.btnMaterias_Click);
             // 
+            // btnComisiones
+            // 
+            this.btnComisiones.Location = new System.Drawing.Point(13, 129);
+            this.btnComisiones.Name = "btnComisiones";
+            this.btnComisiones.Size = new System.Drawing.Size(126, 23);
+            this.btnComisiones.TabIndex = 4;
+            this.btnComisiones.Text = "Comisiones";
+            this.btnComisiones.UseVisualStyleBackColor = true;
+            this.btnComisiones.Click += new System.EventHandler(this.btnComisiones_Click);
+            // 
+            // btnSalir
+            // 
+            this.btnSalir.Location = new System.Drawing.Point(303, 129);
+            this.btnSalir.Name = "btnSalir";
+            this.btnSalir.Size = new System.Drawing.Size(75, 23);
+            this.btnSalir.TabIndex = 5;
+            this.btnSalir.Text = "Salir";
+            this.btnSalir.UseVisualStyleBackColor = true;
+            this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
+            // 
             // Menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(390, 132);
+            this.ClientSize = new System.Drawing.Size(390, 161);
+            this.Controls.Add(this.btnSalir);
+            this.Controls.Add(this.btnComisiones);
             this.Controls.Add(this.btnMaterias);
             this.Controls.Add(this.btnEspecialidades);
             this.Controls.Add(this.btnPlanes);
@@ -98,5 +122,7 @@
         private System.Windows.Forms.Button btnPlanes;
         private System.Windows.Forms.Button btnEspecialidades;
         private System.Windows.Forms.Button btnMaterias;
+        private System.Windows.Forms.Button btnComisiones;
+        private System.Windows.Forms.Button btnSalir;
     }
 }

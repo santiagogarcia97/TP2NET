@@ -30,10 +30,10 @@
             this.txtDescripcion = new System.Windows.Forms.TextBox();
             this.btnAceptar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
-            this.txtPlan = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txtAnio = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.cbPlan = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -43,8 +43,8 @@
             this.tableLayoutPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.tableLayoutPanel1.ColumnCount = 4;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 90F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 73F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 67F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel1.Controls.Add(this.IDLabel, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.txtID, 1, 0);
@@ -52,10 +52,10 @@
             this.tableLayoutPanel1.Controls.Add(this.txtDescripcion, 3, 0);
             this.tableLayoutPanel1.Controls.Add(this.btnAceptar, 2, 2);
             this.tableLayoutPanel1.Controls.Add(this.btnCancelar, 3, 2);
-            this.tableLayoutPanel1.Controls.Add(this.txtPlan, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.label2, 2, 1);
             this.tableLayoutPanel1.Controls.Add(this.txtAnio, 3, 1);
             this.tableLayoutPanel1.Controls.Add(this.label1, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.cbPlan, 1, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -83,16 +83,16 @@
             this.txtID.Location = new System.Drawing.Point(53, 3);
             this.txtID.Name = "txtID";
             this.txtID.ReadOnly = true;
-            this.txtID.Size = new System.Drawing.Size(44, 20);
+            this.txtID.Size = new System.Drawing.Size(67, 20);
             this.txtID.TabIndex = 11;
             // 
             // DescLabel
             // 
             this.DescLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.DescLabel.AutoSize = true;
-            this.DescLabel.Location = new System.Drawing.Point(113, 6);
+            this.DescLabel.Location = new System.Drawing.Point(128, 0);
             this.DescLabel.Name = "DescLabel";
-            this.DescLabel.Size = new System.Drawing.Size(63, 13);
+            this.DescLabel.Size = new System.Drawing.Size(57, 25);
             this.DescLabel.TabIndex = 12;
             this.DescLabel.Text = "Descripcion";
             // 
@@ -106,9 +106,9 @@
             // 
             // btnAceptar
             // 
-            this.btnAceptar.Location = new System.Drawing.Point(103, 53);
+            this.btnAceptar.Location = new System.Drawing.Point(126, 53);
             this.btnAceptar.Name = "btnAceptar";
-            this.btnAceptar.Size = new System.Drawing.Size(75, 20);
+            this.btnAceptar.Size = new System.Drawing.Size(61, 20);
             this.btnAceptar.TabIndex = 9;
             this.btnAceptar.Text = "Aceptar";
             this.btnAceptar.UseVisualStyleBackColor = true;
@@ -124,31 +124,24 @@
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
-            // txtPlan
-            // 
-            this.txtPlan.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtPlan.Location = new System.Drawing.Point(53, 28);
-            this.txtPlan.Name = "txtPlan";
-            this.txtPlan.Size = new System.Drawing.Size(44, 20);
-            this.txtPlan.TabIndex = 15;
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label2.Location = new System.Drawing.Point(100, 25);
+            this.label2.Location = new System.Drawing.Point(123, 25);
             this.label2.Margin = new System.Windows.Forms.Padding(0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(90, 25);
+            this.label2.Size = new System.Drawing.Size(67, 25);
             this.label2.TabIndex = 16;
             this.label2.Text = "Año";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // txtAnio
             // 
+            this.txtAnio.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtAnio.Location = new System.Drawing.Point(193, 28);
             this.txtAnio.Name = "txtAnio";
-            this.txtAnio.Size = new System.Drawing.Size(100, 20);
+            this.txtAnio.Size = new System.Drawing.Size(401, 20);
             this.txtAnio.TabIndex = 17;
             // 
             // label1
@@ -161,6 +154,14 @@
             this.label1.TabIndex = 14;
             this.label1.Text = "Plan";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // cbPlan
+            // 
+            this.cbPlan.FormattingEnabled = true;
+            this.cbPlan.Location = new System.Drawing.Point(53, 28);
+            this.cbPlan.Name = "cbPlan";
+            this.cbPlan.Size = new System.Drawing.Size(67, 21);
+            this.cbPlan.TabIndex = 18;
             // 
             // ComisionDesktop
             // 
@@ -186,9 +187,9 @@
         private System.Windows.Forms.TextBox txtID;
         private System.Windows.Forms.Label DescLabel;
         private System.Windows.Forms.TextBox txtDescripcion;
-        private System.Windows.Forms.TextBox txtPlan;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtAnio;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox cbPlan;
     }
 }

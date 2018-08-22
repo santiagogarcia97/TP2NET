@@ -21,6 +21,7 @@ namespace Data.Database {
 
                     esp.ID = (int)drEspecialidades["id_especialidad"];
                     esp.Descripcion = (string)drEspecialidades["desc_especialidad"];
+                    esp.IDString = (esp.ID.ToString() + " - " + esp.Descripcion);   //String para usar en dropdown
                     especialidades.Add(esp);
                 }
                 drEspecialidades.Close();
@@ -47,6 +48,7 @@ namespace Data.Database {
                 if (drEspecialidades.Read()) {
                     esp.ID = (int)drEspecialidades["id_especialidad"];
                     esp.Descripcion = (string)drEspecialidades["desc_especialidad"];
+                    esp.IDString = (esp.ID.ToString() + " - " + esp.Descripcion);
                 }
                 drEspecialidades.Close();
             }
