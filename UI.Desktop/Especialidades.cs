@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Business.Logic;
+using Business.Entities;
 
 namespace UI.Desktop {
     public partial class Especialidades : Form {
@@ -18,10 +19,15 @@ namespace UI.Desktop {
 
         public void Listar() {
             EspecialidadLogic esp = new EspecialidadLogic();
-            this.dgvEspecialidades.DataSource = esp.GetAll();
+            List<Especialidad> especialidades = esp.GetAll();
+            if (especialidades.Count() == 0)
+            {
+                MessageBox.Show("No hay especialidades cargadas!");
+            }
+            this.dgvEspecialidades.DataSource = especialidades;
         }
 
-        private void Eventos_Load(object sender, EventArgs e) {
+        private void Especialidades_Load(object sender, EventArgs e) {
             Listar();
         }
 
@@ -58,12 +64,9 @@ namespace UI.Desktop {
             }
         }
 
-        private void btnActualizar_Click(object sender, EventArgs e) {
-            Listar();
-        }
-
         private void btnSalir_Click(object sender, EventArgs e) {
             this.Close();
         }
+
     }
 }

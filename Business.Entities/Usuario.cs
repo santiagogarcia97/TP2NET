@@ -6,44 +6,25 @@ using System.Threading.Tasks;
 
 namespace Business.Entities {
     public class Usuario : BusinessEntity {
-        private string _Nombre;
-        private string _Apellido;
-        private string _Email;
-        private string _NombreUsuario;
-        private string _Clave;
-        private bool _Habilitado;
-        private int _IDPersona;
+        private string _Nombre,_Apellido,_Direccion,_Email,_Telefono,_NombreUsuario,_Clave;
+        private DateTime _FechaNacimiento;
+        private bool _Habilitado,_CambiaClave;
+        private int _Legajo,_TipoPersona,_IDUsuario,_IDPlan;
 
-        public string Nombre {
-            get { return (_Nombre); }
-            set { _Nombre = value; }
-        }
-        public string Apellido {
-            get { return (_Apellido); }
-            set { _Apellido = value; }
-        }
-        public string Email {
-            get { return (_Email); }
-            set { _Email = value; }
-        }
-        public string NombreUsuario {
-            get { return (_NombreUsuario); }
-            set { _NombreUsuario = value; }
-        }
-        public string Clave {
-            get { return (_Clave); }
-            set { _Clave = value; }
-        }
-        public bool Habilitado {
-            get { return (_Habilitado); }
-            set { _Habilitado = value; }
-        }
-
-        public int IDPersona {
-            get { return (_IDPersona); }
-            set { _IDPersona = value; }
-        }
-
+        public string Nombre { get => _Nombre; set => _Nombre = value; }
+        public string Apellido { get => _Apellido; set => _Apellido = value; }
+        public string Direccion { get => _Direccion; set => _Direccion = value; }
+        public string Email { get => _Email; set => _Email = value; }
+        public string Telefono { get => _Telefono; set => _Telefono = value; }
+        public string NombreUsuario { get => _NombreUsuario; set => _NombreUsuario = value; }
+        public string Clave { get => _Clave; set => _Clave = value; }
+        public DateTime FechaNacimiento { get => _FechaNacimiento; set => _FechaNacimiento = value; }
+        public bool Habilitado { get => _Habilitado; set => _Habilitado = value; }
+        public bool CambiaClave { get => _CambiaClave; set => _CambiaClave = value; }
+        public int Legajo { get => _Legajo; set => _Legajo = value; }
+        public int TipoPersona { get => _TipoPersona; set => _TipoPersona = value; }
+        public int IDUsuario { get => _IDUsuario; set => _IDUsuario = value; }
+        public int IDPlan { get => _IDPlan; set => _IDPlan = value; }
     }
 
 }

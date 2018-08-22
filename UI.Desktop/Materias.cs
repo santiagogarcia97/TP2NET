@@ -19,13 +19,21 @@ namespace UI.Desktop {
 
         public void Listar() {
             MateriaLogic ml = new MateriaLogic();
-            this.dgvMaterias.DataSource = ml.GetAll();
+            List<Materia> materias = ml.GetAll();
+            if (materias.Count() == 0) {
+                MessageBox.Show("No hay materias cargadas!");
+            }
+            this.dgvMaterias.DataSource = materias;
         }
 
         private void Materias_Load(object sender, EventArgs e) {
             Listar();
         }
 
+        private void btnActualizar_Click(object sender, EventArgs e)
+        {
+            Listar();
+        }
 
         private void btnSalir_Click(object sender, EventArgs e) {
             this.Close();

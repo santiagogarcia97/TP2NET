@@ -21,7 +21,12 @@ namespace UI.Desktop
 
         public void Listar() {
             UsuarioLogic ul = new UsuarioLogic();
-            this.dgvUsuarios.DataSource = ul.GetAll();
+            List<Usuario> usuarios = ul.GetAll();
+            if (usuarios.Count() == 0)
+            {
+                MessageBox.Show("No hay usuarios cargados!");
+            }
+            this.dgvUsuarios.DataSource = usuarios;
         }
 
         private void Usuarios_Load(object sender, EventArgs e) {
@@ -64,6 +69,11 @@ namespace UI.Desktop
                 usuarioDesktop.ShowDialog();
                 this.Listar();
             }
+        }
+
+        private void btnActualizar_Click(object sender, EventArgs e)
+        {
+            Listar();
         }
     }
 }

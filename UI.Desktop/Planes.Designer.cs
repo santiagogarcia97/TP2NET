@@ -26,21 +26,21 @@
             this.tcUsuarios = new System.Windows.Forms.ToolStripContainer();
             this.tlPlanes = new System.Windows.Forms.TableLayoutPanel();
             this.dgvPlanes = new System.Windows.Forms.DataGridView();
-            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnSalir = new System.Windows.Forms.Button();
             this.btnActualizar = new System.Windows.Forms.Button();
-            this.tsUsuarios = new System.Windows.Forms.ToolStrip();
+            this.tsPlanes = new System.Windows.Forms.ToolStrip();
             this.tsbNuevo = new System.Windows.Forms.ToolStripButton();
             this.tsbEditar = new System.Windows.Forms.ToolStripButton();
             this.tsbEliminar = new System.Windows.Forms.ToolStripButton();
             this.tsbConsultar = new System.Windows.Forms.ToolStripButton();
+            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tcUsuarios.ContentPanel.SuspendLayout();
             this.tcUsuarios.TopToolStripPanel.SuspendLayout();
             this.tcUsuarios.SuspendLayout();
             this.tlPlanes.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPlanes)).BeginInit();
-            this.tsUsuarios.SuspendLayout();
+            this.tsPlanes.SuspendLayout();
             this.SuspendLayout();
             // 
             // tcUsuarios
@@ -49,17 +49,17 @@
             // tcUsuarios.ContentPanel
             // 
             this.tcUsuarios.ContentPanel.Controls.Add(this.tlPlanes);
-            this.tcUsuarios.ContentPanel.Size = new System.Drawing.Size(800, 425);
+            this.tcUsuarios.ContentPanel.Size = new System.Drawing.Size(784, 336);
             this.tcUsuarios.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tcUsuarios.Location = new System.Drawing.Point(0, 0);
             this.tcUsuarios.Name = "tcUsuarios";
-            this.tcUsuarios.Size = new System.Drawing.Size(800, 450);
+            this.tcUsuarios.Size = new System.Drawing.Size(784, 361);
             this.tcUsuarios.TabIndex = 2;
             this.tcUsuarios.Text = "toolStripContainer1";
             // 
             // tcUsuarios.TopToolStripPanel
             // 
-            this.tcUsuarios.TopToolStripPanel.Controls.Add(this.tsUsuarios);
+            this.tcUsuarios.TopToolStripPanel.Controls.Add(this.tsPlanes);
             // 
             // tlPlanes
             // 
@@ -75,7 +75,7 @@
             this.tlPlanes.RowCount = 2;
             this.tlPlanes.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tlPlanes.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tlPlanes.Size = new System.Drawing.Size(800, 425);
+            this.tlPlanes.Size = new System.Drawing.Size(784, 336);
             this.tlPlanes.TabIndex = 0;
             // 
             // dgvPlanes
@@ -92,27 +92,14 @@
             this.dgvPlanes.MultiSelect = false;
             this.dgvPlanes.Name = "dgvPlanes";
             this.dgvPlanes.ReadOnly = true;
+            this.dgvPlanes.RowHeadersVisible = false;
             this.dgvPlanes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvPlanes.Size = new System.Drawing.Size(794, 390);
+            this.dgvPlanes.Size = new System.Drawing.Size(778, 301);
             this.dgvPlanes.TabIndex = 0;
-            // 
-            // id
-            // 
-            this.id.DataPropertyName = "ID";
-            this.id.HeaderText = "ID";
-            this.id.Name = "id";
-            this.id.ReadOnly = true;
-            // 
-            // descripcion
-            // 
-            this.descripcion.DataPropertyName = "Descripcion";
-            this.descripcion.HeaderText = "Descripcion";
-            this.descripcion.Name = "descripcion";
-            this.descripcion.ReadOnly = true;
             // 
             // btnSalir
             // 
-            this.btnSalir.Location = new System.Drawing.Point(722, 399);
+            this.btnSalir.Location = new System.Drawing.Point(706, 310);
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.Size = new System.Drawing.Size(75, 23);
             this.btnSalir.TabIndex = 1;
@@ -123,7 +110,7 @@
             // btnActualizar
             // 
             this.btnActualizar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnActualizar.Location = new System.Drawing.Point(641, 399);
+            this.btnActualizar.Location = new System.Drawing.Point(625, 310);
             this.btnActualizar.Name = "btnActualizar";
             this.btnActualizar.Size = new System.Drawing.Size(75, 23);
             this.btnActualizar.TabIndex = 2;
@@ -131,18 +118,18 @@
             this.btnActualizar.UseVisualStyleBackColor = true;
             this.btnActualizar.Click += new System.EventHandler(this.Planes_Load);
             // 
-            // tsUsuarios
+            // tsPlanes
             // 
-            this.tsUsuarios.Dock = System.Windows.Forms.DockStyle.None;
-            this.tsUsuarios.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsPlanes.Dock = System.Windows.Forms.DockStyle.None;
+            this.tsPlanes.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsbNuevo,
             this.tsbEditar,
             this.tsbEliminar,
             this.tsbConsultar});
-            this.tsUsuarios.Location = new System.Drawing.Point(3, 0);
-            this.tsUsuarios.Name = "tsUsuarios";
-            this.tsUsuarios.Size = new System.Drawing.Size(104, 25);
-            this.tsUsuarios.TabIndex = 0;
+            this.tsPlanes.Location = new System.Drawing.Point(3, 0);
+            this.tsPlanes.Name = "tsPlanes";
+            this.tsPlanes.Size = new System.Drawing.Size(104, 25);
+            this.tsPlanes.TabIndex = 0;
             // 
             // tsbNuevo
             // 
@@ -187,13 +174,33 @@
             this.tsbConsultar.Text = "toolStripButton1";
             this.tsbConsultar.Click += new System.EventHandler(this.tsbConsultar_Click);
             // 
+            // id
+            // 
+            this.id.DataPropertyName = "ID";
+            this.id.HeaderText = "ID";
+            this.id.MinimumWidth = 65;
+            this.id.Name = "id";
+            this.id.ReadOnly = true;
+            this.id.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.id.Width = 65;
+            // 
+            // descripcion
+            // 
+            this.descripcion.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.descripcion.DataPropertyName = "Descripcion";
+            this.descripcion.HeaderText = "Descripcion";
+            this.descripcion.Name = "descripcion";
+            this.descripcion.ReadOnly = true;
+            // 
             // Planes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(784, 361);
             this.Controls.Add(this.tcUsuarios);
+            this.MinimumSize = new System.Drawing.Size(600, 300);
             this.Name = "Planes";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Planes";
             this.tcUsuarios.ContentPanel.ResumeLayout(false);
             this.tcUsuarios.TopToolStripPanel.ResumeLayout(false);
@@ -202,8 +209,8 @@
             this.tcUsuarios.PerformLayout();
             this.tlPlanes.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvPlanes)).EndInit();
-            this.tsUsuarios.ResumeLayout(false);
-            this.tsUsuarios.PerformLayout();
+            this.tsPlanes.ResumeLayout(false);
+            this.tsPlanes.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -213,14 +220,14 @@
         private System.Windows.Forms.ToolStripContainer tcUsuarios;
         private System.Windows.Forms.TableLayoutPanel tlPlanes;
         private System.Windows.Forms.DataGridView dgvPlanes;
-        private System.Windows.Forms.DataGridViewTextBoxColumn id;
-        private System.Windows.Forms.DataGridViewTextBoxColumn descripcion;
         private System.Windows.Forms.Button btnSalir;
         private System.Windows.Forms.Button btnActualizar;
-        private System.Windows.Forms.ToolStrip tsUsuarios;
+        private System.Windows.Forms.ToolStrip tsPlanes;
         private System.Windows.Forms.ToolStripButton tsbNuevo;
         private System.Windows.Forms.ToolStripButton tsbEditar;
         private System.Windows.Forms.ToolStripButton tsbEliminar;
         private System.Windows.Forms.ToolStripButton tsbConsultar;
+        private System.Windows.Forms.DataGridViewTextBoxColumn id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn descripcion;
     }
 }

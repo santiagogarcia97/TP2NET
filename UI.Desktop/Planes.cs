@@ -20,10 +20,19 @@ namespace UI.Desktop {
 
         public void Listar() {
             PlanLogic pl = new PlanLogic();
-            this.dgvPlanes.DataSource = pl.GetAll();
+            List<Plan> planes = pl.GetAll();
+            if (planes.Count() == 0)
+            {
+                MessageBox.Show("No hay planes cargados!");
+            }
+            this.dgvPlanes.DataSource = planes;
         }
 
         private void Planes_Load(object sender, EventArgs e) {
+            Listar();
+        }
+        private void btnActualizar_Click(object sender, EventArgs e)
+        {
             Listar();
         }
 
