@@ -9,10 +9,8 @@ namespace Data.Database
     public class Adapter
     {
         const string consKeyDefaultCnnString = "ConnStringLocal";
-        //private SqlConnection sqlConnection = new SqlConnection("ConnectionString;");
-
         private SqlConnection _SqlConn;
-        public SqlConnection SqlConn { get; set; }
+        public SqlConnection SqlConn { get => _SqlConn; set => _SqlConn = value; }
 
         protected void OpenConnection(){
             String connString = ConfigurationManager.ConnectionStrings[consKeyDefaultCnnString].ConnectionString;

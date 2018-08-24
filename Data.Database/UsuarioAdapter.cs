@@ -133,7 +133,7 @@ namespace Data.Database
         {
             try {
                 this.OpenConnection();
-                SqlCommand cmdDelete = new SqlCommand("DELETE usuarios WHERE id_usuario=@id", SqlConn);
+                SqlCommand cmdDelete = new SqlCommand("DELETE FROM usuarios WHERE id_usuario=@id", SqlConn);
                 cmdDelete.Parameters.Add("@id", SqlDbType.Int).Value = ID;
                 cmdDelete.ExecuteNonQuery();
             }
@@ -149,14 +149,25 @@ namespace Data.Database
         protected void Update(Usuario usuario) {
             try {
                 this.OpenConnection();
-                SqlCommand cmdSave = new SqlCommand("UPDATE usuarios SET nombre_usuario = @nombre_usuario, " +
-                    "clave = @clave,  habilitado = @habilitado, id_persona = @id_persona " +
-                    "WHERE id_usuario=@id", SqlConn);
+                SqlCommand cmdSave = new SqlCommand("UPDATE usuarios SET nombre=@nombre,apellido=@apellido,direccion=@direccion,email=@email," +
+                    "telefono=@telefono,fecha_nac=@fecha_nac,legajo=@legajo," +
+                    "tipo_persona=@tipo_persona,nombre_usuario=@nombre_usuario,clave=@clave," +
+                    "habilitado=@habilitado,cambia_clave=@cambia_clave,id_plan=@id_plan WHERE id_usuario=@id", SqlConn);
 
                 cmdSave.Parameters.Add("@id", SqlDbType.Int).Value = usuario.ID;
+                cmdSave.Parameters.Add("@nombre", SqlDbType.VarChar, 50).Value = usuario.Nombre;
+                cmdSave.Parameters.Add("@apellido", SqlDbType.VarChar, 50).Value = usuario.Apellido;
+                cmdSave.Parameters.Add("@direccion", SqlDbType.VarChar, 50).Value = usuario.Direccion;
+                cmdSave.Parameters.Add("@email", SqlDbType.VarChar, 50).Value = usuario.Email;
+                cmdSave.Parameters.Add("@telefono", SqlDbType.VarChar, 50).Value = usuario.Telefono;
+                cmdSave.Parameters.Add("@fecha_nac", SqlDbType.DateTime).Value = usuario.FechaNacimiento;
+                cmdSave.Parameters.Add("@legajo", SqlDbType.Int).Value = usuario.Legajo;
+                cmdSave.Parameters.Add("@tipo_persona", SqlDbType.Int).Value = usuario.TipoPersona;
                 cmdSave.Parameters.Add("@nombre_usuario", SqlDbType.VarChar, 50).Value = usuario.NombreUsuario;
                 cmdSave.Parameters.Add("@clave", SqlDbType.VarChar, 50).Value = usuario.Clave;
                 cmdSave.Parameters.Add("@habilitado", SqlDbType.Bit).Value = usuario.Habilitado;
+                cmdSave.Parameters.Add("@cambia_clave", SqlDbType.Bit).Value = false;
+                cmdSave.Parameters.Add("@id_plan", SqlDbType.Int).Value = usuario.IDPlan;
                 cmdSave.ExecuteNonQuery();
             }
             catch (Exception Ex) {
@@ -172,11 +183,24 @@ namespace Data.Database
 
             try {
                 this.OpenConnection();
-                SqlCommand cmdSave = new SqlCommand("INSERT INTO usuarios(nombre_usuario,clave,habilitado,id_persona) " +
-                    "values(@nombre_usuario, @clave,@habilitado, @id_persona) SELECT @@identity", SqlConn);
+                SqlCommand cmdSave = new SqlCommand("INSERT INTO usuarios(nombre,apellido,direccion,email,telefono,fecha_nac,legajo," +
+                    "tipo_persona,nombre_usuario,clave,habilitado,cambia_clave,id_plan) " +
+                    "values(@nombre,@apellido,@direccion,@email,@telefono,@fecha_nac,@legajo,@tipo_persona,@nombre_usuario," +
+                    "@clave,@habilitado,@cambia_clave,@id_plan) SELECT @@identity", SqlConn);
+
+                cmdSave.Parameters.Add("@nombre", SqlDbType.VarChar, 50).Value = usuario.Nombre;
+                cmdSave.Parameters.Add("@apellido", SqlDbType.VarChar, 50).Value = usuario.Apellido;
+                cmdSave.Parameters.Add("@direccion", SqlDbType.VarChar, 50).Value = usuario.Direccion;
+                cmdSave.Parameters.Add("@email", SqlDbType.VarChar, 50).Value = usuario.Email;
+                cmdSave.Parameters.Add("@telefono", SqlDbType.VarChar, 50).Value = usuario.Telefono;
+                cmdSave.Parameters.Add("@fecha_nac", SqlDbType.DateTime).Value = usuario.FechaNacimiento;
+                cmdSave.Parameters.Add("@legajo", SqlDbType.Int).Value = usuario.Legajo;
+                cmdSave.Parameters.Add("@tipo_persona", SqlDbType.Int).Value = usuario.TipoPersona;
                 cmdSave.Parameters.Add("@nombre_usuario", SqlDbType.VarChar, 50).Value = usuario.NombreUsuario;
                 cmdSave.Parameters.Add("@clave", SqlDbType.VarChar, 50).Value = usuario.Clave;
                 cmdSave.Parameters.Add("@habilitado", SqlDbType.Bit).Value = usuario.Habilitado;
+                cmdSave.Parameters.Add("@cambia_clave", SqlDbType.Bit).Value = false;
+                cmdSave.Parameters.Add("@id_plan", SqlDbType.Int).Value = usuario.IDPlan;
                 usuario.ID = Decimal.ToInt32((decimal)cmdSave.ExecuteScalar());
             }
             catch (Exception Ex) {
@@ -189,8 +213,7 @@ namespace Data.Database
         }
 
 
-public void Save(Usuario usuario)
-        {
+        public void Save(Usuario usuario){
             if (usuario.State == BusinessEntity.States.Deleted)
             {
                 this.Delete(usuario.ID);

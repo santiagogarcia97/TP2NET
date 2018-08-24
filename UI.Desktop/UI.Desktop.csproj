@@ -33,6 +33,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -56,10 +57,6 @@
     </Compile>
     <Compile Include="ComisionDesktop.Designer.cs">
       <DependentUpon>ComisionDesktop.cs</DependentUpon>
-    </Compile>
-    <Compile Include="CursoDesktop.cs" />
-    <Compile Include="CursoDesktop.Designer.cs">
-      <DependentUpon>CursoDesktop.cs</DependentUpon>
     </Compile>
     <Compile Include="Cursos.cs">
       <SubType>Form</SubType>
@@ -153,9 +150,6 @@
     <EmbeddedResource Include="ComisionDesktop.resx">
       <DependentUpon>ComisionDesktop.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CursoDesktop.resx">
-      <DependentUpon>CursoDesktop.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Cursos.resx">
       <DependentUpon>Cursos.cs</DependentUpon>
     </EmbeddedResource>
@@ -229,6 +223,10 @@
     <ProjectReference Include="..\Business.Logic\Business.Logic.csproj">
       <Project>{37a462da-8e81-48db-8ea4-b711b0ad4d23}</Project>
       <Name>Business.Logic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Util\Util.csproj">
+      <Project>{ccf53502-b826-45d0-8939-91c0b08e099d}</Project>
+      <Name>Util</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

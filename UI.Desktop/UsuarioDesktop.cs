@@ -7,8 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.ComponentModel.DataAnnotations;
 using Business.Logic;
 using Business.Entities;
+using System.Globalization;
+using Util;
 
 namespace UI.Desktop {
     public partial class UsuarioDesktop : ApplicationForm {
@@ -18,37 +21,56 @@ namespace UI.Desktop {
 
         public UsuarioDesktop() {
             InitializeComponent();
+
+            lblRedAp.Visible = false;
+            lblRedClave.Visible = false;
+            lblRedDirec.Visible = false;
+            lblRedEmail.Visible = false;
+            lblRedNac.Visible = false;
+            lblRedNom.Visible = false;
+            lblRedPlan.Visible = false;
+            lblRedTel.Visible = false;
+            lblRedTipo.Visible = false;
+            lblRedUser.Visible = false;
+
             GenerarTipoPersona();
             GenerarEsp();
         }
 
         public UsuarioDesktop(ModoForm modo):this() {
             Modo = modo;
+            btnAceptar.Text = "Crear";
+            labelID.Text = "-";
+            labelLegajo.Text = "-";
+            chkHabilitado.Checked = true;
         }
 
         public UsuarioDesktop(int ID, ModoForm modo) : this() {
             Modo = modo;
             UsuarioLogic ul = new UsuarioLogic();
             UsuarioActual = ul.GetOne(ID);
-            MapearDeDatos();
+
+            PlanLogic pl = new PlanLogic();
+            Plan plan = pl.GetOne(UsuarioActual.IDPlan);
+
+            GenerarPlanes(plan.IDEspecialidad);
+
+            MapearDeDatos(plan);
         }
 
-        public override void MapearDeDatos() {
+        public void MapearDeDatos(Plan plan) {
             chkHabilitado.Checked = UsuarioActual.Habilitado;
             labelID.Text = UsuarioActual.ID.ToString();
             labelLegajo.Text = UsuarioActual.Legajo.ToString();
             txtNombre.Text = UsuarioActual.Nombre.ToString();
             txtApellido.Text = UsuarioActual.Apellido.ToString();
-            txtFechaNac.Text = UsuarioActual.FechaNacimiento.ToString();
+            txtFechaNac.Text = UsuarioActual.FechaNacimiento.ToString("dd/MM/yyyy");
             txtDirec.Text = UsuarioActual.Direccion.ToString();
             txtTel.Text = UsuarioActual.Telefono.ToString();
             txtEmail.Text = UsuarioActual.Email.ToString();
             txtNombreUsuario.Text = UsuarioActual.NombreUsuario.ToString();
             txtClave.Text = UsuarioActual.Clave.ToString();
             cbxTipo.SelectedValue = UsuarioActual.TipoPersona;
-
-            PlanLogic pl = new PlanLogic();
-            Plan plan = pl.GetOne(UsuarioActual.IDPlan);
             cbxEsp.SelectedValue = plan.IDEspecialidad;
             cbxPlan.SelectedValue = UsuarioActual.IDPlan;
 
@@ -65,6 +87,8 @@ namespace UI.Desktop {
                 txtNombreUsuario.ReadOnly = true;
                 txtClave.ReadOnly = true;
                 cbxTipo.Enabled = false;
+                cbxEsp.Enabled = false;
+                cbxPlan.Enabled = false;
             }
             else {
                 btnAceptar.Text = "Guardar";
@@ -75,35 +99,31 @@ namespace UI.Desktop {
             if(Modo == ModoForm.Alta || Modo == ModoForm.Modificacion) {
                 UsuarioActual = new Usuario();
                 UsuarioActual.Habilitado = chkHabilitado.Checked;
-                UsuarioActual.ID = Int32.Parse(labelID.Text);
-                UsuarioActual.Legajo = Int32.Parse(labelLegajo.Text);
                 UsuarioActual.Nombre = txtNombre.Text;
                 UsuarioActual.Apellido = txtApellido.Text;
-                UsuarioActual.FechaNacimiento = DateTime.Parse(txtFechaNac.Text);
+                DateTime dt;
+                DateTime.TryParseExact(txtFechaNac.Text, Util.Validar.FormatosFecha, null, DateTimeStyles.None, out dt);
+                UsuarioActual.FechaNacimiento = dt;
                 UsuarioActual.Direccion = txtDirec.Text;
                 UsuarioActual.Telefono = txtTel.Text;
                 UsuarioActual.Email = txtEmail.Text;
                 UsuarioActual.NombreUsuario = txtNombreUsuario.Text;
                 UsuarioActual.Clave = txtClave.Text;
+                UsuarioActual.TipoPersona = Int32.Parse(cbxTipo.SelectedValue.ToString());
+                UsuarioActual.IDPlan = Int32.Parse(cbxPlan.SelectedValue.ToString());
 
-                UsuarioActual.State = (Modo == ModoForm.Alta) ? BusinessEntity.States.New : BusinessEntity.States.Modified;
+                if (Modo == ModoForm.Alta) {
+                    UsuarioActual.State = BusinessEntity.States.New;
+                }
+                else if (Modo == ModoForm.Modificacion) {
+                    UsuarioActual.State = BusinessEntity.States.Modified;
+                    UsuarioActual.ID = Int32.Parse(labelID.Text);
+                    UsuarioActual.Legajo = Int32.Parse(labelLegajo.Text);
+                }
             }
             else {
                 UsuarioActual.State = BusinessEntity.States.Deleted;
             }
-        }
-
-        public override void GuardarCambios() {
-            MapearADatos();
-            UsuarioLogic ul = new UsuarioLogic();
-            ul.Save(UsuarioActual);
-        }
-
-        public override bool Validar() {
-            return !(                                     //Si cualquiera de estas condiciones es verdadera, retorna false
-            string.IsNullOrEmpty(txtNombreUsuario.Text) ||
-            string.IsNullOrEmpty(txtClave.Text) ||
-            (txtClave.Text != txtClave.Text));
         }
         private void GenerarTipoPersona() {
             DataTable dtTiposPersona = new DataTable();
@@ -148,23 +168,55 @@ namespace UI.Desktop {
             cbxPlan.DisplayMember = "desc_plan";
             cbxPlan.DataSource = dtPlanes;
         }
-
         private void btnAceptar_Click(object sender, EventArgs e) {
-            if (Validar()) {
+            if (this.Validar() == true) {
                 GuardarCambios();
                 this.Close();
             }
             else {
-                MessageBox.Show("Complete todos los campos y compruebe que las claves sean iguales.");
+                MessageBox.Show("Verifique los datos ingresados");
+            }
+        }
+        public override void GuardarCambios() {
+            MapearADatos();
+            UsuarioLogic ul = new UsuarioLogic();
+            ul.Save(UsuarioActual);
+        }
+        public override bool Validar() {
+            lblRedAp.Visible = (string.IsNullOrWhiteSpace(txtApellido.Text)) ? true : false;
+            lblRedClave.Visible = (string.IsNullOrWhiteSpace(txtClave.Text)) ? true : false;
+            lblRedDirec.Visible = (string.IsNullOrWhiteSpace(txtDirec.Text)) ? true : false;
+            lblRedNom.Visible = (string.IsNullOrWhiteSpace(txtNombre.Text)) ? true : false;
+            lblRedTel.Visible = (string.IsNullOrWhiteSpace(txtTel.Text)) ? true : false;
+            lblRedUser.Visible = (string.IsNullOrWhiteSpace(txtNombreUsuario.Text)) ? true : false;
+            lblRedTipo.Visible = (cbxTipo.SelectedValue == null) ? true : false;
+            lblRedPlan.Visible = (cbxEsp.SelectedValue == null || cbxPlan.SelectedValue == null) ? true : false;
+            lblRedEmail.Visible = (new EmailAddressAttribute().IsValid(txtEmail.Text)) ? false : true;
+            DateTime dt;
+            lblRedNac.Visible = (DateTime.TryParseExact(txtFechaNac.Text, Util.Validar.FormatosFecha , null, DateTimeStyles.None, out dt) == true) ? false : true;
+
+            if (lblRedAp.Visible == true ||
+            lblRedClave.Visible == true ||
+            lblRedDirec.Visible == true ||
+            lblRedEmail.Visible == true ||
+            lblRedNac.Visible == true ||
+            lblRedNom.Visible == true ||
+            lblRedPlan.Visible == true ||
+            lblRedTel.Visible == true ||
+            lblRedTipo.Visible == true ||
+            lblRedUser.Visible == true) {
+                return false;
+            }
+            else {
+                return true;
             }
         }
 
-        private void btnCancelar_Click(object sender, EventArgs e) {
-            this.Close();
+        private void cbxEsp_SelectedValueChanged(object sender, EventArgs e) {
+            if (cbxEsp.SelectedValue != null) {
+                GenerarPlanes(Int32.Parse(cbxEsp.SelectedValue.ToString()));
+            }
         }
 
-        private void cbxEsp_SelectedValueChanged(object sender, EventArgs e) {
-            GenerarPlanes(Int32.Parse(cbxEsp.SelectedValue.ToString()));
-        }
     }
 }
