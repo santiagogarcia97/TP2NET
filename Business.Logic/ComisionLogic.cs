@@ -7,7 +7,7 @@ using Data.Database;
 using Business.Entities;
 
 namespace Business.Logic {
-    public class ComisionLogic {
+    public class ComisionLogic : BusinessLogic {
         private ComisionAdapter _ComisionData;
         public ComisionAdapter ComisionData { get => _ComisionData; set => _ComisionData = value; }
 
