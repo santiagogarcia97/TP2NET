@@ -51,6 +51,9 @@ namespace UI.Desktop
                 usuarioDesktop.ShowDialog();
                 this.Listar();
             }
+            else {
+                MessageBox.Show("Seleccione una fila a editar");
+            }
         }
 
         private void tsbEliminar_Click(object sender, EventArgs e) {
@@ -59,6 +62,9 @@ namespace UI.Desktop
                 UsuarioDesktop usuarioDesktop = new UsuarioDesktop(ID, ApplicationForm.ModoForm.Baja);
                 usuarioDesktop.ShowDialog();
                 this.Listar();
+            }
+            else {
+                MessageBox.Show("Seleccione una fila a eliminar");
             }
         }
 

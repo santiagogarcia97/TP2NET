@@ -24,6 +24,7 @@ namespace UI.Desktop
             UsuarioLogic ul = new UsuarioLogic();
             Usuario user = ul.GetOne(txtUsuario.Text);
             if(txtUsuario.Text.Equals(user.NombreUsuario) && txtPassword.Text.Equals(user.Clave)){
+                this.Visible = false;
                 switch (user.TipoPersona) {
                     case 1:
                         Menu menuUsuario = new Menu();
@@ -38,6 +39,7 @@ namespace UI.Desktop
                         menuAdministrador.ShowDialog();
                         break;
                 }
+                this.Visible = true;
             }
             else if(txtUsuario.Text.Equals(user.NombreUsuario) && !txtPassword.Text.Equals(user.Clave)){
                 MessageBox.Show("La contraseña es incorrecta.");

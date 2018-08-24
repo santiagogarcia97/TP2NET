@@ -14,13 +14,12 @@ namespace UI.Desktop {
     public partial class UsuarioDesktop : ApplicationForm {
 
         private Business.Entities.Usuario _usuarioActual;
-        public Business.Entities.Usuario UsuarioActual {
-            get { return _usuarioActual; }
-            set { _usuarioActual = value; }
-        }
+        public Usuario UsuarioActual { get => _usuarioActual; set => _usuarioActual = value; }
 
         public UsuarioDesktop() {
             InitializeComponent();
+            GenerarTipoPersona();
+            GenerarEsp();
         }
 
         public UsuarioDesktop(ModoForm modo):this() {
@@ -29,79 +28,125 @@ namespace UI.Desktop {
 
         public UsuarioDesktop(int ID, ModoForm modo) : this() {
             Modo = modo;
-            UsuarioLogic auxUsuario = new UsuarioLogic();
-            UsuarioActual = auxUsuario.GetOne(ID);
+            UsuarioLogic ul = new UsuarioLogic();
+            UsuarioActual = ul.GetOne(ID);
             MapearDeDatos();
         }
 
         public override void MapearDeDatos() {
-            txtID.Text = UsuarioActual.ID.ToString();
-            txtUsuario.Text = UsuarioActual.NombreUsuario;
-            txtClave.Text = UsuarioActual.Clave;
             chkHabilitado.Checked = UsuarioActual.Habilitado;
+            labelID.Text = UsuarioActual.ID.ToString();
+            labelLegajo.Text = UsuarioActual.Legajo.ToString();
+            txtNombre.Text = UsuarioActual.Nombre.ToString();
+            txtApellido.Text = UsuarioActual.Apellido.ToString();
+            txtFechaNac.Text = UsuarioActual.FechaNacimiento.ToString();
+            txtDirec.Text = UsuarioActual.Direccion.ToString();
+            txtTel.Text = UsuarioActual.Telefono.ToString();
+            txtEmail.Text = UsuarioActual.Email.ToString();
+            txtNombreUsuario.Text = UsuarioActual.NombreUsuario.ToString();
+            txtClave.Text = UsuarioActual.Clave.ToString();
+            cbxTipo.SelectedValue = UsuarioActual.TipoPersona;
 
-            switch (Modo) {
-                case ModoForm.Alta:
-                    btnAceptar.Text = "Guardar";
-                    break;
-                case ModoForm.Modificacion:    
-                    btnAceptar.Text = "Guardar";
-                    txtClave.ReadOnly = true;
-                    break;
-                case ModoForm.Baja:
-                    btnAceptar.Text = "Eliminar";
-                    txtUsuario.ReadOnly = true;
-                    txtClave.ReadOnly = true;
-                    chkHabilitado.Enabled = false;
-                    txtConfirmarClave.Text = UsuarioActual.Clave;
-                    txtConfirmarClave.ReadOnly = true;
-                    break;
-                case ModoForm.Consulta:
-                    btnAceptar.Text = "Aceptar";
-                    txtUsuario.ReadOnly = true;
-                    txtClave.ReadOnly = true;
-                    chkHabilitado.Enabled = false;
-                    txtConfirmarClave.Text = UsuarioActual.Clave;
-                    txtConfirmarClave.ReadOnly = true;
-                    break;
+            PlanLogic pl = new PlanLogic();
+            Plan plan = pl.GetOne(UsuarioActual.IDPlan);
+            cbxEsp.SelectedValue = plan.IDEspecialidad;
+            cbxPlan.SelectedValue = UsuarioActual.IDPlan;
+
+
+            if (Modo == ApplicationForm.ModoForm.Baja) {
+                btnAceptar.Text = "Eliminar";
+                chkHabilitado.Enabled = false;
+                txtNombre.ReadOnly = true;
+                txtApellido.ReadOnly = true;
+                txtFechaNac.ReadOnly = true;
+                txtDirec.ReadOnly = true;
+                txtTel.ReadOnly = true;
+                txtEmail.ReadOnly = true;
+                txtNombreUsuario.ReadOnly = true;
+                txtClave.ReadOnly = true;
+                cbxTipo.Enabled = false;
+            }
+            else {
+                btnAceptar.Text = "Guardar";
             }
         }
 
         public override void MapearADatos() {
-            switch (Modo) {                                      //Emprolijar: Evitar repetición de asignaciones  
-                case ModoForm.Alta:
-                    UsuarioActual = new Usuario();
-                    UsuarioActual.Clave = txtClave.Text;
-                    UsuarioActual.Habilitado = chkHabilitado.Checked;
-                    UsuarioActual.NombreUsuario = txtUsuario.Text;
-                    UsuarioActual.State = BusinessEntity.States.New;
-                    break;
-                case ModoForm.Modificacion:
-                    UsuarioActual.Clave = txtClave.Text;
-                    UsuarioActual.NombreUsuario = txtUsuario.Text;
-                    UsuarioActual.Habilitado = chkHabilitado.Checked;
-                    UsuarioActual.State = BusinessEntity.States.Modified;
-                    break;
-                case ModoForm.Baja:
-                    UsuarioActual.State = BusinessEntity.States.Deleted;
-                    break;
-                case ModoForm.Consulta:
-                    UsuarioActual.State = BusinessEntity.States.Unmodified;
-                    break;
+            if(Modo == ModoForm.Alta || Modo == ModoForm.Modificacion) {
+                UsuarioActual = new Usuario();
+                UsuarioActual.Habilitado = chkHabilitado.Checked;
+                UsuarioActual.ID = Int32.Parse(labelID.Text);
+                UsuarioActual.Legajo = Int32.Parse(labelLegajo.Text);
+                UsuarioActual.Nombre = txtNombre.Text;
+                UsuarioActual.Apellido = txtApellido.Text;
+                UsuarioActual.FechaNacimiento = DateTime.Parse(txtFechaNac.Text);
+                UsuarioActual.Direccion = txtDirec.Text;
+                UsuarioActual.Telefono = txtTel.Text;
+                UsuarioActual.Email = txtEmail.Text;
+                UsuarioActual.NombreUsuario = txtNombreUsuario.Text;
+                UsuarioActual.Clave = txtClave.Text;
+
+                UsuarioActual.State = (Modo == ModoForm.Alta) ? BusinessEntity.States.New : BusinessEntity.States.Modified;
+            }
+            else {
+                UsuarioActual.State = BusinessEntity.States.Deleted;
             }
         }
 
         public override void GuardarCambios() {
             MapearADatos();
-            UsuarioLogic auxUsuario = new UsuarioLogic();
-            auxUsuario.Save(UsuarioActual);
+            UsuarioLogic ul = new UsuarioLogic();
+            ul.Save(UsuarioActual);
         }
 
         public override bool Validar() {
             return !(                                     //Si cualquiera de estas condiciones es verdadera, retorna false
-            string.IsNullOrEmpty(txtUsuario.Text) ||
+            string.IsNullOrEmpty(txtNombreUsuario.Text) ||
             string.IsNullOrEmpty(txtClave.Text) ||
-            (txtClave.Text != txtConfirmarClave.Text));
+            (txtClave.Text != txtClave.Text));
+        }
+        private void GenerarTipoPersona() {
+            DataTable dtTiposPersona = new DataTable();
+
+            dtTiposPersona.Columns.Add("tipo_persona", typeof(int));
+            dtTiposPersona.Columns.Add("desc_tipo", typeof(string));
+
+            dtTiposPersona.Rows.Add(new object[] { 1, "Alumno" });
+            dtTiposPersona.Rows.Add(new object[] { 2, "Docente" });
+            dtTiposPersona.Rows.Add(new object[] { 3, "Administrativo" });
+
+            cbxTipo.ValueMember = "tipo_persona";
+            cbxTipo.DisplayMember = "desc_tipo";
+            cbxTipo.DataSource = dtTiposPersona;
+        }
+        private void GenerarEsp() {
+            DataTable dtEspecialidades = new DataTable();
+            dtEspecialidades.Columns.Add("id_esp", typeof(int));
+            dtEspecialidades.Columns.Add("desc_esp", typeof(string));
+            EspecialidadLogic el = new EspecialidadLogic();
+            List<Especialidad> especialidades = el.GetAll();
+            foreach (Especialidad esp in especialidades) {
+                dtEspecialidades.Rows.Add(new object[] { esp.ID, esp.Descripcion });
+            }
+
+            cbxEsp.ValueMember = "id_esp";
+            cbxEsp.DisplayMember = "desc_esp";
+            cbxEsp.DataSource = dtEspecialidades;
+        }
+        private void GenerarPlanes(int idEsp) {
+            DataTable dtPlanes = new DataTable();
+            dtPlanes.Columns.Add("id_plan", typeof(int));
+            dtPlanes.Columns.Add("desc_plan", typeof(string));
+            PlanLogic pl = new PlanLogic();
+            List<Plan> planes = pl.GetAll();
+            foreach(Plan plan in planes) {
+                if(plan.IDEspecialidad == idEsp) {
+                    dtPlanes.Rows.Add(new object[] { plan.ID, plan.Descripcion });
+                }
+            }
+            cbxPlan.ValueMember = "id_plan";
+            cbxPlan.DisplayMember = "desc_plan";
+            cbxPlan.DataSource = dtPlanes;
         }
 
         private void btnAceptar_Click(object sender, EventArgs e) {
@@ -116,6 +161,10 @@ namespace UI.Desktop {
 
         private void btnCancelar_Click(object sender, EventArgs e) {
             this.Close();
+        }
+
+        private void cbxEsp_SelectedValueChanged(object sender, EventArgs e) {
+            GenerarPlanes(Int32.Parse(cbxEsp.SelectedValue.ToString()));
         }
     }
 }

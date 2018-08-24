@@ -13,24 +13,12 @@ namespace Business.Entities
         int _ID;
         States _State;
 
+        public int ID { get => _ID; set => _ID = value; }
+        public States State { get => _State; set => _State = value; }
+
         public BusinessEntity()
         {
             
         }
-
-        public int ID 
-            {
-            get { return (_ID); }
-            set { _ID = value; }
-            }
-
-        public States State
-        {
-            get { return (_State); }
-            set { _State = value; }
-        }
-
-        
-
     }
 }

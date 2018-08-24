@@ -40,10 +40,16 @@
             this.tsbConsultar = new System.Windows.Forms.ToolStripButton();
             this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.habilitado = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.legajo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.apellido = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.usuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clave = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fecha_nac = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.direccion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.email = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.telefono = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.plan = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tcUsuarios.ContentPanel.SuspendLayout();
             this.tcUsuarios.TopToolStripPanel.SuspendLayout();
             this.tcUsuarios.SuspendLayout();
@@ -91,14 +97,21 @@
             // 
             this.dgvUsuarios.AllowUserToAddRows = false;
             this.dgvUsuarios.AllowUserToDeleteRows = false;
+            this.dgvUsuarios.AllowUserToResizeRows = false;
             this.dgvUsuarios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvUsuarios.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.id,
             this.habilitado,
+            this.legajo,
             this.nombre,
             this.apellido,
             this.usuario,
-            this.email});
+            this.clave,
+            this.fecha_nac,
+            this.direccion,
+            this.email,
+            this.telefono,
+            this.plan});
             this.tlUsuario.SetColumnSpan(this.dgvUsuarios, 2);
             this.dgvUsuarios.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvUsuarios.Location = new System.Drawing.Point(3, 3);
@@ -192,54 +205,117 @@
             this.id.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.id.DataPropertyName = "ID";
             this.id.HeaderText = "ID";
-            this.id.MinimumWidth = 65;
+            this.id.MinimumWidth = 35;
             this.id.Name = "id";
             this.id.ReadOnly = true;
             this.id.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.id.Width = 65;
+            this.id.Width = 35;
             // 
             // habilitado
             // 
             this.habilitado.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.habilitado.DataPropertyName = "Habilitado";
-            this.habilitado.HeaderText = "Habilitado";
-            this.habilitado.MinimumWidth = 65;
+            this.habilitado.HeaderText = "Hab";
+            this.habilitado.MinimumWidth = 35;
             this.habilitado.Name = "habilitado";
             this.habilitado.ReadOnly = true;
             this.habilitado.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.habilitado.Width = 65;
+            this.habilitado.Width = 35;
+            // 
+            // legajo
+            // 
+            this.legajo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.legajo.DataPropertyName = "Legajo";
+            this.legajo.HeaderText = "Legajo";
+            this.legajo.MinimumWidth = 45;
+            this.legajo.Name = "legajo";
+            this.legajo.ReadOnly = true;
+            this.legajo.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.legajo.Width = 45;
             // 
             // nombre
             // 
-            this.nombre.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.nombre.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.nombre.DataPropertyName = "Nombre";
             this.nombre.HeaderText = "Nombre";
+            this.nombre.MinimumWidth = 70;
             this.nombre.Name = "nombre";
             this.nombre.ReadOnly = true;
+            this.nombre.Width = 70;
             // 
             // apellido
             // 
-            this.apellido.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.apellido.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.apellido.DataPropertyName = "Apellido";
             this.apellido.HeaderText = "Apellido";
+            this.apellido.MinimumWidth = 70;
             this.apellido.Name = "apellido";
             this.apellido.ReadOnly = true;
+            this.apellido.Width = 70;
             // 
             // usuario
             // 
             this.usuario.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.usuario.DataPropertyName = "NombreUsuario";
             this.usuario.HeaderText = "Usuario";
+            this.usuario.MinimumWidth = 70;
             this.usuario.Name = "usuario";
             this.usuario.ReadOnly = true;
             // 
+            // clave
+            // 
+            this.clave.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.clave.DataPropertyName = "Clave";
+            this.clave.HeaderText = "Clave";
+            this.clave.MinimumWidth = 70;
+            this.clave.Name = "clave";
+            this.clave.ReadOnly = true;
+            // 
+            // fecha_nac
+            // 
+            this.fecha_nac.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.fecha_nac.DataPropertyName = "FechaNacimiento";
+            this.fecha_nac.HeaderText = "Fecha Nac";
+            this.fecha_nac.MinimumWidth = 70;
+            this.fecha_nac.Name = "fecha_nac";
+            this.fecha_nac.ReadOnly = true;
+            // 
+            // direccion
+            // 
+            this.direccion.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.direccion.DataPropertyName = "Direccion";
+            this.direccion.HeaderText = "Direccion";
+            this.direccion.MinimumWidth = 70;
+            this.direccion.Name = "direccion";
+            this.direccion.ReadOnly = true;
+            // 
             // email
             // 
-            this.email.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.email.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.email.DataPropertyName = "Email";
             this.email.HeaderText = "Email";
+            this.email.MinimumWidth = 70;
             this.email.Name = "email";
             this.email.ReadOnly = true;
+            this.email.Width = 120;
+            // 
+            // telefono
+            // 
+            this.telefono.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.telefono.DataPropertyName = "Telefono";
+            this.telefono.HeaderText = "Telefono";
+            this.telefono.MinimumWidth = 70;
+            this.telefono.Name = "telefono";
+            this.telefono.ReadOnly = true;
+            // 
+            // plan
+            // 
+            this.plan.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.plan.DataPropertyName = "IDPlan";
+            this.plan.HeaderText = "Plan";
+            this.plan.MinimumWidth = 40;
+            this.plan.Name = "plan";
+            this.plan.ReadOnly = true;
             // 
             // Usuarios
             // 
@@ -280,10 +356,16 @@
         private System.Windows.Forms.ToolStripButton tsbConsultar;
         private System.Windows.Forms.DataGridViewTextBoxColumn id;
         private System.Windows.Forms.DataGridViewCheckBoxColumn habilitado;
+        private System.Windows.Forms.DataGridViewTextBoxColumn legajo;
         private System.Windows.Forms.DataGridViewTextBoxColumn nombre;
         private System.Windows.Forms.DataGridViewTextBoxColumn apellido;
         private System.Windows.Forms.DataGridViewTextBoxColumn usuario;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clave;
+        private System.Windows.Forms.DataGridViewTextBoxColumn fecha_nac;
+        private System.Windows.Forms.DataGridViewTextBoxColumn direccion;
         private System.Windows.Forms.DataGridViewTextBoxColumn email;
+        private System.Windows.Forms.DataGridViewTextBoxColumn telefono;
+        private System.Windows.Forms.DataGridViewTextBoxColumn plan;
     }
 }
 

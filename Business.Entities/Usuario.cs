@@ -9,7 +9,7 @@ namespace Business.Entities {
         private string _Nombre,_Apellido,_Direccion,_Email,_Telefono,_NombreUsuario,_Clave;
         private DateTime _FechaNacimiento;
         private bool _Habilitado,_CambiaClave;
-        private int _Legajo,_TipoPersona,_IDUsuario,_IDPlan;
+        private int _Legajo,_TipoPersona,_IDPlan;
 
         public string Nombre { get => _Nombre; set => _Nombre = value; }
         public string Apellido { get => _Apellido; set => _Apellido = value; }
@@ -23,7 +23,6 @@ namespace Business.Entities {
         public bool CambiaClave { get => _CambiaClave; set => _CambiaClave = value; }
         public int Legajo { get => _Legajo; set => _Legajo = value; }
         public int TipoPersona { get => _TipoPersona; set => _TipoPersona = value; }
-        public int IDUsuario { get => _IDUsuario; set => _IDUsuario = value; }
         public int IDPlan { get => _IDPlan; set => _IDPlan = value; }
     }
 
