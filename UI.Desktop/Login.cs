@@ -27,15 +27,15 @@ namespace UI.Desktop
                 this.Visible = false;
                 switch (user.TipoPersona) {
                     case 1:
-                        Menu menuUsuario = new Menu();
+                        MenuAlumno menuUsuario = new MenuAlumno();
                         menuUsuario.ShowDialog();
                         break;
                     case 2:
-                        Menu menuDocente = new Menu();
+                        MenuAlumno menuDocente = new MenuAlumno();
                         menuDocente.ShowDialog();
                         break;
                     case 3:
-                        Menu menuAdministrador = new Menu();
+                        MenuAlumno menuAdministrador = new MenuAlumno();
                         menuAdministrador.ShowDialog();
                         break;
                 }

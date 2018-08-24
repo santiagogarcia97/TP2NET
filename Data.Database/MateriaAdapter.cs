@@ -24,6 +24,7 @@ namespace Data.Database {
                     mat.HSSemanales = (int)drMaterias["hs_semanales"];
                     mat.HSTotales = (int)drMaterias["hs_totales"];
                     mat.IDPlan = (int)drMaterias["id_plan"];
+                    mat.IDString = (mat.ID.ToString() + " - " + mat.Descripcion);
                     materias.Add(mat);
                 }
                 drMaterias.Close();
@@ -53,6 +54,7 @@ namespace Data.Database {
                     mat.HSSemanales = (int)drMaterias["hs_semanales"];
                     mat.HSTotales = (int)drMaterias["hs_totales"];
                     mat.IDPlan = (int)drMaterias["id_plan"];
+                    mat.IDString = (mat.ID.ToString() + " - " + mat.Descripcion);
                 }
                 drMaterias.Close();
             }

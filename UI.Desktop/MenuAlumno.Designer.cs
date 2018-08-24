@@ -1,6 +1,6 @@
 ﻿namespace UI.Desktop
 {
-    partial class Menu
+    partial class MenuAlumno
     {
         /// <summary>
         /// Required designer variable.
@@ -34,11 +34,12 @@
             this.btnMaterias = new System.Windows.Forms.Button();
             this.btnComisiones = new System.Windows.Forms.Button();
             this.btnSalir = new System.Windows.Forms.Button();
+            this.txtTitle = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnUsuarios
             // 
-            this.btnUsuarios.Location = new System.Drawing.Point(12, 12);
+            this.btnUsuarios.Location = new System.Drawing.Point(12, 49);
             this.btnUsuarios.Name = "btnUsuarios";
             this.btnUsuarios.Size = new System.Drawing.Size(127, 23);
             this.btnUsuarios.TabIndex = 0;
@@ -48,7 +49,7 @@
             // 
             // btnPlanes
             // 
-            this.btnPlanes.Location = new System.Drawing.Point(12, 41);
+            this.btnPlanes.Location = new System.Drawing.Point(12, 78);
             this.btnPlanes.Name = "btnPlanes";
             this.btnPlanes.Size = new System.Drawing.Size(127, 23);
             this.btnPlanes.TabIndex = 1;
@@ -58,7 +59,7 @@
             // 
             // btnEspecialidades
             // 
-            this.btnEspecialidades.Location = new System.Drawing.Point(12, 70);
+            this.btnEspecialidades.Location = new System.Drawing.Point(12, 107);
             this.btnEspecialidades.Name = "btnEspecialidades";
             this.btnEspecialidades.Size = new System.Drawing.Size(127, 23);
             this.btnEspecialidades.TabIndex = 2;
@@ -68,7 +69,7 @@
             // 
             // btnMaterias
             // 
-            this.btnMaterias.Location = new System.Drawing.Point(12, 99);
+            this.btnMaterias.Location = new System.Drawing.Point(12, 136);
             this.btnMaterias.Name = "btnMaterias";
             this.btnMaterias.Size = new System.Drawing.Size(127, 23);
             this.btnMaterias.TabIndex = 3;
@@ -78,7 +79,7 @@
             // 
             // btnComisiones
             // 
-            this.btnComisiones.Location = new System.Drawing.Point(13, 129);
+            this.btnComisiones.Location = new System.Drawing.Point(12, 165);
             this.btnComisiones.Name = "btnComisiones";
             this.btnComisiones.Size = new System.Drawing.Size(126, 23);
             this.btnComisiones.TabIndex = 4;
@@ -88,7 +89,7 @@
             // 
             // btnSalir
             // 
-            this.btnSalir.Location = new System.Drawing.Point(303, 129);
+            this.btnSalir.Location = new System.Drawing.Point(303, 165);
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.Size = new System.Drawing.Size(75, 23);
             this.btnSalir.TabIndex = 5;
@@ -96,11 +97,24 @@
             this.btnSalir.UseVisualStyleBackColor = true;
             this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
             // 
+            // txtTitle
+            // 
+            this.txtTitle.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtTitle.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTitle.Location = new System.Drawing.Point(63, 9);
+            this.txtTitle.Name = "txtTitle";
+            this.txtTitle.Size = new System.Drawing.Size(260, 23);
+            this.txtTitle.TabIndex = 6;
+            this.txtTitle.Text = "Menu Alumno";
+            this.txtTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // Menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(390, 161);
+            this.ClientSize = new System.Drawing.Size(390, 200);
+            this.Controls.Add(this.txtTitle);
             this.Controls.Add(this.btnSalir);
             this.Controls.Add(this.btnComisiones);
             this.Controls.Add(this.btnMaterias);
@@ -124,5 +138,6 @@
         private System.Windows.Forms.Button btnMaterias;
         private System.Windows.Forms.Button btnComisiones;
         private System.Windows.Forms.Button btnSalir;
+        private System.Windows.Forms.Label txtTitle;
     }
 }

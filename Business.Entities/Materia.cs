@@ -10,6 +10,7 @@ namespace Business.Entities {
         private int _HSSemanales;
         private int _HSTotales;
         private int _IDPlan;
+        private string _IDString;
 
         public string Descripcion {
             get { return (_Descripcion); }
@@ -30,5 +31,11 @@ namespace Business.Entities {
             get { return (_IDPlan); }
             set { _IDPlan = value; }
         }
+
+        public string IDString {
+            get { return (_IDString); }
+            set { _IDString = value; }
+        }
+
     }
 }

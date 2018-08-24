@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace UI.Desktop
 {
-    public partial class Menu : Form
+    public partial class MenuAlumno : Form
     {
-        public Menu()
+        public MenuAlumno()
         {
             InitializeComponent();
         }

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Business.Entities {
-    class Curso : BusinessEntity {
+    public class Curso : BusinessEntity {
         private int _AnioCalendario;
         private int _Cupo;
         private string _Descripcion;
@@ -13,33 +13,28 @@ namespace Business.Entities {
         private int _IDMateria;
 
         public int AnioCalendario {
-            get => default(int);
-            set {
-            }
+            get { return _AnioCalendario; }
+            set { _AnioCalendario = value; }
         }
 
         public int Cupo {
-            get => default(int);
-            set {
-            }
+            get { return _Cupo; }
+            set { _Cupo = value; }
         }
 
         public string Descripcion {
-            get => default(string);
-            set {
-            }
+            get { return _Descripcion; }
+            set { _Descripcion = value; }
         }
 
         public int IDComision {
-            get => default(int);
-            set {
-            }
+            get { return _IDComision; }
+            set { _IDComision = value; }
         }
 
         public int IDMateria {
-            get => default(int);
-            set {
-            }
+            get { return _IDMateria; }
+            set { _IDMateria = value; }
         }
     }
 }
