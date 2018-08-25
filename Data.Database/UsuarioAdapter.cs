@@ -129,6 +129,23 @@ namespace Data.Database
             return user;
         }
 
+        public int getMaxLegajo() {
+            int max = 0;
+            try {
+                this.OpenConnection();
+                SqlCommand cmdConsulta = new SqlCommand("SELECT MAX(legajo) FROM usuarios", SqlConn);
+                max = (int)cmdConsulta.ExecuteScalar();
+            }
+            catch (Exception ex) {
+                Exception excepcionManejada = new Exception("Error al recuperar legajo", ex);
+                throw excepcionManejada;
+            }
+            finally {
+                this.CloseConnection();
+            }
+            return max;
+        }
+
         public void Delete(int ID)
         {
             try {

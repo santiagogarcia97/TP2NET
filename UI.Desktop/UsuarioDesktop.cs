@@ -41,7 +41,8 @@ namespace UI.Desktop {
             Modo = modo;
             btnAceptar.Text = "Crear";
             labelID.Text = "-";
-            labelLegajo.Text = "-";
+            UsuarioLogic ul = new UsuarioLogic();
+            labelLegajo.Text = ul.getNewLegajo().ToString();
             chkHabilitado.Checked = true;
         }
 
@@ -99,6 +100,7 @@ namespace UI.Desktop {
             if(Modo == ModoForm.Alta || Modo == ModoForm.Modificacion) {
                 UsuarioActual = new Usuario();
                 UsuarioActual.Habilitado = chkHabilitado.Checked;
+                UsuarioActual.Legajo = Int32.Parse(labelLegajo.Text);
                 UsuarioActual.Nombre = txtNombre.Text;
                 UsuarioActual.Apellido = txtApellido.Text;
                 DateTime dt;
@@ -118,7 +120,6 @@ namespace UI.Desktop {
                 else if (Modo == ModoForm.Modificacion) {
                     UsuarioActual.State = BusinessEntity.States.Modified;
                     UsuarioActual.ID = Int32.Parse(labelID.Text);
-                    UsuarioActual.Legajo = Int32.Parse(labelLegajo.Text);
                 }
             }
             else {
