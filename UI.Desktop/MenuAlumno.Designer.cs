@@ -35,6 +35,7 @@
             this.btnComisiones = new System.Windows.Forms.Button();
             this.btnSalir = new System.Windows.Forms.Button();
             this.txtTitle = new System.Windows.Forms.Label();
+            this.btnInscribir = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnUsuarios
@@ -79,7 +80,7 @@
             // 
             // btnComisiones
             // 
-            this.btnComisiones.Location = new System.Drawing.Point(12, 165);
+            this.btnComisiones.Location = new System.Drawing.Point(13, 165);
             this.btnComisiones.Name = "btnComisiones";
             this.btnComisiones.Size = new System.Drawing.Size(126, 23);
             this.btnComisiones.TabIndex = 4;
@@ -89,7 +90,7 @@
             // 
             // btnSalir
             // 
-            this.btnSalir.Location = new System.Drawing.Point(303, 165);
+            this.btnSalir.Location = new System.Drawing.Point(303, 195);
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.Size = new System.Drawing.Size(75, 23);
             this.btnSalir.TabIndex = 5;
@@ -109,11 +110,21 @@
             this.txtTitle.Text = "Menu Alumno";
             this.txtTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // Menu
+            // btnInscribir
+            // 
+            this.btnInscribir.Location = new System.Drawing.Point(12, 194);
+            this.btnInscribir.Name = "btnInscribir";
+            this.btnInscribir.Size = new System.Drawing.Size(125, 23);
+            this.btnInscribir.TabIndex = 7;
+            this.btnInscribir.Text = " ";
+            this.btnInscribir.UseVisualStyleBackColor = true;
+            // 
+            // MenuAlumno
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(390, 200);
+            this.ClientSize = new System.Drawing.Size(390, 226);
+            this.Controls.Add(this.btnInscribir);
             this.Controls.Add(this.txtTitle);
             this.Controls.Add(this.btnSalir);
             this.Controls.Add(this.btnComisiones);
@@ -123,7 +134,7 @@
             this.Controls.Add(this.btnUsuarios);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
-            this.Name = "Menu";
+            this.Name = "MenuAlumno";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Menu";
             this.ResumeLayout(false);
@@ -139,5 +150,6 @@
         private System.Windows.Forms.Button btnComisiones;
         private System.Windows.Forms.Button btnSalir;
         private System.Windows.Forms.Label txtTitle;
+        private System.Windows.Forms.Button btnInscribir;
     }
 }

@@ -31,11 +31,11 @@ namespace UI.Desktop
                         menuUsuario.ShowDialog();
                         break;
                     case 2:
-                        MenuAlumno menuDocente = new MenuAlumno();
+                        MenuDocente menuDocente = new MenuDocente();
                         menuDocente.ShowDialog();
                         break;
                     case 3:
-                        MenuAlumno menuAdministrador = new MenuAlumno();
+                        MenuAdmin menuAdministrador = new MenuAdmin();
                         menuAdministrador.ShowDialog();
                         break;
                 }

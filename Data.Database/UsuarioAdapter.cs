@@ -35,6 +35,7 @@ namespace Data.Database
                     user.TipoPersona = (int)drUsuarios["tipo_persona"];
                     user.Email = (string)drUsuarios["email"];
                     user.IDPlan = (int)drUsuarios["id_plan"];
+                    user.IDString = (user.ID.ToString() + " - " + user.NombreUsuario);
                     usuarios.Add(user);
                 }
                 drUsuarios.Close();
@@ -76,6 +77,7 @@ namespace Data.Database
                     user.TipoPersona = (int)drUsuarios["tipo_persona"];
                     user.Email = (string)drUsuarios["email"];
                     user.IDPlan = (int)drUsuarios["id_plan"];
+                    user.IDString = (user.ID.ToString() + " - " + user.NombreUsuario);
                 }
                 drUsuarios.Close();
             }

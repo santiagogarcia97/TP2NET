@@ -11,7 +11,7 @@ using Business.Logic;
 using Business.Entities;
 
 namespace UI.Desktop {
-    public partial class Especialidades : Form {
+    public partial class Especialidades : ApplicationForm {
         public Especialidades() {
             InitializeComponent();
             this.dgvEspecialidades.AutoGenerateColumns = false;
@@ -67,6 +67,5 @@ namespace UI.Desktop {
         private void btnSalir_Click(object sender, EventArgs e) {
             this.Close();
         }
-
     }
 }

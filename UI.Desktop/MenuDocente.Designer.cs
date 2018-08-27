@@ -30,6 +30,7 @@
             this.btnEspecialidades = new System.Windows.Forms.Button();
             this.btnPlanes = new System.Windows.Forms.Button();
             this.btnUsuarios = new System.Windows.Forms.Button();
+            this.btnInscripciones = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // txtTitle
@@ -46,7 +47,7 @@
             // 
             // btnSalir
             // 
-            this.btnSalir.Location = new System.Drawing.Point(302, 167);
+            this.btnSalir.Location = new System.Drawing.Point(302, 196);
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.Size = new System.Drawing.Size(75, 23);
             this.btnSalir.TabIndex = 12;
@@ -98,11 +99,21 @@
             this.btnUsuarios.Text = "Usuarios";
             this.btnUsuarios.UseVisualStyleBackColor = true;
             // 
+            // btnInscripciones
+            // 
+            this.btnInscripciones.Location = new System.Drawing.Point(12, 196);
+            this.btnInscripciones.Name = "btnInscripciones";
+            this.btnInscripciones.Size = new System.Drawing.Size(126, 23);
+            this.btnInscripciones.TabIndex = 14;
+            this.btnInscripciones.Text = "Inscripciones";
+            this.btnInscripciones.UseVisualStyleBackColor = true;
+            // 
             // MenuDocente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(389, 200);
+            this.ClientSize = new System.Drawing.Size(389, 224);
+            this.Controls.Add(this.btnInscripciones);
             this.Controls.Add(this.txtTitle);
             this.Controls.Add(this.btnSalir);
             this.Controls.Add(this.btnComisiones);
@@ -125,5 +136,6 @@
         private System.Windows.Forms.Button btnEspecialidades;
         private System.Windows.Forms.Button btnPlanes;
         private System.Windows.Forms.Button btnUsuarios;
+        private System.Windows.Forms.Button btnInscripciones;
     }
 }

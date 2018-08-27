@@ -7,7 +7,7 @@ using Data.Database;
 using Business.Entities;
 
 namespace Business.Logic {
-    class CursoLogic : BusinessLogic {
+    public class CursoLogic : BusinessLogic {
         private CursoAdapter _CursoData;
 
         public CursoAdapter CursoData {

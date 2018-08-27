@@ -25,6 +25,7 @@ namespace Data.Database {
                     crs.AnioCalendario = (int)drCursos["anio_calendario"];
                     crs.IDComision = (int)drCursos["id_comision"];
                     crs.IDMateria = (int)drCursos["id_materia"];
+                    crs.IDString = (crs.ID.ToString() + crs.Descripcion);
                     cursos.Add(crs);
                 }
                 drCursos.Close();
@@ -55,6 +56,7 @@ namespace Data.Database {
                     crs.AnioCalendario = (int)drCursos["anio_calendario"];
                     crs.IDComision = (int)drCursos["id_comision"];
                     crs.IDMateria = (int)drCursos["id_materia"];
+                    crs.IDString = (crs.ID.ToString() + crs.Descripcion);
                 }
                 drCursos.Close();
             }

@@ -31,7 +31,5 @@ namespace Business.Logic {
             ComisionData.Save(com);
         }
 
-
-
     }
 }
