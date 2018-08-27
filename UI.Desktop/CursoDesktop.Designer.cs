@@ -32,8 +32,6 @@
             this.IDLabel = new System.Windows.Forms.Label();
             this.txtID = new System.Windows.Forms.TextBox();
             this.MateriaIDLabel = new System.Windows.Forms.Label();
-            this.txtDescripcion = new System.Windows.Forms.TextBox();
-            this.DescLabel = new System.Windows.Forms.Label();
             this.cbMateria = new System.Windows.Forms.ComboBox();
             this.btnAceptar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
@@ -54,12 +52,10 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 22.52011F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 77.4799F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 90F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 343F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 346F));
             this.tableLayoutPanel1.Controls.Add(this.IDLabel, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.txtID, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.MateriaIDLabel, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.txtDescripcion, 3, 0);
-            this.tableLayoutPanel1.Controls.Add(this.DescLabel, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.cbMateria, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.btnAceptar, 2, 3);
             this.tableLayoutPanel1.Controls.Add(this.btnCancelar, 3, 3);
@@ -84,7 +80,7 @@
             // 
             this.IDLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.IDLabel.AutoSize = true;
-            this.IDLabel.Location = new System.Drawing.Point(32, 6);
+            this.IDLabel.Location = new System.Drawing.Point(31, 6);
             this.IDLabel.Name = "IDLabel";
             this.IDLabel.Size = new System.Drawing.Size(18, 13);
             this.IDLabel.TabIndex = 0;
@@ -94,52 +90,34 @@
             // txtID
             // 
             this.txtID.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtID.Location = new System.Drawing.Point(85, 3);
+            this.txtID.Location = new System.Drawing.Point(84, 3);
             this.txtID.Name = "txtID";
             this.txtID.ReadOnly = true;
-            this.txtID.Size = new System.Drawing.Size(278, 20);
+            this.txtID.Size = new System.Drawing.Size(276, 20);
             this.txtID.TabIndex = 11;
             // 
             // MateriaIDLabel
             // 
             this.MateriaIDLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.MateriaIDLabel.AutoSize = true;
-            this.MateriaIDLabel.Location = new System.Drawing.Point(20, 33);
+            this.MateriaIDLabel.Location = new System.Drawing.Point(19, 33);
             this.MateriaIDLabel.Name = "MateriaIDLabel";
             this.MateriaIDLabel.Size = new System.Drawing.Size(42, 13);
             this.MateriaIDLabel.TabIndex = 19;
             this.MateriaIDLabel.Text = "Materia";
             // 
-            // txtDescripcion
-            // 
-            this.txtDescripcion.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtDescripcion.Location = new System.Drawing.Point(459, 3);
-            this.txtDescripcion.Name = "txtDescripcion";
-            this.txtDescripcion.Size = new System.Drawing.Size(338, 20);
-            this.txtDescripcion.TabIndex = 16;
-            // 
-            // DescLabel
-            // 
-            this.DescLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.DescLabel.AutoSize = true;
-            this.DescLabel.Location = new System.Drawing.Point(379, 6);
-            this.DescLabel.Name = "DescLabel";
-            this.DescLabel.Size = new System.Drawing.Size(63, 13);
-            this.DescLabel.TabIndex = 21;
-            this.DescLabel.Text = "Descripcion";
-            // 
             // cbMateria
             // 
             this.cbMateria.Dock = System.Windows.Forms.DockStyle.Fill;
             this.cbMateria.FormattingEnabled = true;
-            this.cbMateria.Location = new System.Drawing.Point(85, 29);
+            this.cbMateria.Location = new System.Drawing.Point(84, 29);
             this.cbMateria.Name = "cbMateria";
-            this.cbMateria.Size = new System.Drawing.Size(278, 21);
+            this.cbMateria.Size = new System.Drawing.Size(276, 21);
             this.cbMateria.TabIndex = 22;
             // 
             // btnAceptar
             // 
-            this.btnAceptar.Location = new System.Drawing.Point(369, 85);
+            this.btnAceptar.Location = new System.Drawing.Point(366, 85);
             this.btnAceptar.Name = "btnAceptar";
             this.btnAceptar.Size = new System.Drawing.Size(75, 23);
             this.btnAceptar.TabIndex = 9;
@@ -149,7 +127,7 @@
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(459, 85);
+            this.btnCancelar.Location = new System.Drawing.Point(456, 85);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 23);
             this.btnCancelar.TabIndex = 10;
@@ -161,7 +139,7 @@
             // 
             this.AnioLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.AnioLabel.AutoSize = true;
-            this.AnioLabel.Location = new System.Drawing.Point(28, 61);
+            this.AnioLabel.Location = new System.Drawing.Point(27, 61);
             this.AnioLabel.Name = "AnioLabel";
             this.AnioLabel.Size = new System.Drawing.Size(26, 13);
             this.AnioLabel.TabIndex = 23;
@@ -171,7 +149,7 @@
             // 
             this.CupoLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.CupoLabel.AutoSize = true;
-            this.CupoLabel.Location = new System.Drawing.Point(395, 61);
+            this.CupoLabel.Location = new System.Drawing.Point(392, 61);
             this.CupoLabel.Name = "CupoLabel";
             this.CupoLabel.Size = new System.Drawing.Size(32, 13);
             this.CupoLabel.TabIndex = 24;
@@ -180,24 +158,24 @@
             // txtAnio
             // 
             this.txtAnio.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtAnio.Location = new System.Drawing.Point(85, 56);
+            this.txtAnio.Location = new System.Drawing.Point(84, 56);
             this.txtAnio.Name = "txtAnio";
-            this.txtAnio.Size = new System.Drawing.Size(278, 20);
+            this.txtAnio.Size = new System.Drawing.Size(276, 20);
             this.txtAnio.TabIndex = 25;
             // 
             // txtCupo
             // 
             this.txtCupo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtCupo.Location = new System.Drawing.Point(459, 56);
+            this.txtCupo.Location = new System.Drawing.Point(456, 56);
             this.txtCupo.Name = "txtCupo";
-            this.txtCupo.Size = new System.Drawing.Size(338, 20);
+            this.txtCupo.Size = new System.Drawing.Size(341, 20);
             this.txtCupo.TabIndex = 26;
             // 
             // ComisionIDLabel
             // 
             this.ComisionIDLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.ComisionIDLabel.AutoSize = true;
-            this.ComisionIDLabel.Location = new System.Drawing.Point(386, 33);
+            this.ComisionIDLabel.Location = new System.Drawing.Point(383, 33);
             this.ComisionIDLabel.Name = "ComisionIDLabel";
             this.ComisionIDLabel.Size = new System.Drawing.Size(49, 13);
             this.ComisionIDLabel.TabIndex = 27;
@@ -207,9 +185,9 @@
             // 
             this.cbComision.Dock = System.Windows.Forms.DockStyle.Fill;
             this.cbComision.FormattingEnabled = true;
-            this.cbComision.Location = new System.Drawing.Point(459, 29);
+            this.cbComision.Location = new System.Drawing.Point(456, 29);
             this.cbComision.Name = "cbComision";
-            this.cbComision.Size = new System.Drawing.Size(338, 21);
+            this.cbComision.Size = new System.Drawing.Size(341, 21);
             this.cbComision.TabIndex = 28;
             // 
             // CursoDesktop
@@ -233,8 +211,6 @@
         private System.Windows.Forms.Label IDLabel;
         private System.Windows.Forms.TextBox txtID;
         private System.Windows.Forms.Label MateriaIDLabel;
-        private System.Windows.Forms.TextBox txtDescripcion;
-        private System.Windows.Forms.Label DescLabel;
         private System.Windows.Forms.ComboBox cbMateria;
         private System.Windows.Forms.Button btnAceptar;
         private System.Windows.Forms.Button btnCancelar;

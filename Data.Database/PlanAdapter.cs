@@ -22,6 +22,9 @@ namespace Data.Database {
                     pln.ID = (int)drPlanes["id_plan"];
                     pln.Descripcion = (string)drPlanes["desc_plan"];
                     pln.IDEspecialidad = (int)drPlanes["id_especialidad"];
+
+                    
+
                     pln.IDString = (pln.ID.ToString() + " - " + pln.Descripcion);
                     planes.Add(pln);
                 }

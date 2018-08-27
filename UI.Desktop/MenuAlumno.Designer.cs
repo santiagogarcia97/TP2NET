@@ -35,7 +35,7 @@
             this.btnComisiones = new System.Windows.Forms.Button();
             this.btnSalir = new System.Windows.Forms.Button();
             this.txtTitle = new System.Windows.Forms.Label();
-            this.btnInscribir = new System.Windows.Forms.Button();
+            this.btnInscripciones = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnUsuarios
@@ -110,21 +110,22 @@
             this.txtTitle.Text = "Menu Alumno";
             this.txtTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // btnInscribir
+            // btnInscripciones
             // 
-            this.btnInscribir.Location = new System.Drawing.Point(12, 194);
-            this.btnInscribir.Name = "btnInscribir";
-            this.btnInscribir.Size = new System.Drawing.Size(125, 23);
-            this.btnInscribir.TabIndex = 7;
-            this.btnInscribir.Text = " ";
-            this.btnInscribir.UseVisualStyleBackColor = true;
+            this.btnInscripciones.Location = new System.Drawing.Point(12, 194);
+            this.btnInscripciones.Name = "btnInscripciones";
+            this.btnInscripciones.Size = new System.Drawing.Size(125, 23);
+            this.btnInscripciones.TabIndex = 7;
+            this.btnInscripciones.Text = " Inscripciones";
+            this.btnInscripciones.UseVisualStyleBackColor = true;
+            this.btnInscripciones.Click += new System.EventHandler(this.btnInscripciones_Click);
             // 
             // MenuAlumno
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(390, 226);
-            this.Controls.Add(this.btnInscribir);
+            this.Controls.Add(this.btnInscripciones);
             this.Controls.Add(this.txtTitle);
             this.Controls.Add(this.btnSalir);
             this.Controls.Add(this.btnComisiones);
@@ -150,6 +151,6 @@
         private System.Windows.Forms.Button btnComisiones;
         private System.Windows.Forms.Button btnSalir;
         private System.Windows.Forms.Label txtTitle;
-        private System.Windows.Forms.Button btnInscribir;
+        private System.Windows.Forms.Button btnInscripciones;
     }
 }

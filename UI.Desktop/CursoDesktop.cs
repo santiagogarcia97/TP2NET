@@ -54,7 +54,6 @@ namespace UI.Desktop
         public override void MapearDeDatos()
         {
             txtID.Text = CursoActual.ID.ToString();
-            txtDescripcion.Text = CursoActual.Descripcion;
             txtAnio.Text = CursoActual.AnioCalendario.ToString();
             txtCupo.Text = CursoActual.Cupo.ToString();
 
@@ -77,7 +76,6 @@ namespace UI.Desktop
                     btnAceptar.Text = "Eliminar";
                     txtAnio.ReadOnly = true;
                     txtCupo.ReadOnly = true;
-                    txtDescripcion.ReadOnly = true;
                     cbMateria.Enabled = false;
                     cbComision.Enabled = false;
 
@@ -86,7 +84,6 @@ namespace UI.Desktop
                     btnAceptar.Text = "Aceptar";
                     txtAnio.ReadOnly = true;
                     txtCupo.ReadOnly = true;
-                    txtDescripcion.ReadOnly = true;
                     cbMateria.Enabled = false;
                     cbComision.Enabled = false;
                     break;
@@ -99,7 +96,6 @@ namespace UI.Desktop
             {                                      //Emprolijar: Evitar repetición de asignaciones  
                 case ModoForm.Alta:
                     CursoActual = new Curso();
-                    CursoActual.Descripcion = txtDescripcion.Text;
                     CursoActual.IDComision = getComID(cbComision.Text);
                     CursoActual.IDMateria = getMatID(cbMateria.Text);
                     CursoActual.AnioCalendario = int.Parse(txtAnio.Text);
@@ -107,7 +103,6 @@ namespace UI.Desktop
                     CursoActual.State = BusinessEntity.States.New;
                     break;
                 case ModoForm.Modificacion:
-                    CursoActual.Descripcion = txtDescripcion.Text;
                     CursoActual.IDComision = getComID(cbComision.Text);
                     CursoActual.IDMateria = getMatID(cbMateria.Text);
                     CursoActual.AnioCalendario = int.Parse(txtAnio.Text);
@@ -134,7 +129,6 @@ namespace UI.Desktop
         {
             return !(string.IsNullOrEmpty(txtAnio.Text) ||        //Si cualquiera de estas condiciones es verdadera, retorna false
             string.IsNullOrEmpty(txtCupo.Text) ||
-            string.IsNullOrEmpty(txtDescripcion.Text) ||
             string.IsNullOrEmpty(cbComision.Text) ||
             string.IsNullOrEmpty(cbMateria.Text));
         }

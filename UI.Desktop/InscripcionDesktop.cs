@@ -11,58 +11,58 @@ using Business.Logic;
 using Business.Entities;
 using static Business.Entities.AlumnoInscripcion;
 
-namespace UI.Desktop {
-    public partial class AlumnoInscripcionDesktop : ApplicationForm {
+namespace UI.Desktop
+{
+    public partial class InscripcionDesktop : ApplicationForm
+    {
         private AlumnoInscripcion _inscripcionActual;
-        private int _aID;
-
-
-        public int AlumnoID {
-            get { return _aID; }
-            set { _aID = value; }
-        }
 
         public AlumnoInscripcion InscripcionActual {
             get { return _inscripcionActual; }
-            set { _inscripcionActual = value; }
+            set { _inscripcionActual  = value; }
         }
 
 
-        public AlumnoInscripcionDesktop() {
+        public InscripcionDesktop()
+        {
             InitializeComponent();
             UsuarioLogic ul = new UsuarioLogic();
             List<Usuario> usuarios = ul.GetAll();
-            foreach (Usuario usr in usuarios) {
-                if (usr.TipoPersona == 1) {
+            foreach (Usuario usr in usuarios)
+            {
+                if (usr.TipoPersona == 1){
                     cbAlumno.Items.Add(usr.IDString);
                 }
             }
             CursoLogic cl = new CursoLogic();
             List<Curso> cursos = cl.GetAll();
-            foreach (Curso cur in cursos) {
+            foreach (Curso cur in cursos)
+            {
                 cbCurso.Items.Add(cur.IDString);
             }
-            foreach (string con in Enum.GetNames(typeof(Condiciones))) {
+            foreach (string con in Enum.GetNames(typeof(Condiciones)))
+            {
                 cbCondicion.Items.Add(con);
-            }
+            }   
         }
 
-        public AlumnoInscripcionDesktop(ModoForm modo, int aID) : this() {
-            AlumnoID = aId;
+        public InscripcionDesktop(ModoForm modo) : this()
+        {
             Modo = modo;
         }
 
 
-        public AlumnoInscripcionDesktop(ModoForm modo, int aID, int ID) : this() {
+        public InscripcionDesktop(ModoForm modo, int ID) : this()
+        {
             Modo = modo;
-            AlumnoID = aID;
             AlumnoInscripcionLogic auxInsc = new AlumnoInscripcionLogic();
             InscripcionActual = auxInsc.GetOne(ID);
-            MapearDeDatos();
+            MapearDeDatos(); 
         }
 
 
-        public override void MapearDeDatos() {
+        public override void MapearDeDatos()
+        {
             txtID.Text = InscripcionActual.ID.ToString();
             CursoLogic cl = new CursoLogic();
             Curso crs = cl.GetOne(InscripcionActual.IDCurso);
@@ -77,7 +77,8 @@ namespace UI.Desktop {
             nudNota.Value = InscripcionActual.Nota;
 
 
-            switch (Modo) {
+            switch (Modo)
+            {
                 case ModoForm.Alta:
                     btnAceptar.Text = "Guardar";
                     break;
@@ -102,8 +103,10 @@ namespace UI.Desktop {
             }
         }
 
-        public override void MapearADatos() {
-            switch (Modo) {                                      //Emprolijar: Evitar repetición de asignaciones  
+        public override void MapearADatos()
+        {
+            switch (Modo)
+            {                                      //Emprolijar: Evitar repetición de asignaciones  
                 case ModoForm.Alta:
                     InscripcionActual = new AlumnoInscripcion();
                     InscripcionActual.IDCurso = getCrsID(cbCurso.Text);
@@ -127,56 +130,69 @@ namespace UI.Desktop {
             }
         }
 
-        public override void GuardarCambios() {
+        public override void GuardarCambios()
+        {
             MapearADatos();
             AlumnoInscripcionLogic auxInsc = new AlumnoInscripcionLogic();
             auxInsc.Save(InscripcionActual);
         }
 
-        public override bool Validar() {
+        public override bool Validar()
+        {
             return !(                                     //Si cualquiera de estas condiciones es verdadera, retorna false
             string.IsNullOrEmpty(cbCurso.Text) ||
             string.IsNullOrEmpty(cbCondicion.Text) ||
             string.IsNullOrEmpty(cbAlumno.Text));
         }
 
-        private void btnAceptar_Click(object sender, EventArgs e) {
-            if (Validar()) {
+        private void btnAceptar_Click(object sender, EventArgs e)
+        {
+            if (Validar())
+            {
                 GuardarCambios();
                 this.Close();
             }
-            else {
+            else
+            {
                 MessageBox.Show("Complete todos los campos.");
             }
         }
 
-        private void btnCancelar_Click(object sender, EventArgs e) {
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
             this.Close();
         }
 
-        private int getCrsID(string StrID) {
+        private int getCrsID(string StrID)
+        {
             CursoLogic cl = new CursoLogic();
             List<Curso> cursos = cl.GetAll();
-            foreach (Curso crs in cursos) {
-                if (crs.IDString == StrID) {
+            foreach (Curso crs in cursos)
+            {
+                if (crs.IDString == StrID)
+                {
                     return crs.ID;
                 }
             }
             return (0);
         }
 
-        private int getUsrID(string StrID) {
+        private int getUsrID(string StrID)
+        {
             UsuarioLogic ul = new UsuarioLogic();
             List<Usuario> usuarios = ul.GetAll();
-            foreach (Usuario usr in usuarios) {
-                if (usr.IDString == StrID) {
+            foreach (Usuario usr in usuarios)
+            {
+                if (usr.IDString == StrID)
+                {
                     return usr.ID;
                 }
             }
             return (0);
         }
 
-        private void btnCancelar_Click_1(object sender, EventArgs e) {
+        private void btnCancelar_Click_1(object sender, EventArgs e)
+        {
             this.Close();
         }
     }

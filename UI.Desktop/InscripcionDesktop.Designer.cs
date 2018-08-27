@@ -1,5 +1,7 @@
-﻿namespace UI.Desktop {
-    partial class AlumnoInscripcionDesktop {
+﻿namespace UI.Desktop
+{
+    partial class InscripcionDesktop
+    {
         /// <summary>
         /// Required designer variable.
         /// </summary>
@@ -9,8 +11,10 @@
         /// Clean up any resources being used.
         /// </summary>
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-        protected override void Dispose(bool disposing) {
-            if (disposing && (components != null)) {
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
                 components.Dispose();
             }
             base.Dispose(disposing);
@@ -22,7 +26,8 @@
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
-        private void InitializeComponent() {
+        private void InitializeComponent()
+        {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.IDLabel = new System.Windows.Forms.Label();
             this.txtID = new System.Windows.Forms.TextBox();
@@ -48,7 +53,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 22.52011F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 77.4799F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 90F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 346F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 347F));
             this.tableLayoutPanel1.Controls.Add(this.IDLabel, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.txtID, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.CursoIDLabel, 0, 1);
@@ -69,14 +74,14 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 27F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 31F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(800, 111);
-            this.tableLayoutPanel1.TabIndex = 4;
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(800, 113);
+            this.tableLayoutPanel1.TabIndex = 3;
             // 
             // IDLabel
             // 
             this.IDLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.IDLabel.AutoSize = true;
-            this.IDLabel.Location = new System.Drawing.Point(31, 6);
+            this.IDLabel.Location = new System.Drawing.Point(31, 7);
             this.IDLabel.Name = "IDLabel";
             this.IDLabel.Size = new System.Drawing.Size(18, 13);
             this.IDLabel.TabIndex = 0;
@@ -89,14 +94,14 @@
             this.txtID.Location = new System.Drawing.Point(84, 3);
             this.txtID.Name = "txtID";
             this.txtID.ReadOnly = true;
-            this.txtID.Size = new System.Drawing.Size(276, 20);
+            this.txtID.Size = new System.Drawing.Size(275, 20);
             this.txtID.TabIndex = 11;
             // 
             // CursoIDLabel
             // 
             this.CursoIDLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.CursoIDLabel.AutoSize = true;
-            this.CursoIDLabel.Location = new System.Drawing.Point(23, 32);
+            this.CursoIDLabel.Location = new System.Drawing.Point(23, 34);
             this.CursoIDLabel.Name = "CursoIDLabel";
             this.CursoIDLabel.Size = new System.Drawing.Size(34, 13);
             this.CursoIDLabel.TabIndex = 19;
@@ -106,7 +111,7 @@
             // 
             this.NotaLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.NotaLabel.AutoSize = true;
-            this.NotaLabel.Location = new System.Drawing.Point(393, 6);
+            this.NotaLabel.Location = new System.Drawing.Point(392, 7);
             this.NotaLabel.Name = "NotaLabel";
             this.NotaLabel.Size = new System.Drawing.Size(30, 13);
             this.NotaLabel.TabIndex = 21;
@@ -116,29 +121,29 @@
             // 
             this.cbCurso.Dock = System.Windows.Forms.DockStyle.Fill;
             this.cbCurso.FormattingEnabled = true;
-            this.cbCurso.Location = new System.Drawing.Point(84, 28);
+            this.cbCurso.Location = new System.Drawing.Point(84, 30);
             this.cbCurso.Name = "cbCurso";
-            this.cbCurso.Size = new System.Drawing.Size(276, 21);
+            this.cbCurso.Size = new System.Drawing.Size(275, 21);
             this.cbCurso.TabIndex = 22;
             // 
             // nudNota
             // 
             this.nudNota.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.nudNota.Location = new System.Drawing.Point(456, 3);
+            this.nudNota.Location = new System.Drawing.Point(455, 3);
             this.nudNota.Maximum = new decimal(new int[] {
             10,
             0,
             0,
             0});
             this.nudNota.Name = "nudNota";
-            this.nudNota.Size = new System.Drawing.Size(341, 20);
+            this.nudNota.Size = new System.Drawing.Size(342, 20);
             this.nudNota.TabIndex = 27;
             // 
             // labelAlumno
             // 
             this.labelAlumno.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.labelAlumno.AutoSize = true;
-            this.labelAlumno.Location = new System.Drawing.Point(387, 32);
+            this.labelAlumno.Location = new System.Drawing.Point(386, 34);
             this.labelAlumno.Name = "labelAlumno";
             this.labelAlumno.Size = new System.Drawing.Size(42, 13);
             this.labelAlumno.TabIndex = 28;
@@ -148,14 +153,14 @@
             // 
             this.cbAlumno.Dock = System.Windows.Forms.DockStyle.Fill;
             this.cbAlumno.FormattingEnabled = true;
-            this.cbAlumno.Location = new System.Drawing.Point(456, 28);
+            this.cbAlumno.Location = new System.Drawing.Point(455, 30);
             this.cbAlumno.Name = "cbAlumno";
-            this.cbAlumno.Size = new System.Drawing.Size(341, 21);
+            this.cbAlumno.Size = new System.Drawing.Size(342, 21);
             this.cbAlumno.TabIndex = 29;
             // 
             // btnAceptar
             // 
-            this.btnAceptar.Location = new System.Drawing.Point(366, 83);
+            this.btnAceptar.Location = new System.Drawing.Point(365, 85);
             this.btnAceptar.Name = "btnAceptar";
             this.btnAceptar.Size = new System.Drawing.Size(75, 23);
             this.btnAceptar.TabIndex = 9;
@@ -164,18 +169,19 @@
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(456, 83);
+            this.btnCancelar.Location = new System.Drawing.Point(455, 85);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 23);
             this.btnCancelar.TabIndex = 10;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click_1);
             // 
             // labelCondicion
             // 
             this.labelCondicion.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.labelCondicion.AutoSize = true;
-            this.labelCondicion.Location = new System.Drawing.Point(13, 59);
+            this.labelCondicion.Location = new System.Drawing.Point(13, 61);
             this.labelCondicion.Name = "labelCondicion";
             this.labelCondicion.Size = new System.Drawing.Size(54, 13);
             this.labelCondicion.TabIndex = 30;
@@ -185,18 +191,18 @@
             // 
             this.cbCondicion.Dock = System.Windows.Forms.DockStyle.Fill;
             this.cbCondicion.FormattingEnabled = true;
-            this.cbCondicion.Location = new System.Drawing.Point(84, 55);
+            this.cbCondicion.Location = new System.Drawing.Point(84, 57);
             this.cbCondicion.Name = "cbCondicion";
-            this.cbCondicion.Size = new System.Drawing.Size(276, 21);
+            this.cbCondicion.Size = new System.Drawing.Size(275, 21);
             this.cbCondicion.TabIndex = 31;
             // 
-            // AlumnoInscripcionDesktop
+            // InscripcionDesktop
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 111);
+            this.ClientSize = new System.Drawing.Size(800, 113);
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Name = "AlumnoInscripcionDesktop";
+            this.Name = "InscripcionDesktop";
             this.Text = "AlumnoInscripcionDesktop";
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
@@ -214,11 +220,11 @@
         private System.Windows.Forms.Label CursoIDLabel;
         private System.Windows.Forms.Label NotaLabel;
         private System.Windows.Forms.ComboBox cbCurso;
+        private System.Windows.Forms.Button btnAceptar;
+        private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.NumericUpDown nudNota;
         private System.Windows.Forms.Label labelAlumno;
         private System.Windows.Forms.ComboBox cbAlumno;
-        private System.Windows.Forms.Button btnAceptar;
-        private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Label labelCondicion;
         private System.Windows.Forms.ComboBox cbCondicion;
     }

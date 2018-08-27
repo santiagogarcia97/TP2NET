@@ -27,8 +27,8 @@ namespace UI.Desktop
                 this.Visible = false;
                 switch (user.TipoPersona) {
                     case 1:
-                        MenuAlumno menuUsuario = new MenuAlumno();
-                        menuUsuario.ShowDialog();
+                        MenuAlumno menuAlumno = new MenuAlumno(user.ID);
+                        menuAlumno.ShowDialog();
                         break;
                     case 2:
                         MenuDocente menuDocente = new MenuDocente();

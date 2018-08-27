@@ -22,13 +22,13 @@ namespace UI.Desktop
 
         public void Listar()
         {
-            AlumnoInscripcionLogic esp = new AlumnoInscripcionLogic();
-            List<AlumnoInscripcion> especialidades = esp.GetAll();
-            if (especialidades.Count() == 0)
+            AlumnoInscripcionLogic ins = new AlumnoInscripcionLogic();
+            List<AlumnoInscripcion> inscripciones = ins.GetAll();
+            if (inscripciones.Count() == 0)
             {
                 MessageBox.Show("No hay inscripciones cargadas!");
             }
-            this.dgvInscripciones.DataSource = especialidades;
+            this.dgvInscripciones.DataSource = inscripciones;
         }
 
         private void Inscripciones_Load(object sender, EventArgs e)
@@ -38,8 +38,8 @@ namespace UI.Desktop
 
         private void tsbNuevo_Click(object sender, EventArgs e)
         {
-            AlumnoInscripcionDesktop especialidadDesktop = new AlumnoInscripcionDesktop(ApplicationForm.ModoForm.Alta, AlumnoInscripcionDesktop.AccessForm.Abierto);
-            especialidadDesktop.ShowDialog();
+            InscripcionDesktop alumnoInscripcionDesktop = new InscripcionDesktop(ApplicationForm.ModoForm.Alta, InscripcionDesktop.AccessForm.Abierto);
+            alumnoInscripcionDesktop.ShowDialog();
             this.Listar();
         }
 
@@ -48,8 +48,8 @@ namespace UI.Desktop
             if (this.dgvInscripciones.SelectedRows.Count != 0)
             {
                 int ID = ((Business.Entities.AlumnoInscripcion)this.dgvInscripciones.SelectedRows[0].DataBoundItem).ID;
-                AlumnoInscripcionDesktop especialidadDesktop = new AlumnoInscripcionDesktop(ApplicationForm.ModoForm.Modificacion, AlumnoInscripcionDesktop.AccessForm.Abierto, ID);
-                especialidadDesktop.ShowDialog();
+                InscripcionDesktop alumnoInscripcionDesktop = new InscripcionDesktop(ApplicationForm.ModoForm.Modificacion, InscripcionDesktop.AccessForm.Abierto, ID);
+                alumnoInscripcionDesktop.ShowDialog();
                 this.Listar();
             }
         }
@@ -59,8 +59,8 @@ namespace UI.Desktop
             if (this.dgvInscripciones.SelectedRows.Count != 0)
             {
                 int ID = ((Business.Entities.AlumnoInscripcion)this.dgvInscripciones.SelectedRows[0].DataBoundItem).ID;
-                AlumnoInscripcionDesktop especialidadDesktop = new AlumnoInscripcionDesktop(ApplicationForm.ModoForm.Baja, AlumnoInscripcionDesktop.AccessForm.Abierto, ID);
-                especialidadDesktop.ShowDialog();
+                InscripcionDesktop alumnoInscripcionDesktop = new InscripcionDesktop(ApplicationForm.ModoForm.Baja, InscripcionDesktop.AccessForm.Abierto, ID);
+                alumnoInscripcionDesktop.ShowDialog();
                 this.Listar();
             }
         }
@@ -70,8 +70,8 @@ namespace UI.Desktop
             if (this.dgvInscripciones.SelectedRows.Count != 0)
             {
                 int ID = ((Business.Entities.AlumnoInscripcion)this.dgvInscripciones.SelectedRows[0].DataBoundItem).ID;
-                AlumnoInscripcionDesktop especialidadDesktop = new AlumnoInscripcionDesktop(ApplicationForm.ModoForm.Consulta, AlumnoInscripcionDesktop.AccessForm.Abierto, ID);
-                especialidadDesktop.ShowDialog();
+                InscripcionDesktop alumnoInscripcionDesktop = new InscripcionDesktop(ApplicationForm.ModoForm.Consulta, InscripcionDesktop.AccessForm.Abierto, ID);
+                alumnoInscripcionDesktop.ShowDialog();
                 this.Listar();
             }
         }

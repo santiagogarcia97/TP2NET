@@ -236,6 +236,7 @@
             this.Controls.Add(this.tcUsuarios);
             this.Name = "Cursos";
             this.Text = "Cursos";
+            this.Load += new System.EventHandler(this.Cursos_Load);
             this.tcUsuarios.ContentPanel.ResumeLayout(false);
             this.tcUsuarios.TopToolStripPanel.ResumeLayout(false);
             this.tcUsuarios.TopToolStripPanel.PerformLayout();

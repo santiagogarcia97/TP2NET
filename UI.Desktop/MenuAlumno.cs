@@ -8,35 +8,36 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace UI.Desktop
-{
-    public partial class MenuAlumno : Form
-    {
-        public MenuAlumno()
-        {
+namespace UI.Desktop{
+    public partial class MenuAlumno : ApplicationForm{
+
+        private int _alumnoid;
+        public int AlumnoID {
+            get { return _alumnoid; }
+            set { _alumnoid = value; }
+        }
+
+        public MenuAlumno(int aID){
+            AlumnoID = aID;
             InitializeComponent();
         }
 
-        private void btnUsuarios_Click(object sender, EventArgs e)
-        {
+        private void btnUsuarios_Click(object sender, EventArgs e){
             Usuarios formUsuarios = new Usuarios();
             formUsuarios.ShowDialog(); // El metodo showDialog hace que el form se abra de forma modal, no se puede interactuar con el menu hasta que no se cierre el form abierto
         }
 
-        private void btnPlanes_Click(object sender, EventArgs e)
-        {
+        private void btnPlanes_Click(object sender, EventArgs e){
             Planes formPlanes = new Planes();
             formPlanes.ShowDialog();
         }
 
-        private void btnEspecialidades_Click(object sender, EventArgs e)
-        {
+        private void btnEspecialidades_Click(object sender, EventArgs e){
             Especialidades formEspecialidades = new Especialidades();
             formEspecialidades.ShowDialog();
         }
 
-        private void btnMaterias_Click(object sender, EventArgs e)
-        {
+        private void btnMaterias_Click(object sender, EventArgs e){
             Materias formMaterias = new Materias();
             formMaterias.ShowDialog();
         }
@@ -48,6 +49,11 @@ namespace UI.Desktop
 
         private void btnSalir_Click(object sender, EventArgs e) {
             this.Close();
+        }
+
+        private void btnInscripciones_Click(object sender, EventArgs e) {
+            AlumnoInscripciones formInscripciones = new AlumnoInscripciones(AlumnoID);
+            formInscripciones.ShowDialog();
         }
     }
 }
