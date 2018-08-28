@@ -38,7 +38,7 @@ namespace UI.Desktop
 
         private void tsbNuevo_Click(object sender, EventArgs e)
         {
-            InscripcionDesktop alumnoInscripcionDesktop = new InscripcionDesktop(ApplicationForm.ModoForm.Alta, InscripcionDesktop.AccessForm.Abierto);
+            InscripcionDesktop alumnoInscripcionDesktop = new InscripcionDesktop(ApplicationForm.ModoForm.Alta);
             alumnoInscripcionDesktop.ShowDialog();
             this.Listar();
         }
@@ -48,7 +48,7 @@ namespace UI.Desktop
             if (this.dgvInscripciones.SelectedRows.Count != 0)
             {
                 int ID = ((Business.Entities.AlumnoInscripcion)this.dgvInscripciones.SelectedRows[0].DataBoundItem).ID;
-                InscripcionDesktop alumnoInscripcionDesktop = new InscripcionDesktop(ApplicationForm.ModoForm.Modificacion, InscripcionDesktop.AccessForm.Abierto, ID);
+                InscripcionDesktop alumnoInscripcionDesktop = new InscripcionDesktop(ApplicationForm.ModoForm.Modificacion,  ID);
                 alumnoInscripcionDesktop.ShowDialog();
                 this.Listar();
             }
@@ -59,7 +59,7 @@ namespace UI.Desktop
             if (this.dgvInscripciones.SelectedRows.Count != 0)
             {
                 int ID = ((Business.Entities.AlumnoInscripcion)this.dgvInscripciones.SelectedRows[0].DataBoundItem).ID;
-                InscripcionDesktop alumnoInscripcionDesktop = new InscripcionDesktop(ApplicationForm.ModoForm.Baja, InscripcionDesktop.AccessForm.Abierto, ID);
+                InscripcionDesktop alumnoInscripcionDesktop = new InscripcionDesktop(ApplicationForm.ModoForm.Baja, ID);
                 alumnoInscripcionDesktop.ShowDialog();
                 this.Listar();
             }
@@ -70,7 +70,7 @@ namespace UI.Desktop
             if (this.dgvInscripciones.SelectedRows.Count != 0)
             {
                 int ID = ((Business.Entities.AlumnoInscripcion)this.dgvInscripciones.SelectedRows[0].DataBoundItem).ID;
-                InscripcionDesktop alumnoInscripcionDesktop = new InscripcionDesktop(ApplicationForm.ModoForm.Consulta, InscripcionDesktop.AccessForm.Abierto, ID);
+                InscripcionDesktop alumnoInscripcionDesktop = new InscripcionDesktop(ApplicationForm.ModoForm.Consulta, ID);
                 alumnoInscripcionDesktop.ShowDialog();
                 this.Listar();
             }
