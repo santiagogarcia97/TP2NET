@@ -25,20 +25,10 @@ namespace UI.Desktop
             Usuario user = ul.GetOne(txtUsuario.Text);
             if(txtUsuario.Text.Equals(user.NombreUsuario) && txtPassword.Text.Equals(user.Clave)){
                 this.Visible = false;
-                switch (user.TipoPersona) {
-                    case 1:
-                        MenuAlumno menuAlumno = new MenuAlumno(user.ID);
-                        menuAlumno.ShowDialog();
-                        break;
-                    case 2:
-                        MenuDocente menuDocente = new MenuDocente();
-                        menuDocente.ShowDialog();
-                        break;
-                    case 3:
-                        MenuAdmin menuAdministrador = new MenuAdmin();
-                        menuAdministrador.ShowDialog();
-                        break;
-                }
+
+                Menu main = new Menu(user);
+                main.ShowDialog();
+
                 this.Visible = true;
             }
             else if(txtUsuario.Text.Equals(user.NombreUsuario) && !txtPassword.Text.Equals(user.Clave)){
