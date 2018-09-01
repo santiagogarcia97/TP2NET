@@ -112,19 +112,9 @@ namespace UI.Desktop {
         }
 
         private void GenerarPlanes(int idEsp) {
-            DataTable dtPlanes = new DataTable();
-            dtPlanes.Columns.Add("id_plan", typeof(int));
-            dtPlanes.Columns.Add("desc_plan", typeof(string));
-            PlanLogic pl = new PlanLogic();
-            List<Plan> planes = pl.GetAll();
-            foreach (Plan plan in planes) {
-                if (plan.IDEspecialidad == idEsp) {
-                    dtPlanes.Rows.Add(new object[] { plan.ID, plan.Descripcion });
-                }
-            }
             cbPlan.ValueMember = "id_plan";
             cbPlan.DisplayMember = "desc_plan";
-            cbPlan.DataSource = dtPlanes;
+            cbPlan.DataSource = GenerarComboBox.getPlanes(idEsp);
         }
 
         private void btnAceptar_Click(object sender, EventArgs e) {

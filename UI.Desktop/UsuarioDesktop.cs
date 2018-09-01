@@ -21,6 +21,10 @@ namespace UI.Desktop {
 
         public UsuarioDesktop() {
             InitializeComponent();
+            GenerarTipoPersona();
+            cbxEsp.ValueMember = "id_esp";
+            cbxEsp.DisplayMember = "desc_esp";
+            cbxEsp.DataSource = GenerarComboBox.getEspecialidades();
         }
 
         public UsuarioDesktop(ModoForm modo):this() {
@@ -56,11 +60,6 @@ namespace UI.Desktop {
             lblRedTel.Visible = false;
             lblRedTipo.Visible = false;
             lblRedUser.Visible = false;
-
-            GenerarTipoPersona();
-            cbxEsp.ValueMember = "id_esp";
-            cbxEsp.DisplayMember = "desc_esp";
-            cbxEsp.DataSource = GenerarComboBox.getEspecialidades();
         }
 
         public void MapearDeDatos(Plan plan) {
@@ -131,33 +130,14 @@ namespace UI.Desktop {
             }
         }
         private void GenerarTipoPersona() {
-            DataTable dtTiposPersona = new DataTable();
-
-            dtTiposPersona.Columns.Add("tipo_persona", typeof(int));
-            dtTiposPersona.Columns.Add("desc_tipo", typeof(string));
-
-            dtTiposPersona.Rows.Add(new object[] { 1, "Alumno" });
-            dtTiposPersona.Rows.Add(new object[] { 2, "Docente" });
-            dtTiposPersona.Rows.Add(new object[] { 3, "Administrativo" });
-
             cbxTipo.ValueMember = "tipo_persona";
             cbxTipo.DisplayMember = "desc_tipo";
-            cbxTipo.DataSource = dtTiposPersona;
+            cbxTipo.DataSource = GenerarComboBox.getTiposPersona();
         }
         private void GenerarPlanes(int idEsp) {
-            DataTable dtPlanes = new DataTable();
-            dtPlanes.Columns.Add("id_plan", typeof(int));
-            dtPlanes.Columns.Add("desc_plan", typeof(string));
-            PlanLogic pl = new PlanLogic();
-            List<Plan> planes = pl.GetAll();
-            foreach(Plan plan in planes) {
-                if(plan.IDEspecialidad == idEsp) {
-                    dtPlanes.Rows.Add(new object[] { plan.ID, plan.Descripcion });
-                }
-            }
             cbxPlan.ValueMember = "id_plan";
             cbxPlan.DisplayMember = "desc_plan";
-            cbxPlan.DataSource = dtPlanes;
+            cbxPlan.DataSource = GenerarComboBox.getPlanes(idEsp);
         }
         private void btnAceptar_Click(object sender, EventArgs e) {
             if (this.Validar() == true) {

@@ -52,7 +52,7 @@ namespace UI.Desktop {
         }
 
         private void Planes_Load(object sender, EventArgs e) {
-            Listar();
+            this.Listar();
         }
 
         private void btnSalir_Click(object sender, EventArgs e) {
