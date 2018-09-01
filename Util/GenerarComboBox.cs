@@ -10,6 +10,15 @@ using Business.Logic;
 
 namespace Util {
     public class GenerarComboBox {
+        /*
+         *  Se devuelven los DataTable para generar los combobox
+         *  Cada uno consiste en una columna de id que es el valor que se usara de forma interna
+         *  y una columna Descripcion que corresponde al valor que se le mostrará al usuario
+         *  A Planes, Materias y Comisiones se les agrega un filtro con la id que les llega como argumento
+         * 
+         */
+     
+        
         public static DataTable getEspecialidades() {
             DataTable dtEspecialidades = new DataTable();
             dtEspecialidades.Columns.Add("id_esp", typeof(int));

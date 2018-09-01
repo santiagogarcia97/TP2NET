@@ -21,6 +21,9 @@ namespace UI.Desktop
         public CursoDesktop(){
             InitializeComponent();
 
+            //Se genera el comobox de especialidades
+            //getEspecialidades devuelve un DataTable con un columna de ID y otra de Descripcion
+            //La de ID se usa como valor interno al seleccionar una opcion y la Desc es la que se muestra al usuario
             cbEsp.ValueMember = "id_esp";
             cbEsp.DisplayMember = "desc_esp";
             cbEsp.DataSource = GenerarComboBox.getEspecialidades();
@@ -33,22 +36,20 @@ namespace UI.Desktop
         public CursoDesktop(int ID, ModoForm modo) : this(){
             Modo = modo;
             CursoLogic auxCurso = new CursoLogic();
-            CursoActual = auxCurso.GetOne(ID);
+            CursoActual = auxCurso.GetOne(ID);        
 
-            ComisionLogic cl = new ComisionLogic();
-            Comision com = cl.GetOne(CursoActual.IDComision);
-            
-
+            //busco la materia para conseguir la id del plan correspondiente
             MateriaLogic ml = new MateriaLogic();
             Materia mat = ml.GetOne(CursoActual.IDMateria);
-
+            //busco el plan para conseguir la id de la especialidad correspondiente
             PlanLogic pl = new PlanLogic();
             Plan plan = pl.GetOne(mat.IDPlan);
             GenerarPlanes(plan.IDEspecialidad);
             GenerarComisiones(plan.ID);
             GenerarMaterias(plan.ID);
 
-            MapearDeDatos(plan, com, mat);
+            //paso el plan como argumento para tener el id del mismo y de su especialidad y poder seleccionarlos en los combobox
+            MapearDeDatos(plan);
         }
         private void CursoDesktop_Load(object sender, EventArgs e) {
             lblRedCupo.Visible = false;
@@ -57,15 +58,15 @@ namespace UI.Desktop
             lblRedMat.Visible = false;
             lblRedPlan.Visible = false;
         }
-        public void MapearDeDatos(Plan pln, Comision com, Materia mat)
+        public void MapearDeDatos(Plan pln)
         {
             labelID.Text = CursoActual.ID.ToString();
             txtAnio.Text = CursoActual.AnioCalendario.ToString();
             txtCupo.Text = CursoActual.Cupo.ToString();
+            cbMateria.SelectedValue = CursoActual.IDMateria;
+            cbComision.SelectedValue = CursoActual.IDComision;
             cbEsp.SelectedValue = pln.IDEspecialidad;
             cbPlan.SelectedValue = pln.ID;
-            cbMateria.SelectedValue = mat.ID;
-            cbComision.SelectedValue = com.ID;
 
             switch (Modo) {
                 case ModoForm.Alta:
@@ -106,16 +107,21 @@ namespace UI.Desktop
             }
         }
         private void GenerarPlanes(int idEsp) {
+            //Se genera el comobox de planes el funcionamiento es igual al de especialidades solo que se pasa
+            //el id de la esp para filtrar los planes de dicha esp
             cbPlan.ValueMember = "id_plan";
             cbPlan.DisplayMember = "desc_plan";
             cbPlan.DataSource = GenerarComboBox.getPlanes(idEsp);
         }
         private void GenerarMaterias(int idPlan) {
+            //Se genera el comobox de materias el funcionamiento es igual al de planes solo que se pasa
+            //el id del plan para filtrar las materias de dicho plan
             cbMateria.ValueMember = "id_mat";
             cbMateria.DisplayMember = "desc_mat";
             cbMateria.DataSource = GenerarComboBox.getMaterias(idPlan);
         }
         private void GenerarComisiones(int idPlan) {
+            //Se genera el combobox de comisiones, funciona exactamente igual que el de materias
             cbComision.ValueMember = "id_com";
             cbComision.DisplayMember = "desc_com";
             cbComision.DataSource = GenerarComboBox.getComisiones(idPlan);
@@ -164,12 +170,18 @@ namespace UI.Desktop
         }
         private void cbEsp_SelectedValueChanged(object sender, EventArgs e) {
             if (cbEsp.SelectedValue != null) {
+                //Si el valor del combobox de especialidades cambia, se vuelven a generar los planes
+                //pasando como argumento el id de la especialidad para mostrar solo los planes que
+                //corresponden a dicha especialidad
                 GenerarPlanes(Int32.Parse(cbEsp.SelectedValue.ToString()));
             }
         }
 
         private void cbPlan_SelectedValueChanged(object sender, EventArgs e) {
             if (cbPlan.SelectedValue != null) {
+                //Si el valor del combobox de planes cambia, se vuelven a generar las comisiones y materias
+                //pasando como argumento el id del plan para mostrar solo las que
+                //corresponden a dicho plan
                 GenerarComisiones(Int32.Parse(cbPlan.SelectedValue.ToString()));
                 GenerarMaterias(Int32.Parse(cbPlan.SelectedValue.ToString()));
             }

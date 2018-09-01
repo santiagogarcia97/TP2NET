@@ -19,14 +19,17 @@ namespace UI.Desktop {
         }
 
         public void Listar() {
+            //Se limpia el dgv
             this.dgvCursos.DataSource = null;
             this.dgvCursos.Refresh();
+
             CursoLogic cl = new CursoLogic();
             List<Curso> cursos = cl.GetAll();
             if (cursos.Count() == 0) {
                 MessageBox.Show("No hay cursos cargados!");
             }
             else {
+                //Se crea el DataTable que va a ser el DataSource del dgv
                 DataTable Listado = new DataTable();
                 Listado.Columns.Add("ID", typeof(int));
                 Listado.Columns.Add("AnioCalendario", typeof(int));
@@ -35,15 +38,16 @@ namespace UI.Desktop {
                 Listado.Columns.Add("Comision", typeof(string));
                 Listado.Columns.Add("Plan", typeof(string));
 
+                //La columna materia mostrara materia.Descripcion 
+                //La columna comision mostrara comision.Descripcion
+                //La columna plan mostrara especialidad.Descripcion + plan.Descripcion
+                //En vez de mostrar los ID's que aportan poca informacion
                 PlanLogic pl = new PlanLogic();
                 List<Plan> planes = pl.GetAll();
-
                 EspecialidadLogic el = new EspecialidadLogic();
                 List<Especialidad> especialidades = el.GetAll();
-
                 MateriaLogic ml = new MateriaLogic();
                 List<Materia> materias = ml.GetAll();
-
                 ComisionLogic coml = new ComisionLogic();
                 List<Comision> comisiones = coml.GetAll();
 
@@ -59,6 +63,7 @@ namespace UI.Desktop {
                             break;
                         }
                     }
+                    //3 foreach anidados cargan las columnas materia y plan
                     foreach(Materia mat in materias) {
                         if(mat.ID == cur.IDMateria) {
                             Linea["Materia"] = mat.Descripcion;

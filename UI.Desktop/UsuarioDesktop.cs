@@ -21,7 +21,11 @@ namespace UI.Desktop {
 
         public UsuarioDesktop() {
             InitializeComponent();
-            GenerarTipoPersona();
+            this.GenerarTipoPersona();
+
+            //Se genera el comobox de especialidades
+            //getEspecialidades devuelve un DataTable con un columna de ID y otra de Descripcion
+            //La de ID se usa como valor interno al seleccionar una opcion y la Desc es la que se muestra al usuario
             cbxEsp.ValueMember = "id_esp";
             cbxEsp.DisplayMember = "desc_esp";
             cbxEsp.DataSource = GenerarComboBox.getEspecialidades();
@@ -47,6 +51,7 @@ namespace UI.Desktop {
             GenerarPlanes(plan.IDEspecialidad);
 
             MapearDeDatos(plan);
+            //El plan se pasa como argumento para tener el id de la especilidad y seleccionarlo en el combobox
         }
 
         private void UsuarioDesktop_Load(object sender, EventArgs e) {
@@ -130,11 +135,14 @@ namespace UI.Desktop {
             }
         }
         private void GenerarTipoPersona() {
+            //Se genera el comobox de personas el funcionamiento es igual al de especialidades
             cbxTipo.ValueMember = "tipo_persona";
             cbxTipo.DisplayMember = "desc_tipo";
             cbxTipo.DataSource = GenerarComboBox.getTiposPersona();
         }
         private void GenerarPlanes(int idEsp) {
+            //Se genera el comobox de planes el funcionamiento es igual al de especialidades solo que se pasa
+            //el id de la esp para filtrar los planes de dicha esp
             cbxPlan.ValueMember = "id_plan";
             cbxPlan.DisplayMember = "desc_plan";
             cbxPlan.DataSource = GenerarComboBox.getPlanes(idEsp);
@@ -185,6 +193,9 @@ namespace UI.Desktop {
 
         private void cbxEsp_SelectedValueChanged(object sender, EventArgs e) {
             if (cbxEsp.SelectedValue != null) {
+                //Si el valor del combobox de especialidades cambia, se vuelven a generar los planes
+                //pasando como argumento el id de la especialidad para mostrar solo los planes que
+                //corresponden a dicha especialidad
                 GenerarPlanes(Int32.Parse(cbxEsp.SelectedValue.ToString()));
             }
         }

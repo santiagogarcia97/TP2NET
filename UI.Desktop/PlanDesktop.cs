@@ -20,6 +20,9 @@ namespace UI.Desktop {
         public PlanDesktop() {
             InitializeComponent();
 
+            //Se genera el comobox de especialidades
+            //getEspecialidades devuelve un DataTable con un columna de ID y otra de Descripcion
+            //La de ID se usa como valor interno al seleccionar una opcion y la Desc es la que se muestra al usuario
             cbEspecialidad.ValueMember = "id_esp";
             cbEspecialidad.DisplayMember = "desc_esp";
             cbEspecialidad.DataSource = GenerarComboBox.getEspecialidades();

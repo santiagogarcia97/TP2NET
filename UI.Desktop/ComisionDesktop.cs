@@ -21,6 +21,9 @@ namespace UI.Desktop {
         public ComisionDesktop() {
             InitializeComponent();
 
+            //Se genera el comobox de especialidades
+            //getEspecialidades devuelve un DataTable con un columna de ID y otra de Descripcion
+            //La de ID se usa como valor interno al seleccionar una opcion y la Desc es la que se muestra al usuario
             cbEsp.ValueMember = "id_esp";
             cbEsp.DisplayMember = "desc_esp";
             cbEsp.DataSource = GenerarComboBox.getEspecialidades();
@@ -40,6 +43,7 @@ namespace UI.Desktop {
 
             GenerarPlanes(plan.IDEspecialidad);
 
+            //El plan se pasa como argumento para tener el id de la especilidad y seleccionarlo en el combobox
             MapearDeDatos(plan);
         }
 
@@ -112,6 +116,8 @@ namespace UI.Desktop {
         }
 
         private void GenerarPlanes(int idEsp) {
+            //Se genera el comobox de planes el funcionamiento es igual al de especialidades solo que se pasa
+            //el id de la esp para filtrar los planes de dicha esp
             cbPlan.ValueMember = "id_plan";
             cbPlan.DisplayMember = "desc_plan";
             cbPlan.DataSource = GenerarComboBox.getPlanes(idEsp);
@@ -133,6 +139,9 @@ namespace UI.Desktop {
 
         private void cbEsp_SelectedValueChanged(object sender, EventArgs e) {
             if (cbEsp.SelectedValue != null) {
+                //Si el valor del combobox de especialidades cambia, se vuelven a generar los planes
+                //pasando como argumento el id de la especialidad para mostrar solo los planes que
+                //corresponden a dicha especialidad
                 GenerarPlanes(Int32.Parse(cbEsp.SelectedValue.ToString()));
             }
         }

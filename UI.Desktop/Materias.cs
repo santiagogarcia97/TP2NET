@@ -18,14 +18,18 @@ namespace UI.Desktop {
         }
 
         public void Listar() {
+            //Se limpia el DataGridView
             this.dgvMaterias.DataSource = null;
             this.dgvMaterias.Refresh();
+
             MateriaLogic ml = new MateriaLogic();
             List<Materia> materias = ml.GetAll();
+
             if (materias.Count() == 0) {
                 MessageBox.Show("No hay materias cargadas!");
             }
             else {
+                //Se crea el DataTable que va a ser el DataSource del dgv
                 DataTable Listado = new DataTable();
                 Listado.Columns.Add("ID", typeof(int));
                 Listado.Columns.Add("Descripcion", typeof(string));
@@ -33,9 +37,9 @@ namespace UI.Desktop {
                 Listado.Columns.Add("HSTotales", typeof(int));
                 Listado.Columns.Add("Plan", typeof(string));
 
+                //Se obtienen las especialidades y los planes para mostrar en la columna Plan = esp.Descripcion + plan.Descripcion
                 PlanLogic pl = new PlanLogic();
                 List<Plan> planes = pl.GetAll();
-
                 EspecialidadLogic el = new EspecialidadLogic();
                 List<Especialidad> especialidades = el.GetAll();
 
@@ -46,6 +50,7 @@ namespace UI.Desktop {
                     Linea["Descripcion"] = mat.Descripcion;
                     Linea["HSSemanales"] = mat.HSSemanales;
                     Linea["HSTotales"] = mat.HSTotales;
+                    //Dos foreach anidados cargan la columna Plan
                     foreach (Plan plan in planes) {
                         if (plan.ID == mat.IDPlan) {
                             foreach (Especialidad esp in especialidades) {
