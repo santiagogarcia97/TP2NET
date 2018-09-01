@@ -9,65 +9,65 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Business.Logic;
 using Business.Entities;
+using Util;
 
 namespace UI.Desktop
 {
     public partial class CursoDesktop : ApplicationForm
     {
-        private Business.Entities.Curso _cursoActual;
-        public Business.Entities.Curso CursoActual {
-            get { return _cursoActual; }
-            set { _cursoActual = value; }
-        }
+        private Curso _cursoActual;
+        public Curso CursoActual {get { return _cursoActual; }set { _cursoActual = value; }}
 
-        public CursoDesktop()
-        {
+        public CursoDesktop(){
             InitializeComponent();
-            MateriaLogic ml = new MateriaLogic();
-            List<Materia> materias = ml.GetAll();
-            foreach (Materia mat in materias)
-            {
-                cbMateria.Items.Add(mat.IDString);
-            }
 
-            ComisionLogic cl = new ComisionLogic();
-            List<Comision> comisiones = cl.GetAll();
-            foreach (Comision com in comisiones)
-            {
-            //    cbComision.Items.Add(com.IDString);
-            }
+            cbEsp.ValueMember = "id_esp";
+            cbEsp.DisplayMember = "desc_esp";
+            cbEsp.DataSource = GenerarComboBox.getEspecialidades();
 
         }
-        public CursoDesktop(ModoForm modo) : this()
-        {
+        public CursoDesktop(ModoForm modo) : this(){
             Modo = modo;
         }
 
-        public CursoDesktop(int ID, ModoForm modo) : this()
-        {
+        public CursoDesktop(int ID, ModoForm modo) : this(){
             Modo = modo;
             CursoLogic auxCurso = new CursoLogic();
             CursoActual = auxCurso.GetOne(ID);
-            MapearDeDatos();
-        }
-
-        public override void MapearDeDatos()
-        {
-            txtID.Text = CursoActual.ID.ToString();
-            txtAnio.Text = CursoActual.AnioCalendario.ToString();
-            txtCupo.Text = CursoActual.Cupo.ToString();
-
-            MateriaLogic ml = new MateriaLogic();
-            Materia mat = ml.GetOne(CursoActual.IDMateria);
-            cbMateria.Text = mat.IDString;
 
             ComisionLogic cl = new ComisionLogic();
             Comision com = cl.GetOne(CursoActual.IDComision);
-         //   cbComision.Text = com.IDString;
+            
 
+            MateriaLogic ml = new MateriaLogic();
+            Materia mat = ml.GetOne(CursoActual.IDMateria);
 
-            switch (Modo)
-            {
+            PlanLogic pl = new PlanLogic();
+            Plan plan = pl.GetOne(mat.IDPlan);
+            GenerarPlanes(plan.IDEspecialidad);
+            GenerarComisiones(plan.ID);
+            GenerarMaterias(plan.ID);
+
+            MapearDeDatos(plan, com, mat);
+        }
+        private void CursoDesktop_Load(object sender, EventArgs e) {
+            lblRedCupo.Visible = false;
+            lblRedAnio.Visible = false;
+            lblRedCom.Visible = false;
+            lblRedMat.Visible = false;
+            lblRedPlan.Visible = false;
+        }
+        public void MapearDeDatos(Plan pln, Comision com, Materia mat)
+        {
+            labelID.Text = CursoActual.ID.ToString();
+            txtAnio.Text = CursoActual.AnioCalendario.ToString();
+            txtCupo.Text = CursoActual.Cupo.ToString();
+            cbEsp.SelectedValue = pln.IDEspecialidad;
+            cbPlan.SelectedValue = pln.ID;
+            cbMateria.SelectedValue = mat.ID;
+            cbComision.SelectedValue = com.ID;
+
+            switch (Modo) {
                 case ModoForm.Alta:
                 case ModoForm.Modificacion:             //Equivalente a if(Modo == ModoForm.Alta || Modo == Modoform.Modificacion){...}        
                     btnAceptar.Text = "Guardar";
@@ -78,46 +78,78 @@ namespace UI.Desktop
                     txtCupo.ReadOnly = true;
                     cbMateria.Enabled = false;
                     cbComision.Enabled = false;
-
-                    break;
-                case ModoForm.Consulta:
-                    btnAceptar.Text = "Aceptar";
-                    txtAnio.ReadOnly = true;
-                    txtCupo.ReadOnly = true;
                     cbMateria.Enabled = false;
                     cbComision.Enabled = false;
                     break;
             }
+
         }
 
-        public override void MapearADatos()
-        {
-            switch (Modo)
-            {                                      //Emprolijar: Evitar repetición de asignaciones  
-                case ModoForm.Alta:
-                    CursoActual = new Curso();
-              //      CursoActual.IDComision = getComID(cbComision.Text);
-                    CursoActual.IDMateria = getMatID(cbMateria.Text);
-                    CursoActual.AnioCalendario = int.Parse(txtAnio.Text);
-                    CursoActual.Cupo = int.Parse(txtCupo.Text);
+        public override void MapearADatos(){
+            if (Modo == ModoForm.Alta || Modo == ModoForm.Modificacion) {
+                CursoActual = new Curso();
+                CursoActual.Cupo = Int32.Parse(txtCupo.Text);
+                CursoActual.AnioCalendario = Int32.Parse(txtAnio.Text);
+                CursoActual.IDComision = Int32.Parse(cbComision.SelectedValue.ToString());
+                CursoActual.IDMateria = Int32.Parse(cbMateria.SelectedValue.ToString());
+
+                if (Modo == ModoForm.Alta) {
                     CursoActual.State = BusinessEntity.States.New;
-                    break;
-                case ModoForm.Modificacion:
-                 //   CursoActual.IDComision = getComID(cbComision.Text);
-                    CursoActual.IDMateria = getMatID(cbMateria.Text);
-                    CursoActual.AnioCalendario = int.Parse(txtAnio.Text);
-                    CursoActual.Cupo = int.Parse(txtCupo.Text);
+                }
+                else if (Modo == ModoForm.Modificacion) {
                     CursoActual.State = BusinessEntity.States.Modified;
-                    break;
-                case ModoForm.Baja:
-                    CursoActual.State = BusinessEntity.States.Deleted;
-                    break;
-                case ModoForm.Consulta:
-                    CursoActual.State = BusinessEntity.States.Unmodified;
-                    break;
+                    CursoActual.ID = Int32.Parse(labelID.Text);
+                }
+            }
+            else {
+                CursoActual.State = BusinessEntity.States.Deleted;
             }
         }
-
+        private void GenerarPlanes(int idEsp) {
+            DataTable dtPlanes = new DataTable();
+            dtPlanes.Columns.Add("id_plan", typeof(int));
+            dtPlanes.Columns.Add("desc_plan", typeof(string));
+            PlanLogic pl = new PlanLogic();
+            List<Plan> planes = pl.GetAll();
+            foreach (Plan plan in planes) {
+                if (plan.IDEspecialidad == idEsp) {
+                    dtPlanes.Rows.Add(new object[] { plan.ID, plan.Descripcion });
+                }
+            }
+            cbPlan.ValueMember = "id_plan";
+            cbPlan.DisplayMember = "desc_plan";
+            cbPlan.DataSource = dtPlanes;
+        }
+        private void GenerarMaterias(int idPlan) {
+            DataTable dtMaterias = new DataTable();
+            dtMaterias.Columns.Add("id_mat", typeof(int));
+            dtMaterias.Columns.Add("desc_mat", typeof(string));
+            MateriaLogic ml = new MateriaLogic();
+            List<Materia> materias = ml.GetAll();
+            foreach (Materia materia in materias) {
+                if (materia.IDPlan == idPlan) {
+                    dtMaterias.Rows.Add(new object[] { materia.ID, materia.Descripcion });
+                }
+            }
+            cbMateria.ValueMember = "id_mat";
+            cbMateria.DisplayMember = "desc_mat";
+            cbMateria.DataSource = dtMaterias;
+        }
+        private void GenerarComisiones(int idPlan) {
+            DataTable dtComisiones = new DataTable();
+            dtComisiones.Columns.Add("id_com", typeof(int));
+            dtComisiones.Columns.Add("desc_com", typeof(string));
+            ComisionLogic cl = new ComisionLogic();
+            List<Comision> comisiones = cl.GetAll();
+            foreach (Comision com in comisiones) {
+                if (com.IDPlan == idPlan) {
+                    dtComisiones.Rows.Add(new object[] { com.ID, com.Descripcion });
+                }
+            }
+            cbComision.ValueMember = "id_com";
+            cbComision.DisplayMember = "desc_com";
+            cbComision.DataSource = dtComisiones;
+        }
         public override void GuardarCambios()
         {
             MapearADatos();
@@ -127,22 +159,32 @@ namespace UI.Desktop
 
         public override bool Validar()
         {
-            return !(string.IsNullOrEmpty(txtAnio.Text) ||        //Si cualquiera de estas condiciones es verdadera, retorna false
-            string.IsNullOrEmpty(txtCupo.Text) ||
-            string.IsNullOrEmpty(cbComision.Text) ||
-            string.IsNullOrEmpty(cbMateria.Text));
+            lblRedCupo.Visible = (string.IsNullOrWhiteSpace(txtCupo.Text)) ? true : false;
+            lblRedAnio.Visible = (string.IsNullOrWhiteSpace(txtAnio.Text)) ? true : false;
+            lblRedPlan.Visible = (cbEsp.SelectedValue == null || cbPlan.SelectedValue == null) ? true : false;
+            lblRedCom.Visible = (cbComision.SelectedValue == null) ? true : false;
+            lblRedMat.Visible = (cbMateria.SelectedValue == null) ? true : false;
+
+            if (lblRedCupo.Visible == true ||
+                lblRedAnio.Visible == true ||
+                lblRedCom.Visible == true ||
+                lblRedMat.Visible == true ||
+                lblRedPlan.Visible == true) {
+                return false;
+            }
+            else {
+                return true;
+            }
         }
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            if (Validar())
-            {
+            if (Validar()){
                 GuardarCambios();
                 this.Close();
             }
-            else
-            {
-                MessageBox.Show("Commlete todos los campos.");
+            else{
+                MessageBox.Show("Complete todos los campos.");
             }
         }
 
@@ -150,34 +192,17 @@ namespace UI.Desktop
         {
             this.Close();
         }
-
-        private int getMatID(string StrID)
-        {
-            MateriaLogic ml = new MateriaLogic();
-            List<Materia> materias = ml.GetAll();
-            foreach (Materia mat in materias)
-            {
-                if (mat.IDString == StrID)
-                {
-                    return mat.ID;
-                }
+        private void cbEsp_SelectedValueChanged(object sender, EventArgs e) {
+            if (cbEsp.SelectedValue != null) {
+                GenerarPlanes(Int32.Parse(cbEsp.SelectedValue.ToString()));
             }
-            return (0);
         }
 
-/*        private int getComID(string StrID)
-        {
-            ComisionLogic cl = new ComisionLogic();
-            List<Comision> comisiones = cl.GetAll();
-            foreach (Comision com in comisiones)
-            {
-                if (com.IDString == StrID)
-                {
-                    return com.ID;
-                }
+        private void cbPlan_SelectedValueChanged(object sender, EventArgs e) {
+            if (cbPlan.SelectedValue != null) {
+                GenerarComisiones(Int32.Parse(cbPlan.SelectedValue.ToString()));
+                GenerarMaterias(Int32.Parse(cbPlan.SelectedValue.ToString()));
             }
-            return (0);
         }
-        */
     }
 }
