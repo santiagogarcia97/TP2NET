@@ -18,6 +18,8 @@ namespace UI.Desktop {
         }
 
         public void Listar() {
+            this.dgvComisiones.DataSource = null;
+            this.dgvComisiones.Refresh();
             ComisionLogic cl = new ComisionLogic();
             List<Comision> comisiones = cl.GetAll();
             if (comisiones.Count() == 0) {
@@ -33,6 +35,9 @@ namespace UI.Desktop {
                 PlanLogic pl = new PlanLogic();
                 List<Plan> planes = pl.GetAll();
 
+                EspecialidadLogic el = new EspecialidadLogic();
+                List<Especialidad> especialidades = el.GetAll();
+
                 foreach (Comision com in comisiones) {
                     DataRow Linea = Listado.NewRow();
 
@@ -41,7 +46,12 @@ namespace UI.Desktop {
                     Linea["AnioEspecialidad"] = com.AnioEspecialidad;
                     foreach (Plan plan in planes) {
                         if (plan.ID == com.IDPlan) {
-                            Linea["Plan"] = plan.Descripcion;
+                            foreach(Especialidad esp in especialidades) {
+                                if(esp.ID == plan.IDEspecialidad) {
+                                    Linea["Plan"] = esp.Descripcion + " - " + plan.Descripcion;
+                                    break;
+                                }
+                            }
                             break;
                         }
                     }
@@ -69,7 +79,6 @@ namespace UI.Desktop {
                 this.Listar();
             }
         }
-
         private void tsbEliminar_Click(object sender, EventArgs e) {
             if (this.dgvComisiones.SelectedRows.Count != 0) {
                 int ID = Int32.Parse(this.dgvComisiones.SelectedRows[0].Cells["id"].Value.ToString());
@@ -78,7 +87,6 @@ namespace UI.Desktop {
                 this.Listar();
             }
         }
-
         private void btnSalir_Click(object sender, EventArgs e) {
             this.Close();
         }

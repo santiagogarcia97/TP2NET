@@ -18,7 +18,8 @@ namespace UI.Desktop {
         }
 
         public void Listar() {
-
+            this.dgvPlanes.DataSource = null;
+            this.dgvPlanes.Refresh();
             PlanLogic pl = new PlanLogic();
             List<Plan> planes = pl.GetAll();
             if (planes.Count() == 0) {

@@ -18,6 +18,8 @@ namespace UI.Desktop {
         }
 
         public void Listar() {
+            this.dgvEspecialidades.DataSource = null;
+            this.dgvEspecialidades.Refresh();
             EspecialidadLogic esp = new EspecialidadLogic();
             List<Especialidad> especialidades = esp.GetAll();
             if (especialidades.Count() == 0)

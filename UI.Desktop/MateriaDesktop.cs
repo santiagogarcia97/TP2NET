@@ -9,24 +9,21 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Business.Logic;
 using Business.Entities;
+using Util;
 
 
 namespace UI.Desktop {
     public partial class MateriaDesktop : ApplicationForm {
 
-        private Business.Entities.Materia _materiaActual;
-        public Business.Entities.Materia MateriaActual {
-            get { return _materiaActual; }
-            set { _materiaActual = value; }
-        }
+        private Materia _materiaActual;
+        public Materia MateriaActual {get { return _materiaActual; }set { _materiaActual = value; }}
 
         public MateriaDesktop() {
             InitializeComponent();
-            PlanLogic pl = new PlanLogic();
-            List<Plan> planes = pl.GetAll();
-            foreach (Plan pln in planes) {
-            //    cbPlan.Items.Add(pln.IDString);
-            }
+
+            cbEsp.ValueMember = "id_esp";
+            cbEsp.DisplayMember = "desc_esp";
+            cbEsp.DataSource = GenerarComboBox.getEspecialidades();
         }
         public MateriaDesktop(ModoForm modo) : this() {
             Modo = modo;
@@ -36,17 +33,28 @@ namespace UI.Desktop {
             Modo = modo;
             MateriaLogic auxMateria = new MateriaLogic();
             MateriaActual = auxMateria.GetOne(ID);
-            MapearDeDatos();
+
+            PlanLogic pl = new PlanLogic();
+            Plan plan = pl.GetOne(MateriaActual.IDPlan);
+
+            GenerarPlanes(plan.IDEspecialidad);
+
+            MapearDeDatos(plan);
+        }
+        private void MateriaDesktop_Load(object sender, EventArgs e) {
+            lblRedDesc.Visible = false;
+            lblRedHSS.Visible = false;
+            lblRedHST.Visible = false;
+            lblRedPlan.Visible = false;
         }
 
-        public override void MapearDeDatos() {
-            txtID.Text = MateriaActual.ID.ToString();
+        public void MapearDeDatos(Plan pln) {
+            labelID.Text = MateriaActual.ID.ToString();
             txtDescripcion.Text = MateriaActual.Descripcion;
             txtHSSemanales.Text = MateriaActual.HSSemanales.ToString(); ;
             txtHSTotales.Text = MateriaActual.HSTotales.ToString(); ;
-            PlanLogic pl = new PlanLogic();
-            Plan pln = pl.GetOne(MateriaActual.IDPlan);
-           // cbPlan.Text = pln.IDString;
+            cbEsp.SelectedValue = pln.IDEspecialidad;
+            cbPlan.SelectedValue = MateriaActual.IDPlan;
 
             switch (Modo) {
                 case ModoForm.Alta:
@@ -58,43 +66,46 @@ namespace UI.Desktop {
                     txtHSSemanales.ReadOnly = true;
                     txtHSTotales.ReadOnly = true;
                     txtDescripcion.ReadOnly = true;
-                    cbPlan.Enabled = false;
-
-                    break;
-                case ModoForm.Consulta:
-                    btnAceptar.Text = "Aceptar";
-                    txtHSSemanales.ReadOnly = true;
-                    txtHSTotales.ReadOnly = true;
-                    txtDescripcion.ReadOnly = true;
+                    cbEsp.Enabled = false;
                     cbPlan.Enabled = false;
                     break;
             }
         }
 
         public override void MapearADatos() {
-            switch (Modo) {                                      //Emprolijar: Evitar repetición de asignaciones  
-                case ModoForm.Alta:
-                    MateriaActual = new Materia();
-                    MateriaActual.Descripcion = txtDescripcion.Text;
-                    MateriaActual.HSSemanales = int.Parse(txtHSSemanales.Text);
-                    MateriaActual.HSSemanales = int.Parse(txtHSSemanales.Text);
-                   // MateriaActual.IDPlan = getPlnID(cbPlan.Text);
+            if (Modo == ModoForm.Alta || Modo == ModoForm.Modificacion) {
+                MateriaActual = new Materia();
+                MateriaActual.Descripcion = txtDescripcion.Text;
+                MateriaActual.HSSemanales = Int32.Parse(txtHSSemanales.Text);
+                MateriaActual.HSTotales = Int32.Parse(txtHSTotales.Text);
+                MateriaActual.IDPlan = Int32.Parse(cbPlan.SelectedValue.ToString());
+
+                if (Modo == ModoForm.Alta) {
                     MateriaActual.State = BusinessEntity.States.New;
-                    break;
-                case ModoForm.Modificacion:
-                    MateriaActual.Descripcion = txtDescripcion.Text;
-                    MateriaActual.HSSemanales = int.Parse(txtHSSemanales.Text);
-                    MateriaActual.HSSemanales = int.Parse(txtHSSemanales.Text);
-                 //   MateriaActual.IDPlan = getPlnID(cbPlan.Text);
+                }
+                else if (Modo == ModoForm.Modificacion) {
                     MateriaActual.State = BusinessEntity.States.Modified;
-                    break;
-                case ModoForm.Baja:
-                    MateriaActual.State = BusinessEntity.States.Deleted;
-                    break;
-                case ModoForm.Consulta:
-                    MateriaActual.State = BusinessEntity.States.Unmodified;
-                    break;
+                    MateriaActual.ID = Int32.Parse(labelID.Text);
+                }
             }
+            else {
+                MateriaActual.State = BusinessEntity.States.Deleted;
+            }
+        }
+        private void GenerarPlanes(int idEsp) {
+            DataTable dtPlanes = new DataTable();
+            dtPlanes.Columns.Add("id_plan", typeof(int));
+            dtPlanes.Columns.Add("desc_plan", typeof(string));
+            PlanLogic pl = new PlanLogic();
+            List<Plan> planes = pl.GetAll();
+            foreach (Plan plan in planes) {
+                if (plan.IDEspecialidad == idEsp) {
+                    dtPlanes.Rows.Add(new object[] { plan.ID, plan.Descripcion });
+                }
+            }
+            cbPlan.ValueMember = "id_plan";
+            cbPlan.DisplayMember = "desc_plan";
+            cbPlan.DataSource = dtPlanes;
         }
 
         public override void GuardarCambios() {
@@ -104,10 +115,20 @@ namespace UI.Desktop {
         }
 
         public override bool Validar() {
-            return !(string.IsNullOrEmpty(txtHSSemanales.Text) ||        //Si cualquiera de estas condiciones es verdadera, retorna false
-            string.IsNullOrEmpty(txtHSTotales.Text) ||
-            string.IsNullOrEmpty(txtDescripcion.Text) ||
-            string.IsNullOrEmpty(cbPlan.Text));
+            lblRedDesc.Visible = (string.IsNullOrWhiteSpace(txtDescripcion.Text)) ? true : false;
+            lblRedHSS.Visible = (string.IsNullOrWhiteSpace(txtHSSemanales.Text)) ? true : false;
+            lblRedHST.Visible = (string.IsNullOrWhiteSpace(txtHSTotales.Text)) ? true : false;
+            lblRedPlan.Visible = (cbEsp.SelectedValue == null || cbPlan.SelectedValue == null) ? true : false;
+
+            if (lblRedDesc.Visible == true ||
+                lblRedHSS.Visible == true ||
+                lblRedHST.Visible == true ||
+                lblRedPlan.Visible == true) {
+                return false;
+            }
+            else {
+                return true;
+            }
         }
 
         private void btnAceptar_Click(object sender, EventArgs e) {
@@ -120,19 +141,10 @@ namespace UI.Desktop {
             }
         }
 
-        private void btnCancelar_Click(object sender, EventArgs e) {
-            this.Close();
+        private void cbEsp_SelectedValueChanged(object sender, EventArgs e) {
+            if (cbEsp.SelectedValue != null) {
+                GenerarPlanes(Int32.Parse(cbEsp.SelectedValue.ToString()));
+            }
         }
-
-  //      private int getPlnID(string StrID) {
-    //        PlanLogic pl = new PlanLogic();
-      //      List<Plan> planes = pl.GetAll();
-        //    foreach (Plan pln in planes) {
-          //      if (pln.IDString == StrID) {
-            //        return pln.ID;
-              //  }
-            //}
-            //return (0);
-        //}
     }
 }

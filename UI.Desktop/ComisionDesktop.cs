@@ -20,6 +20,10 @@ namespace UI.Desktop {
 
         public ComisionDesktop() {
             InitializeComponent();
+
+            cbEsp.ValueMember = "id_esp";
+            cbEsp.DisplayMember = "desc_esp";
+            cbEsp.DataSource = GenerarComboBox.getEspecialidades();
         }
 
         public ComisionDesktop(ModoForm modo) : this() {
@@ -43,10 +47,6 @@ namespace UI.Desktop {
             lblRedAnio.Visible = false;
             lblRedDesc.Visible = false;
             lblRedPlan.Visible = false;
-
-            cbEsp.ValueMember = "id_esp";
-            cbEsp.DisplayMember = "desc_esp";
-            cbEsp.DataSource = GenerarComboBox.getEspecialidades();
         }
 
         public void MapearDeDatos(Plan plan) {

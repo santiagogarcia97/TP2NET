@@ -25,17 +25,21 @@
         private void InitializeComponent() {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.IDLabel = new System.Windows.Forms.Label();
-            this.txtID = new System.Windows.Forms.TextBox();
-            this.PlanIDLabel = new System.Windows.Forms.Label();
-            this.txtDescripcion = new System.Windows.Forms.TextBox();
             this.DescLabel = new System.Windows.Forms.Label();
-            this.cbPlan = new System.Windows.Forms.ComboBox();
-            this.btnAceptar = new System.Windows.Forms.Button();
-            this.btnCancelar = new System.Windows.Forms.Button();
+            this.txtDescripcion = new System.Windows.Forms.TextBox();
+            this.PlanIDLabel = new System.Windows.Forms.Label();
             this.HSSemanalesLabel = new System.Windows.Forms.Label();
             this.HSTotalesLabel = new System.Windows.Forms.Label();
-            this.txtHSSemanales = new System.Windows.Forms.TextBox();
             this.txtHSTotales = new System.Windows.Forms.TextBox();
+            this.txtHSSemanales = new System.Windows.Forms.TextBox();
+            this.btnAceptar = new System.Windows.Forms.Button();
+            this.labelID = new System.Windows.Forms.Label();
+            this.cbPlan = new System.Windows.Forms.ComboBox();
+            this.cbEsp = new System.Windows.Forms.ComboBox();
+            this.lblRedDesc = new System.Windows.Forms.Label();
+            this.lblRedHSS = new System.Windows.Forms.Label();
+            this.lblRedHST = new System.Windows.Forms.Label();
+            this.lblRedPlan = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -43,155 +47,230 @@
             // 
             this.tableLayoutPanel1.AutoSize = true;
             this.tableLayoutPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.tableLayoutPanel1.ColumnCount = 4;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 22.52011F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 77.4799F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 90F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 341F));
-            this.tableLayoutPanel1.Controls.Add(this.IDLabel, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.txtID, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.PlanIDLabel, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.txtDescripcion, 3, 0);
-            this.tableLayoutPanel1.Controls.Add(this.DescLabel, 2, 0);
-            this.tableLayoutPanel1.Controls.Add(this.cbPlan, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.btnAceptar, 2, 3);
-            this.tableLayoutPanel1.Controls.Add(this.btnCancelar, 3, 3);
-            this.tableLayoutPanel1.Controls.Add(this.HSSemanalesLabel, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.HSTotalesLabel, 2, 2);
-            this.tableLayoutPanel1.Controls.Add(this.txtHSSemanales, 1, 2);
-            this.tableLayoutPanel1.Controls.Add(this.txtHSTotales, 3, 2);
+            this.tableLayoutPanel1.ColumnCount = 6;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 3F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 23F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 3F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 5F));
+            this.tableLayoutPanel1.Controls.Add(this.IDLabel, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.DescLabel, 1, 2);
+            this.tableLayoutPanel1.Controls.Add(this.txtDescripcion, 3, 2);
+            this.tableLayoutPanel1.Controls.Add(this.PlanIDLabel, 1, 5);
+            this.tableLayoutPanel1.Controls.Add(this.HSSemanalesLabel, 1, 3);
+            this.tableLayoutPanel1.Controls.Add(this.HSTotalesLabel, 1, 4);
+            this.tableLayoutPanel1.Controls.Add(this.txtHSTotales, 3, 4);
+            this.tableLayoutPanel1.Controls.Add(this.txtHSSemanales, 3, 3);
+            this.tableLayoutPanel1.Controls.Add(this.btnAceptar, 4, 7);
+            this.tableLayoutPanel1.Controls.Add(this.labelID, 3, 1);
+            this.tableLayoutPanel1.Controls.Add(this.cbPlan, 4, 5);
+            this.tableLayoutPanel1.Controls.Add(this.cbEsp, 3, 5);
+            this.tableLayoutPanel1.Controls.Add(this.lblRedDesc, 5, 2);
+            this.tableLayoutPanel1.Controls.Add(this.lblRedHSS, 5, 3);
+            this.tableLayoutPanel1.Controls.Add(this.lblRedHST, 5, 4);
+            this.tableLayoutPanel1.Controls.Add(this.lblRedPlan, 5, 5);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 4;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 46.66667F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 27F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 31F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(800, 115);
+            this.tableLayoutPanel1.RowCount = 8;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 15F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 15F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(362, 186);
             this.tableLayoutPanel1.TabIndex = 2;
             // 
             // IDLabel
             // 
-            this.IDLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.IDLabel.AutoSize = true;
-            this.IDLabel.Location = new System.Drawing.Point(32, 7);
+            this.IDLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.IDLabel.Location = new System.Drawing.Point(13, 15);
             this.IDLabel.Name = "IDLabel";
-            this.IDLabel.Size = new System.Drawing.Size(18, 13);
+            this.IDLabel.Size = new System.Drawing.Size(77, 25);
             this.IDLabel.TabIndex = 0;
             this.IDLabel.Text = "ID";
-            this.IDLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // txtID
-            // 
-            this.txtID.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtID.Location = new System.Drawing.Point(86, 3);
-            this.txtID.Name = "txtID";
-            this.txtID.ReadOnly = true;
-            this.txtID.Size = new System.Drawing.Size(279, 20);
-            this.txtID.TabIndex = 11;
-            // 
-            // PlanIDLabel
-            // 
-            this.PlanIDLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.PlanIDLabel.AutoSize = true;
-            this.PlanIDLabel.Location = new System.Drawing.Point(27, 35);
-            this.PlanIDLabel.Name = "PlanIDLabel";
-            this.PlanIDLabel.Size = new System.Drawing.Size(28, 13);
-            this.PlanIDLabel.TabIndex = 19;
-            this.PlanIDLabel.Text = "Plan";
-            // 
-            // txtDescripcion
-            // 
-            this.txtDescripcion.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txtDescripcion.Location = new System.Drawing.Point(470, 4);
-            this.txtDescripcion.Name = "txtDescripcion";
-            this.txtDescripcion.Size = new System.Drawing.Size(318, 20);
-            this.txtDescripcion.TabIndex = 16;
+            this.IDLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // DescLabel
             // 
-            this.DescLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.DescLabel.AutoSize = true;
-            this.DescLabel.Location = new System.Drawing.Point(381, 7);
+            this.DescLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.DescLabel.Location = new System.Drawing.Point(13, 40);
             this.DescLabel.Name = "DescLabel";
-            this.DescLabel.Size = new System.Drawing.Size(63, 13);
+            this.DescLabel.Size = new System.Drawing.Size(77, 25);
             this.DescLabel.TabIndex = 21;
             this.DescLabel.Text = "Descripcion";
+            this.DescLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // cbPlan
+            // txtDescripcion
             // 
-            this.cbPlan.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbPlan.FormattingEnabled = true;
-            this.cbPlan.Location = new System.Drawing.Point(86, 31);
-            this.cbPlan.Name = "cbPlan";
-            this.cbPlan.Size = new System.Drawing.Size(279, 21);
-            this.cbPlan.TabIndex = 22;
+            this.tableLayoutPanel1.SetColumnSpan(this.txtDescripcion, 2);
+            this.txtDescripcion.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtDescripcion.Location = new System.Drawing.Point(106, 43);
+            this.txtDescripcion.Name = "txtDescripcion";
+            this.txtDescripcion.Size = new System.Drawing.Size(232, 20);
+            this.txtDescripcion.TabIndex = 16;
+            // 
+            // PlanIDLabel
+            // 
+            this.PlanIDLabel.AutoSize = true;
+            this.PlanIDLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PlanIDLabel.Location = new System.Drawing.Point(13, 115);
+            this.PlanIDLabel.Name = "PlanIDLabel";
+            this.PlanIDLabel.Size = new System.Drawing.Size(77, 25);
+            this.PlanIDLabel.TabIndex = 19;
+            this.PlanIDLabel.Text = "Plan";
+            this.PlanIDLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // HSSemanalesLabel
+            // 
+            this.HSSemanalesLabel.AutoSize = true;
+            this.HSSemanalesLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.HSSemanalesLabel.Location = new System.Drawing.Point(13, 65);
+            this.HSSemanalesLabel.Name = "HSSemanalesLabel";
+            this.HSSemanalesLabel.Size = new System.Drawing.Size(77, 25);
+            this.HSSemanalesLabel.TabIndex = 23;
+            this.HSSemanalesLabel.Text = "Hs Semanales";
+            this.HSSemanalesLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // HSTotalesLabel
+            // 
+            this.HSTotalesLabel.AutoSize = true;
+            this.HSTotalesLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.HSTotalesLabel.Location = new System.Drawing.Point(13, 90);
+            this.HSTotalesLabel.Name = "HSTotalesLabel";
+            this.HSTotalesLabel.Size = new System.Drawing.Size(77, 25);
+            this.HSTotalesLabel.TabIndex = 24;
+            this.HSTotalesLabel.Text = "Hs Totales";
+            this.HSTotalesLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // txtHSTotales
+            // 
+            this.tableLayoutPanel1.SetColumnSpan(this.txtHSTotales, 2);
+            this.txtHSTotales.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtHSTotales.Location = new System.Drawing.Point(106, 93);
+            this.txtHSTotales.Name = "txtHSTotales";
+            this.txtHSTotales.Size = new System.Drawing.Size(232, 20);
+            this.txtHSTotales.TabIndex = 26;
+            // 
+            // txtHSSemanales
+            // 
+            this.tableLayoutPanel1.SetColumnSpan(this.txtHSSemanales, 2);
+            this.txtHSSemanales.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtHSSemanales.Location = new System.Drawing.Point(106, 68);
+            this.txtHSSemanales.Name = "txtHSSemanales";
+            this.txtHSSemanales.Size = new System.Drawing.Size(232, 20);
+            this.txtHSSemanales.TabIndex = 25;
             // 
             // btnAceptar
             // 
-            this.btnAceptar.Location = new System.Drawing.Point(371, 87);
+            this.btnAceptar.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnAceptar.Location = new System.Drawing.Point(225, 158);
             this.btnAceptar.Name = "btnAceptar";
-            this.btnAceptar.Size = new System.Drawing.Size(75, 23);
+            this.btnAceptar.Size = new System.Drawing.Size(113, 25);
             this.btnAceptar.TabIndex = 9;
             this.btnAceptar.Text = "Aceptar";
             this.btnAceptar.UseVisualStyleBackColor = true;
             this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
             // 
-            // btnCancelar
+            // labelID
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(461, 87);
-            this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(75, 23);
-            this.btnCancelar.TabIndex = 10;
-            this.btnCancelar.Text = "Cancelar";
-            this.btnCancelar.UseVisualStyleBackColor = true;
-            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+            this.labelID.AutoSize = true;
+            this.labelID.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.labelID.Location = new System.Drawing.Point(106, 15);
+            this.labelID.Name = "labelID";
+            this.labelID.Size = new System.Drawing.Size(113, 25);
+            this.labelID.TabIndex = 27;
+            this.labelID.Text = " -";
+            this.labelID.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // HSSemanalesLabel
+            // cbPlan
             // 
-            this.HSSemanalesLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.HSSemanalesLabel.AutoSize = true;
-            this.HSSemanalesLabel.Location = new System.Drawing.Point(3, 63);
-            this.HSSemanalesLabel.Name = "HSSemanalesLabel";
-            this.HSSemanalesLabel.Size = new System.Drawing.Size(75, 13);
-            this.HSSemanalesLabel.TabIndex = 23;
-            this.HSSemanalesLabel.Text = "Hs Semanales";
+            this.cbPlan.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.cbPlan.FormattingEnabled = true;
+            this.cbPlan.Location = new System.Drawing.Point(225, 118);
+            this.cbPlan.Name = "cbPlan";
+            this.cbPlan.Size = new System.Drawing.Size(113, 21);
+            this.cbPlan.TabIndex = 22;
             // 
-            // HSTotalesLabel
+            // cbEsp
             // 
-            this.HSTotalesLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.HSTotalesLabel.AutoSize = true;
-            this.HSTotalesLabel.Location = new System.Drawing.Point(384, 63);
-            this.HSTotalesLabel.Name = "HSTotalesLabel";
-            this.HSTotalesLabel.Size = new System.Drawing.Size(58, 13);
-            this.HSTotalesLabel.TabIndex = 24;
-            this.HSTotalesLabel.Text = "Hs Totales";
+            this.cbEsp.FormattingEnabled = true;
+            this.cbEsp.Location = new System.Drawing.Point(106, 118);
+            this.cbEsp.Name = "cbEsp";
+            this.cbEsp.Size = new System.Drawing.Size(113, 21);
+            this.cbEsp.TabIndex = 28;
+            this.cbEsp.SelectedValueChanged += new System.EventHandler(this.cbEsp_SelectedValueChanged);
             // 
-            // txtHSSemanales
+            // lblRedDesc
             // 
-            this.txtHSSemanales.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtHSSemanales.Location = new System.Drawing.Point(86, 58);
-            this.txtHSSemanales.Name = "txtHSSemanales";
-            this.txtHSSemanales.Size = new System.Drawing.Size(279, 20);
-            this.txtHSSemanales.TabIndex = 25;
+            this.lblRedDesc.AutoSize = true;
+            this.lblRedDesc.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblRedDesc.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRedDesc.ForeColor = System.Drawing.Color.Red;
+            this.lblRedDesc.Location = new System.Drawing.Point(344, 40);
+            this.lblRedDesc.Name = "lblRedDesc";
+            this.lblRedDesc.Size = new System.Drawing.Size(15, 25);
+            this.lblRedDesc.TabIndex = 29;
+            this.lblRedDesc.Text = "*";
+            this.lblRedDesc.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // txtHSTotales
+            // lblRedHSS
             // 
-            this.txtHSTotales.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtHSTotales.Location = new System.Drawing.Point(461, 58);
-            this.txtHSTotales.Name = "txtHSTotales";
-            this.txtHSTotales.Size = new System.Drawing.Size(336, 20);
-            this.txtHSTotales.TabIndex = 26;
+            this.lblRedHSS.AutoSize = true;
+            this.lblRedHSS.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblRedHSS.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRedHSS.ForeColor = System.Drawing.Color.Red;
+            this.lblRedHSS.Location = new System.Drawing.Point(344, 65);
+            this.lblRedHSS.Name = "lblRedHSS";
+            this.lblRedHSS.Size = new System.Drawing.Size(15, 25);
+            this.lblRedHSS.TabIndex = 30;
+            this.lblRedHSS.Text = "*";
+            this.lblRedHSS.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lblRedHST
+            // 
+            this.lblRedHST.AutoSize = true;
+            this.lblRedHST.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblRedHST.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRedHST.ForeColor = System.Drawing.Color.Red;
+            this.lblRedHST.Location = new System.Drawing.Point(344, 90);
+            this.lblRedHST.Name = "lblRedHST";
+            this.lblRedHST.Size = new System.Drawing.Size(15, 25);
+            this.lblRedHST.TabIndex = 31;
+            this.lblRedHST.Text = "*";
+            this.lblRedHST.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lblRedPlan
+            // 
+            this.lblRedPlan.AutoSize = true;
+            this.lblRedPlan.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblRedPlan.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRedPlan.ForeColor = System.Drawing.Color.Red;
+            this.lblRedPlan.Location = new System.Drawing.Point(344, 115);
+            this.lblRedPlan.Name = "lblRedPlan";
+            this.lblRedPlan.Size = new System.Drawing.Size(15, 25);
+            this.lblRedPlan.TabIndex = 32;
+            this.lblRedPlan.Text = "*";
+            this.lblRedPlan.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // MateriaDesktop
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 115);
+            this.ClientSize = new System.Drawing.Size(362, 186);
             this.Controls.Add(this.tableLayoutPanel1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "MateriaDesktop";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "MateriaDesktop";
+            this.Load += new System.EventHandler(this.MateriaDesktop_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
@@ -204,8 +283,6 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Label IDLabel;
         private System.Windows.Forms.Button btnAceptar;
-        private System.Windows.Forms.Button btnCancelar;
-        private System.Windows.Forms.TextBox txtID;
         private System.Windows.Forms.Label PlanIDLabel;
         private System.Windows.Forms.TextBox txtDescripcion;
         private System.Windows.Forms.Label DescLabel;
@@ -214,5 +291,11 @@
         private System.Windows.Forms.Label HSTotalesLabel;
         private System.Windows.Forms.TextBox txtHSSemanales;
         private System.Windows.Forms.TextBox txtHSTotales;
+        private System.Windows.Forms.Label labelID;
+        private System.Windows.Forms.ComboBox cbEsp;
+        private System.Windows.Forms.Label lblRedDesc;
+        private System.Windows.Forms.Label lblRedHSS;
+        private System.Windows.Forms.Label lblRedHST;
+        private System.Windows.Forms.Label lblRedPlan;
     }
 }
