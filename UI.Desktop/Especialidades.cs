@@ -55,15 +55,6 @@ namespace UI.Desktop {
             }
         }
 
-        private void tsbConsultar_Click(object sender, EventArgs e) {
-            if (this.dgvEspecialidades.SelectedRows.Count != 0) {
-                int ID = ((Business.Entities.Especialidad)this.dgvEspecialidades.SelectedRows[0].DataBoundItem).ID;
-                EspecialidadDesktop especialidadDesktop = new EspecialidadDesktop(ID, ApplicationForm.ModoForm.Consulta);
-                especialidadDesktop.ShowDialog();
-                this.Listar();
-            }
-        }
-
         private void btnSalir_Click(object sender, EventArgs e) {
             this.Close();
         }

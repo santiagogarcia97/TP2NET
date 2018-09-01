@@ -10,11 +10,7 @@ namespace Business.Logic {
     public class EspecialidadLogic : BusinessLogic {
 
         private EspecialidadAdapter _EspecialidadData;
-
-        public EspecialidadAdapter EspecialidadData {
-            get { return _EspecialidadData; }
-            set { _EspecialidadData = value; }
-        }
+        public EspecialidadAdapter EspecialidadData { get => _EspecialidadData; set => _EspecialidadData = value; }
 
         public EspecialidadLogic() {
             EspecialidadData = new EspecialidadAdapter();
@@ -22,7 +18,6 @@ namespace Business.Logic {
 
         public List<Especialidad> GetAll() {
             return EspecialidadData.GetAll();
-
         }
 
         public Especialidad GetOne(int id) {

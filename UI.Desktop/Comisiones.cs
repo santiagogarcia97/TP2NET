@@ -18,13 +18,37 @@ namespace UI.Desktop {
         }
 
         public void Listar() {
-            ComisionLogic cml = new ComisionLogic();
-            List<Comision> comisiones = cml.GetAll();
-            if (comisiones.Count() == 0)
-            {
+            ComisionLogic cl = new ComisionLogic();
+            List<Comision> comisiones = cl.GetAll();
+            if (comisiones.Count() == 0) {
                 MessageBox.Show("No hay comisiones cargadas!");
             }
-            this.dgvComisiones.DataSource = comisiones;
+            else {
+                DataTable Listado = new DataTable();
+                Listado.Columns.Add("ID", typeof(int));
+                Listado.Columns.Add("Descripcion", typeof(string));
+                Listado.Columns.Add("AnioEspecialidad", typeof(int));
+                Listado.Columns.Add("Plan", typeof(string));
+
+                PlanLogic pl = new PlanLogic();
+                List<Plan> planes = pl.GetAll();
+
+                foreach (Comision com in comisiones) {
+                    DataRow Linea = Listado.NewRow();
+
+                    Linea["ID"] = com.ID;
+                    Linea["Descripcion"] = com.Descripcion;
+                    Linea["AnioEspecialidad"] = com.AnioEspecialidad;
+                    foreach (Plan plan in planes) {
+                        if (plan.ID == com.IDPlan) {
+                            Linea["Plan"] = plan.Descripcion;
+                            break;
+                        }
+                    }
+                    Listado.Rows.Add(Linea);
+                }
+                this.dgvComisiones.DataSource = Listado;
+            }
         }
 
         private void Comisiones_Load(object sender, EventArgs e) {
@@ -39,7 +63,7 @@ namespace UI.Desktop {
 
         private void tsbEditar_Click(object sender, EventArgs e) {
             if (this.dgvComisiones.SelectedRows.Count != 0) {
-                int ID = ((Comision)this.dgvComisiones.SelectedRows[0].DataBoundItem).ID;
+                int ID = Int32.Parse(this.dgvComisiones.SelectedRows[0].Cells["id"].Value.ToString());
                 ComisionDesktop comisionDesktop = new ComisionDesktop(ID, ApplicationForm.ModoForm.Modificacion);
                 comisionDesktop.ShowDialog();
                 this.Listar();
@@ -48,17 +72,8 @@ namespace UI.Desktop {
 
         private void tsbEliminar_Click(object sender, EventArgs e) {
             if (this.dgvComisiones.SelectedRows.Count != 0) {
-                int ID = ((Comision)this.dgvComisiones.SelectedRows[0].DataBoundItem).ID;
+                int ID = Int32.Parse(this.dgvComisiones.SelectedRows[0].Cells["id"].Value.ToString());
                 ComisionDesktop comisionDesktop = new ComisionDesktop(ID, ApplicationForm.ModoForm.Baja);
-                comisionDesktop.ShowDialog();
-                this.Listar();
-            }
-        }
-
-        private void tsbConsultar_Click(object sender, EventArgs e) {
-            if (this.dgvComisiones.SelectedRows.Count != 0) {
-                int ID = ((Comision)this.dgvComisiones.SelectedRows[0].DataBoundItem).ID;
-                ComisionDesktop comisionDesktop = new ComisionDesktop(ID, ApplicationForm.ModoForm.Consulta);
                 comisionDesktop.ShowDialog();
                 this.Listar();
             }

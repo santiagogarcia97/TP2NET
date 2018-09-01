@@ -25,7 +25,7 @@ namespace UI.Desktop {
             PlanLogic pl = new PlanLogic();
             List<Plan> planes = pl.GetAll();
             foreach (Plan pln in planes) {
-                cbPlan.Items.Add(pln.IDString);
+            //    cbPlan.Items.Add(pln.IDString);
             }
         }
         public MateriaDesktop(ModoForm modo) : this() {
@@ -46,7 +46,7 @@ namespace UI.Desktop {
             txtHSTotales.Text = MateriaActual.HSTotales.ToString(); ;
             PlanLogic pl = new PlanLogic();
             Plan pln = pl.GetOne(MateriaActual.IDPlan);
-            cbPlan.Text = pln.IDString;
+           // cbPlan.Text = pln.IDString;
 
             switch (Modo) {
                 case ModoForm.Alta:
@@ -78,14 +78,14 @@ namespace UI.Desktop {
                     MateriaActual.Descripcion = txtDescripcion.Text;
                     MateriaActual.HSSemanales = int.Parse(txtHSSemanales.Text);
                     MateriaActual.HSSemanales = int.Parse(txtHSSemanales.Text);
-                    MateriaActual.IDPlan = getPlnID(cbPlan.Text);
+                   // MateriaActual.IDPlan = getPlnID(cbPlan.Text);
                     MateriaActual.State = BusinessEntity.States.New;
                     break;
                 case ModoForm.Modificacion:
                     MateriaActual.Descripcion = txtDescripcion.Text;
                     MateriaActual.HSSemanales = int.Parse(txtHSSemanales.Text);
                     MateriaActual.HSSemanales = int.Parse(txtHSSemanales.Text);
-                    MateriaActual.IDPlan = getPlnID(cbPlan.Text);
+                 //   MateriaActual.IDPlan = getPlnID(cbPlan.Text);
                     MateriaActual.State = BusinessEntity.States.Modified;
                     break;
                 case ModoForm.Baja:
@@ -124,15 +124,15 @@ namespace UI.Desktop {
             this.Close();
         }
 
-        private int getPlnID(string StrID) {
-            PlanLogic pl = new PlanLogic();
-            List<Plan> planes = pl.GetAll();
-            foreach (Plan pln in planes) {
-                if (pln.IDString == StrID) {
-                    return pln.ID;
-                }
-            }
-            return (0);
-        }
+  //      private int getPlnID(string StrID) {
+    //        PlanLogic pl = new PlanLogic();
+      //      List<Plan> planes = pl.GetAll();
+        //    foreach (Plan pln in planes) {
+          //      if (pln.IDString == StrID) {
+            //        return pln.ID;
+              //  }
+            //}
+            //return (0);
+        //}
     }
 }

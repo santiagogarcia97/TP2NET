@@ -21,20 +21,6 @@ namespace UI.Desktop {
 
         public UsuarioDesktop() {
             InitializeComponent();
-
-            lblRedAp.Visible = false;
-            lblRedClave.Visible = false;
-            lblRedDirec.Visible = false;
-            lblRedEmail.Visible = false;
-            lblRedNac.Visible = false;
-            lblRedNom.Visible = false;
-            lblRedPlan.Visible = false;
-            lblRedTel.Visible = false;
-            lblRedTipo.Visible = false;
-            lblRedUser.Visible = false;
-
-            GenerarTipoPersona();
-            GenerarEsp();
         }
 
         public UsuarioDesktop(ModoForm modo):this() {
@@ -57,6 +43,24 @@ namespace UI.Desktop {
             GenerarPlanes(plan.IDEspecialidad);
 
             MapearDeDatos(plan);
+        }
+
+        private void UsuarioDesktop_Load(object sender, EventArgs e) {
+            lblRedAp.Visible = false;
+            lblRedClave.Visible = false;
+            lblRedDirec.Visible = false;
+            lblRedEmail.Visible = false;
+            lblRedNac.Visible = false;
+            lblRedNom.Visible = false;
+            lblRedPlan.Visible = false;
+            lblRedTel.Visible = false;
+            lblRedTipo.Visible = false;
+            lblRedUser.Visible = false;
+
+            GenerarTipoPersona();
+            cbxEsp.ValueMember = "id_esp";
+            cbxEsp.DisplayMember = "desc_esp";
+            cbxEsp.DataSource = GenerarComboBox.getEspecialidades();
         }
 
         public void MapearDeDatos(Plan plan) {
@@ -140,20 +144,6 @@ namespace UI.Desktop {
             cbxTipo.DisplayMember = "desc_tipo";
             cbxTipo.DataSource = dtTiposPersona;
         }
-        private void GenerarEsp() {
-            DataTable dtEspecialidades = new DataTable();
-            dtEspecialidades.Columns.Add("id_esp", typeof(int));
-            dtEspecialidades.Columns.Add("desc_esp", typeof(string));
-            EspecialidadLogic el = new EspecialidadLogic();
-            List<Especialidad> especialidades = el.GetAll();
-            foreach (Especialidad esp in especialidades) {
-                dtEspecialidades.Rows.Add(new object[] { esp.ID, esp.Descripcion });
-            }
-
-            cbxEsp.ValueMember = "id_esp";
-            cbxEsp.DisplayMember = "desc_esp";
-            cbxEsp.DataSource = dtEspecialidades;
-        }
         private void GenerarPlanes(int idEsp) {
             DataTable dtPlanes = new DataTable();
             dtPlanes.Columns.Add("id_plan", typeof(int));
@@ -218,6 +208,5 @@ namespace UI.Desktop {
                 GenerarPlanes(Int32.Parse(cbxEsp.SelectedValue.ToString()));
             }
         }
-
     }
 }

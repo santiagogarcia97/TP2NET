@@ -13,20 +13,11 @@ using static Business.Entities.AlumnoInscripcion;
 
 namespace UI.Desktop {
     public partial class AlumnoInscripcionDesktop : ApplicationForm {
-        private AlumnoInscripcion _inscripcionActual;
-        private int _aID;
+        private AlumnoInscripcion _InscripcionActual;
+        private int _AlumnoID;
 
-
-        public int AlumnoID {
-            get { return _aID; }
-            set { _aID = value; }
-        }
-
-        public AlumnoInscripcion InscripcionActual {
-            get { return _inscripcionActual; }
-            set { _inscripcionActual = value; }
-        }
-
+        public AlumnoInscripcion InscripcionActual { get => _InscripcionActual; set => _InscripcionActual = value; }
+        public int AlumnoID { get => _AlumnoID; set => _AlumnoID = value; }
 
         public AlumnoInscripcionDesktop() {
             InitializeComponent();

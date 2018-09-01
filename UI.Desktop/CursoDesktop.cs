@@ -34,7 +34,7 @@ namespace UI.Desktop
             List<Comision> comisiones = cl.GetAll();
             foreach (Comision com in comisiones)
             {
-                cbComision.Items.Add(com.IDString);
+            //    cbComision.Items.Add(com.IDString);
             }
 
         }
@@ -63,7 +63,7 @@ namespace UI.Desktop
 
             ComisionLogic cl = new ComisionLogic();
             Comision com = cl.GetOne(CursoActual.IDComision);
-            cbComision.Text = com.IDString;
+         //   cbComision.Text = com.IDString;
 
 
             switch (Modo)
@@ -96,14 +96,14 @@ namespace UI.Desktop
             {                                      //Emprolijar: Evitar repetición de asignaciones  
                 case ModoForm.Alta:
                     CursoActual = new Curso();
-                    CursoActual.IDComision = getComID(cbComision.Text);
+              //      CursoActual.IDComision = getComID(cbComision.Text);
                     CursoActual.IDMateria = getMatID(cbMateria.Text);
                     CursoActual.AnioCalendario = int.Parse(txtAnio.Text);
                     CursoActual.Cupo = int.Parse(txtCupo.Text);
                     CursoActual.State = BusinessEntity.States.New;
                     break;
                 case ModoForm.Modificacion:
-                    CursoActual.IDComision = getComID(cbComision.Text);
+                 //   CursoActual.IDComision = getComID(cbComision.Text);
                     CursoActual.IDMateria = getMatID(cbMateria.Text);
                     CursoActual.AnioCalendario = int.Parse(txtAnio.Text);
                     CursoActual.Cupo = int.Parse(txtCupo.Text);
@@ -165,7 +165,7 @@ namespace UI.Desktop
             return (0);
         }
 
-        private int getComID(string StrID)
+/*        private int getComID(string StrID)
         {
             ComisionLogic cl = new ComisionLogic();
             List<Comision> comisiones = cl.GetAll();
@@ -178,6 +178,6 @@ namespace UI.Desktop
             }
             return (0);
         }
-
+        */
     }
 }
