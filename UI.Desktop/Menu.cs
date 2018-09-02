@@ -138,13 +138,18 @@ namespace UI.Desktop {
         }
 
         private void btnInscripciones_Click(object sender, EventArgs e) {
-            Inscripciones formInscripciones = new Inscripciones();
-            formInscripciones.ShowDialog();
+            AlumnoInscripciones ai = new AlumnoInscripciones();
+            ai.ShowDialog();
         }
 
         private void btnCursos_Click(object sender, EventArgs e) {
             Cursos formCursos = new Cursos();
             formCursos.ShowDialog();
+        }
+
+        private void button1_Click(object sender, EventArgs e) {
+            AlumnoInscripciones ai = new AlumnoInscripciones(UsuarioActual.ID);
+            ai.ShowDialog();
         }
     }
 }

@@ -6,15 +6,11 @@ using System.Threading.Tasks;
 
 namespace Business.Entities {
     class DocenteCurso : BusinessEntity {
-        //private TipoCargos _Cargo;
+        private TipoCargos _Cargo;
         private int _IDCurso;
         private int _IDDocente;
 
-        //public TiposCargos Cargo {
-          //  get => default(int);
-            //set {
-            //}
-        //}
+        public enum TipoCargos { Titular, Auxiliar, JefeTP}
 
         public int IDCurso {
             get => default(int);
@@ -27,5 +23,7 @@ namespace Business.Entities {
             set {
             }
         }
+
+        public TipoCargos Cargo { get => _Cargo; set => _Cargo = value; }
     }
 }

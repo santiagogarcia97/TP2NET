@@ -13,13 +13,22 @@ using Business.Entities;
 namespace UI.Desktop{
     public partial class AlumnoInscripciones : ApplicationForm{
 
-        private int _AlumnoID;
+        private int _AlumnoID, _TipoPersona;
         public int AlumnoID { get => _AlumnoID; set => _AlumnoID = value; }
+        public int TipoPersona { get => _TipoPersona; set => _TipoPersona = value; }
 
-        public AlumnoInscripciones(int aID){
+        public AlumnoInscripciones(){
             InitializeComponent();
-            AlumnoID = aID;
             this.dgvAlumnoInscripciones.AutoGenerateColumns = false;
+            TipoPersona = 3;//Administrativo
+            tcUsuarios.TopToolStripPanel.Visible = true;
+        }
+        public AlumnoInscripciones(int aID) {
+            InitializeComponent();
+            this.dgvAlumnoInscripciones.AutoGenerateColumns = false;
+            AlumnoID = aID;
+            TipoPersona = 1; //Alumno
+            tcUsuarios.TopToolStripPanel.Visible = false;
         }
         private void AlumnoInscripciones_Load(object sender, EventArgs e) {
             Listar();
@@ -27,7 +36,13 @@ namespace UI.Desktop{
 
         public void Listar(){
             AlumnoInscripcionLogic ins = new AlumnoInscripcionLogic();
-            List<AlumnoInscripcion> inscripciones = ins.GetAll().Where(x => x.ID == AlumnoID).ToList();
+            List<AlumnoInscripcion> inscripciones = new List<AlumnoInscripcion>();
+            if (TipoPersona == 1) {
+                inscripciones = ins.GetAll().Where(x => x.ID == AlumnoID).ToList();
+            }
+            else if (TipoPersona == 3) {
+                inscripciones = ins.GetAll();
+            }
             if (inscripciones.Count() == 0){
                 MessageBox.Show("No hay inscripciones cargadas!");
             }

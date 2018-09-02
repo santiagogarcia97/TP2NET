@@ -590,6 +590,7 @@
             this.button1.TabIndex = 0;
             this.button1.Text = "opcion1Alumno";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button2
             // 
@@ -674,8 +675,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(552, 419);
-            this.Controls.Add(this.panelAdmin);
             this.Controls.Add(this.panelAD);
+            this.Controls.Add(this.panelAdmin);
             this.Controls.Add(this.panelBienvenido);
             this.Controls.Add(this.panelBottom);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;

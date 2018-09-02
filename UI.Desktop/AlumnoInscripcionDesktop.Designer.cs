@@ -48,7 +48,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 22.52011F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 77.4799F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 90F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 348F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 349F));
             this.tableLayoutPanel1.Controls.Add(this.IDLabel, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.txtID, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.CursoIDLabel, 0, 1);
@@ -86,7 +86,7 @@
             // txtID
             // 
             this.txtID.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtID.Location = new System.Drawing.Point(70, 3);
+            this.txtID.Location = new System.Drawing.Point(69, 3);
             this.txtID.Name = "txtID";
             this.txtID.ReadOnly = true;
             this.txtID.Size = new System.Drawing.Size(224, 20);
@@ -106,7 +106,7 @@
             // 
             this.NotaLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.NotaLabel.AutoSize = true;
-            this.NotaLabel.Location = new System.Drawing.Point(327, 19);
+            this.NotaLabel.Location = new System.Drawing.Point(326, 19);
             this.NotaLabel.Name = "NotaLabel";
             this.NotaLabel.Size = new System.Drawing.Size(30, 13);
             this.NotaLabel.TabIndex = 21;
@@ -116,7 +116,7 @@
             // 
             this.cbCurso.Dock = System.Windows.Forms.DockStyle.Fill;
             this.cbCurso.FormattingEnabled = true;
-            this.cbCurso.Location = new System.Drawing.Point(70, 54);
+            this.cbCurso.Location = new System.Drawing.Point(69, 54);
             this.cbCurso.Name = "cbCurso";
             this.cbCurso.Size = new System.Drawing.Size(224, 21);
             this.cbCurso.TabIndex = 22;
@@ -124,21 +124,21 @@
             // nudNota
             // 
             this.nudNota.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.nudNota.Location = new System.Drawing.Point(390, 3);
+            this.nudNota.Location = new System.Drawing.Point(389, 3);
             this.nudNota.Maximum = new decimal(new int[] {
             10,
             0,
             0,
             0});
             this.nudNota.Name = "nudNota";
-            this.nudNota.Size = new System.Drawing.Size(343, 20);
+            this.nudNota.Size = new System.Drawing.Size(344, 20);
             this.nudNota.TabIndex = 27;
             // 
             // labelAlumno
             // 
             this.labelAlumno.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.labelAlumno.AutoSize = true;
-            this.labelAlumno.Location = new System.Drawing.Point(321, 58);
+            this.labelAlumno.Location = new System.Drawing.Point(320, 58);
             this.labelAlumno.Name = "labelAlumno";
             this.labelAlumno.Size = new System.Drawing.Size(42, 13);
             this.labelAlumno.TabIndex = 28;
@@ -148,14 +148,14 @@
             // 
             this.cbAlumno.Dock = System.Windows.Forms.DockStyle.Fill;
             this.cbAlumno.FormattingEnabled = true;
-            this.cbAlumno.Location = new System.Drawing.Point(390, 54);
+            this.cbAlumno.Location = new System.Drawing.Point(389, 54);
             this.cbAlumno.Name = "cbAlumno";
-            this.cbAlumno.Size = new System.Drawing.Size(343, 21);
+            this.cbAlumno.Size = new System.Drawing.Size(344, 21);
             this.cbAlumno.TabIndex = 29;
             // 
             // btnAceptar
             // 
-            this.btnAceptar.Location = new System.Drawing.Point(300, 109);
+            this.btnAceptar.Location = new System.Drawing.Point(299, 109);
             this.btnAceptar.Name = "btnAceptar";
             this.btnAceptar.Size = new System.Drawing.Size(75, 23);
             this.btnAceptar.TabIndex = 9;
@@ -164,7 +164,7 @@
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(390, 109);
+            this.btnCancelar.Location = new System.Drawing.Point(389, 109);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 23);
             this.btnCancelar.TabIndex = 10;
@@ -185,7 +185,7 @@
             // 
             this.cbCondicion.Dock = System.Windows.Forms.DockStyle.Fill;
             this.cbCondicion.FormattingEnabled = true;
-            this.cbCondicion.Location = new System.Drawing.Point(70, 81);
+            this.cbCondicion.Location = new System.Drawing.Point(69, 81);
             this.cbCondicion.Name = "cbCondicion";
             this.cbCondicion.Size = new System.Drawing.Size(224, 21);
             this.cbCondicion.TabIndex = 31;
