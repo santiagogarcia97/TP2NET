@@ -200,7 +200,7 @@
             this.Controls.Add(this.tcUsuarios);
             this.MinimumSize = new System.Drawing.Size(600, 300);
             this.Name = "Planes";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Planes";
             this.Load += new System.EventHandler(this.Planes_Load);
             this.tcUsuarios.ContentPanel.ResumeLayout(false);

@@ -221,7 +221,7 @@
             this.Controls.Add(this.tcUsuarios);
             this.MinimumSize = new System.Drawing.Size(600, 300);
             this.Name = "Materias";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Materias";
             this.Load += new System.EventHandler(this.Materias_Load);
             this.tcUsuarios.ContentPanel.ResumeLayout(false);

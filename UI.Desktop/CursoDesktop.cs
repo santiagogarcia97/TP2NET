@@ -173,6 +173,7 @@ namespace UI.Desktop
                 //Si el valor del combobox de especialidades cambia, se vuelven a generar los planes
                 //pasando como argumento el id de la especialidad para mostrar solo los planes que
                 //corresponden a dicha especialidad
+                cbPlan.Text = "";
                 GenerarPlanes((int)cbEsp.SelectedValue);
             }
         }
@@ -182,6 +183,8 @@ namespace UI.Desktop
                 //Si el valor del combobox de planes cambia, se vuelven a generar las comisiones y materias
                 //pasando como argumento el id del plan para mostrar solo las que
                 //corresponden a dicho plan
+                cbComision.Text = "";
+                cbMateria.Text = "";
                 GenerarComisiones((int)cbPlan.SelectedValue);
                 GenerarMaterias((int)cbPlan.SelectedValue);
             }

@@ -53,7 +53,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 22.52011F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 77.4799F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 90F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 347F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 348F));
             this.tableLayoutPanel1.Controls.Add(this.IDLabel, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.txtID, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.CursoIDLabel, 0, 1);
@@ -94,7 +94,7 @@
             this.txtID.Location = new System.Drawing.Point(84, 3);
             this.txtID.Name = "txtID";
             this.txtID.ReadOnly = true;
-            this.txtID.Size = new System.Drawing.Size(275, 20);
+            this.txtID.Size = new System.Drawing.Size(274, 20);
             this.txtID.TabIndex = 11;
             // 
             // CursoIDLabel
@@ -111,7 +111,7 @@
             // 
             this.NotaLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.NotaLabel.AutoSize = true;
-            this.NotaLabel.Location = new System.Drawing.Point(392, 7);
+            this.NotaLabel.Location = new System.Drawing.Point(391, 7);
             this.NotaLabel.Name = "NotaLabel";
             this.NotaLabel.Size = new System.Drawing.Size(30, 13);
             this.NotaLabel.TabIndex = 21;
@@ -123,27 +123,27 @@
             this.cbCurso.FormattingEnabled = true;
             this.cbCurso.Location = new System.Drawing.Point(84, 30);
             this.cbCurso.Name = "cbCurso";
-            this.cbCurso.Size = new System.Drawing.Size(275, 21);
+            this.cbCurso.Size = new System.Drawing.Size(274, 21);
             this.cbCurso.TabIndex = 22;
             // 
             // nudNota
             // 
             this.nudNota.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.nudNota.Location = new System.Drawing.Point(455, 3);
+            this.nudNota.Location = new System.Drawing.Point(454, 3);
             this.nudNota.Maximum = new decimal(new int[] {
             10,
             0,
             0,
             0});
             this.nudNota.Name = "nudNota";
-            this.nudNota.Size = new System.Drawing.Size(342, 20);
+            this.nudNota.Size = new System.Drawing.Size(343, 20);
             this.nudNota.TabIndex = 27;
             // 
             // labelAlumno
             // 
             this.labelAlumno.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.labelAlumno.AutoSize = true;
-            this.labelAlumno.Location = new System.Drawing.Point(386, 34);
+            this.labelAlumno.Location = new System.Drawing.Point(385, 34);
             this.labelAlumno.Name = "labelAlumno";
             this.labelAlumno.Size = new System.Drawing.Size(42, 13);
             this.labelAlumno.TabIndex = 28;
@@ -153,14 +153,14 @@
             // 
             this.cbAlumno.Dock = System.Windows.Forms.DockStyle.Fill;
             this.cbAlumno.FormattingEnabled = true;
-            this.cbAlumno.Location = new System.Drawing.Point(455, 30);
+            this.cbAlumno.Location = new System.Drawing.Point(454, 30);
             this.cbAlumno.Name = "cbAlumno";
-            this.cbAlumno.Size = new System.Drawing.Size(342, 21);
+            this.cbAlumno.Size = new System.Drawing.Size(343, 21);
             this.cbAlumno.TabIndex = 29;
             // 
             // btnAceptar
             // 
-            this.btnAceptar.Location = new System.Drawing.Point(365, 85);
+            this.btnAceptar.Location = new System.Drawing.Point(364, 85);
             this.btnAceptar.Name = "btnAceptar";
             this.btnAceptar.Size = new System.Drawing.Size(75, 23);
             this.btnAceptar.TabIndex = 9;
@@ -169,7 +169,7 @@
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(455, 85);
+            this.btnCancelar.Location = new System.Drawing.Point(454, 85);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 23);
             this.btnCancelar.TabIndex = 10;
@@ -193,7 +193,7 @@
             this.cbCondicion.FormattingEnabled = true;
             this.cbCondicion.Location = new System.Drawing.Point(84, 57);
             this.cbCondicion.Name = "cbCondicion";
-            this.cbCondicion.Size = new System.Drawing.Size(275, 21);
+            this.cbCondicion.Size = new System.Drawing.Size(274, 21);
             this.cbCondicion.TabIndex = 31;
             // 
             // InscripcionDesktop

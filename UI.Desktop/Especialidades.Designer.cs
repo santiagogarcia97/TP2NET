@@ -191,7 +191,7 @@
             this.Controls.Add(this.tcUsuarios);
             this.MinimumSize = new System.Drawing.Size(600, 300);
             this.Name = "Especialidades";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Especialidades";
             this.Load += new System.EventHandler(this.Especialidades_Load);
             this.tcUsuarios.ContentPanel.ResumeLayout(false);
