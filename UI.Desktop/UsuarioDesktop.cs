@@ -140,6 +140,7 @@ namespace UI.Desktop {
             cbxTipo.DisplayMember = "desc_tipo";
             cbxTipo.DataSource = dtTiposPersona;
         }
+
         private void GenerarEsp() {
             DataTable dtEspecialidades = new DataTable();
             dtEspecialidades.Columns.Add("id_esp", typeof(int));
@@ -154,6 +155,7 @@ namespace UI.Desktop {
             cbxEsp.DisplayMember = "desc_esp";
             cbxEsp.DataSource = dtEspecialidades;
         }
+
         private void GenerarPlanes(int idEsp) {
             DataTable dtPlanes = new DataTable();
             dtPlanes.Columns.Add("id_plan", typeof(int));
@@ -169,6 +171,7 @@ namespace UI.Desktop {
             cbxPlan.DisplayMember = "desc_plan";
             cbxPlan.DataSource = dtPlanes;
         }
+
         private void btnAceptar_Click(object sender, EventArgs e) {
             if (this.Validar() == true) {
                 GuardarCambios();
@@ -178,11 +181,13 @@ namespace UI.Desktop {
                 MessageBox.Show("Verifique los datos ingresados");
             }
         }
+
         public override void GuardarCambios() {
             MapearADatos();
             UsuarioLogic ul = new UsuarioLogic();
             ul.Save(UsuarioActual);
         }
+
         public override bool Validar() {
             lblRedAp.Visible = (string.IsNullOrWhiteSpace(txtApellido.Text)) ? true : false;
             lblRedClave.Visible = (string.IsNullOrWhiteSpace(txtClave.Text)) ? true : false;

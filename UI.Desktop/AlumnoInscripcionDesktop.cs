@@ -48,7 +48,7 @@ namespace UI.Desktop {
         }
 
         public AlumnoInscripcionDesktop(ModoForm modo, int aID) : this() {
-            AlumnoID = aId;
+            AlumnoID = aID;
             Modo = modo;
         }
 
