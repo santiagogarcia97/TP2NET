@@ -573,7 +573,7 @@
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(455, 480);
             this.Name = "UsuarioDesktop";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "UsuarioDesktop";
             this.Load += new System.EventHandler(this.UsuarioDesktop_Load);
             this.tableLayoutPanel1.ResumeLayout(false);

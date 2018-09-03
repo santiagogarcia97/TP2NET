@@ -26,16 +26,16 @@
             this.tcUsuarios = new System.Windows.Forms.ToolStripContainer();
             this.tlComisiones = new System.Windows.Forms.TableLayoutPanel();
             this.dgvComisiones = new System.Windows.Forms.DataGridView();
+            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.anio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.plan = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnSalir = new System.Windows.Forms.Button();
             this.btnActualizar = new System.Windows.Forms.Button();
             this.tsComisiones = new System.Windows.Forms.ToolStrip();
             this.tsbNuevo = new System.Windows.Forms.ToolStripButton();
             this.tsbEditar = new System.Windows.Forms.ToolStripButton();
             this.tsbEliminar = new System.Windows.Forms.ToolStripButton();
-            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.anio = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.plan = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tcUsuarios.ContentPanel.SuspendLayout();
             this.tcUsuarios.TopToolStripPanel.SuspendLayout();
             this.tcUsuarios.SuspendLayout();
@@ -103,6 +103,46 @@
             this.dgvComisiones.Size = new System.Drawing.Size(778, 301);
             this.dgvComisiones.TabIndex = 0;
             // 
+            // id
+            // 
+            this.id.DataPropertyName = "ID";
+            this.id.HeaderText = "ID";
+            this.id.MinimumWidth = 65;
+            this.id.Name = "id";
+            this.id.ReadOnly = true;
+            this.id.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.id.Width = 65;
+            // 
+            // descripcion
+            // 
+            this.descripcion.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.descripcion.DataPropertyName = "Descripcion";
+            this.descripcion.HeaderText = "Descripcion";
+            this.descripcion.Name = "descripcion";
+            this.descripcion.ReadOnly = true;
+            // 
+            // anio
+            // 
+            this.anio.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.anio.DataPropertyName = "AnioEspecialidad";
+            this.anio.HeaderText = "Año";
+            this.anio.MinimumWidth = 65;
+            this.anio.Name = "anio";
+            this.anio.ReadOnly = true;
+            this.anio.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.anio.Width = 65;
+            // 
+            // plan
+            // 
+            this.plan.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.plan.DataPropertyName = "Plan";
+            this.plan.HeaderText = "Plan";
+            this.plan.MinimumWidth = 65;
+            this.plan.Name = "plan";
+            this.plan.ReadOnly = true;
+            this.plan.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.plan.Width = 65;
+            // 
             // btnSalir
             // 
             this.btnSalir.Location = new System.Drawing.Point(706, 310);
@@ -169,46 +209,6 @@
             this.tsbEliminar.ToolTipText = "Eliminar";
             this.tsbEliminar.Click += new System.EventHandler(this.tsbEliminar_Click);
             // 
-            // id
-            // 
-            this.id.DataPropertyName = "ID";
-            this.id.HeaderText = "ID";
-            this.id.MinimumWidth = 65;
-            this.id.Name = "id";
-            this.id.ReadOnly = true;
-            this.id.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.id.Width = 65;
-            // 
-            // descripcion
-            // 
-            this.descripcion.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.descripcion.DataPropertyName = "Descripcion";
-            this.descripcion.HeaderText = "Descripcion";
-            this.descripcion.Name = "descripcion";
-            this.descripcion.ReadOnly = true;
-            // 
-            // anio
-            // 
-            this.anio.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.anio.DataPropertyName = "AnioEspecialidad";
-            this.anio.HeaderText = "Año";
-            this.anio.MinimumWidth = 65;
-            this.anio.Name = "anio";
-            this.anio.ReadOnly = true;
-            this.anio.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.anio.Width = 65;
-            // 
-            // plan
-            // 
-            this.plan.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.plan.DataPropertyName = "Plan";
-            this.plan.HeaderText = "Plan";
-            this.plan.MinimumWidth = 65;
-            this.plan.Name = "plan";
-            this.plan.ReadOnly = true;
-            this.plan.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.plan.Width = 65;
-            // 
             // Comisiones
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -217,7 +217,7 @@
             this.Controls.Add(this.tcUsuarios);
             this.MinimumSize = new System.Drawing.Size(600, 300);
             this.Name = "Comisiones";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Comisiones";
             this.Load += new System.EventHandler(this.Comisiones_Load);
             this.tcUsuarios.ContentPanel.ResumeLayout(false);
