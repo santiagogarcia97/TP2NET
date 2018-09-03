@@ -71,7 +71,7 @@ namespace UI.Desktop {
 
         private void tsbEditar_Click(object sender, EventArgs e) {
             if (this.dgvPlanes.SelectedRows.Count != 0) {
-                int ID = Int32.Parse(this.dgvPlanes.SelectedRows[0].Cells["id"].Value.ToString());
+                int ID = (int)this.dgvPlanes.SelectedRows[0].Cells["id"].Value;
                 PlanDesktop planDesktop = new PlanDesktop(ID, ApplicationForm.ModoForm.Modificacion);
                 planDesktop.ShowDialog();
                 this.Listar();
@@ -80,7 +80,7 @@ namespace UI.Desktop {
 
         private void tsbEliminar_Click(object sender, EventArgs e) {
             if (this.dgvPlanes.SelectedRows.Count != 0) {
-                int ID = Int32.Parse(this.dgvPlanes.SelectedRows[0].Cells["id"].Value.ToString());
+                int ID = (int)this.dgvPlanes.SelectedRows[0].Cells["id"].Value;
                 PlanDesktop planDesktop = new PlanDesktop(ID, ApplicationForm.ModoForm.Baja);
                 planDesktop.ShowDialog();
                 this.Listar();

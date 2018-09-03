@@ -79,7 +79,7 @@ namespace UI.Desktop {
 
         private void tsbEditar_Click(object sender, EventArgs e) {
             if (this.dgvComisiones.SelectedRows.Count != 0) {
-                int ID = Int32.Parse(this.dgvComisiones.SelectedRows[0].Cells["id"].Value.ToString());
+                int ID = (int)this.dgvComisiones.SelectedRows[0].Cells["id"].Value;
                 ComisionDesktop comisionDesktop = new ComisionDesktop(ID, ApplicationForm.ModoForm.Modificacion);
                 comisionDesktop.ShowDialog();
                 this.Listar();
@@ -87,7 +87,7 @@ namespace UI.Desktop {
         }
         private void tsbEliminar_Click(object sender, EventArgs e) {
             if (this.dgvComisiones.SelectedRows.Count != 0) {
-                int ID = Int32.Parse(this.dgvComisiones.SelectedRows[0].Cells["id"].Value.ToString());
+                int ID = (int)this.dgvComisiones.SelectedRows[0].Cells["id"].Value;
                 ComisionDesktop comisionDesktop = new ComisionDesktop(ID, ApplicationForm.ModoForm.Baja);
                 comisionDesktop.ShowDialog();
                 this.Listar();

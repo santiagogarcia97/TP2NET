@@ -104,7 +104,7 @@ namespace UI.Desktop {
         {
             if (this.dgvCursos.SelectedRows.Count != 0)
             {
-                int ID = Int32.Parse(this.dgvCursos.SelectedRows[0].Cells["id"].Value.ToString());
+                int ID = (int)this.dgvCursos.SelectedRows[0].Cells["id"].Value;
                 CursoDesktop cursoDesktop = new CursoDesktop(ID, ApplicationForm.ModoForm.Modificacion);
                 cursoDesktop.ShowDialog();
                 this.Listar();
@@ -115,7 +115,7 @@ namespace UI.Desktop {
         {
             if (this.dgvCursos.SelectedRows.Count != 0)
             {
-                int ID = Int32.Parse(this.dgvCursos.SelectedRows[0].Cells["id"].Value.ToString());
+                int ID = (int)this.dgvCursos.SelectedRows[0].Cells["id"].Value;
                 CursoDesktop cursoDesktop = new CursoDesktop(ID, ApplicationForm.ModoForm.Baja);
                 cursoDesktop.ShowDialog();
                 this.Listar();

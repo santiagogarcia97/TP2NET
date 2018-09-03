@@ -72,13 +72,13 @@ namespace UI.Desktop {
                 case ModoForm.Alta:
                     PlanActual = new Plan();
                     PlanActual.Descripcion = txtDescripcion.Text;
-                    PlanActual.IDEspecialidad = Int32.Parse(cbEspecialidad.SelectedValue.ToString());
+                    PlanActual.IDEspecialidad = (int)cbEspecialidad.SelectedValue;
                     PlanActual.State = BusinessEntity.States.New;
                     break;
                 case ModoForm.Modificacion:
                     PlanActual.Descripcion = txtDescripcion.Text;
                     PlanActual.State = BusinessEntity.States.Modified;
-                    PlanActual.IDEspecialidad = Int32.Parse(cbEspecialidad.SelectedValue.ToString());
+                    PlanActual.IDEspecialidad = (int)cbEspecialidad.SelectedValue;
                     break;
                 case ModoForm.Baja:
                     PlanActual.State = BusinessEntity.States.Deleted;

@@ -79,7 +79,7 @@ namespace UI.Desktop {
                 ComisionActual = new Comision();
                 ComisionActual.Descripcion = txtDescripcion.Text;
                 ComisionActual.AnioEspecialidad = Int32.Parse(txtAnio.Text);
-                ComisionActual.IDPlan = Int32.Parse(cbPlan.SelectedValue.ToString());
+                ComisionActual.IDPlan = (int)cbPlan.SelectedValue;
 
                 if (Modo == ModoForm.Alta) {
                     ComisionActual.State = BusinessEntity.States.New;
@@ -142,7 +142,7 @@ namespace UI.Desktop {
                 //Si el valor del combobox de especialidades cambia, se vuelven a generar los planes
                 //pasando como argumento el id de la especialidad para mostrar solo los planes que
                 //corresponden a dicha especialidad
-                GenerarPlanes(Int32.Parse(cbEsp.SelectedValue.ToString()));
+                GenerarPlanes((int)cbEsp.SelectedValue);
             }
         }
     }
