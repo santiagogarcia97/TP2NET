@@ -84,7 +84,7 @@ namespace UI.Desktop {
 
         private void tsbEditar_Click(object sender, EventArgs e) {
             if (this.dgvMaterias.SelectedRows.Count != 0) {
-                int ID = Int32.Parse(this.dgvMaterias.SelectedRows[0].Cells["id"].Value.ToString());
+                int ID = (int)this.dgvMaterias.SelectedRows[0].Cells["id"].Value;
                 MateriaDesktop materiaDesktop = new MateriaDesktop(ID, ApplicationForm.ModoForm.Modificacion);
                 materiaDesktop.ShowDialog();
                 this.Listar();
@@ -93,7 +93,7 @@ namespace UI.Desktop {
 
         private void tsbEliminar_Click(object sender, EventArgs e) {
             if (this.dgvMaterias.SelectedRows.Count != 0) {
-                int ID = Int32.Parse(this.dgvMaterias.SelectedRows[0].Cells["id"].Value.ToString());
+                int ID = (int)this.dgvMaterias.SelectedRows[0].Cells["id"].Value;
                 MateriaDesktop materiaDesktop = new MateriaDesktop(ID, ApplicationForm.ModoForm.Baja);
                 materiaDesktop.ShowDialog();
                 this.Listar();

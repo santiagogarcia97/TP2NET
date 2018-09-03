@@ -119,8 +119,8 @@ namespace UI.Desktop {
                 UsuarioActual.Email = txtEmail.Text;
                 UsuarioActual.NombreUsuario = txtNombreUsuario.Text;
                 UsuarioActual.Clave = txtClave.Text;
-                UsuarioActual.TipoPersona = Int32.Parse(cbxTipo.SelectedValue.ToString());
-                UsuarioActual.IDPlan = Int32.Parse(cbxPlan.SelectedValue.ToString());
+                UsuarioActual.TipoPersona = (int)cbxTipo.SelectedValue;
+                UsuarioActual.IDPlan = (int)cbxPlan.SelectedValue;
 
                 if (Modo == ModoForm.Alta) {
                     UsuarioActual.State = BusinessEntity.States.New;
@@ -196,7 +196,7 @@ namespace UI.Desktop {
                 //Si el valor del combobox de especialidades cambia, se vuelven a generar los planes
                 //pasando como argumento el id de la especialidad para mostrar solo los planes que
                 //corresponden a dicha especialidad
-                GenerarPlanes(Int32.Parse(cbxEsp.SelectedValue.ToString()));
+                GenerarPlanes((int)cbxEsp.SelectedValue);
             }
         }
     }

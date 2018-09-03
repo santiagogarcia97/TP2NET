@@ -91,8 +91,8 @@ namespace UI.Desktop
                 CursoActual = new Curso();
                 CursoActual.Cupo = Int32.Parse(txtCupo.Text);
                 CursoActual.AnioCalendario = Int32.Parse(txtAnio.Text);
-                CursoActual.IDComision = Int32.Parse(cbComision.SelectedValue.ToString());
-                CursoActual.IDMateria = Int32.Parse(cbMateria.SelectedValue.ToString());
+                CursoActual.IDComision = (int)cbComision.SelectedValue;
+                CursoActual.IDMateria = (int)cbMateria.SelectedValue;
 
                 if (Modo == ModoForm.Alta) {
                     CursoActual.State = BusinessEntity.States.New;
@@ -173,7 +173,7 @@ namespace UI.Desktop
                 //Si el valor del combobox de especialidades cambia, se vuelven a generar los planes
                 //pasando como argumento el id de la especialidad para mostrar solo los planes que
                 //corresponden a dicha especialidad
-                GenerarPlanes(Int32.Parse(cbEsp.SelectedValue.ToString()));
+                GenerarPlanes((int)cbEsp.SelectedValue);
             }
         }
 
@@ -182,8 +182,8 @@ namespace UI.Desktop
                 //Si el valor del combobox de planes cambia, se vuelven a generar las comisiones y materias
                 //pasando como argumento el id del plan para mostrar solo las que
                 //corresponden a dicho plan
-                GenerarComisiones(Int32.Parse(cbPlan.SelectedValue.ToString()));
-                GenerarMaterias(Int32.Parse(cbPlan.SelectedValue.ToString()));
+                GenerarComisiones((int)cbPlan.SelectedValue);
+                GenerarMaterias((int)cbPlan.SelectedValue);
             }
         }
     }
