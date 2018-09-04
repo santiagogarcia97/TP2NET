@@ -84,8 +84,6 @@ namespace UI.Desktop {
                 MateriaActual.HSTotales = Int32.Parse(txtHSTotales.Text);
                 MateriaActual.IDPlan = (int)cbPlan.SelectedValue;
 
-                MateriaActual.Habilitado = true;
-
                 if (Modo == ModoForm.Alta) {
                     MateriaActual.State = BusinessEntity.States.New;
                 }

@@ -81,8 +81,6 @@ namespace UI.Desktop {
                 ComisionActual.AnioEspecialidad = Int32.Parse(txtAnio.Text);
                 ComisionActual.IDPlan = (int)cbPlan.SelectedValue;
 
-                ComisionActual.Habilitado = true;
-
                 if (Modo == ModoForm.Alta) {
                     ComisionActual.State = BusinessEntity.States.New;
                 }

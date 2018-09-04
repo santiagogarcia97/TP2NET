@@ -394,6 +394,7 @@
             this.cbxEsp.Location = new System.Drawing.Point(134, 373);
             this.cbxEsp.Name = "cbxEsp";
             this.cbxEsp.Size = new System.Drawing.Size(136, 21);
+            this.cbxEsp.Sorted = true;
             this.cbxEsp.TabIndex = 26;
             this.cbxEsp.SelectedValueChanged += new System.EventHandler(this.cbxEsp_SelectedValueChanged);
             // 

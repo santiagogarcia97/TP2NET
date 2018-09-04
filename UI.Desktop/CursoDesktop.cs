@@ -94,8 +94,6 @@ namespace UI.Desktop
                 CursoActual.IDComision = (int)cbComision.SelectedValue;
                 CursoActual.IDMateria = (int)cbMateria.SelectedValue;
 
-                CursoActual.Habilitado = true;
-
                 if (Modo == ModoForm.Alta) {
                     CursoActual.State = BusinessEntity.States.New;
                 }

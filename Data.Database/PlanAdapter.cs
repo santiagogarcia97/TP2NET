@@ -22,7 +22,6 @@ namespace Data.Database {
                     pln.ID = (int)drPlanes["id_plan"];
                     pln.Descripcion = (string)drPlanes["desc_plan"];
                     pln.IDEspecialidad = (int)drPlanes["id_especialidad"];
-                    pln.Habilitado = (bool)drPlanes["plan_hab"];
 
                     planes.Add(pln);
                 }
@@ -51,7 +50,6 @@ namespace Data.Database {
                     pln.ID = (int)drPlanes["id_plan"];
                     pln.Descripcion = (string)drPlanes["desc_plan"];
                     pln.IDEspecialidad = (int)drPlanes["id_especialidad"];
-                    pln.Habilitado = (bool)drPlanes["plan_hab"];
                 }
                 drPlanes.Close();
             }
@@ -85,13 +83,12 @@ namespace Data.Database {
         protected void Update(Plan plan) {
             try {
                 this.OpenConnection();
-                SqlCommand cmdSave = new SqlCommand("UPDATE planes SET desc_plan = @desc, id_especialidad = @id_e, plan_hab = @plan_hab " +
+                SqlCommand cmdSave = new SqlCommand("UPDATE planes SET desc_plan = @desc, id_especialidad = @id_e " +
                     "WHERE id_plan=@id", SqlConn);
 
                 cmdSave.Parameters.Add("@id", SqlDbType.Int).Value = plan.ID;
                 cmdSave.Parameters.Add("@desc", SqlDbType.VarChar, 50).Value = plan.Descripcion;
                 cmdSave.Parameters.Add("@id_e", SqlDbType.Int).Value = plan.IDEspecialidad;
-                cmdSave.Parameters.Add("@plan_hab", SqlDbType.Bit).Value = plan.Habilitado;
                 cmdSave.ExecuteNonQuery();
             }
             catch (Exception Ex) {
@@ -107,11 +104,10 @@ namespace Data.Database {
 
             try {
                 this.OpenConnection();
-                SqlCommand cmdSave = new SqlCommand("INSERT INTO planes(desc_plan,id_especialidad,plan_hab) " +
-                    "values(@desc,@id_e,@plan_hab) SELECT @@identity", SqlConn);
+                SqlCommand cmdSave = new SqlCommand("INSERT INTO planes(desc_plan,id_especialidad) " +
+                    "values(@desc,@id_e) SELECT @@identity", SqlConn);
                 cmdSave.Parameters.Add("@desc", SqlDbType.VarChar, 50).Value = plan.Descripcion;
                 cmdSave.Parameters.Add("@id_e", SqlDbType.Int).Value = plan.IDEspecialidad;
-                cmdSave.Parameters.Add("@plan_hab", SqlDbType.Bit).Value = plan.Habilitado;
                 plan.ID = Decimal.ToInt32((decimal)cmdSave.ExecuteScalar());
             }
             catch (Exception Ex) {

@@ -20,7 +20,6 @@ namespace Data.Database {
                     Especialidad esp = new Especialidad();
 
                     esp.ID = (int)drEspecialidades["id_especialidad"];
-                    esp.Habilitado = (bool)drEspecialidades["esp_hab"];
                     esp.Descripcion = (string)drEspecialidades["desc_especialidad"];
                     especialidades.Add(esp);
                 }
@@ -47,7 +46,6 @@ namespace Data.Database {
 
                 if (drEspecialidades.Read()) {
                     esp.ID = (int)drEspecialidades["id_especialidad"];
-                    esp.Habilitado = (bool)drEspecialidades["esp_hab"];
                     esp.Descripcion = (string)drEspecialidades["desc_especialidad"];
                 }
                 drEspecialidades.Close();
@@ -62,6 +60,8 @@ namespace Data.Database {
             }
             return esp;
         }
+
+        //TODO: Arreglar error de dependencia en Delete(ID)
 
         public void Delete(int ID) {
             try {
@@ -82,11 +82,10 @@ namespace Data.Database {
         protected void Update(Especialidad especialidad) {
             try {
                 this.OpenConnection();
-                SqlCommand cmdSave = new SqlCommand("UPDATE especialidades SET desc_especialidad = @desc, esp_hab = @esp_hab " +
+                SqlCommand cmdSave = new SqlCommand("UPDATE especialidades SET desc_especialidad = @desc " +
                     "WHERE id_especialidad=@id", SqlConn);
 
                 cmdSave.Parameters.Add("@id", SqlDbType.Int).Value = especialidad.ID;
-                cmdSave.Parameters.Add("@esp_hab", SqlDbType.Bit).Value = especialidad.Habilitado;
                 cmdSave.Parameters.Add("@desc", SqlDbType.VarChar, 50).Value = especialidad.Descripcion;
                 cmdSave.ExecuteNonQuery();
             }
@@ -103,8 +102,8 @@ namespace Data.Database {
 
             try {
                 this.OpenConnection();
-                SqlCommand cmdSave = new SqlCommand("INSERT INTO especialidades(desc_especialidad,esp_hab) " +
-                    "values(@desc,@esp_hab) SELECT @@identity", SqlConn);
+                SqlCommand cmdSave = new SqlCommand("INSERT INTO especialidades(desc_especialidad) " +
+                    "values(@desc) SELECT @@identity", SqlConn);
                 cmdSave.Parameters.Add("@desc", SqlDbType.VarChar, 50).Value = especialidad.Descripcion;
                 especialidad.ID = Decimal.ToInt32((decimal)cmdSave.ExecuteScalar());
             }

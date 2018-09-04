@@ -192,11 +192,11 @@ namespace UI.Desktop {
         }
 
         private void cbxEsp_SelectedValueChanged(object sender, EventArgs e) {
-            cbxPlan.Text = "";
             if (cbxEsp.SelectedValue != null) {
                 //Si el valor del combobox de especialidades cambia, se vuelven a generar los planes
                 //pasando como argumento el id de la especialidad para mostrar solo los planes que
                 //corresponden a dicha especialidad
+                cbxPlan.Text = "";
                 GenerarPlanes((int)cbxEsp.SelectedValue);
             }
         }

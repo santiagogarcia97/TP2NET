@@ -24,7 +24,7 @@ namespace Data.Database {
                     mat.HSSemanales = (int)drMaterias["hs_semanales"];
                     mat.HSTotales = (int)drMaterias["hs_totales"];
                     mat.IDPlan = (int)drMaterias["id_plan"];
-                    mat.Habilitado = (bool)drMaterias["mat_hab"];
+                    mat.IDString = (mat.ID.ToString() + " - " + mat.Descripcion);
                     materias.Add(mat);
                 }
                 drMaterias.Close();
@@ -54,7 +54,7 @@ namespace Data.Database {
                     mat.HSSemanales = (int)drMaterias["hs_semanales"];
                     mat.HSTotales = (int)drMaterias["hs_totales"];
                     mat.IDPlan = (int)drMaterias["id_plan"];
-                    mat.Habilitado = (bool)drMaterias["mat_hab"];
+                    mat.IDString = (mat.ID.ToString() + " - " + mat.Descripcion);
                 }
                 drMaterias.Close();
             }
@@ -89,7 +89,7 @@ namespace Data.Database {
             try {
                 this.OpenConnection();
                 SqlCommand cmdSave = new SqlCommand("UPDATE materias SET desc_materia = @desc, " +
-                    "hs_semanales = @hs_semanales, hs_totales = @hs_totales, id_plan = @id_plan, mat_hab = @mat_hab " +
+                    "hs_semanales = @hs_semanales, hs_totales = @hs_totales, id_plan = @id_plan " +
                     "WHERE id_materia=@id", SqlConn);
 
                 cmdSave.Parameters.Add("@id", SqlDbType.Int).Value = materia.ID;
@@ -97,7 +97,6 @@ namespace Data.Database {
                 cmdSave.Parameters.Add("@hs_semanales", SqlDbType.Int).Value = materia.HSSemanales;
                 cmdSave.Parameters.Add("@hs_totales", SqlDbType.Int).Value = materia.HSTotales;
                 cmdSave.Parameters.Add("@id_plan", SqlDbType.Int).Value = materia.IDPlan;
-                cmdSave.Parameters.Add("@mat_hab", SqlDbType.Bit).Value = materia.Habilitado;
                 cmdSave.ExecuteNonQuery();
             }
             catch (Exception Ex) {
@@ -113,13 +112,12 @@ namespace Data.Database {
 
             try {
                 this.OpenConnection();
-                SqlCommand cmdSave = new SqlCommand("INSERT INTO materias(desc_materia, hs_semanales, hs_totales,id_plan,mat_hab) " +
-                    "values(@desc, @hs_semanales, @hs_totales, @id_plan,@mat_hab) SELECT @@identity", SqlConn);
+                SqlCommand cmdSave = new SqlCommand("INSERT INTO materias(desc_materia, hs_semanales, hs_totales,id_plan) " +
+                    "values(@desc, @hs_semanales, @hs_totales, @id_plan) SELECT @@identity", SqlConn);
                 cmdSave.Parameters.Add("@desc", SqlDbType.VarChar, 50).Value = materia.Descripcion;
                 cmdSave.Parameters.Add("@hs_semanales", SqlDbType.Int).Value = materia.HSSemanales;
                 cmdSave.Parameters.Add("@hs_totales", SqlDbType.Int).Value = materia.HSTotales;
                 cmdSave.Parameters.Add("@id_plan", SqlDbType.Int).Value = materia.IDPlan;
-                cmdSave.Parameters.Add("@mat_hab", SqlDbType.Bit).Value = materia.Habilitado;
                 materia.ID = Decimal.ToInt32((decimal)cmdSave.ExecuteScalar());
             }
             catch (Exception Ex) {

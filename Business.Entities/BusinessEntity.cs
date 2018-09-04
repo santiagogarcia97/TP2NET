@@ -10,12 +10,15 @@ namespace Business.Entities
     {
 
         public enum States { Deleted, New, Modified, Unmodified }
-        private int _ID;
-        private States _State;
-        private bool _Habilitado;
+        int _ID;
+        States _State;
 
         public int ID { get => _ID; set => _ID = value; }
         public States State { get => _State; set => _State = value; }
-        public bool Habilitado { get => _Habilitado; set => _Habilitado = value; }
+
+        public BusinessEntity()
+        {
+            
+        }
     }
 }

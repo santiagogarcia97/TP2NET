@@ -22,18 +22,20 @@ namespace Data.Database
                     user.ID = (int)drUsuarios["id_usuario"];
                     user.NombreUsuario = (string)drUsuarios["nombre_usuario"];
                     user.Clave = (string)drUsuarios["clave"];
+                    user.Habilitado = (bool)drUsuarios["habilitado"];
                     user.Nombre = (string)drUsuarios["nombre"];
                     user.Apellido = (string)drUsuarios["apellido"];
                     user.Email = (string)drUsuarios["email"];
                     user.Direccion = (string)drUsuarios["direccion"];
                     user.Telefono = (string)drUsuarios["telefono"];
                     user.FechaNacimiento = (DateTime)drUsuarios["fecha_nac"];
-                    user.Habilitado = (bool)drUsuarios["user_hab"];
+                    user.Habilitado = (bool)drUsuarios["habilitado"];
                     user.CambiaClave = (bool)drUsuarios["cambia_clave"];
                     user.Legajo = (int)drUsuarios["legajo"];
                     user.TipoPersona = (int)drUsuarios["tipo_persona"];
                     user.Email = (string)drUsuarios["email"];
                     user.IDPlan = (int)drUsuarios["id_plan"];
+                    user.IDString = (user.ID.ToString() + " - " + user.NombreUsuario);
                     usuarios.Add(user);
                 }
                 drUsuarios.Close();
@@ -62,18 +64,20 @@ namespace Data.Database
                     user.ID = (int)drUsuarios["id_usuario"];
                     user.NombreUsuario = (string)drUsuarios["nombre_usuario"];
                     user.Clave = (string)drUsuarios["clave"];
+                    user.Habilitado = (bool)drUsuarios["habilitado"];
                     user.Nombre = (string)drUsuarios["nombre"];
                     user.Apellido = (string)drUsuarios["apellido"];
                     user.Email = (string)drUsuarios["email"];
                     user.Direccion = (string)drUsuarios["direccion"];
                     user.Telefono = (string)drUsuarios["telefono"];
                     user.FechaNacimiento = (DateTime)drUsuarios["fecha_nac"];
-                    user.Habilitado = (bool)drUsuarios["user_hab"];
+                    user.Habilitado = (bool)drUsuarios["habilitado"];
                     user.CambiaClave = (bool)drUsuarios["cambia_clave"];
                     user.Legajo = (int)drUsuarios["legajo"];
                     user.TipoPersona = (int)drUsuarios["tipo_persona"];
                     user.Email = (string)drUsuarios["email"];
                     user.IDPlan = (int)drUsuarios["id_plan"];
+                    user.IDString = (user.ID.ToString() + " - " + user.NombreUsuario);
                 }
                 drUsuarios.Close();
             }
@@ -100,13 +104,14 @@ namespace Data.Database
                     user.ID = (int)drUsuarios["id_usuario"];
                     user.NombreUsuario = (string)drUsuarios["nombre_usuario"];
                     user.Clave = (string)drUsuarios["clave"];
+                    user.Habilitado = (bool)drUsuarios["habilitado"];
                     user.Nombre = (string)drUsuarios["nombre"];
                     user.Apellido = (string)drUsuarios["apellido"];
                     user.Email = (string)drUsuarios["email"];
                     user.Direccion = (string)drUsuarios["direccion"];
                     user.Telefono = (string)drUsuarios["telefono"];
                     user.FechaNacimiento = (DateTime)drUsuarios["fecha_nac"];
-                    user.Habilitado = (bool)drUsuarios["user_hab"];
+                    user.Habilitado = (bool)drUsuarios["habilitado"];
                     user.CambiaClave = (bool)drUsuarios["cambia_clave"];
                     user.Legajo = (int)drUsuarios["legajo"];
                     user.TipoPersona = (int)drUsuarios["tipo_persona"];
@@ -166,7 +171,7 @@ namespace Data.Database
                 SqlCommand cmdSave = new SqlCommand("UPDATE usuarios SET nombre=@nombre,apellido=@apellido,direccion=@direccion,email=@email," +
                     "telefono=@telefono,fecha_nac=@fecha_nac,legajo=@legajo," +
                     "tipo_persona=@tipo_persona,nombre_usuario=@nombre_usuario,clave=@clave," +
-                    "user_hab=@user_hab,cambia_clave=@cambia_clave,id_plan=@id_plan WHERE id_usuario=@id", SqlConn);
+                    "habilitado=@habilitado,cambia_clave=@cambia_clave,id_plan=@id_plan WHERE id_usuario=@id", SqlConn);
 
                 cmdSave.Parameters.Add("@id", SqlDbType.Int).Value = usuario.ID;
                 cmdSave.Parameters.Add("@nombre", SqlDbType.VarChar, 50).Value = usuario.Nombre;
@@ -179,7 +184,7 @@ namespace Data.Database
                 cmdSave.Parameters.Add("@tipo_persona", SqlDbType.Int).Value = usuario.TipoPersona;
                 cmdSave.Parameters.Add("@nombre_usuario", SqlDbType.VarChar, 50).Value = usuario.NombreUsuario;
                 cmdSave.Parameters.Add("@clave", SqlDbType.VarChar, 50).Value = usuario.Clave;
-                cmdSave.Parameters.Add("@user_hab", SqlDbType.Bit).Value = usuario.Habilitado;
+                cmdSave.Parameters.Add("@habilitado", SqlDbType.Bit).Value = usuario.Habilitado;
                 cmdSave.Parameters.Add("@cambia_clave", SqlDbType.Bit).Value = false;
                 cmdSave.Parameters.Add("@id_plan", SqlDbType.Int).Value = usuario.IDPlan;
                 cmdSave.ExecuteNonQuery();
@@ -198,9 +203,9 @@ namespace Data.Database
             try {
                 this.OpenConnection();
                 SqlCommand cmdSave = new SqlCommand("INSERT INTO usuarios(nombre,apellido,direccion,email,telefono,fecha_nac,legajo," +
-                    "tipo_persona,nombre_usuario,clave,user_hab,cambia_clave,id_plan) " +
+                    "tipo_persona,nombre_usuario,clave,habilitado,cambia_clave,id_plan) " +
                     "values(@nombre,@apellido,@direccion,@email,@telefono,@fecha_nac,@legajo,@tipo_persona,@nombre_usuario," +
-                    "@clave,@user_hab,@cambia_clave,@id_plan) SELECT @@identity", SqlConn);
+                    "@clave,@habilitado,@cambia_clave,@id_plan) SELECT @@identity", SqlConn);
 
                 cmdSave.Parameters.Add("@nombre", SqlDbType.VarChar, 50).Value = usuario.Nombre;
                 cmdSave.Parameters.Add("@apellido", SqlDbType.VarChar, 50).Value = usuario.Apellido;
@@ -212,7 +217,7 @@ namespace Data.Database
                 cmdSave.Parameters.Add("@tipo_persona", SqlDbType.Int).Value = usuario.TipoPersona;
                 cmdSave.Parameters.Add("@nombre_usuario", SqlDbType.VarChar, 50).Value = usuario.NombreUsuario;
                 cmdSave.Parameters.Add("@clave", SqlDbType.VarChar, 50).Value = usuario.Clave;
-                cmdSave.Parameters.Add("@user_hab", SqlDbType.Bit).Value = usuario.Habilitado;
+                cmdSave.Parameters.Add("@habilitado", SqlDbType.Bit).Value = usuario.Habilitado;
                 cmdSave.Parameters.Add("@cambia_clave", SqlDbType.Bit).Value = false;
                 cmdSave.Parameters.Add("@id_plan", SqlDbType.Int).Value = usuario.IDPlan;
                 usuario.ID = Decimal.ToInt32((decimal)cmdSave.ExecuteScalar());
