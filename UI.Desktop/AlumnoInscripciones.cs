@@ -13,29 +13,80 @@ using Business.Entities;
 namespace UI.Desktop{
     public partial class AlumnoInscripciones : ApplicationForm{
 
-        private int _AlumnoID;
-        public int AlumnoID { get => _AlumnoID; set => _AlumnoID = value; }
+        private Usuario _UsuarioActual;
+        public Usuario UsuarioActual { get => UsuarioActual; set => UsuarioActual = value; }
 
-        public AlumnoInscripciones(int aID){
+        public AlumnoInscripciones(){
             InitializeComponent();
-            AlumnoID = aID;
             this.dgvAlumnoInscripciones.AutoGenerateColumns = false;
+        }
+        public AlumnoInscripciones(Usuario user) : this() {
+            UsuarioActual = user;
+            if(UsuarioActual.TipoPersona == 1) {
+                tcUsuarios.TopToolStripPanel.Visible = false;
+            }
+            else if (UsuarioActual.TipoPersona == 3) {
+                tcUsuarios.TopToolStripPanel.Visible = true;
+            }
         }
         private void AlumnoInscripciones_Load(object sender, EventArgs e) {
             Listar();
         }
 
         public void Listar(){
+            this.dgvAlumnoInscripciones.DataSource = null;
+            this.dgvAlumnoInscripciones.Refresh();
+
             AlumnoInscripcionLogic ins = new AlumnoInscripcionLogic();
-            List<AlumnoInscripcion> inscripciones = ins.GetAll().Where(x => x.ID == AlumnoID).ToList();
+            List<AlumnoInscripcion> inscripciones = new List<AlumnoInscripcion>();
+            if (UsuarioActual.TipoPersona == 1) {
+                inscripciones = ins.GetAll().Where(x => x.IDAlumno == UsuarioActual.ID).ToList();
+            }
+            else if (UsuarioActual.TipoPersona == 3) {
+                inscripciones = ins.GetAll();
+            }
             if (inscripciones.Count() == 0){
                 MessageBox.Show("No hay inscripciones cargadas!");
             }
-            this.dgvAlumnoInscripciones.DataSource = inscripciones;
+
+            DataTable Listado = new DataTable();
+            Listado.Columns.Add("ID", typeof(int));
+            Listado.Columns.Add("Alumno", typeof(string));
+            Listado.Columns.Add("Curso", typeof(string));
+            Listado.Columns.Add("Nota", typeof(string));
+            Listado.Columns.Add("Condicion", typeof(string));
+
+            UsuarioLogic ul = new UsuarioLogic();
+            List<Usuario> usuarios = ul.GetAll();
+            CursoMatComLogic cmcl = new CursoMatComLogic();
+            List<CursoMatCom> cursos = cmcl.GetAll();
+
+            foreach(AlumnoInscripcion ai in inscripciones) {
+                DataRow Linea = Listado.NewRow();
+
+                Linea["ID"] = ai.ID;
+                Linea["Nota"] = (ai.Nota.Equals("")) ? "-" : ai.Nota;
+                Linea["Condicion"] = ai.Condicion.ToString();
+                foreach(Usuario user in usuarios) {
+                    if(user.ID == ai.IDAlumno) {
+                        Linea["Alumno"] = user.Legajo + " - " + user.Apellido + ", " + user.Nombre;
+                        break;
+                    }
+                }
+                foreach(CursoMatCom cmc in cursos) {
+                    if(cmc.ID == ai.IDCurso) {
+                        Linea["Curso"] = cmc.DescComision + " - " + cmc.DescMateria;
+                    }
+                }
+                Listado.Rows.Add(Linea);
+            }
+
+
+            this.dgvAlumnoInscripciones.DataSource = Listado;
         }
 
         private void tsbNuevo_Click(object sender, EventArgs e){
-            InscripcionDesktop alumnoInscripcionDesktop = new InscripcionDesktop(ApplicationForm.ModoForm.Alta, AlumnoID);
+            AlumnoInscripcionDesktop alumnoInscripcionDesktop = new AlumnoInscripcionDesktop(ApplicationForm.ModoForm.Alta, UsuarioActual);
             alumnoInscripcionDesktop.ShowDialog();
             this.Listar();
         }
@@ -43,7 +94,7 @@ namespace UI.Desktop{
         private void tsbEliminar_Click(object sender, EventArgs e){
             if (this.dgvAlumnoInscripciones.SelectedRows.Count != 0){
                 int ID = ((Business.Entities.AlumnoInscripcion)this.dgvAlumnoInscripciones.SelectedRows[0].DataBoundItem).ID;
-                AlumnoInscripcionDesktop alumnoInscripcionDesktop = new AlumnoInscripcionDesktop(ApplicationForm.ModoForm.Baja, AlumnoID, ID);
+                AlumnoInscripcionDesktop alumnoInscripcionDesktop = new AlumnoInscripcionDesktop(ApplicationForm.ModoForm.Baja, UsuarioActual);
                 alumnoInscripcionDesktop.ShowDialog();
                 this.Listar();
             }

@@ -74,7 +74,7 @@ namespace UI.Desktop
 
             cbCondicion.Text = InscripcionActual.Condicion.ToString();
 
-            nudNota.Value = InscripcionActual.Nota;
+//            nudNota.Value = InscripcionActual.Nota;
 
 
             switch (Modo)
@@ -111,14 +111,14 @@ namespace UI.Desktop
                     InscripcionActual = new AlumnoInscripcion();
                     InscripcionActual.IDCurso = getCrsID(cbCurso.Text);
                     InscripcionActual.IDAlumno = getUsrID(cbAlumno.Text);
-                    InscripcionActual.Nota = (int)nudNota.Value;
+                 //   InscripcionActual.Nota = (int)nudNota.Value;
                     InscripcionActual.Condicion = (AlumnoInscripcion.Condiciones)System.Enum.Parse(typeof(AlumnoInscripcion.Condiciones), cbCondicion.Text);
                     InscripcionActual.State = BusinessEntity.States.New;
                     break;
                 case ModoForm.Modificacion:
                     InscripcionActual.IDCurso = getCrsID(cbCurso.Text);
                     InscripcionActual.IDAlumno = getUsrID(cbAlumno.Text);
-                    InscripcionActual.Nota = (int)nudNota.Value;
+                   // InscripcionActual.Nota = (int)nudNota.Value;
                     InscripcionActual.Condicion = (AlumnoInscripcion.Condiciones)System.Enum.Parse(typeof(AlumnoInscripcion.Condiciones), cbCondicion.Text);
                     break;
                 case ModoForm.Baja:
