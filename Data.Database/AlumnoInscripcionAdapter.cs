@@ -26,7 +26,7 @@ namespace Data.Database
                     insc.ID = (int)drAlumnoInscripciones["id_inscripcion"];
                     insc.IDAlumno = (int)drAlumnoInscripciones["id_alumno"];
                     insc.IDCurso = (int)drAlumnoInscripciones["id_curso"];
-                    insc.Nota = (int)drAlumnoInscripciones["nota"];
+                    insc.Nota = drAlumnoInscripciones["nota"].ToString();
                     insc.Condicion = (AlumnoInscripcion.Condiciones)System.Enum.Parse(typeof(AlumnoInscripcion.Condiciones), (string)drAlumnoInscripciones["condicion"]);
                     alumnoInscripciones.Add(insc);
                 }
@@ -59,7 +59,7 @@ namespace Data.Database
                     insc.ID = (int)drAlumnoInscripciones["id_inscripcion"];
                     insc.IDAlumno = (int)drAlumnoInscripciones["id_alumno"];
                     insc.IDCurso = (int)drAlumnoInscripciones["id_curso"];
-                    insc.Nota = (int)drAlumnoInscripciones["nota"];
+                    insc.Nota = drAlumnoInscripciones["nota"].ToString();
                     insc.Condicion = (AlumnoInscripcion.Condiciones)System.Enum.Parse(typeof(AlumnoInscripcion.Condiciones), (string)drAlumnoInscripciones["condicion"]);
                 }
                 drAlumnoInscripciones.Close();

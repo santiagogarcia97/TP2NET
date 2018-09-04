@@ -37,7 +37,7 @@
             this.tsbNuevo = new System.Windows.Forms.ToolStripButton();
             this.tsbEliminar = new System.Windows.Forms.ToolStripButton();
             this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.id_alumno = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.alumno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.id_curso = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nota = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.condicion = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -59,7 +59,7 @@
             this.dgvAlumnoInscripciones.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgvAlumnoInscripciones.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.id,
-            this.id_alumno,
+            this.alumno,
             this.id_curso,
             this.nota,
             this.condicion});
@@ -138,7 +138,7 @@
             this.tsbEliminar});
             this.tsEspecialidades.Location = new System.Drawing.Point(3, 0);
             this.tsEspecialidades.Name = "tsEspecialidades";
-            this.tsEspecialidades.Size = new System.Drawing.Size(89, 25);
+            this.tsEspecialidades.Size = new System.Drawing.Size(58, 25);
             this.tsEspecialidades.TabIndex = 0;
             // 
             // tsbNuevo
@@ -172,17 +172,17 @@
             this.id.ReadOnly = true;
             this.id.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             // 
-            // id_alumno
+            // alumno
             // 
-            this.id_alumno.DataPropertyName = "IDAlumno";
-            this.id_alumno.HeaderText = "ID Alumno";
-            this.id_alumno.Name = "id_alumno";
-            this.id_alumno.ReadOnly = true;
+            this.alumno.DataPropertyName = "Alumno";
+            this.alumno.HeaderText = "Alumno";
+            this.alumno.Name = "alumno";
+            this.alumno.ReadOnly = true;
             // 
             // id_curso
             // 
-            this.id_curso.DataPropertyName = "IDCurso";
-            this.id_curso.HeaderText = "ID Curso";
+            this.id_curso.DataPropertyName = "Curso";
+            this.id_curso.HeaderText = "Curso";
             this.id_curso.Name = "id_curso";
             this.id_curso.ReadOnly = true;
             // 
@@ -234,7 +234,7 @@
         private System.Windows.Forms.ToolStripButton tsbNuevo;
         private System.Windows.Forms.ToolStripButton tsbEliminar;
         private System.Windows.Forms.DataGridViewTextBoxColumn id;
-        private System.Windows.Forms.DataGridViewTextBoxColumn id_alumno;
+        private System.Windows.Forms.DataGridViewTextBoxColumn alumno;
         private System.Windows.Forms.DataGridViewTextBoxColumn id_curso;
         private System.Windows.Forms.DataGridViewTextBoxColumn nota;
         private System.Windows.Forms.DataGridViewTextBoxColumn condicion;

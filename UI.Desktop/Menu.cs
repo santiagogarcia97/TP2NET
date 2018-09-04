@@ -138,7 +138,7 @@ namespace UI.Desktop {
         }
 
         private void btnInscripciones_Click(object sender, EventArgs e) {
-            AlumnoInscripciones ai = new AlumnoInscripciones();
+            AlumnoInscripciones ai = new AlumnoInscripciones(UsuarioActual);
             ai.ShowDialog();
         }
 
@@ -148,7 +148,7 @@ namespace UI.Desktop {
         }
 
         private void button1_Click(object sender, EventArgs e) {
-            AlumnoInscripciones ai = new AlumnoInscripciones(UsuarioActual.ID);
+            AlumnoInscripciones ai = new AlumnoInscripciones(UsuarioActual);
             ai.ShowDialog();
         }
     }

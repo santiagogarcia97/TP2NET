@@ -14,10 +14,10 @@ using static Business.Entities.AlumnoInscripcion;
 namespace UI.Desktop {
     public partial class AlumnoInscripcionDesktop : ApplicationForm {
         private AlumnoInscripcion _InscripcionActual;
-        private int _AlumnoID;
+        private Usuario _UsuarioActual;
 
         public AlumnoInscripcion InscripcionActual { get => _InscripcionActual; set => _InscripcionActual = value; }
-        public int AlumnoID { get => _AlumnoID; set => _AlumnoID = value; }
+        public Usuario UsuarioActual { get => _UsuarioActual; set => _UsuarioActual = value; }
 
         public AlumnoInscripcionDesktop() {
             InitializeComponent();
@@ -38,23 +38,23 @@ namespace UI.Desktop {
             }
         }
 
-        public AlumnoInscripcionDesktop(ModoForm modo, int aID) : this() {
-            AlumnoID = aID;
+        public AlumnoInscripcionDesktop(ModoForm modo, Usuario user) : this() {
+            UsuarioActual = user;
             Modo = modo;
         }
 
 
-        public AlumnoInscripcionDesktop(ModoForm modo, int aID, int ID) : this() {
+        public AlumnoInscripcionDesktop(ModoForm modo, Usuario user, int IDAlumnoInscripcion) : this() {
             Modo = modo;
-            AlumnoID = aID;
+            UsuarioActual = user;
             AlumnoInscripcionLogic auxInsc = new AlumnoInscripcionLogic();
-            InscripcionActual = auxInsc.GetOne(ID);
+            InscripcionActual = auxInsc.GetOne(IDAlumnoInscripcion);
             MapearDeDatos();
         }
 
 
         public override void MapearDeDatos() {
-            txtID.Text = InscripcionActual.ID.ToString();
+            labelID.Text = InscripcionActual.ID.ToString();
             CursoLogic cl = new CursoLogic();
             Curso crs = cl.GetOne(InscripcionActual.IDCurso);
             cbCurso.Text = crs.IDString;
@@ -65,7 +65,7 @@ namespace UI.Desktop {
 
             cbCondicion.Text = InscripcionActual.Condicion.ToString();
 
-            nudNota.Value = InscripcionActual.Nota;
+          //  nudNota.Value = InscripcionActual.Nota;
 
 
             switch (Modo) {
@@ -99,14 +99,14 @@ namespace UI.Desktop {
                     InscripcionActual = new AlumnoInscripcion();
                     InscripcionActual.IDCurso = getCrsID(cbCurso.Text);
                     InscripcionActual.IDAlumno = getUsrID(cbAlumno.Text);
-                    InscripcionActual.Nota = (int)nudNota.Value;
+               //     InscripcionActual.Nota = (int)nudNota.Value;
                     InscripcionActual.Condicion = (AlumnoInscripcion.Condiciones)System.Enum.Parse(typeof(AlumnoInscripcion.Condiciones), cbCondicion.Text);
                     InscripcionActual.State = BusinessEntity.States.New;
                     break;
                 case ModoForm.Modificacion:
                     InscripcionActual.IDCurso = getCrsID(cbCurso.Text);
                     InscripcionActual.IDAlumno = getUsrID(cbAlumno.Text);
-                    InscripcionActual.Nota = (int)nudNota.Value;
+             //       InscripcionActual.Nota = (int)nudNota.Value;
                     InscripcionActual.Condicion = (AlumnoInscripcion.Condiciones)System.Enum.Parse(typeof(AlumnoInscripcion.Condiciones), cbCondicion.Text);
                     break;
                 case ModoForm.Baja:
