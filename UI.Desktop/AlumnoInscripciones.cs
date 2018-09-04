@@ -58,8 +58,8 @@ namespace UI.Desktop{
 
             UsuarioLogic ul = new UsuarioLogic();
             List<Usuario> usuarios = ul.GetAll();
-            CursoMatComLogic cmcl = new CursoMatComLogic();
-            List<CursoMatCom> cursos = cmcl.GetAll();
+         //   CursoMatComLogic cmcl = new CursoMatComLogic();
+         //   List<CursoMatCom> cursos = cmcl.GetAll();
 
             foreach(AlumnoInscripcion ai in inscripciones) {
                 DataRow Linea = Listado.NewRow();
@@ -73,11 +73,11 @@ namespace UI.Desktop{
                         break;
                     }
                 }
-                foreach(CursoMatCom cmc in cursos) {
-                    if(cmc.ID == ai.IDCurso) {
-                        Linea["Curso"] = cmc.DescComision + " - " + cmc.DescMateria;
-                    }
-                }
+              //  foreach(CursoMatCom cmc in cursos) {
+                //    if(cmc.ID == ai.IDCurso) {
+                  //      Linea["Curso"] = cmc.DescComision + " - " + cmc.DescMateria;
+                   //}
+                //}
                 Listado.Rows.Add(Linea);
             }
 
