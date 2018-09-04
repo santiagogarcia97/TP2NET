@@ -27,6 +27,7 @@ namespace Data.Database
                     insc.IDAlumno = (int)drAlumnoInscripciones["id_alumno"];
                     insc.IDCurso = (int)drAlumnoInscripciones["id_curso"];
                     insc.Nota = (int)drAlumnoInscripciones["nota"];
+                    insc.Habilitado = (bool)drAlumnoInscripciones["ai_hab"];
                     insc.Condicion = (AlumnoInscripcion.Condiciones)System.Enum.Parse(typeof(AlumnoInscripcion.Condiciones), (string)drAlumnoInscripciones["condicion"]);
                     alumnoInscripciones.Add(insc);
                 }
@@ -60,6 +61,7 @@ namespace Data.Database
                     insc.IDAlumno = (int)drAlumnoInscripciones["id_alumno"];
                     insc.IDCurso = (int)drAlumnoInscripciones["id_curso"];
                     insc.Nota = (int)drAlumnoInscripciones["nota"];
+                    insc.Habilitado = (bool)drAlumnoInscripciones["ai_hab"];
                     insc.Condicion = (AlumnoInscripcion.Condiciones)System.Enum.Parse(typeof(AlumnoInscripcion.Condiciones), (string)drAlumnoInscripciones["condicion"]);
                 }
                 drAlumnoInscripciones.Close();
@@ -101,7 +103,7 @@ namespace Data.Database
             {
                 this.OpenConnection();
                 SqlCommand cmdSave = new SqlCommand("UPDATE alumnos_inscripciones SET id_alumno = @id_alumno, " +
-                    "id_curso = @id_curso, nota = @nota, condicion = @ condicion" +
+                    "id_curso = @id_curso, nota = @nota, condicion = @condicion, ai_hab = @ai_hab" +
                     "WHERE id_inscripcion=@id", SqlConn);
 
                 cmdSave.Parameters.Add("@id", SqlDbType.Int).Value = insc.ID;
@@ -109,6 +111,7 @@ namespace Data.Database
                 cmdSave.Parameters.Add("@id_curso", SqlDbType.Int).Value = insc.IDCurso;
                 cmdSave.Parameters.Add("@nota", SqlDbType.Int).Value = insc.Nota;
                 cmdSave.Parameters.Add("@condicion", SqlDbType.Int).Value = insc.Condicion.ToString();
+                cmdSave.Parameters.Add("@ai_hab", SqlDbType.Bit).Value = insc.Habilitado;
                 cmdSave.ExecuteNonQuery();
             }
             catch (Exception Ex)
@@ -127,13 +130,15 @@ namespace Data.Database
             try
             {
                 this.OpenConnection();
-                SqlCommand cmdSave = new SqlCommand("INSERT INTO alumnos_inscripciones(id_alumno, id_curso, nota, condicion) " +
-                    "values(@id_alumno, @id_curso, @nota, @condicion) SELECT @@identity", SqlConn);
+                SqlCommand cmdSave = new SqlCommand("INSERT INTO alumnos_inscripciones(id_alumno, id_curso, nota, condicion, ai_hab) " +
+                    "values(@id_alumno, @id_curso, @nota, @condicion, @ai_hab) SELECT @@identity", SqlConn);
                 cmdSave.Parameters.Add("@id", SqlDbType.Int).Value = insc.ID;
                 cmdSave.Parameters.Add("@id_alumno", SqlDbType.Int).Value = insc.IDAlumno;
                 cmdSave.Parameters.Add("@id_curso", SqlDbType.Int).Value = insc.IDCurso;
                 cmdSave.Parameters.Add("@nota", SqlDbType.Int).Value = insc.Nota;
                 cmdSave.Parameters.Add("@condicion", SqlDbType.Int).Value = insc.Condicion.ToString();
+                cmdSave.Parameters.Add("@ai_hab", SqlDbType.Bit).Value = insc.Habilitado;
+
                 insc.ID = Decimal.ToInt32((decimal)cmdSave.ExecuteScalar());
             }
             catch (Exception Ex)

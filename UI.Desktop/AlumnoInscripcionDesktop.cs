@@ -25,13 +25,13 @@ namespace UI.Desktop {
             List<Usuario> usuarios = ul.GetAll();
             foreach (Usuario usr in usuarios) {
                 if (usr.TipoPersona == 1) {
-                    cbAlumno.Items.Add(usr.IDString);
+                    //cbAlumno.Items.Add(usr.IDString);
                 }
             }
             CursoLogic cl = new CursoLogic();
             List<Curso> cursos = cl.GetAll();
             foreach (Curso cur in cursos) {
-                cbCurso.Items.Add(cur.IDString);
+                //cbCurso.Items.Add(cur.IDString);
             }
             foreach (string con in Enum.GetNames(typeof(Condiciones))) {
                 cbCondicion.Items.Add(con);
@@ -57,11 +57,11 @@ namespace UI.Desktop {
             txtID.Text = InscripcionActual.ID.ToString();
             CursoLogic cl = new CursoLogic();
             Curso crs = cl.GetOne(InscripcionActual.IDCurso);
-            cbCurso.Text = crs.IDString;
+          //  cbCurso.Text = crs.IDString;
 
             UsuarioLogic ul = new UsuarioLogic();
             Usuario usr = ul.GetOne(InscripcionActual.IDAlumno);
-            cbAlumno.Text = usr.IDString;
+            //cbAlumno.Text = usr.IDString;
 
             cbCondicion.Text = InscripcionActual.Condicion.ToString();
 
@@ -149,9 +149,9 @@ namespace UI.Desktop {
             CursoLogic cl = new CursoLogic();
             List<Curso> cursos = cl.GetAll();
             foreach (Curso crs in cursos) {
-                if (crs.IDString == StrID) {
-                    return crs.ID;
-                }
+               // if (crs.IDString == StrID) {
+                 //   return crs.ID;
+                //}
             }
             return (0);
         }
@@ -160,9 +160,9 @@ namespace UI.Desktop {
             UsuarioLogic ul = new UsuarioLogic();
             List<Usuario> usuarios = ul.GetAll();
             foreach (Usuario usr in usuarios) {
-                if (usr.IDString == StrID) {
-                    return usr.ID;
-                }
+            //    if (usr.IDString == StrID) {
+              //      return usr.ID;
+                //}
             }
             return (0);
         }
