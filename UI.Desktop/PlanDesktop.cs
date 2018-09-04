@@ -73,6 +73,7 @@ namespace UI.Desktop {
                     PlanActual = new Plan();
                     PlanActual.Descripcion = txtDescripcion.Text;
                     PlanActual.IDEspecialidad = (int)cbEspecialidad.SelectedValue;
+                    PlanActual.Habilitado = true;
                     PlanActual.State = BusinessEntity.States.New;
                     break;
                 case ModoForm.Modificacion:

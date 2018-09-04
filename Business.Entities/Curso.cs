@@ -9,7 +9,6 @@ namespace Business.Entities {
         private int _AnioCalendario;
         private int _Cupo;
         private string _Descripcion;
-        private string _IDString;
         private int _IDComision;
         private int _IDMateria;
 
@@ -26,11 +25,6 @@ namespace Business.Entities {
         public string Descripcion {
             get { return _Descripcion; }
             set { _Descripcion = value; }
-        }
-
-        public string IDString {
-            get { return _IDString; }
-            set { _IDString = value; }
         }
 
         public int IDComision {

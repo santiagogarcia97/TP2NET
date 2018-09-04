@@ -53,6 +53,7 @@ namespace UI.Desktop {
                 case ModoForm.Alta:
                     EspecialidadActual = new Especialidad();
                     EspecialidadActual.Descripcion = txtDescripcion.Text;
+                    especialidadActual.Habilitado = true;
                     EspecialidadActual.State = BusinessEntity.States.New;
                     break;
                 case ModoForm.Modificacion:

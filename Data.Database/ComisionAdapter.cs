@@ -23,6 +23,7 @@ namespace Data.Database {
                     com.Descripcion = (string)drComisiones["desc_comision"];
                     com.AnioEspecialidad = (int)drComisiones["anio_especialidad"];
                     com.IDPlan = (int)drComisiones["id_plan"];
+                    com.Habilitado = (bool)drComisiones["com_hab"];
                     comisiones.Add(com);
                 }
                 drComisiones.Close();
@@ -50,6 +51,7 @@ namespace Data.Database {
                     com.Descripcion = (string)drComisiones["desc_comision"];
                     com.AnioEspecialidad = (int)drComisiones["anio_especialidad"];
                     com.IDPlan = (int)drComisiones["id_plan"];
+                    com.Habilitado = (bool)drComisiones["com_hab"];
 
                 }
                 drComisiones.Close();
@@ -83,13 +85,14 @@ namespace Data.Database {
             try {
                 this.OpenConnection();
                 SqlCommand cmdSave = new SqlCommand("UPDATE comisiones SET id_plan = @idplan, " +
-                    "desc_comision = @desc, anio_especialidad = @anio " +
+                    "desc_comision = @desc, anio_especialidad = @anio, com_hab = @com_hab " +
                     "WHERE id_comision=@id", SqlConn);
 
                 cmdSave.Parameters.Add("@id", SqlDbType.Int).Value = com.ID;
                 cmdSave.Parameters.Add("@desc", SqlDbType.VarChar, 50).Value = com.Descripcion;
                 cmdSave.Parameters.Add("@anio", SqlDbType.Int).Value = com.AnioEspecialidad;
                 cmdSave.Parameters.Add("@idplan", SqlDbType.Int).Value = com.IDPlan;
+                cmdSave.Parameters.Add("@com_hab", SqlDbType.Bit).Value = com.Habilitado;
                 cmdSave.ExecuteNonQuery();
             }
             catch (Exception Ex) {
@@ -104,11 +107,13 @@ namespace Data.Database {
 
             try {
                 this.OpenConnection();
-                SqlCommand cmdSave = new SqlCommand("INSERT INTO comisiones(desc_comision, anio_especialidad, id_plan) " +
-                    "values(@desc, @anio, @idplan) SELECT @@identity", SqlConn);
+                SqlCommand cmdSave = new SqlCommand("INSERT INTO comisiones(desc_comision, anio_especialidad, id_plan, com_hab) " +
+                    "values(@desc, @anio, @idplan, @com_hab) SELECT @@identity", SqlConn);
                 cmdSave.Parameters.Add("@desc", SqlDbType.VarChar, 50).Value = com.Descripcion;
                 cmdSave.Parameters.Add("@anio", SqlDbType.Int).Value = com.AnioEspecialidad;
                 cmdSave.Parameters.Add("@idplan", SqlDbType.Int).Value = com.IDPlan;
+                cmdSave.Parameters.Add("@com_hab", SqlDbType.Bit).Value = com.Habilitado;
+
                 com.ID = Decimal.ToInt32((decimal)cmdSave.ExecuteScalar());
             }
             catch (Exception Ex) {
