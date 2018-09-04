@@ -1,8 +1,6 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="UI.Web.Site" %>
-<html xmlns="http://www.w3.org/1999/xhtml">
-    <head runat="server">
-        <title>Academia</title>
-    </head>
+
+
     <body>
         <form id="bodyForm" runat="server">
             <asp:Menu runat="server" ID ="menu" DataSourceID="SiteMapDataSource">
@@ -14,4 +12,3 @@
             </div>
         </form>
     </body>
-</html>

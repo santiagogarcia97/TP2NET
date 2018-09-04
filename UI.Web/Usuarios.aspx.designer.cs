@@ -175,6 +175,24 @@ namespace UI.Web {
         protected global::System.Web.UI.WebControls.TextBox nombreUsuarioTextBox;
         
         /// <summary>
+        /// LegajoLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LegajoLabel;
+        
+        /// <summary>
+        /// LegajoTextBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox LegajoTextBox;
+        
+        /// <summary>
         /// claveLabel control.
         /// </summary>
         /// <remarks>
@@ -202,13 +220,13 @@ namespace UI.Web {
         protected global::System.Web.UI.WebControls.Label repetirClaveLabel;
         
         /// <summary>
-        /// repetirClave control.
+        /// repetirClaveTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox repetirClave;
+        protected global::System.Web.UI.WebControls.TextBox repetirClaveTextBox;
         
         /// <summary>
         /// fechaLabel control.
