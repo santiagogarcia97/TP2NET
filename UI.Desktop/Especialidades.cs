@@ -18,6 +18,8 @@ namespace UI.Desktop {
         }
 
         public void Listar() {
+            this.dgvEspecialidades.DataSource = null;
+            this.dgvEspecialidades.Refresh();
             EspecialidadLogic esp = new EspecialidadLogic();
             List<Especialidad> especialidades = esp.GetAll();
             if (especialidades.Count() == 0)
@@ -50,15 +52,6 @@ namespace UI.Desktop {
             if (this.dgvEspecialidades.SelectedRows.Count != 0) {
                 int ID = ((Business.Entities.Especialidad)this.dgvEspecialidades.SelectedRows[0].DataBoundItem).ID;
                 EspecialidadDesktop especialidadDesktop = new EspecialidadDesktop(ID, ApplicationForm.ModoForm.Baja);
-                especialidadDesktop.ShowDialog();
-                this.Listar();
-            }
-        }
-
-        private void tsbConsultar_Click(object sender, EventArgs e) {
-            if (this.dgvEspecialidades.SelectedRows.Count != 0) {
-                int ID = ((Business.Entities.Especialidad)this.dgvEspecialidades.SelectedRows[0].DataBoundItem).ID;
-                EspecialidadDesktop especialidadDesktop = new EspecialidadDesktop(ID, ApplicationForm.ModoForm.Consulta);
                 especialidadDesktop.ShowDialog();
                 this.Listar();
             }

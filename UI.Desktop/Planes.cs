@@ -15,26 +15,48 @@ namespace UI.Desktop {
         public Planes() {
             InitializeComponent();
             this.dgvPlanes.AutoGenerateColumns = false;
-            this.Listar();
-            
         }
 
         public void Listar() {
+            this.dgvPlanes.DataSource = null; //Se  limpia el DataGridView
+            this.dgvPlanes.Refresh();
+
             PlanLogic pl = new PlanLogic();
             List<Plan> planes = pl.GetAll();
-            if (planes.Count() == 0)
-            {
+            if (planes.Count() == 0) {
                 MessageBox.Show("No hay planes cargados!");
             }
-            this.dgvPlanes.DataSource = planes;
+            else {
+                DataTable Listado = new DataTable(); //Este DataTable se va a utilizar como source del dgv
+                Listado.Columns.Add("ID", typeof(int));
+                Listado.Columns.Add("Descripcion", typeof(string));
+                Listado.Columns.Add("Especialidad", typeof(string));
+
+                //Seobtiene la lista de especialidades para mostrar su descripcion en la columna conrrespondiente
+                //en vez de ver el id que aporta poca informacion
+                EspecialidadLogic el = new EspecialidadLogic();
+                List<Especialidad> especialidades = el.GetAll();
+
+                foreach (Plan plan in planes) {
+                    DataRow Linea = Listado.NewRow();
+
+                    Linea["ID"] = plan.ID;
+                    Linea["Descripcion"] = plan.Descripcion;
+                    foreach (Especialidad esp in especialidades) {
+                        if (esp.ID == plan.IDEspecialidad) {
+                            //Se busca la especialidad del plan, se carga la columna con la descripcion y se sale del bucle
+                            Linea["Especialidad"] = esp.Descripcion;
+                            break;
+                        }
+                    }
+                    Listado.Rows.Add(Linea);
+                }
+                this.dgvPlanes.DataSource = Listado;
+            }
         }
 
         private void Planes_Load(object sender, EventArgs e) {
-            Listar();
-        }
-        private void btnActualizar_Click(object sender, EventArgs e)
-        {
-            Listar();
+            this.Listar();
         }
 
         private void btnSalir_Click(object sender, EventArgs e) {
@@ -49,7 +71,7 @@ namespace UI.Desktop {
 
         private void tsbEditar_Click(object sender, EventArgs e) {
             if (this.dgvPlanes.SelectedRows.Count != 0) {
-                int ID = ((Business.Entities.Plan)this.dgvPlanes.SelectedRows[0].DataBoundItem).ID;
+                int ID = (int)this.dgvPlanes.SelectedRows[0].Cells["id"].Value;
                 PlanDesktop planDesktop = new PlanDesktop(ID, ApplicationForm.ModoForm.Modificacion);
                 planDesktop.ShowDialog();
                 this.Listar();
@@ -58,17 +80,8 @@ namespace UI.Desktop {
 
         private void tsbEliminar_Click(object sender, EventArgs e) {
             if (this.dgvPlanes.SelectedRows.Count != 0) {
-                int ID = ((Business.Entities.Plan)this.dgvPlanes.SelectedRows[0].DataBoundItem).ID;
+                int ID = (int)this.dgvPlanes.SelectedRows[0].Cells["id"].Value;
                 PlanDesktop planDesktop = new PlanDesktop(ID, ApplicationForm.ModoForm.Baja);
-                planDesktop.ShowDialog();
-                this.Listar();
-            }
-        }
-
-        private void tsbConsultar_Click(object sender, EventArgs e) {
-            if (this.dgvPlanes.SelectedRows.Count != 0) {
-                int ID = ((Business.Entities.Plan)this.dgvPlanes.SelectedRows[0].DataBoundItem).ID;
-                PlanDesktop planDesktop = new PlanDesktop(ID, ApplicationForm.ModoForm.Consulta);
                 planDesktop.ShowDialog();
                 this.Listar();
             }

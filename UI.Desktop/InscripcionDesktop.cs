@@ -30,15 +30,15 @@ namespace UI.Desktop
             List<Usuario> usuarios = ul.GetAll();
             foreach (Usuario usr in usuarios)
             {
-                if (usr.TipoPersona == 1){
-                    cbAlumno.Items.Add(usr.IDString);
-                }
+        //        if (usr.TipoPersona == 1){
+          //          cbAlumno.Items.Add(usr.IDString);
+            //    }
             }
             CursoLogic cl = new CursoLogic();
             List<Curso> cursos = cl.GetAll();
             foreach (Curso cur in cursos)
             {
-                cbCurso.Items.Add(cur.IDString);
+           //     cbCurso.Items.Add(cur.IDString);
             }
             foreach (string con in Enum.GetNames(typeof(Condiciones)))
             {
@@ -66,15 +66,15 @@ namespace UI.Desktop
             txtID.Text = InscripcionActual.ID.ToString();
             CursoLogic cl = new CursoLogic();
             Curso crs = cl.GetOne(InscripcionActual.IDCurso);
-            cbCurso.Text = crs.IDString;
+        //    cbCurso.Text = crs.IDString;
 
             UsuarioLogic ul = new UsuarioLogic();
             Usuario usr = ul.GetOne(InscripcionActual.IDAlumno);
-            cbAlumno.Text = usr.IDString;
+          //  cbAlumno.Text = usr.IDString;
 
             cbCondicion.Text = InscripcionActual.Condicion.ToString();
 
-            nudNota.Value = InscripcionActual.Nota;
+//            nudNota.Value = InscripcionActual.Nota;
 
 
             switch (Modo)
@@ -111,14 +111,14 @@ namespace UI.Desktop
                     InscripcionActual = new AlumnoInscripcion();
                     InscripcionActual.IDCurso = getCrsID(cbCurso.Text);
                     InscripcionActual.IDAlumno = getUsrID(cbAlumno.Text);
-                    InscripcionActual.Nota = (int)nudNota.Value;
+                 //   InscripcionActual.Nota = (int)nudNota.Value;
                     InscripcionActual.Condicion = (AlumnoInscripcion.Condiciones)System.Enum.Parse(typeof(AlumnoInscripcion.Condiciones), cbCondicion.Text);
                     InscripcionActual.State = BusinessEntity.States.New;
                     break;
                 case ModoForm.Modificacion:
                     InscripcionActual.IDCurso = getCrsID(cbCurso.Text);
                     InscripcionActual.IDAlumno = getUsrID(cbAlumno.Text);
-                    InscripcionActual.Nota = (int)nudNota.Value;
+                   // InscripcionActual.Nota = (int)nudNota.Value;
                     InscripcionActual.Condicion = (AlumnoInscripcion.Condiciones)System.Enum.Parse(typeof(AlumnoInscripcion.Condiciones), cbCondicion.Text);
                     break;
                 case ModoForm.Baja:
@@ -169,10 +169,10 @@ namespace UI.Desktop
             List<Curso> cursos = cl.GetAll();
             foreach (Curso crs in cursos)
             {
-                if (crs.IDString == StrID)
-                {
-                    return crs.ID;
-                }
+          //      if (crs.IDString == StrID)
+            //    {
+              //      return crs.ID;
+                //}
             }
             return (0);
         }
@@ -183,10 +183,10 @@ namespace UI.Desktop
             List<Usuario> usuarios = ul.GetAll();
             foreach (Usuario usr in usuarios)
             {
-                if (usr.IDString == StrID)
-                {
-                    return usr.ID;
-                }
+            //    if (usr.IDString == StrID)
+              //  {
+                //    return usr.ID;
+                //}
             }
             return (0);
         }

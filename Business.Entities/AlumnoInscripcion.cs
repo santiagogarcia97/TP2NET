@@ -9,7 +9,7 @@ namespace Business.Entities {
         private Condiciones _Condicion;
         private int _IDAlumno;
         private int _IDCurso;
-        private int _Nota;
+        private string _Nota;
 
         public enum Condiciones { Regular, Aprobado, Cursando, Libre}
 
@@ -28,7 +28,7 @@ namespace Business.Entities {
             set { _IDCurso = value; }
         }
 
-        public int Nota {
+        public string Nota {
             get { return _Nota; }
             set { _Nota = value; }
         }

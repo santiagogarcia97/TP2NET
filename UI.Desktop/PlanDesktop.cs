@@ -9,23 +9,23 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Business.Logic;
 using Business.Entities;
+using Util;
 
 namespace UI.Desktop {
     public partial class PlanDesktop : ApplicationForm {
 
-        private Business.Entities.Plan _planActual;
-        public Business.Entities.Plan PlanActual {
-            get { return _planActual; }
-            set { _planActual = value; }
-        }
+        private Plan _planActual;
+        public Plan PlanActual {get { return _planActual; }set { _planActual = value; }}
 
         public PlanDesktop() {
             InitializeComponent();
-            EspecialidadLogic el = new EspecialidadLogic();
-            List<Especialidad> especialidades = el.GetAll();
-            foreach (Especialidad esp in especialidades) {
-                cbEspecialidad.Items.Add(esp.IDString);
-            }
+
+            //Se genera el comobox de especialidades
+            //getEspecialidades devuelve un DataTable con un columna de ID y otra de Descripcion
+            //La de ID se usa como valor interno al seleccionar una opcion y la Desc es la que se muestra al usuario
+            cbEspecialidad.ValueMember = "id_esp";
+            cbEspecialidad.DisplayMember = "desc_esp";
+            cbEspecialidad.DataSource = GenerarComboBox.getEspecialidades();
         }
 
         public PlanDesktop(ModoForm modo) : this() {
@@ -44,7 +44,7 @@ namespace UI.Desktop {
             txtDescripcion.Text = PlanActual.Descripcion;
             EspecialidadLogic el = new EspecialidadLogic();
             Especialidad esp = el.GetOne(PlanActual.IDEspecialidad);
-            cbEspecialidad.Text = esp.IDString;
+            cbEspecialidad.SelectedValue = PlanActual.IDEspecialidad;
 
             switch (Modo) {
                 case ModoForm.Alta:
@@ -72,19 +72,17 @@ namespace UI.Desktop {
                 case ModoForm.Alta:
                     PlanActual = new Plan();
                     PlanActual.Descripcion = txtDescripcion.Text;
-                    PlanActual.IDEspecialidad = getEspID(cbEspecialidad.Text);
+                    PlanActual.IDEspecialidad = (int)cbEspecialidad.SelectedValue;
+                    PlanActual.Habilitado = true;
                     PlanActual.State = BusinessEntity.States.New;
                     break;
                 case ModoForm.Modificacion:
                     PlanActual.Descripcion = txtDescripcion.Text;
                     PlanActual.State = BusinessEntity.States.Modified;
-                    PlanActual.IDEspecialidad = getEspID(cbEspecialidad.Text);
+                    PlanActual.IDEspecialidad = (int)cbEspecialidad.SelectedValue;
                     break;
                 case ModoForm.Baja:
                     PlanActual.State = BusinessEntity.States.Deleted;
-                    break;
-                case ModoForm.Consulta:
-                    PlanActual.State = BusinessEntity.States.Unmodified;
                     break;
             }
         }
@@ -111,19 +109,5 @@ namespace UI.Desktop {
             }
         }
 
-        private void btnCancelar_Click(object sender, EventArgs e) {
-            this.Close();
-        }
-
-        private int getEspID(string StrID) {
-            EspecialidadLogic el = new EspecialidadLogic();
-            List<Especialidad> especialidades = el.GetAll();
-            foreach (Especialidad esp in especialidades) {
-                if(esp.IDString == StrID) {
-                    return esp.ID;
-                }
-            }
-            return (0);
-        }
     }
 }

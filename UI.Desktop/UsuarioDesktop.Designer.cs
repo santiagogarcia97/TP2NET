@@ -394,7 +394,6 @@
             this.cbxEsp.Location = new System.Drawing.Point(134, 373);
             this.cbxEsp.Name = "cbxEsp";
             this.cbxEsp.Size = new System.Drawing.Size(136, 21);
-            this.cbxEsp.Sorted = true;
             this.cbxEsp.TabIndex = 26;
             this.cbxEsp.SelectedValueChanged += new System.EventHandler(this.cbxEsp_SelectedValueChanged);
             // 
@@ -573,8 +572,9 @@
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(455, 480);
             this.Name = "UsuarioDesktop";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "UsuarioDesktop";
+            this.Load += new System.EventHandler(this.UsuarioDesktop_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);

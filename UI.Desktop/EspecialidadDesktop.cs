@@ -14,11 +14,8 @@ using Business.Entities;
 namespace UI.Desktop {
     public partial class EspecialidadDesktop : ApplicationForm {
 
-        public Business.Entities.Especialidad _especialidadActual;
-        public Business.Entities.Especialidad EspecialidadActual {
-            get { return _especialidadActual; }
-            set { _especialidadActual = value; }
-        }
+        private Business.Entities.Especialidad especialidadActual;
+        public Especialidad EspecialidadActual { get => especialidadActual; set => especialidadActual = value; }
 
         public EspecialidadDesktop() {
             InitializeComponent();
@@ -41,25 +38,22 @@ namespace UI.Desktop {
 
             switch (Modo) {
                 case ModoForm.Alta:
-                case ModoForm.Modificacion:                     //Equivalente a if(Modo == ModoForm.Alta || Modo == Modoform.Modificacion){...}
+                case ModoForm.Modificacion:             //Equivalente a if(Modo == ModoForm.Alta || Modo == Modoform.Modificacion){...}
                     btnAceptar.Text = "Guardar";
                     break;
                 case ModoForm.Baja:
                     btnAceptar.Text = "Eliminar";
                     txtDescripcion.ReadOnly = true;
                     break;
-                case ModoForm.Consulta:
-                    btnAceptar.Text = "Aceptar";
-                    txtDescripcion.ReadOnly = true;
-                    break;
             }
         }
 
         public override void MapearADatos() {
-            switch (Modo) {                                      //Emprolijar: Evitar repetición de asignaciones  
+            switch (Modo) {                                      
                 case ModoForm.Alta:
                     EspecialidadActual = new Especialidad();
                     EspecialidadActual.Descripcion = txtDescripcion.Text;
+                    especialidadActual.Habilitado = true;
                     EspecialidadActual.State = BusinessEntity.States.New;
                     break;
                 case ModoForm.Modificacion:
@@ -68,9 +62,6 @@ namespace UI.Desktop {
                     break;
                 case ModoForm.Baja:
                     EspecialidadActual.State = BusinessEntity.States.Deleted;
-                    break;
-                case ModoForm.Consulta:
-                    EspecialidadActual.State = BusinessEntity.States.Unmodified;
                     break;
             }
         }
@@ -93,10 +84,6 @@ namespace UI.Desktop {
             else {
                 MessageBox.Show("Complete todos los campos.");
             }
-        }
-
-        private void btnCancelar_Click(object sender, EventArgs e) {
-            this.Close();
         }
     }
 }

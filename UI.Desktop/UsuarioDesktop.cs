@@ -21,20 +21,14 @@ namespace UI.Desktop {
 
         public UsuarioDesktop() {
             InitializeComponent();
+            this.GenerarTipoPersona();
 
-            lblRedAp.Visible = false;
-            lblRedClave.Visible = false;
-            lblRedDirec.Visible = false;
-            lblRedEmail.Visible = false;
-            lblRedNac.Visible = false;
-            lblRedNom.Visible = false;
-            lblRedPlan.Visible = false;
-            lblRedTel.Visible = false;
-            lblRedTipo.Visible = false;
-            lblRedUser.Visible = false;
-
-            GenerarTipoPersona();
-            GenerarEsp();
+            //Se genera el comobox de especialidades
+            //getEspecialidades devuelve un DataTable con un columna de ID y otra de Descripcion
+            //La de ID se usa como valor interno al seleccionar una opcion y la Desc es la que se muestra al usuario
+            cbxEsp.ValueMember = "id_esp";
+            cbxEsp.DisplayMember = "desc_esp";
+            cbxEsp.DataSource = GenerarComboBox.getEspecialidades();
         }
 
         public UsuarioDesktop(ModoForm modo):this() {
@@ -57,6 +51,20 @@ namespace UI.Desktop {
             GenerarPlanes(plan.IDEspecialidad);
 
             MapearDeDatos(plan);
+            //El plan se pasa como argumento para tener el id de la especilidad y seleccionarlo en el combobox
+        }
+
+        private void UsuarioDesktop_Load(object sender, EventArgs e) {
+            lblRedAp.Visible = false;
+            lblRedClave.Visible = false;
+            lblRedDirec.Visible = false;
+            lblRedEmail.Visible = false;
+            lblRedNac.Visible = false;
+            lblRedNom.Visible = false;
+            lblRedPlan.Visible = false;
+            lblRedTel.Visible = false;
+            lblRedTipo.Visible = false;
+            lblRedUser.Visible = false;
         }
 
         public void MapearDeDatos(Plan plan) {
@@ -111,8 +119,8 @@ namespace UI.Desktop {
                 UsuarioActual.Email = txtEmail.Text;
                 UsuarioActual.NombreUsuario = txtNombreUsuario.Text;
                 UsuarioActual.Clave = txtClave.Text;
-                UsuarioActual.TipoPersona = Int32.Parse(cbxTipo.SelectedValue.ToString());
-                UsuarioActual.IDPlan = Int32.Parse(cbxPlan.SelectedValue.ToString());
+                UsuarioActual.TipoPersona = (int)cbxTipo.SelectedValue;
+                UsuarioActual.IDPlan = (int)cbxPlan.SelectedValue;
 
                 if (Modo == ModoForm.Alta) {
                     UsuarioActual.State = BusinessEntity.States.New;
@@ -127,51 +135,18 @@ namespace UI.Desktop {
             }
         }
         private void GenerarTipoPersona() {
-            DataTable dtTiposPersona = new DataTable();
-
-            dtTiposPersona.Columns.Add("tipo_persona", typeof(int));
-            dtTiposPersona.Columns.Add("desc_tipo", typeof(string));
-
-            dtTiposPersona.Rows.Add(new object[] { 1, "Alumno" });
-            dtTiposPersona.Rows.Add(new object[] { 2, "Docente" });
-            dtTiposPersona.Rows.Add(new object[] { 3, "Administrativo" });
-
+            //Se genera el comobox de personas el funcionamiento es igual al de especialidades
             cbxTipo.ValueMember = "tipo_persona";
             cbxTipo.DisplayMember = "desc_tipo";
-            cbxTipo.DataSource = dtTiposPersona;
+            cbxTipo.DataSource = GenerarComboBox.getTiposPersona();
         }
-
-        private void GenerarEsp() {
-            DataTable dtEspecialidades = new DataTable();
-            dtEspecialidades.Columns.Add("id_esp", typeof(int));
-            dtEspecialidades.Columns.Add("desc_esp", typeof(string));
-            EspecialidadLogic el = new EspecialidadLogic();
-            List<Especialidad> especialidades = el.GetAll();
-            foreach (Especialidad esp in especialidades) {
-                dtEspecialidades.Rows.Add(new object[] { esp.ID, esp.Descripcion });
-            }
-
-            cbxEsp.ValueMember = "id_esp";
-            cbxEsp.DisplayMember = "desc_esp";
-            cbxEsp.DataSource = dtEspecialidades;
-        }
-
         private void GenerarPlanes(int idEsp) {
-            DataTable dtPlanes = new DataTable();
-            dtPlanes.Columns.Add("id_plan", typeof(int));
-            dtPlanes.Columns.Add("desc_plan", typeof(string));
-            PlanLogic pl = new PlanLogic();
-            List<Plan> planes = pl.GetAll();
-            foreach(Plan plan in planes) {
-                if(plan.IDEspecialidad == idEsp) {
-                    dtPlanes.Rows.Add(new object[] { plan.ID, plan.Descripcion });
-                }
-            }
+            //Se genera el comobox de planes el funcionamiento es igual al de especialidades solo que se pasa
+            //el id de la esp para filtrar los planes de dicha esp
             cbxPlan.ValueMember = "id_plan";
             cbxPlan.DisplayMember = "desc_plan";
-            cbxPlan.DataSource = dtPlanes;
+            cbxPlan.DataSource = GenerarComboBox.getPlanes(idEsp);
         }
-
         private void btnAceptar_Click(object sender, EventArgs e) {
             if (this.Validar() == true) {
                 GuardarCambios();
@@ -181,13 +156,11 @@ namespace UI.Desktop {
                 MessageBox.Show("Verifique los datos ingresados");
             }
         }
-
         public override void GuardarCambios() {
             MapearADatos();
             UsuarioLogic ul = new UsuarioLogic();
             ul.Save(UsuarioActual);
         }
-
         public override bool Validar() {
             lblRedAp.Visible = (string.IsNullOrWhiteSpace(txtApellido.Text)) ? true : false;
             lblRedClave.Visible = (string.IsNullOrWhiteSpace(txtClave.Text)) ? true : false;
@@ -219,10 +192,13 @@ namespace UI.Desktop {
         }
 
         private void cbxEsp_SelectedValueChanged(object sender, EventArgs e) {
+            cbxPlan.Text = "";
             if (cbxEsp.SelectedValue != null) {
-                GenerarPlanes(Int32.Parse(cbxEsp.SelectedValue.ToString()));
+                //Si el valor del combobox de especialidades cambia, se vuelven a generar los planes
+                //pasando como argumento el id de la especialidad para mostrar solo los planes que
+                //corresponden a dicha especialidad
+                GenerarPlanes((int)cbxEsp.SelectedValue);
             }
         }
-
     }
 }

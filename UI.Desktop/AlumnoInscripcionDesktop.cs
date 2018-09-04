@@ -13,20 +13,11 @@ using static Business.Entities.AlumnoInscripcion;
 
 namespace UI.Desktop {
     public partial class AlumnoInscripcionDesktop : ApplicationForm {
-        private AlumnoInscripcion _inscripcionActual;
-        private int _aID;
+        private AlumnoInscripcion _InscripcionActual;
+        private Usuario _UsuarioActual;
 
-
-        public int AlumnoID {
-            get { return _aID; }
-            set { _aID = value; }
-        }
-
-        public AlumnoInscripcion InscripcionActual {
-            get { return _inscripcionActual; }
-            set { _inscripcionActual = value; }
-        }
-
+        public AlumnoInscripcion InscripcionActual { get => _InscripcionActual; set => _InscripcionActual = value; }
+        public Usuario UsuarioActual { get => _UsuarioActual; set => _UsuarioActual = value; }
 
         public AlumnoInscripcionDesktop() {
             InitializeComponent();
@@ -34,47 +25,47 @@ namespace UI.Desktop {
             List<Usuario> usuarios = ul.GetAll();
             foreach (Usuario usr in usuarios) {
                 if (usr.TipoPersona == 1) {
-                    cbAlumno.Items.Add(usr.IDString);
+                    //cbAlumno.Items.Add(usr.IDString);
                 }
             }
             CursoLogic cl = new CursoLogic();
             List<Curso> cursos = cl.GetAll();
             foreach (Curso cur in cursos) {
-                cbCurso.Items.Add(cur.IDString);
+                //cbCurso.Items.Add(cur.IDString);
             }
             foreach (string con in Enum.GetNames(typeof(Condiciones))) {
                 cbCondicion.Items.Add(con);
             }
         }
 
-        public AlumnoInscripcionDesktop(ModoForm modo, int aID) : this() {
-            AlumnoID = aID;
+        public AlumnoInscripcionDesktop(ModoForm modo, Usuario user) : this() {
+            UsuarioActual = user;
             Modo = modo;
         }
 
 
-        public AlumnoInscripcionDesktop(ModoForm modo, int aID, int ID) : this() {
+        public AlumnoInscripcionDesktop(ModoForm modo, Usuario user, int IDAlumnoInscripcion) : this() {
             Modo = modo;
-            AlumnoID = aID;
+            UsuarioActual = user;
             AlumnoInscripcionLogic auxInsc = new AlumnoInscripcionLogic();
-            InscripcionActual = auxInsc.GetOne(ID);
+            InscripcionActual = auxInsc.GetOne(IDAlumnoInscripcion);
             MapearDeDatos();
         }
 
 
         public override void MapearDeDatos() {
-            txtID.Text = InscripcionActual.ID.ToString();
+            labelID.Text = InscripcionActual.ID.ToString();
             CursoLogic cl = new CursoLogic();
             Curso crs = cl.GetOne(InscripcionActual.IDCurso);
-            cbCurso.Text = crs.IDString;
+          //  cbCurso.Text = crs.IDString;
 
             UsuarioLogic ul = new UsuarioLogic();
             Usuario usr = ul.GetOne(InscripcionActual.IDAlumno);
-            cbAlumno.Text = usr.IDString;
+            //cbAlumno.Text = usr.IDString;
 
             cbCondicion.Text = InscripcionActual.Condicion.ToString();
 
-            nudNota.Value = InscripcionActual.Nota;
+          //  nudNota.Value = InscripcionActual.Nota;
 
 
             switch (Modo) {
@@ -108,14 +99,14 @@ namespace UI.Desktop {
                     InscripcionActual = new AlumnoInscripcion();
                     InscripcionActual.IDCurso = getCrsID(cbCurso.Text);
                     InscripcionActual.IDAlumno = getUsrID(cbAlumno.Text);
-                    InscripcionActual.Nota = (int)nudNota.Value;
+               //     InscripcionActual.Nota = (int)nudNota.Value;
                     InscripcionActual.Condicion = (AlumnoInscripcion.Condiciones)System.Enum.Parse(typeof(AlumnoInscripcion.Condiciones), cbCondicion.Text);
                     InscripcionActual.State = BusinessEntity.States.New;
                     break;
                 case ModoForm.Modificacion:
                     InscripcionActual.IDCurso = getCrsID(cbCurso.Text);
                     InscripcionActual.IDAlumno = getUsrID(cbAlumno.Text);
-                    InscripcionActual.Nota = (int)nudNota.Value;
+             //       InscripcionActual.Nota = (int)nudNota.Value;
                     InscripcionActual.Condicion = (AlumnoInscripcion.Condiciones)System.Enum.Parse(typeof(AlumnoInscripcion.Condiciones), cbCondicion.Text);
                     break;
                 case ModoForm.Baja:
@@ -158,9 +149,9 @@ namespace UI.Desktop {
             CursoLogic cl = new CursoLogic();
             List<Curso> cursos = cl.GetAll();
             foreach (Curso crs in cursos) {
-                if (crs.IDString == StrID) {
-                    return crs.ID;
-                }
+               // if (crs.IDString == StrID) {
+                 //   return crs.ID;
+                //}
             }
             return (0);
         }
@@ -169,9 +160,9 @@ namespace UI.Desktop {
             UsuarioLogic ul = new UsuarioLogic();
             List<Usuario> usuarios = ul.GetAll();
             foreach (Usuario usr in usuarios) {
-                if (usr.IDString == StrID) {
-                    return usr.ID;
-                }
+            //    if (usr.IDString == StrID) {
+              //      return usr.ID;
+                //}
             }
             return (0);
         }
