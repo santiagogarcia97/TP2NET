@@ -29,24 +29,24 @@
         private void InitializeComponent()
         {
             this.dgvAlumnoInscripciones = new System.Windows.Forms.DataGridView();
-            this.tcUsuarios = new System.Windows.Forms.ToolStripContainer();
-            this.tlEspecialidades = new System.Windows.Forms.TableLayoutPanel();
-            this.btnSalir = new System.Windows.Forms.Button();
-            this.btnActualizar = new System.Windows.Forms.Button();
-            this.tsEspecialidades = new System.Windows.Forms.ToolStrip();
-            this.tsbNuevo = new System.Windows.Forms.ToolStripButton();
-            this.tsbEliminar = new System.Windows.Forms.ToolStripButton();
             this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.alumno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.id_curso = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nota = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.condicion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tcAlumnoInscripciones = new System.Windows.Forms.ToolStripContainer();
+            this.tlAlumnoInscripciones = new System.Windows.Forms.TableLayoutPanel();
+            this.btnSalir = new System.Windows.Forms.Button();
+            this.btnActualizar = new System.Windows.Forms.Button();
+            this.tsAlumnoInscripciones = new System.Windows.Forms.ToolStrip();
+            this.tsbNuevo = new System.Windows.Forms.ToolStripButton();
+            this.tsbEliminar = new System.Windows.Forms.ToolStripButton();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAlumnoInscripciones)).BeginInit();
-            this.tcUsuarios.ContentPanel.SuspendLayout();
-            this.tcUsuarios.TopToolStripPanel.SuspendLayout();
-            this.tcUsuarios.SuspendLayout();
-            this.tlEspecialidades.SuspendLayout();
-            this.tsEspecialidades.SuspendLayout();
+            this.tcAlumnoInscripciones.ContentPanel.SuspendLayout();
+            this.tcAlumnoInscripciones.TopToolStripPanel.SuspendLayout();
+            this.tcAlumnoInscripciones.SuspendLayout();
+            this.tlAlumnoInscripciones.SuspendLayout();
+            this.tsAlumnoInscripciones.SuspendLayout();
             this.SuspendLayout();
             // 
             // dgvAlumnoInscripciones
@@ -63,7 +63,7 @@
             this.id_curso,
             this.nota,
             this.condicion});
-            this.tlEspecialidades.SetColumnSpan(this.dgvAlumnoInscripciones, 2);
+            this.tlAlumnoInscripciones.SetColumnSpan(this.dgvAlumnoInscripciones, 2);
             this.dgvAlumnoInscripciones.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvAlumnoInscripciones.Location = new System.Drawing.Point(3, 3);
             this.dgvAlumnoInscripciones.MultiSelect = false;
@@ -74,40 +74,85 @@
             this.dgvAlumnoInscripciones.Size = new System.Drawing.Size(794, 390);
             this.dgvAlumnoInscripciones.TabIndex = 0;
             // 
-            // tcUsuarios
+            // id
+            // 
+            this.id.DataPropertyName = "ID";
+            this.id.HeaderText = "ID Inscripcion";
+            this.id.MinimumWidth = 100;
+            this.id.Name = "id";
+            this.id.ReadOnly = true;
+            this.id.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // alumno
+            // 
+            this.alumno.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.alumno.DataPropertyName = "Alumno";
+            this.alumno.HeaderText = "Alumno";
+            this.alumno.MinimumWidth = 130;
+            this.alumno.Name = "alumno";
+            this.alumno.ReadOnly = true;
+            // 
+            // id_curso
+            // 
+            this.id_curso.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.id_curso.DataPropertyName = "Curso";
+            this.id_curso.HeaderText = "Curso";
+            this.id_curso.MinimumWidth = 130;
+            this.id_curso.Name = "id_curso";
+            this.id_curso.ReadOnly = true;
+            // 
+            // nota
+            // 
+            this.nota.DataPropertyName = "Nota";
+            this.nota.HeaderText = "Nota";
+            this.nota.MinimumWidth = 50;
+            this.nota.Name = "nota";
+            this.nota.ReadOnly = true;
+            this.nota.Width = 50;
+            // 
+            // condicion
+            // 
+            this.condicion.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.condicion.DataPropertyName = "Condicion";
+            this.condicion.HeaderText = "Condicion";
+            this.condicion.MinimumWidth = 100;
+            this.condicion.Name = "condicion";
+            this.condicion.ReadOnly = true;
+            // 
+            // tcAlumnoInscripciones
             // 
             // 
-            // tcUsuarios.ContentPanel
+            // tcAlumnoInscripciones.ContentPanel
             // 
-            this.tcUsuarios.ContentPanel.Controls.Add(this.tlEspecialidades);
-            this.tcUsuarios.ContentPanel.Size = new System.Drawing.Size(800, 425);
-            this.tcUsuarios.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tcUsuarios.Location = new System.Drawing.Point(0, 0);
-            this.tcUsuarios.Name = "tcUsuarios";
-            this.tcUsuarios.Size = new System.Drawing.Size(800, 450);
-            this.tcUsuarios.TabIndex = 3;
-            this.tcUsuarios.Text = "toolStripContainer1";
+            this.tcAlumnoInscripciones.ContentPanel.Controls.Add(this.tlAlumnoInscripciones);
+            this.tcAlumnoInscripciones.ContentPanel.Size = new System.Drawing.Size(800, 425);
+            this.tcAlumnoInscripciones.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tcAlumnoInscripciones.Location = new System.Drawing.Point(0, 0);
+            this.tcAlumnoInscripciones.Name = "tcAlumnoInscripciones";
+            this.tcAlumnoInscripciones.Size = new System.Drawing.Size(800, 450);
+            this.tcAlumnoInscripciones.TabIndex = 3;
+            this.tcAlumnoInscripciones.Text = "toolStripContainer1";
             // 
-            // tcUsuarios.TopToolStripPanel
+            // tcAlumnoInscripciones.TopToolStripPanel
             // 
-            this.tcUsuarios.TopToolStripPanel.Controls.Add(this.tsEspecialidades);
+            this.tcAlumnoInscripciones.TopToolStripPanel.Controls.Add(this.tsAlumnoInscripciones);
             // 
-            // tlEspecialidades
+            // tlAlumnoInscripciones
             // 
-            this.tlEspecialidades.ColumnCount = 2;
-            this.tlEspecialidades.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlEspecialidades.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tlEspecialidades.Controls.Add(this.dgvAlumnoInscripciones, 0, 0);
-            this.tlEspecialidades.Controls.Add(this.btnSalir, 1, 1);
-            this.tlEspecialidades.Controls.Add(this.btnActualizar, 0, 1);
-            this.tlEspecialidades.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlEspecialidades.Location = new System.Drawing.Point(0, 0);
-            this.tlEspecialidades.Name = "tlEspecialidades";
-            this.tlEspecialidades.RowCount = 2;
-            this.tlEspecialidades.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlEspecialidades.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tlEspecialidades.Size = new System.Drawing.Size(800, 425);
-            this.tlEspecialidades.TabIndex = 0;
+            this.tlAlumnoInscripciones.ColumnCount = 2;
+            this.tlAlumnoInscripciones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tlAlumnoInscripciones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tlAlumnoInscripciones.Controls.Add(this.dgvAlumnoInscripciones, 0, 0);
+            this.tlAlumnoInscripciones.Controls.Add(this.btnSalir, 1, 1);
+            this.tlAlumnoInscripciones.Controls.Add(this.btnActualizar, 0, 1);
+            this.tlAlumnoInscripciones.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tlAlumnoInscripciones.Location = new System.Drawing.Point(0, 0);
+            this.tlAlumnoInscripciones.Name = "tlAlumnoInscripciones";
+            this.tlAlumnoInscripciones.RowCount = 2;
+            this.tlAlumnoInscripciones.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tlAlumnoInscripciones.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tlAlumnoInscripciones.Size = new System.Drawing.Size(800, 425);
+            this.tlAlumnoInscripciones.TabIndex = 0;
             // 
             // btnSalir
             // 
@@ -130,16 +175,16 @@
             this.btnActualizar.UseVisualStyleBackColor = true;
             this.btnActualizar.Click += new System.EventHandler(this.AlumnoInscripciones_Load);
             // 
-            // tsEspecialidades
+            // tsAlumnoInscripciones
             // 
-            this.tsEspecialidades.Dock = System.Windows.Forms.DockStyle.None;
-            this.tsEspecialidades.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsAlumnoInscripciones.Dock = System.Windows.Forms.DockStyle.None;
+            this.tsAlumnoInscripciones.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsbNuevo,
             this.tsbEliminar});
-            this.tsEspecialidades.Location = new System.Drawing.Point(3, 0);
-            this.tsEspecialidades.Name = "tsEspecialidades";
-            this.tsEspecialidades.Size = new System.Drawing.Size(58, 25);
-            this.tsEspecialidades.TabIndex = 0;
+            this.tsAlumnoInscripciones.Location = new System.Drawing.Point(3, 0);
+            this.tsAlumnoInscripciones.Name = "tsAlumnoInscripciones";
+            this.tsAlumnoInscripciones.Size = new System.Drawing.Size(58, 25);
+            this.tsAlumnoInscripciones.TabIndex = 0;
             // 
             // tsbNuevo
             // 
@@ -163,62 +208,25 @@
             this.tsbEliminar.ToolTipText = "Eliminar";
             this.tsbEliminar.Click += new System.EventHandler(this.tsbEliminar_Click);
             // 
-            // id
-            // 
-            this.id.DataPropertyName = "ID";
-            this.id.HeaderText = "ID Inscripcion";
-            this.id.MinimumWidth = 100;
-            this.id.Name = "id";
-            this.id.ReadOnly = true;
-            this.id.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // alumno
-            // 
-            this.alumno.DataPropertyName = "Alumno";
-            this.alumno.HeaderText = "Alumno";
-            this.alumno.Name = "alumno";
-            this.alumno.ReadOnly = true;
-            // 
-            // id_curso
-            // 
-            this.id_curso.DataPropertyName = "Curso";
-            this.id_curso.HeaderText = "Curso";
-            this.id_curso.Name = "id_curso";
-            this.id_curso.ReadOnly = true;
-            // 
-            // nota
-            // 
-            this.nota.DataPropertyName = "Nota";
-            this.nota.HeaderText = "Nota";
-            this.nota.Name = "nota";
-            this.nota.ReadOnly = true;
-            // 
-            // condicion
-            // 
-            this.condicion.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.condicion.DataPropertyName = "Condicion";
-            this.condicion.HeaderText = "Condicion";
-            this.condicion.Name = "condicion";
-            this.condicion.ReadOnly = true;
-            // 
             // AlumnoInscripciones
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.tcUsuarios);
+            this.Controls.Add(this.tcAlumnoInscripciones);
             this.Name = "AlumnoInscripciones";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "AlumnoInscripciones";
             this.Load += new System.EventHandler(this.AlumnoInscripciones_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvAlumnoInscripciones)).EndInit();
-            this.tcUsuarios.ContentPanel.ResumeLayout(false);
-            this.tcUsuarios.TopToolStripPanel.ResumeLayout(false);
-            this.tcUsuarios.TopToolStripPanel.PerformLayout();
-            this.tcUsuarios.ResumeLayout(false);
-            this.tcUsuarios.PerformLayout();
-            this.tlEspecialidades.ResumeLayout(false);
-            this.tsEspecialidades.ResumeLayout(false);
-            this.tsEspecialidades.PerformLayout();
+            this.tcAlumnoInscripciones.ContentPanel.ResumeLayout(false);
+            this.tcAlumnoInscripciones.TopToolStripPanel.ResumeLayout(false);
+            this.tcAlumnoInscripciones.TopToolStripPanel.PerformLayout();
+            this.tcAlumnoInscripciones.ResumeLayout(false);
+            this.tcAlumnoInscripciones.PerformLayout();
+            this.tlAlumnoInscripciones.ResumeLayout(false);
+            this.tsAlumnoInscripciones.ResumeLayout(false);
+            this.tsAlumnoInscripciones.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -226,11 +234,11 @@
         #endregion
 
         private System.Windows.Forms.DataGridView dgvAlumnoInscripciones;
-        private System.Windows.Forms.TableLayoutPanel tlEspecialidades;
+        private System.Windows.Forms.TableLayoutPanel tlAlumnoInscripciones;
         private System.Windows.Forms.Button btnSalir;
         private System.Windows.Forms.Button btnActualizar;
-        private System.Windows.Forms.ToolStripContainer tcUsuarios;
-        private System.Windows.Forms.ToolStrip tsEspecialidades;
+        private System.Windows.Forms.ToolStripContainer tcAlumnoInscripciones;
+        private System.Windows.Forms.ToolStrip tsAlumnoInscripciones;
         private System.Windows.Forms.ToolStripButton tsbNuevo;
         private System.Windows.Forms.ToolStripButton tsbEliminar;
         private System.Windows.Forms.DataGridViewTextBoxColumn id;

@@ -48,7 +48,6 @@
             this.btnInscribir = new System.Windows.Forms.Button();
             this.tlpAdmin = new System.Windows.Forms.TableLayoutPanel();
             this.btnCursos = new System.Windows.Forms.Button();
-            this.btnInscripciones = new System.Windows.Forms.Button();
             this.btnComisiones = new System.Windows.Forms.Button();
             this.btnMaterias = new System.Windows.Forms.Button();
             this.btnEspecialidades = new System.Windows.Forms.Button();
@@ -59,14 +58,23 @@
             this.panelAD = new System.Windows.Forms.Panel();
             this.gbAcademia = new System.Windows.Forms.GroupBox();
             this.tlpAlumno = new System.Windows.Forms.TableLayoutPanel();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnMateriasInsc = new System.Windows.Forms.Button();
+            this.btnInscMaterias = new System.Windows.Forms.Button();
             this.gbDatos = new System.Windows.Forms.GroupBox();
             this.panelAdmin = new System.Windows.Forms.Panel();
             this.gbAdmin = new System.Windows.Forms.GroupBox();
             this.panelBienvenido = new System.Windows.Forms.Panel();
             this.lblLegajo = new System.Windows.Forms.Label();
             this.lblBienvenido = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.lblAprobadas = new System.Windows.Forms.Label();
+            this.lblCursando = new System.Windows.Forms.Label();
+            this.lblRegularizadas = new System.Windows.Forms.Label();
+            this.lblLibres = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
             this.tlpDatos.SuspendLayout();
             this.tlpDocente.SuspendLayout();
             this.tlpAdmin.SuspendLayout();
@@ -310,6 +318,7 @@
             this.btnCambiarPass.TabIndex = 18;
             this.btnCambiarPass.Text = "Cambiar contraseña";
             this.btnCambiarPass.UseVisualStyleBackColor = true;
+            this.btnCambiarPass.Click += new System.EventHandler(this.btnCambiarPass_Click);
             // 
             // lblRedDirec
             // 
@@ -412,17 +421,19 @@
             this.tlpAdmin.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tlpAdmin.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tlpAdmin.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tlpAdmin.Controls.Add(this.btnCursos, 0, 0);
-            this.tlpAdmin.Controls.Add(this.btnInscripciones, 1, 0);
-            this.tlpAdmin.Controls.Add(this.btnComisiones, 0, 1);
-            this.tlpAdmin.Controls.Add(this.btnMaterias, 1, 1);
-            this.tlpAdmin.Controls.Add(this.btnEspecialidades, 0, 2);
+            this.tlpAdmin.Controls.Add(this.btnUsuarios, 0, 0);
+            this.tlpAdmin.Controls.Add(this.btnEspecialidades, 0, 1);
             this.tlpAdmin.Controls.Add(this.btnPlanes, 0, 2);
-            this.tlpAdmin.Controls.Add(this.btnUsuarios, 0, 3);
+            this.tlpAdmin.Controls.Add(this.btnMaterias, 0, 3);
+            this.tlpAdmin.Controls.Add(this.btnComisiones, 0, 4);
+            this.tlpAdmin.Controls.Add(this.btnCursos, 0, 5);
             this.tlpAdmin.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tlpAdmin.Location = new System.Drawing.Point(3, 16);
             this.tlpAdmin.Name = "tlpAdmin";
-            this.tlpAdmin.RowCount = 5;
+            this.tlpAdmin.RowCount = 8;
+            this.tlpAdmin.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tlpAdmin.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tlpAdmin.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tlpAdmin.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tlpAdmin.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tlpAdmin.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
@@ -433,8 +444,7 @@
             // 
             // btnCursos
             // 
-            this.btnCursos.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnCursos.Location = new System.Drawing.Point(3, 3);
+            this.btnCursos.Location = new System.Drawing.Point(3, 153);
             this.btnCursos.Name = "btnCursos";
             this.btnCursos.Size = new System.Drawing.Size(127, 24);
             this.btnCursos.TabIndex = 23;
@@ -442,21 +452,9 @@
             this.btnCursos.UseVisualStyleBackColor = true;
             this.btnCursos.Click += new System.EventHandler(this.btnCursos_Click);
             // 
-            // btnInscripciones
-            // 
-            this.btnInscripciones.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnInscripciones.Location = new System.Drawing.Point(136, 3);
-            this.btnInscripciones.Name = "btnInscripciones";
-            this.btnInscripciones.Size = new System.Drawing.Size(127, 24);
-            this.btnInscripciones.TabIndex = 22;
-            this.btnInscripciones.Text = "Inscripciones";
-            this.btnInscripciones.UseVisualStyleBackColor = true;
-            this.btnInscripciones.Click += new System.EventHandler(this.btnInscripciones_Click);
-            // 
             // btnComisiones
             // 
-            this.btnComisiones.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnComisiones.Location = new System.Drawing.Point(3, 33);
+            this.btnComisiones.Location = new System.Drawing.Point(3, 123);
             this.btnComisiones.Name = "btnComisiones";
             this.btnComisiones.Size = new System.Drawing.Size(127, 24);
             this.btnComisiones.TabIndex = 21;
@@ -466,8 +464,7 @@
             // 
             // btnMaterias
             // 
-            this.btnMaterias.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnMaterias.Location = new System.Drawing.Point(136, 33);
+            this.btnMaterias.Location = new System.Drawing.Point(3, 93);
             this.btnMaterias.Name = "btnMaterias";
             this.btnMaterias.Size = new System.Drawing.Size(127, 24);
             this.btnMaterias.TabIndex = 20;
@@ -477,8 +474,7 @@
             // 
             // btnEspecialidades
             // 
-            this.btnEspecialidades.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnEspecialidades.Location = new System.Drawing.Point(136, 63);
+            this.btnEspecialidades.Location = new System.Drawing.Point(3, 33);
             this.btnEspecialidades.Name = "btnEspecialidades";
             this.btnEspecialidades.Size = new System.Drawing.Size(127, 24);
             this.btnEspecialidades.TabIndex = 19;
@@ -488,7 +484,6 @@
             // 
             // btnPlanes
             // 
-            this.btnPlanes.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnPlanes.Location = new System.Drawing.Point(3, 63);
             this.btnPlanes.Name = "btnPlanes";
             this.btnPlanes.Size = new System.Drawing.Size(127, 24);
@@ -499,8 +494,7 @@
             // 
             // btnUsuarios
             // 
-            this.btnUsuarios.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnUsuarios.Location = new System.Drawing.Point(3, 93);
+            this.btnUsuarios.Location = new System.Drawing.Point(3, 3);
             this.btnUsuarios.Name = "btnUsuarios";
             this.btnUsuarios.Size = new System.Drawing.Size(127, 24);
             this.btnUsuarios.TabIndex = 17;
@@ -561,48 +555,62 @@
             this.tlpAlumno.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tlpAlumno.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tlpAlumno.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tlpAlumno.Controls.Add(this.button1, 1, 1);
-            this.tlpAlumno.Controls.Add(this.button2, 1, 2);
+            this.tlpAlumno.Controls.Add(this.btnMateriasInsc, 1, 1);
+            this.tlpAlumno.Controls.Add(this.btnInscMaterias, 1, 2);
+            this.tlpAlumno.Controls.Add(this.label10, 0, 8);
+            this.tlpAlumno.Controls.Add(this.label3, 0, 7);
+            this.tlpAlumno.Controls.Add(this.label2, 0, 6);
+            this.tlpAlumno.Controls.Add(this.label1, 0, 5);
+            this.tlpAlumno.Controls.Add(this.lblLibres, 2, 8);
+            this.tlpAlumno.Controls.Add(this.lblRegularizadas, 2, 7);
+            this.tlpAlumno.Controls.Add(this.lblCursando, 2, 6);
+            this.tlpAlumno.Controls.Add(this.lblAprobadas, 2, 5);
+            this.tlpAlumno.Controls.Add(this.label11, 0, 4);
             this.tlpAlumno.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tlpAlumno.Location = new System.Drawing.Point(3, 18);
             this.tlpAlumno.Name = "tlpAlumno";
-            this.tlpAlumno.RowCount = 7;
+            this.tlpAlumno.RowCount = 12;
             this.tlpAlumno.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 15F));
             this.tlpAlumno.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tlpAlumno.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tlpAlumno.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tlpAlumno.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tlpAlumno.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tlpAlumno.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tlpAlumno.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tlpAlumno.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tlpAlumno.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tlpAlumno.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tlpAlumno.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tlpAlumno.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tlpAlumno.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tlpAlumno.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tlpAlumno.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tlpAlumno.Size = new System.Drawing.Size(224, 306);
             this.tlpAlumno.TabIndex = 1;
             this.tlpAlumno.Visible = false;
             // 
-            // button1
+            // btnMateriasInsc
             // 
-            this.tlpAlumno.SetColumnSpan(this.button1, 2);
-            this.button1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(59, 18);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(106, 24);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "opcion1Alumno";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.tlpAlumno.SetColumnSpan(this.btnMateriasInsc, 2);
+            this.btnMateriasInsc.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnMateriasInsc.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMateriasInsc.Location = new System.Drawing.Point(59, 18);
+            this.btnMateriasInsc.Name = "btnMateriasInsc";
+            this.btnMateriasInsc.Size = new System.Drawing.Size(106, 24);
+            this.btnMateriasInsc.TabIndex = 0;
+            this.btnMateriasInsc.Text = "Materias inscripto";
+            this.btnMateriasInsc.UseVisualStyleBackColor = true;
+            this.btnMateriasInsc.Click += new System.EventHandler(this.button1_Click);
             // 
-            // button2
+            // btnInscMaterias
             // 
-            this.tlpAlumno.SetColumnSpan(this.button2, 2);
-            this.button2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(59, 48);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(106, 24);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "opcion2Alumno";
-            this.button2.UseVisualStyleBackColor = true;
+            this.tlpAlumno.SetColumnSpan(this.btnInscMaterias, 2);
+            this.btnInscMaterias.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnInscMaterias.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnInscMaterias.Location = new System.Drawing.Point(59, 48);
+            this.btnInscMaterias.Name = "btnInscMaterias";
+            this.btnInscMaterias.Size = new System.Drawing.Size(106, 24);
+            this.btnInscMaterias.TabIndex = 1;
+            this.btnInscMaterias.Text = "Inscribir a cursado";
+            this.btnInscMaterias.UseVisualStyleBackColor = true;
+            this.btnInscMaterias.Click += new System.EventHandler(this.button2_Click);
             // 
             // gbDatos
             // 
@@ -670,13 +678,125 @@
             this.lblBienvenido.TabIndex = 0;
             this.lblBienvenido.Text = "Bienvenido @nombre";
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.tlpAlumno.SetColumnSpan(this.label1, 2);
+            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(3, 130);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(106, 25);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "Aprobadas";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.tlpAlumno.SetColumnSpan(this.label2, 2);
+            this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(3, 155);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(106, 25);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "Cursando";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.tlpAlumno.SetColumnSpan(this.label3, 2);
+            this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(3, 180);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(106, 25);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "Regularizadas";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.tlpAlumno.SetColumnSpan(this.label10, 2);
+            this.label10.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(3, 205);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(106, 25);
+            this.label10.TabIndex = 5;
+            this.label10.Text = "Libre";
+            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // lblAprobadas
+            // 
+            this.lblAprobadas.AutoSize = true;
+            this.lblAprobadas.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblAprobadas.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAprobadas.Location = new System.Drawing.Point(115, 130);
+            this.lblAprobadas.Name = "lblAprobadas";
+            this.lblAprobadas.Size = new System.Drawing.Size(50, 25);
+            this.lblAprobadas.TabIndex = 6;
+            this.lblAprobadas.Text = "lblAp";
+            this.lblAprobadas.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lblCursando
+            // 
+            this.lblCursando.AutoSize = true;
+            this.lblCursando.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblCursando.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCursando.Location = new System.Drawing.Point(115, 155);
+            this.lblCursando.Name = "lblCursando";
+            this.lblCursando.Size = new System.Drawing.Size(50, 25);
+            this.lblCursando.TabIndex = 7;
+            this.lblCursando.Text = "lblCur";
+            this.lblCursando.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lblRegularizadas
+            // 
+            this.lblRegularizadas.AutoSize = true;
+            this.lblRegularizadas.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblRegularizadas.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRegularizadas.Location = new System.Drawing.Point(115, 180);
+            this.lblRegularizadas.Name = "lblRegularizadas";
+            this.lblRegularizadas.Size = new System.Drawing.Size(50, 25);
+            this.lblRegularizadas.TabIndex = 8;
+            this.lblRegularizadas.Text = "lblReg";
+            this.lblRegularizadas.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lblLibres
+            // 
+            this.lblLibres.AutoSize = true;
+            this.lblLibres.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblLibres.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLibres.Location = new System.Drawing.Point(115, 205);
+            this.lblLibres.Name = "lblLibres";
+            this.lblLibres.Size = new System.Drawing.Size(50, 25);
+            this.lblLibres.TabIndex = 9;
+            this.lblLibres.Text = "lblLibre";
+            this.lblLibres.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.tlpAlumno.SetColumnSpan(this.label11, 2);
+            this.label11.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label11.Location = new System.Drawing.Point(3, 105);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(106, 25);
+            this.label11.TabIndex = 10;
+            this.label11.Text = "Materias";
+            this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // Menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(552, 419);
-            this.Controls.Add(this.panelAdmin);
             this.Controls.Add(this.panelAD);
+            this.Controls.Add(this.panelAdmin);
             this.Controls.Add(this.panelBienvenido);
             this.Controls.Add(this.panelBottom);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -693,6 +813,7 @@
             this.panelAD.ResumeLayout(false);
             this.gbAcademia.ResumeLayout(false);
             this.tlpAlumno.ResumeLayout(false);
+            this.tlpAlumno.PerformLayout();
             this.gbDatos.ResumeLayout(false);
             this.panelAdmin.ResumeLayout(false);
             this.gbAdmin.ResumeLayout(false);
@@ -737,16 +858,24 @@
         private System.Windows.Forms.Button btnMateria;
         private System.Windows.Forms.Button btnInscribir;
         private System.Windows.Forms.TableLayoutPanel tlpAlumno;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnMateriasInsc;
+        private System.Windows.Forms.Button btnInscMaterias;
         private System.Windows.Forms.Label lblRedDirec;
         private System.Windows.Forms.Label lblRedTel;
         private System.Windows.Forms.Label lblRedEmail;
         private System.Windows.Forms.Button btnCursos;
-        private System.Windows.Forms.Button btnInscripciones;
         private System.Windows.Forms.Button btnUsuarios;
         private System.Windows.Forms.GroupBox gbAcademia;
         private System.Windows.Forms.GroupBox gbDatos;
         private System.Windows.Forms.GroupBox gbAdmin;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label lblAprobadas;
+        private System.Windows.Forms.Label lblCursando;
+        private System.Windows.Forms.Label lblRegularizadas;
+        private System.Windows.Forms.Label lblLibres;
+        private System.Windows.Forms.Label label11;
     }
 }

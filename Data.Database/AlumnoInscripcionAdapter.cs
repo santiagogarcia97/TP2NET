@@ -45,6 +45,38 @@ namespace Data.Database
             }
             return alumnoInscripciones;
         }
+        public List<AlumnoInscripcion> GetAllFromUser(int IDUsuario) {
+            List<AlumnoInscripcion> alumnoInscripciones = new List<AlumnoInscripcion>();
+            try {
+                this.OpenConnection();
+                SqlCommand cmdAlumnoInscripciones = new SqlCommand("SELECT * FROM alumnos_inscripciones WHERE id_alumno = @ID AND ai_hab = @ai_hab", SqlConn);
+                cmdAlumnoInscripciones.Parameters.Add("@ID", SqlDbType.Int).Value = IDUsuario;
+                cmdAlumnoInscripciones.Parameters.Add("@ai_hab", SqlDbType.Bit).Value = true;
+                SqlDataReader drAlumnoInscripciones = cmdAlumnoInscripciones.ExecuteReader();
+
+                while (drAlumnoInscripciones.Read()) {
+                    AlumnoInscripcion insc = new AlumnoInscripcion();
+
+                    insc.ID = (int)drAlumnoInscripciones["id_inscripcion"];
+                    insc.IDAlumno = (int)drAlumnoInscripciones["id_alumno"];
+                    insc.IDCurso = (int)drAlumnoInscripciones["id_curso"];
+                    insc.Habilitado = (bool)drAlumnoInscripciones["ai_hab"];
+                    insc.Nota = drAlumnoInscripciones["nota"].ToString();
+                    insc.Condicion = (AlumnoInscripcion.Condiciones)System.Enum.Parse(typeof(AlumnoInscripcion.Condiciones), (string)drAlumnoInscripciones["condicion"]);
+                    alumnoInscripciones.Add(insc);
+                }
+                drAlumnoInscripciones.Close();
+            }
+            catch (Exception Ex) {
+                Exception ExcepcionManejada =
+                new Exception("Error al recuperar lista de Inscripciones", Ex);
+                throw ExcepcionManejada;
+            }
+            finally {
+                this.CloseConnection();
+            }
+            return alumnoInscripciones;
+        }
         public AlumnoInscripcion GetOne(int ID)
         {
             AlumnoInscripcion insc = new AlumnoInscripcion();
@@ -78,6 +110,23 @@ namespace Data.Database
             }
             return insc;
         }
+        public int GetCupo(int IDCurso) {
+            try {
+                this.OpenConnection();
+                SqlCommand cmdCountCupo = new SqlCommand("SELECT COUNT(id_alumno) FROM alumnos_inscripciones WHERE id_curso = @idcurso", SqlConn);
+                cmdCountCupo.Parameters.Add("@idcurso", SqlDbType.Int).Value = IDCurso;
+                int cant = (int)cmdCountCupo.ExecuteScalar();
+
+                return cant;
+            }
+            catch (Exception ex) {
+                Exception excepcionManejada = new Exception("Error al obtener cupo", ex);
+                throw excepcionManejada;
+            }
+            finally {
+                this.CloseConnection();
+            }
+        }
         public void Delete(int ID)
         {
             try
@@ -109,7 +158,7 @@ namespace Data.Database
                 cmdSave.Parameters.Add("@id", SqlDbType.Int).Value = insc.ID;
                 cmdSave.Parameters.Add("@id_alumno", SqlDbType.Int).Value = insc.IDAlumno;
                 cmdSave.Parameters.Add("@id_curso", SqlDbType.Int).Value = insc.IDCurso;
-                cmdSave.Parameters.Add("@nota", SqlDbType.Int).Value = insc.Nota;
+                cmdSave.Parameters.Add("@nota", SqlDbType.Int).Value = insc.Nota.ToString(); ;
                 cmdSave.Parameters.Add("@condicion", SqlDbType.Int).Value = insc.Condicion.ToString();
                 cmdSave.Parameters.Add("@ai_hab", SqlDbType.Bit).Value = insc.Habilitado;
                 cmdSave.ExecuteNonQuery();
@@ -130,13 +179,12 @@ namespace Data.Database
             try
             {
                 this.OpenConnection();
-                SqlCommand cmdSave = new SqlCommand("INSERT INTO alumnos_inscripciones(id_alumno, id_curso, nota, condicion, ai_hab) " +
-                    "values(@id_alumno, @id_curso, @nota, @condicion, @ai_hab) SELECT @@identity", SqlConn);
-                cmdSave.Parameters.Add("@id", SqlDbType.Int).Value = insc.ID;
+                SqlCommand cmdSave = new SqlCommand("INSERT INTO alumnos_inscripciones(id_alumno, id_curso, condicion, ai_hab) " +
+                    "values(@id_alumno, @id_curso, @condicion, @ai_hab) SELECT @@identity", SqlConn);
+
                 cmdSave.Parameters.Add("@id_alumno", SqlDbType.Int).Value = insc.IDAlumno;
                 cmdSave.Parameters.Add("@id_curso", SqlDbType.Int).Value = insc.IDCurso;
-                cmdSave.Parameters.Add("@nota", SqlDbType.Int).Value = insc.Nota;
-                cmdSave.Parameters.Add("@condicion", SqlDbType.Int).Value = insc.Condicion.ToString();
+                cmdSave.Parameters.Add("@condicion", SqlDbType.VarChar, 50).Value = insc.Condicion.ToString();
                 cmdSave.Parameters.Add("@ai_hab", SqlDbType.Bit).Value = insc.Habilitado;
 
                 insc.ID = Decimal.ToInt32((decimal)cmdSave.ExecuteScalar());

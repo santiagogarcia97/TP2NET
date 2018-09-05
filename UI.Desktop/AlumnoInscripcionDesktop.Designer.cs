@@ -24,185 +24,135 @@
         /// </summary>
         private void InitializeComponent() {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.cbCondicion = new System.Windows.Forms.ComboBox();
-            this.cbCurso = new System.Windows.Forms.ComboBox();
-            this.IDLabel = new System.Windows.Forms.Label();
-            this.CursoIDLabel = new System.Windows.Forms.Label();
-            this.labelCondicion = new System.Windows.Forms.Label();
-            this.NotaLabel = new System.Windows.Forms.Label();
-            this.labelAlumno = new System.Windows.Forms.Label();
-            this.nudNota = new System.Windows.Forms.NumericUpDown();
-            this.cbAlumno = new System.Windows.Forms.ComboBox();
-            this.labelID = new System.Windows.Forms.Label();
-            this.btnAceptar = new System.Windows.Forms.Button();
+            this.dgvCursos = new System.Windows.Forms.DataGridView();
+            this.btnSalir = new System.Windows.Forms.Button();
+            this.btnInscribir = new System.Windows.Forms.Button();
+            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Curso = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AnioCalendario = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cupo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableLayoutPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudNota)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvCursos)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.AutoSize = true;
             this.tableLayoutPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.tableLayoutPanel1.ColumnCount = 6;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 3F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 23F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 3F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 5F));
-            this.tableLayoutPanel1.Controls.Add(this.IDLabel, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.labelID, 3, 1);
-            this.tableLayoutPanel1.Controls.Add(this.labelAlumno, 1, 2);
-            this.tableLayoutPanel1.Controls.Add(this.cbAlumno, 3, 2);
-            this.tableLayoutPanel1.Controls.Add(this.nudNota, 3, 5);
-            this.tableLayoutPanel1.Controls.Add(this.NotaLabel, 1, 5);
-            this.tableLayoutPanel1.Controls.Add(this.labelCondicion, 1, 4);
-            this.tableLayoutPanel1.Controls.Add(this.CursoIDLabel, 1, 3);
-            this.tableLayoutPanel1.Controls.Add(this.cbCondicion, 3, 4);
-            this.tableLayoutPanel1.Controls.Add(this.cbCurso, 3, 3);
-            this.tableLayoutPanel1.Controls.Add(this.btnAceptar, 4, 6);
+            this.tableLayoutPanel1.ColumnCount = 4;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 10F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 80F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 10F));
+            this.tableLayoutPanel1.Controls.Add(this.dgvCursos, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.btnSalir, 2, 2);
+            this.tableLayoutPanel1.Controls.Add(this.btnInscribir, 1, 2);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 7;
+            this.tableLayoutPanel1.RowCount = 3;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 15F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(332, 172);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(494, 561);
             this.tableLayoutPanel1.TabIndex = 4;
             // 
-            // cbCondicion
+            // dgvCursos
             // 
-            this.tableLayoutPanel1.SetColumnSpan(this.cbCondicion, 2);
-            this.cbCondicion.FormattingEnabled = true;
-            this.cbCondicion.Location = new System.Drawing.Point(97, 93);
-            this.cbCondicion.Name = "cbCondicion";
-            this.cbCondicion.Size = new System.Drawing.Size(212, 21);
-            this.cbCondicion.TabIndex = 31;
+            this.dgvCursos.AllowUserToAddRows = false;
+            this.dgvCursos.AllowUserToDeleteRows = false;
+            this.dgvCursos.AllowUserToResizeRows = false;
+            this.dgvCursos.BackgroundColor = System.Drawing.Color.White;
+            this.dgvCursos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvCursos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ID,
+            this.Curso,
+            this.AnioCalendario,
+            this.Cupo});
+            this.tableLayoutPanel1.SetColumnSpan(this.dgvCursos, 2);
+            this.dgvCursos.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvCursos.Location = new System.Drawing.Point(13, 18);
+            this.dgvCursos.MultiSelect = false;
+            this.dgvCursos.Name = "dgvCursos";
+            this.dgvCursos.RowHeadersVisible = false;
+            this.dgvCursos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvCursos.Size = new System.Drawing.Size(468, 510);
+            this.dgvCursos.TabIndex = 33;
             // 
-            // cbCurso
+            // btnSalir
             // 
-            this.tableLayoutPanel1.SetColumnSpan(this.cbCurso, 2);
-            this.cbCurso.FormattingEnabled = true;
-            this.cbCurso.Location = new System.Drawing.Point(97, 68);
-            this.cbCurso.Name = "cbCurso";
-            this.cbCurso.Size = new System.Drawing.Size(212, 21);
-            this.cbCurso.TabIndex = 22;
+            this.btnSalir.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnSalir.Location = new System.Drawing.Point(407, 534);
+            this.btnSalir.Name = "btnSalir";
+            this.btnSalir.Size = new System.Drawing.Size(74, 24);
+            this.btnSalir.TabIndex = 34;
+            this.btnSalir.Text = "Salir";
+            this.btnSalir.UseVisualStyleBackColor = true;
+            this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
             // 
-            // IDLabel
+            // btnInscribir
             // 
-            this.IDLabel.AutoSize = true;
-            this.IDLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.IDLabel.Location = new System.Drawing.Point(12, 15);
-            this.IDLabel.Name = "IDLabel";
-            this.IDLabel.Size = new System.Drawing.Size(70, 25);
-            this.IDLabel.TabIndex = 0;
-            this.IDLabel.Text = "ID";
-            this.IDLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnInscribir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnInscribir.Location = new System.Drawing.Point(327, 534);
+            this.btnInscribir.Name = "btnInscribir";
+            this.btnInscribir.Size = new System.Drawing.Size(74, 24);
+            this.btnInscribir.TabIndex = 9;
+            this.btnInscribir.Text = "Inscribirse";
+            this.btnInscribir.UseVisualStyleBackColor = true;
+            this.btnInscribir.Click += new System.EventHandler(this.btnInscribir_Click);
             // 
-            // CursoIDLabel
+            // ID
             // 
-            this.CursoIDLabel.AutoSize = true;
-            this.CursoIDLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.CursoIDLabel.Location = new System.Drawing.Point(12, 65);
-            this.CursoIDLabel.Name = "CursoIDLabel";
-            this.CursoIDLabel.Size = new System.Drawing.Size(70, 25);
-            this.CursoIDLabel.TabIndex = 19;
-            this.CursoIDLabel.Text = "Curso";
-            this.CursoIDLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.ID.DataPropertyName = "ID";
+            this.ID.HeaderText = "ID Curso";
+            this.ID.MinimumWidth = 80;
+            this.ID.Name = "ID";
+            this.ID.ReadOnly = true;
+            this.ID.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.ID.Width = 80;
             // 
-            // labelCondicion
+            // Curso
             // 
-            this.labelCondicion.AutoSize = true;
-            this.labelCondicion.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelCondicion.Location = new System.Drawing.Point(12, 90);
-            this.labelCondicion.Name = "labelCondicion";
-            this.labelCondicion.Size = new System.Drawing.Size(70, 25);
-            this.labelCondicion.TabIndex = 30;
-            this.labelCondicion.Text = "Condición";
-            this.labelCondicion.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.Curso.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Curso.DataPropertyName = "Curso";
+            this.Curso.HeaderText = "Curso";
+            this.Curso.MinimumWidth = 30;
+            this.Curso.Name = "Curso";
+            this.Curso.ReadOnly = true;
             // 
-            // NotaLabel
+            // AnioCalendario
             // 
-            this.NotaLabel.AutoSize = true;
-            this.NotaLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.NotaLabel.Location = new System.Drawing.Point(12, 115);
-            this.NotaLabel.Name = "NotaLabel";
-            this.NotaLabel.Size = new System.Drawing.Size(70, 25);
-            this.NotaLabel.TabIndex = 21;
-            this.NotaLabel.Text = "Nota";
-            this.NotaLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.AnioCalendario.DataPropertyName = "AnioCalendario";
+            this.AnioCalendario.HeaderText = "Año";
+            this.AnioCalendario.MinimumWidth = 60;
+            this.AnioCalendario.Name = "AnioCalendario";
+            this.AnioCalendario.ReadOnly = true;
+            this.AnioCalendario.Width = 60;
             // 
-            // labelAlumno
+            // Cupo
             // 
-            this.labelAlumno.AutoSize = true;
-            this.labelAlumno.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelAlumno.Location = new System.Drawing.Point(12, 40);
-            this.labelAlumno.Name = "labelAlumno";
-            this.labelAlumno.Size = new System.Drawing.Size(70, 25);
-            this.labelAlumno.TabIndex = 28;
-            this.labelAlumno.Text = "Alumno";
-            this.labelAlumno.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // nudNota
-            // 
-            this.nudNota.Location = new System.Drawing.Point(97, 118);
-            this.nudNota.Maximum = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            this.nudNota.Name = "nudNota";
-            this.nudNota.Size = new System.Drawing.Size(103, 20);
-            this.nudNota.TabIndex = 27;
-            // 
-            // cbAlumno
-            // 
-            this.tableLayoutPanel1.SetColumnSpan(this.cbAlumno, 2);
-            this.cbAlumno.FormattingEnabled = true;
-            this.cbAlumno.Location = new System.Drawing.Point(97, 43);
-            this.cbAlumno.Name = "cbAlumno";
-            this.cbAlumno.Size = new System.Drawing.Size(212, 21);
-            this.cbAlumno.TabIndex = 29;
-            // 
-            // labelID
-            // 
-            this.labelID.AutoSize = true;
-            this.labelID.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelID.Location = new System.Drawing.Point(97, 15);
-            this.labelID.Name = "labelID";
-            this.labelID.Size = new System.Drawing.Size(103, 25);
-            this.labelID.TabIndex = 32;
-            this.labelID.Text = "label1";
-            this.labelID.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // btnAceptar
-            // 
-            this.btnAceptar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAceptar.Location = new System.Drawing.Point(234, 143);
-            this.btnAceptar.Name = "btnAceptar";
-            this.btnAceptar.Size = new System.Drawing.Size(75, 23);
-            this.btnAceptar.TabIndex = 9;
-            this.btnAceptar.Text = "Aceptar";
-            this.btnAceptar.UseVisualStyleBackColor = true;
+            this.Cupo.DataPropertyName = "Cupo";
+            this.Cupo.HeaderText = "Cupo";
+            this.Cupo.MinimumWidth = 70;
+            this.Cupo.Name = "Cupo";
+            this.Cupo.ReadOnly = true;
+            this.Cupo.Width = 70;
             // 
             // AlumnoInscripcionDesktop
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(332, 172);
+            this.ClientSize = new System.Drawing.Size(494, 561);
             this.Controls.Add(this.tableLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximumSize = new System.Drawing.Size(510, 600);
+            this.MinimumSize = new System.Drawing.Size(510, 400);
             this.Name = "AlumnoInscripcionDesktop";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "AlumnoInscripcionDesktop";
+            this.Load += new System.EventHandler(this.AlumnoInscripcionDesktop_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudNota)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvCursos)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -211,16 +161,12 @@
         #endregion
 
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.Label IDLabel;
-        private System.Windows.Forms.Label CursoIDLabel;
-        private System.Windows.Forms.Label NotaLabel;
-        private System.Windows.Forms.ComboBox cbCurso;
-        private System.Windows.Forms.NumericUpDown nudNota;
-        private System.Windows.Forms.Label labelAlumno;
-        private System.Windows.Forms.ComboBox cbAlumno;
-        private System.Windows.Forms.Button btnAceptar;
-        private System.Windows.Forms.Label labelCondicion;
-        private System.Windows.Forms.ComboBox cbCondicion;
-        private System.Windows.Forms.Label labelID;
+        private System.Windows.Forms.Button btnInscribir;
+        private System.Windows.Forms.DataGridView dgvCursos;
+        private System.Windows.Forms.Button btnSalir;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Curso;
+        private System.Windows.Forms.DataGridViewTextBoxColumn AnioCalendario;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Cupo;
     }
 }

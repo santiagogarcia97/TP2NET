@@ -38,6 +38,7 @@ namespace UI.Desktop {
             panelAD.Visible = true;
             tlpAlumno.Visible = true;
             MapearDeDatos();
+            GenerarEstadisticas();
         }
         private void MenuDocente() {
             panelAD.Visible = true;
@@ -91,6 +92,14 @@ namespace UI.Desktop {
         private void Menu_Load(object sender, EventArgs e) {
             lblBienvenido.Text = "Bienvenido " + UsuarioActual.Nombre + "!";
             lblLegajo.Text = "Legajo: " + UsuarioActual.Legajo;
+        }
+        private void GenerarEstadisticas() {
+            AlumnoInscripcionLogic ail = new AlumnoInscripcionLogic();
+            List<AlumnoInscripcion> inscripciones = ail.GetAllFromUser(UsuarioActual.ID);
+            lblAprobadas.Text = inscripciones.Count(x => x.Condicion == AlumnoInscripcion.Condiciones.Aprobado).ToString();
+            lblCursando.Text = inscripciones.Count(x => x.Condicion == AlumnoInscripcion.Condiciones.Cursando).ToString();
+            lblRegularizadas.Text = inscripciones.Count(x => x.Condicion == AlumnoInscripcion.Condiciones.Regular).ToString();
+            lblLibres.Text = inscripciones.Count(x => x.Condicion == AlumnoInscripcion.Condiciones.Libre).ToString();
         }
 
         private void btnGuardar_Click(object sender, EventArgs e) {
@@ -150,6 +159,15 @@ namespace UI.Desktop {
         private void button1_Click(object sender, EventArgs e) {
             AlumnoInscripciones ai = new AlumnoInscripciones(UsuarioActual);
             ai.ShowDialog();
+        }
+
+        private void button2_Click(object sender, EventArgs e) {
+            AlumnoInscripcionDesktop aid = new AlumnoInscripcionDesktop(ApplicationForm.ModoForm.Alta, UsuarioActual);
+            aid.ShowDialog();
+        }
+
+        private void btnCambiarPass_Click(object sender, EventArgs e) {
+            MessageBox.Show("Falta implementar");
         }
     }
 }

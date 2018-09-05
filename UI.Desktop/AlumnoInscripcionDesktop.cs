@@ -21,21 +21,7 @@ namespace UI.Desktop {
 
         public AlumnoInscripcionDesktop() {
             InitializeComponent();
-            UsuarioLogic ul = new UsuarioLogic();
-            List<Usuario> usuarios = ul.GetAll();
-            foreach (Usuario usr in usuarios) {
-                if (usr.TipoPersona == 1) {
-                    //cbAlumno.Items.Add(usr.IDString);
-                }
-            }
-            CursoLogic cl = new CursoLogic();
-            List<Curso> cursos = cl.GetAll();
-            foreach (Curso cur in cursos) {
-                //cbCurso.Items.Add(cur.IDString);
-            }
-            foreach (string con in Enum.GetNames(typeof(Condiciones))) {
-                cbCondicion.Items.Add(con);
-            }
+            this.dgvCursos.AutoGenerateColumns = false;
         }
 
         public AlumnoInscripcionDesktop(ModoForm modo, Usuario user) : this() {
@@ -43,132 +29,104 @@ namespace UI.Desktop {
             Modo = modo;
         }
 
-
-        public AlumnoInscripcionDesktop(ModoForm modo, Usuario user, int IDAlumnoInscripcion) : this() {
-            Modo = modo;
-            UsuarioActual = user;
-            AlumnoInscripcionLogic auxInsc = new AlumnoInscripcionLogic();
-            InscripcionActual = auxInsc.GetOne(IDAlumnoInscripcion);
-            MapearDeDatos();
+        private void AlumnoInscripcionDesktop_Load(object sender, EventArgs e) {
+            this.ListarCursos();
         }
 
+        private void ListarCursos() {
+            //Se limpia el dgv
+            this.dgvCursos.DataSource = null;
+            this.dgvCursos.Refresh();
 
-        public override void MapearDeDatos() {
-            labelID.Text = InscripcionActual.ID.ToString();
-            CursoLogic cl = new CursoLogic();
-            Curso crs = cl.GetOne(InscripcionActual.IDCurso);
-          //  cbCurso.Text = crs.IDString;
-
-            UsuarioLogic ul = new UsuarioLogic();
-            Usuario usr = ul.GetOne(InscripcionActual.IDAlumno);
-            //cbAlumno.Text = usr.IDString;
-
-            cbCondicion.Text = InscripcionActual.Condicion.ToString();
-
-          //  nudNota.Value = InscripcionActual.Nota;
-
-
-            switch (Modo) {
-                case ModoForm.Alta:
-                    btnAceptar.Text = "Guardar";
-                    break;
-                case ModoForm.Modificacion:
-                    btnAceptar.Text = "Guardar";
-                    break;
-                case ModoForm.Baja:
-                    btnAceptar.Text = "Eliminar";
-                    cbCurso.Enabled = false;
-                    cbAlumno.Enabled = false;
-                    cbCondicion.Enabled = false;
-                    nudNota.Enabled = false;
-
-                    break;
-                case ModoForm.Consulta:
-                    btnAceptar.Text = "Aceptar";
-                    cbCurso.Enabled = false;
-                    cbAlumno.Enabled = false;
-                    cbCondicion.Enabled = false;
-                    nudNota.Enabled = false;
-                    break;
-            }
-        }
-
-        public override void MapearADatos() {
-            switch (Modo) {                                      //Emprolijar: Evitar repetición de asignaciones  
-                case ModoForm.Alta:
-                    InscripcionActual = new AlumnoInscripcion();
-                    InscripcionActual.IDCurso = getCrsID(cbCurso.Text);
-                    InscripcionActual.IDAlumno = getUsrID(cbAlumno.Text);
-               //     InscripcionActual.Nota = (int)nudNota.Value;
-                    InscripcionActual.Condicion = (AlumnoInscripcion.Condiciones)System.Enum.Parse(typeof(AlumnoInscripcion.Condiciones), cbCondicion.Text);
-                    InscripcionActual.State = BusinessEntity.States.New;
-                    break;
-                case ModoForm.Modificacion:
-                    InscripcionActual.IDCurso = getCrsID(cbCurso.Text);
-                    InscripcionActual.IDAlumno = getUsrID(cbAlumno.Text);
-             //       InscripcionActual.Nota = (int)nudNota.Value;
-                    InscripcionActual.Condicion = (AlumnoInscripcion.Condiciones)System.Enum.Parse(typeof(AlumnoInscripcion.Condiciones), cbCondicion.Text);
-                    break;
-                case ModoForm.Baja:
-                    InscripcionActual.State = BusinessEntity.States.Deleted;
-                    break;
-                case ModoForm.Consulta:
-                    InscripcionActual.State = BusinessEntity.States.Unmodified;
-                    break;
-            }
-        }
-
-        public override void GuardarCambios() {
-            MapearADatos();
-            AlumnoInscripcionLogic auxInsc = new AlumnoInscripcionLogic();
-            auxInsc.Save(InscripcionActual);
-        }
-
-        public override bool Validar() {
-            return !(                                     //Si cualquiera de estas condiciones es verdadera, retorna false
-            string.IsNullOrEmpty(cbCurso.Text) ||
-            string.IsNullOrEmpty(cbCondicion.Text) ||
-            string.IsNullOrEmpty(cbAlumno.Text));
-        }
-
-        private void btnAceptar_Click(object sender, EventArgs e) {
-            if (Validar()) {
-                GuardarCambios();
-                this.Close();
-            }
-            else {
-                MessageBox.Show("Complete todos los campos.");
-            }
-        }
-
-        private void btnCancelar_Click(object sender, EventArgs e) {
-            this.Close();
-        }
-
-        private int getCrsID(string StrID) {
             CursoLogic cl = new CursoLogic();
             List<Curso> cursos = cl.GetAll();
-            foreach (Curso crs in cursos) {
-               // if (crs.IDString == StrID) {
-                 //   return crs.ID;
-                //}
+            if (cursos.Count() == 0) {
+                MessageBox.Show("No hay cursos cargados para inscribirse!");
             }
-            return (0);
+            else {
+                //Se crea el DataTable que va a ser el DataSource del dgv
+                DataTable Listado = new DataTable();
+                Listado.Columns.Add("ID", typeof(int));
+                Listado.Columns.Add("AnioCalendario", typeof(int));
+                Listado.Columns.Add("Cupo", typeof(string));
+                Listado.Columns.Add("Curso", typeof(string));
+
+                MateriaLogic ml = new MateriaLogic();
+                List<Materia> materias = ml.GetAll();
+                ComisionLogic coml = new ComisionLogic();
+                List<Comision> comisiones = coml.GetAll();
+
+                //Cargo las materias en la que ya esta inscripto en una nueva lista
+                AlumnoInscripcionLogic ail = new AlumnoInscripcionLogic();
+                List<AlumnoInscripcion> inscripciones = ail.GetAllFromUser(UsuarioActual.ID);
+                List<Materia> matInscripto = new List<Materia>();
+                foreach(AlumnoInscripcion ai in inscripciones) {
+                    Curso cur = cursos.First(x => x.ID == ai.IDCurso);
+                    Materia mat = materias.First(x => x.ID == cur.IDMateria);
+                    matInscripto.Add(mat);
+                }
+
+                foreach (Curso cur in cursos) {
+                   
+                    // Valido que no este inscripto a la materia
+                    Materia mat = materias.FirstOrDefault(x => x.ID == cur.IDMateria);
+                    if (!matInscripto.Exists(x => x.ID == mat.ID)) {
+                        
+                        //Solo se muestran los cursos correspondientes al mismo plan del usuario
+                        if (mat.IDPlan == UsuarioActual.IDPlan) {
+
+                            DataRow Linea = Listado.NewRow();
+
+                            Linea["ID"] = cur.ID;
+                            Linea["AnioCalendario"] = cur.AnioCalendario.ToString();
+                            Linea["Cupo"] = ail.GetCantCupo(cur.ID) + "/" + cur.Cupo;
+
+                            Comision com = comisiones.FirstOrDefault(x => x.ID == cur.IDComision);
+                            Linea["Curso"] = com.Descripcion + " - " + mat.Descripcion;
+                            Listado.Rows.Add(Linea);
+                        }
+                    }
+                }
+                if (Listado.Rows.Count == 0) {
+                    MessageBox.Show("No hay cursos disponibles");
+                    this.Close();
+                }
+                else {
+                    this.dgvCursos.DataSource = Listado;
+                }
+                
+            }
+
         }
 
-        private int getUsrID(string StrID) {
-            UsuarioLogic ul = new UsuarioLogic();
-            List<Usuario> usuarios = ul.GetAll();
-            foreach (Usuario usr in usuarios) {
-            //    if (usr.IDString == StrID) {
-              //      return usr.ID;
-                //}
-            }
-            return (0);
-        }
-
-        private void btnCancelar_Click_1(object sender, EventArgs e) {
+        private void btnSalir_Click(object sender, EventArgs e) {
             this.Close();
+        }
+
+        private void btnInscribir_Click(object sender, EventArgs e) {
+            var confirmResult =
+                MessageBox.Show(this.dgvCursos.SelectedRows[0].Cells["Curso"].Value.ToString(),
+                                "Confirmar inscripcion", MessageBoxButtons.YesNo);
+            if (confirmResult == DialogResult.Yes) {
+                InscripcionActual = new AlumnoInscripcion();
+                InscripcionActual.IDCurso = (int)this.dgvCursos.SelectedRows[0].Cells["ID"].Value;
+                InscripcionActual.IDAlumno = UsuarioActual.ID;
+                InscripcionActual.Condicion = Condiciones.Cursando;
+                InscripcionActual.Habilitado = true;
+                InscripcionActual.Nota = "";
+                InscripcionActual.State = BusinessEntity.States.New;
+
+                AlumnoInscripcionLogic ail = new AlumnoInscripcionLogic();
+                CursoLogic cursoLogic = new CursoLogic();
+                Curso curso = cursoLogic.GetOne(InscripcionActual.IDCurso);
+                if (ail.GetCantCupo(InscripcionActual.IDCurso) < curso.Cupo) {
+                    ail.Save(InscripcionActual);
+                }
+                else {
+                    MessageBox.Show("El curso no tiene cupo disponible");
+                }
+                this.ListarCursos();
+            }
         }
     }
 }

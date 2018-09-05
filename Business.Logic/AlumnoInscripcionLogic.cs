@@ -23,11 +23,17 @@ namespace Business.Logic
             return AlumnoInscripcionData.GetAll();
         }
 
+        public List<AlumnoInscripcion> GetAllFromUser(int IDUsuario) {
+            return AlumnoInscripcionData.GetAllFromUser(IDUsuario);
+        }
+
         public AlumnoInscripcion GetOne(int id)
         {
             return AlumnoInscripcionData.GetOne(id);
         }
-
+        public int GetCantCupo(int IDCurso) {
+            return AlumnoInscripcionData.GetCupo(IDCurso);
+        }
         public void Delete(int id)
         {
             AlumnoInscripcionData.Delete(id);
