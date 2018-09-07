@@ -127,29 +127,24 @@ namespace Data.Database
                 this.CloseConnection();
             }
         }
-        public void Delete(int ID)
-        {
-            try
-            {
+        public void Delete(AlumnoInscripcion insc) {
+            try{
                 this.OpenConnection();
-                SqlCommand cmdDelete = new SqlCommand("DELETE alumnos_inscripciones WHERE id_inscripcion=@id", SqlConn);
-                cmdDelete.Parameters.Add("@id", SqlDbType.Int).Value = ID;
+                SqlCommand cmdDelete = new SqlCommand("UPDATE alumnos_inscripciones SET ai_hab@false WHERE id_inscripcion=@id", SqlConn);
+                cmdDelete.Parameters.Add("@id", SqlDbType.Int).Value = insc.ID;
+                cmdDelete.Parameters.Add("@false",SqlDbType.Bit).Value = false;
                 cmdDelete.ExecuteNonQuery();
             }
-            catch (Exception ex)
-            {
+            catch (Exception ex){
                 Exception excepcionManejada = new Exception("Error al eliminar alumnoInscripcion", ex);
                 throw excepcionManejada;
             }
-            finally
-            {
+            finally{
                 this.CloseConnection();
             }
         }
-        protected void Update(AlumnoInscripcion insc)
-        {
-            try
-            {
+        protected void Update(AlumnoInscripcion insc){
+            try{
                 this.OpenConnection();
                 SqlCommand cmdSave = new SqlCommand("UPDATE alumnos_inscripciones SET id_alumno = @id_alumno, " +
                     "id_curso = @id_curso, nota = @nota, condicion = @condicion, ai_hab = @ai_hab" +
@@ -163,21 +158,16 @@ namespace Data.Database
                 cmdSave.Parameters.Add("@ai_hab", SqlDbType.Bit).Value = insc.Habilitado;
                 cmdSave.ExecuteNonQuery();
             }
-            catch (Exception Ex)
-            {
+            catch (Exception Ex){
                 Exception ExcepcionManejada = new Exception("Error al modificar datos de Inscripcion", Ex);
                 throw ExcepcionManejada;
             }
-            finally
-            {
+            finally{
                 this.CloseConnection();
             }
         }
-        protected void Insert(AlumnoInscripcion insc)
-        {
-
-            try
-            {
+        protected void Insert(AlumnoInscripcion insc){
+            try{
                 this.OpenConnection();
                 SqlCommand cmdSave = new SqlCommand("INSERT INTO alumnos_inscripciones(id_alumno, id_curso, condicion, ai_hab) " +
                     "values(@id_alumno, @id_curso, @condicion, @ai_hab) SELECT @@identity", SqlConn);
@@ -189,34 +179,26 @@ namespace Data.Database
 
                 insc.ID = Decimal.ToInt32((decimal)cmdSave.ExecuteScalar());
             }
-            catch (Exception Ex)
-            {
+            catch (Exception Ex){
                 Exception ExcepcionManejada = new Exception("Error al crear Inscripcion", Ex);
                 throw ExcepcionManejada;
             }
-            finally
-            {
+            finally{
                 this.CloseConnection();
             }
         }
-        public void Save(AlumnoInscripcion insc)
-        {
-            if (insc.State == BusinessEntity.States.Deleted)
-            {
-                this.Delete(insc.ID);
+        public void Save(AlumnoInscripcion insc){
+            if (insc.State == BusinessEntity.States.Deleted){
+                this.Delete(insc);
             }
-            else if (insc.State == BusinessEntity.States.New)
-            {
+            else if (insc.State == BusinessEntity.States.New){
                 this.Insert(insc);
             }
-            else if (insc.State == BusinessEntity.States.Modified)
-            {
+            else if (insc.State == BusinessEntity.States.Modified){
                 this.Update(insc);
             }
             insc.State = BusinessEntity.States.Unmodified;
         }
-
-
     }
 
 }

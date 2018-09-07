@@ -71,11 +71,12 @@ namespace Data.Database {
             return crs;
         }
 
-        public void Delete(int ID) {
+        public void Delete(Curso curso) {
             try {
                 this.OpenConnection();
-                SqlCommand cmdDelete = new SqlCommand("DELETE cursos WHERE id_curso=@id", SqlConn);
-                cmdDelete.Parameters.Add("@id", SqlDbType.Int).Value = ID;
+                SqlCommand cmdDelete = new SqlCommand("UPDATE cursos SET curso_hab@false WHERE id_curso=@id",SqlConn);
+                cmdDelete.Parameters.Add("@id",SqlDbType.Int).Value = curso.ID;
+                cmdDelete.Parameters.Add("@false",SqlDbType.Bit).Value = false;
                 cmdDelete.ExecuteNonQuery();
             }
             catch (Exception ex) {
@@ -138,7 +139,7 @@ namespace Data.Database {
 
         public void Save(Curso curso) {
             if (curso.State == BusinessEntity.States.Deleted) {
-                this.Delete(curso.ID);
+                this.Delete(curso);
             }
             else if (curso.State == BusinessEntity.States.New) {
                 this.Insert(curso);

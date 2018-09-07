@@ -63,11 +63,12 @@ namespace Data.Database {
             return esp;
         }
 
-        public void Delete(int ID) {
+        public void Delete(Especialidad especialidad) {
             try {
                 this.OpenConnection();
-                SqlCommand cmdDelete = new SqlCommand("DELETE especialidades WHERE id_especialidad=@id", SqlConn);
-                cmdDelete.Parameters.Add("@id", SqlDbType.Int).Value = ID;
+                SqlCommand cmdDelete = new SqlCommand("UPDATE especialidades SET esp_hab@false WHERE id_especialidad=@id",SqlConn);
+                cmdDelete.Parameters.Add("@id",SqlDbType.Int).Value = especialidad.ID;
+                cmdDelete.Parameters.Add("@false",SqlDbType.Bit).Value = false;
                 cmdDelete.ExecuteNonQuery();
             }
             catch (Exception ex) {
@@ -120,7 +121,7 @@ namespace Data.Database {
 
         public void Save(Especialidad especialidad) {
             if (especialidad.State == BusinessEntity.States.Deleted) {
-                this.Delete(especialidad.ID);
+                this.Delete(especialidad);
             }
             else if (especialidad.State == BusinessEntity.States.New) {
                 this.Insert(especialidad);

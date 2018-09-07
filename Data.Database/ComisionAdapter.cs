@@ -66,11 +66,12 @@ namespace Data.Database {
             }
             return com;
         }
-        public void Delete(int ID) {
+        public void Delete(Comision com) {
             try {
                 this.OpenConnection();
-                SqlCommand cmdDelete = new SqlCommand("DELETE comisiones WHERE id_comision=@id", SqlConn);
-                cmdDelete.Parameters.Add("@id", SqlDbType.Int).Value = ID;
+                SqlCommand cmdDelete = new SqlCommand("UPDATE comisiones SET com_hab=@false WHERE id_comision=@id",SqlConn);
+                cmdDelete.Parameters.Add("@id",SqlDbType.Int).Value = com.ID;
+                cmdDelete.Parameters.Add("@false",SqlDbType.Bit).Value = false;
                 cmdDelete.ExecuteNonQuery();
             }
             catch (Exception ex) {
@@ -126,7 +127,7 @@ namespace Data.Database {
         }
         public void Save(Comision com) {
             if (com.State == BusinessEntity.States.Deleted) {
-                this.Delete(com.ID);
+                this.Delete(com);
             }
             else if (com.State == BusinessEntity.States.New) {
                 this.Insert(com);

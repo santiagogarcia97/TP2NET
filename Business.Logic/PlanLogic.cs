@@ -29,9 +29,6 @@ namespace Business.Logic {
             return PlanData.GetOne(id);
         }
 
-        public void Delete(int id) {
-            PlanData.Delete(id);
-        }
 
         public void Save(Plan pln) {
             PlanData.Save(pln);

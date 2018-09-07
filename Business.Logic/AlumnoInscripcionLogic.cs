@@ -34,10 +34,6 @@ namespace Business.Logic
         public int GetCantCupo(int IDCurso) {
             return AlumnoInscripcionData.GetCupo(IDCurso);
         }
-        public void Delete(int id)
-        {
-            AlumnoInscripcionData.Delete(id);
-        }
 
         public void Save(AlumnoInscripcion insc)
         {

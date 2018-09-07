@@ -66,11 +66,12 @@ namespace Data.Database {
             return pln;
         }
 
-        public void Delete(int ID) {
+        public void Delete(Plan plan) {
             try {
                 this.OpenConnection();
-                SqlCommand cmdDelete = new SqlCommand("DELETE planes WHERE id_plan=@id", SqlConn);
-                cmdDelete.Parameters.Add("@id", SqlDbType.Int).Value = ID;
+                SqlCommand cmdDelete = new SqlCommand("UPDATE planes SET plan_hab=@false WHERE id_plan=@id",SqlConn);
+                cmdDelete.Parameters.Add("@id",SqlDbType.Int).Value = plan.ID;
+                cmdDelete.Parameters.Add("@false",SqlDbType.Bit).Value = false;
                 cmdDelete.ExecuteNonQuery();
             }
             catch (Exception ex) {
@@ -126,7 +127,7 @@ namespace Data.Database {
 
         public void Save(Plan plan) {
             if (plan.State == BusinessEntity.States.Deleted) {
-                this.Delete(plan.ID);
+                this.Delete(plan);
             }
             else if (plan.State == BusinessEntity.States.New) {
                 this.Insert(plan);

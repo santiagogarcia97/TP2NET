@@ -69,11 +69,12 @@ namespace Data.Database {
             return mat;
         }
 
-        public void Delete(int ID) {
+        public void Delete(Materia materia) {
             try {
                 this.OpenConnection();
-                SqlCommand cmdDelete = new SqlCommand("DELETE materias WHERE id_materia=@id", SqlConn);
-                cmdDelete.Parameters.Add("@id", SqlDbType.Int).Value = ID;
+                SqlCommand cmdDelete = new SqlCommand("UPDATE materias SET mat_hab=@false WHERE id_materia=@id",SqlConn);
+                cmdDelete.Parameters.Add("@id",SqlDbType.Int).Value = materia.ID;
+                cmdDelete.Parameters.Add("@false",SqlDbType.Bit).Value = false;
                 cmdDelete.ExecuteNonQuery();
             }
             catch (Exception ex) {
@@ -134,7 +135,7 @@ namespace Data.Database {
 
         public void Save(Materia materia) {
             if (materia.State == BusinessEntity.States.Deleted) {
-                this.Delete(materia.ID);
+                this.Delete(materia);
             }
             else if (materia.State == BusinessEntity.States.New) {
                 this.Insert(materia);

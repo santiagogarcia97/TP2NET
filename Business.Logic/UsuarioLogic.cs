@@ -24,9 +24,7 @@ namespace Business.Logic {
         public Usuario GetOne(String username){
             return UsuarioData.GetOne(username);
         }
-        public void Delete(int id) {
-            UsuarioData.Delete(id);
-        }
+
         public void Save(Usuario user) {
             UsuarioData.Save(user);
         }

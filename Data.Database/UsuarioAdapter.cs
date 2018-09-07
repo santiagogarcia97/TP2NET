@@ -143,12 +143,13 @@ namespace Data.Database
             return max;
         }
 
-        public void Delete(int ID)
+        public void Delete(Usuario usuario)
         {
             try {
                 this.OpenConnection();
-                SqlCommand cmdDelete = new SqlCommand("DELETE FROM usuarios WHERE id_usuario=@id", SqlConn);
-                cmdDelete.Parameters.Add("@id", SqlDbType.Int).Value = ID;
+                SqlCommand cmdDelete = new SqlCommand("UPDATE usuarios SET user_hab=@false WHERE id_usuario=@id",SqlConn);
+                cmdDelete.Parameters.Add("@id",SqlDbType.Int).Value = usuario.ID;
+                cmdDelete.Parameters.Add("@false",SqlDbType.Bit).Value = false;
                 cmdDelete.ExecuteNonQuery();
             }
             catch(Exception ex) {
@@ -168,7 +169,7 @@ namespace Data.Database
                     "tipo_persona=@tipo_persona,nombre_usuario=@nombre_usuario,clave=@clave," +
                     "user_hab=@user_hab,cambia_clave=@cambia_clave,id_plan=@id_plan WHERE id_usuario=@id", SqlConn);
 
-                cmdSave.Parameters.Add("@id", SqlDbType.Int).Value = usuario.ID;
+                
                 cmdSave.Parameters.Add("@nombre", SqlDbType.VarChar, 50).Value = usuario.Nombre;
                 cmdSave.Parameters.Add("@apellido", SqlDbType.VarChar, 50).Value = usuario.Apellido;
                 cmdSave.Parameters.Add("@direccion", SqlDbType.VarChar, 50).Value = usuario.Direccion;
@@ -230,7 +231,7 @@ namespace Data.Database
         public void Save(Usuario usuario){
             if (usuario.State == BusinessEntity.States.Deleted)
             {
-                this.Delete(usuario.ID);
+                this.Delete(usuario);
             }
             else if (usuario.State == BusinessEntity.States.New)
             {

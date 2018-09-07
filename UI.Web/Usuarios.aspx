@@ -28,6 +28,8 @@
 
 
     <asp:Panel ID="formPanel" Visible="false" runat="server">
+            <asp:Label ID="IDLabel" runat="server" Text="ID: -"></asp:Label>
+            <br />
             <asp:Label ID="nombreLabel" runat="server" Text="Nombre: "></asp:Label>
             <asp:TextBox ID="nombreTextBox" runat="server"></asp:TextBox>
             <br />

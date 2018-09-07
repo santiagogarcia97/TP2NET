@@ -23,9 +23,6 @@ namespace Business.Logic {
             return ComisionData.GetOne(id);
         }
 
-        public void Delete(int id) {
-            ComisionData.Delete(id);
-        }
 
         public void Save(Comision com) {
             ComisionData.Save(com);

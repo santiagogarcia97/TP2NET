@@ -67,6 +67,7 @@ namespace UI.Web {
 
         private void LoadForm(int id) {
             Entity = Logic.GetOne(id);
+            IDLabel.Text = "ID: " + id.ToString();
             nombreTextBox.Text = Entity.Nombre;
             apellidoTextBox.Text = Entity.Apellido;
             emailTextBox.Text = Entity.Email;
@@ -217,6 +218,7 @@ namespace UI.Web {
         }
 
         private void ClearForm() {
+            IDLabel.Text = "ID: -";
             nombreTextBox.Text = string.Empty;
             apellidoTextBox.Text = string.Empty;
             emailTextBox.Text = string.Empty;
