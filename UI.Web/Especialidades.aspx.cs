@@ -93,7 +93,7 @@ namespace UI.Web {
             switch(FormMode) {
                 case FormModes.Baja:
                     Entity.State = BusinessEntity.States.Deleted;
-                    DeleteEntity(SelectedID);
+                    SaveEntity(Entity);
                     LoadGrid();
                     break;
                 case FormModes.Modificacion:
@@ -129,10 +129,6 @@ namespace UI.Web {
                 EnableForm(false);
                 LoadForm(this.SelectedID);
             }
-        }
-
-        private void DeleteEntity(int id) {
-            Logic.Delete(id);
         }
 
         protected void nuevoLinkButton_Click(object sender,EventArgs e) {
