@@ -112,6 +112,15 @@ namespace UI.Web {
         protected global::System.Web.UI.WebControls.TextBox nombreTextBox;
         
         /// <summary>
+        /// lblRedNom control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblRedNom;
+        
+        /// <summary>
         /// apellidoLabel control.
         /// </summary>
         /// <remarks>
@@ -130,6 +139,15 @@ namespace UI.Web {
         protected global::System.Web.UI.WebControls.TextBox apellidoTextBox;
         
         /// <summary>
+        /// lblRedAp control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblRedAp;
+        
+        /// <summary>
         /// emailLabel control.
         /// </summary>
         /// <remarks>
@@ -146,6 +164,15 @@ namespace UI.Web {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox emailTextBox;
+        
+        /// <summary>
+        /// lblRedEmail control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblRedEmail;
         
         /// <summary>
         /// habilitadoLabel control.
@@ -184,6 +211,15 @@ namespace UI.Web {
         protected global::System.Web.UI.WebControls.TextBox nombreUsuarioTextBox;
         
         /// <summary>
+        /// lblRedUser control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblRedUser;
+        
+        /// <summary>
         /// LegajoLabel control.
         /// </summary>
         /// <remarks>
@@ -220,22 +256,13 @@ namespace UI.Web {
         protected global::System.Web.UI.WebControls.TextBox claveTextBox;
         
         /// <summary>
-        /// repetirClaveLabel control.
+        /// lblRedClave control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label repetirClaveLabel;
-        
-        /// <summary>
-        /// repetirClaveTextBox control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox repetirClaveTextBox;
+        protected global::System.Web.UI.WebControls.Label lblRedClave;
         
         /// <summary>
         /// fechaLabel control.
@@ -256,6 +283,15 @@ namespace UI.Web {
         protected global::System.Web.UI.WebControls.TextBox fechaTextBox;
         
         /// <summary>
+        /// lblRedNac control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblRedNac;
+        
+        /// <summary>
         /// direccionLabel control.
         /// </summary>
         /// <remarks>
@@ -272,6 +308,15 @@ namespace UI.Web {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox direccionTextBox;
+        
+        /// <summary>
+        /// lblRedDirec control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblRedDirec;
         
         /// <summary>
         /// telefonoLabel control.
@@ -292,6 +337,15 @@ namespace UI.Web {
         protected global::System.Web.UI.WebControls.TextBox telefonoTextBox;
         
         /// <summary>
+        /// lblRedTel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblRedTel;
+        
+        /// <summary>
         /// tipoLabel control.
         /// </summary>
         /// <remarks>
@@ -308,6 +362,15 @@ namespace UI.Web {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList tipoDDL;
+        
+        /// <summary>
+        /// lblRedTipo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblRedTipo;
         
         /// <summary>
         /// especialidadLabel control.
@@ -344,6 +407,15 @@ namespace UI.Web {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList planDDL;
+        
+        /// <summary>
+        /// lblRedPlan control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblRedPlan;
         
         /// <summary>
         /// formActionsPanel control.

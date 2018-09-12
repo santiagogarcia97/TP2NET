@@ -174,21 +174,16 @@ namespace UI.Desktop {
             DateTime dt;
             lblRedNac.Visible = (DateTime.TryParseExact(txtFechaNac.Text, Util.Validar.FormatosFecha , null, DateTimeStyles.None, out dt) == true) ? false : true;
 
-            if (lblRedAp.Visible == true ||
-            lblRedClave.Visible == true ||
-            lblRedDirec.Visible == true ||
-            lblRedEmail.Visible == true ||
-            lblRedNac.Visible == true ||
-            lblRedNom.Visible == true ||
-            lblRedPlan.Visible == true ||
-            lblRedTel.Visible == true ||
-            lblRedTipo.Visible == true ||
-            lblRedUser.Visible == true) {
-                return false;
-            }
-            else {
-                return true;
-            }
+            return !(lblRedAp.Visible ||
+                     lblRedClave.Visible ||
+                     lblRedDirec.Visible ||
+                     lblRedEmail.Visible ||
+                     lblRedNac.Visible ||
+                     lblRedNom.Visible ||
+                     lblRedPlan.Visible ||
+                     lblRedTel.Visible ||
+                     lblRedTipo.Visible ||
+                     lblRedUser.Visible);
         }
 
         private void cbxEsp_SelectedValueChanged(object sender, EventArgs e) {

@@ -9,6 +9,7 @@ using System.Web.UI.WebControls;
 using Business.Entities;
 using Business.Logic;
 using System.Globalization;
+using System.ComponentModel.DataAnnotations;
 
 
 namespace UI.Web {
@@ -85,31 +86,14 @@ namespace UI.Web {
         }
 
         private void GenerarEsp() {
-            DataTable dtEspecialidades = new DataTable();
-            dtEspecialidades.Columns.Add("id_esp",typeof(int));
-            dtEspecialidades.Columns.Add("desc_esp",typeof(string));
-            EspecialidadLogic el = new EspecialidadLogic();
-            List<Especialidad> especialidades = el.GetAll();
-            foreach(Especialidad esp in especialidades) {
-                dtEspecialidades.Rows.Add(new object[] { esp.ID,esp.Descripcion });
-            }
-
+            DataTable dtEspecialidades = GenerarComboBox.getEspecialidades();
             especialidadDDL.DataValueField = "id_esp";
             especialidadDDL.DataTextField = "desc_esp";
             especialidadDDL.DataSource = dtEspecialidades;
             especialidadDDL.DataBind();
         }
         private void GenerarPlanes(int idEsp) {
-            DataTable dtPlanes = new DataTable();
-            dtPlanes.Columns.Add("id_plan",typeof(int));
-            dtPlanes.Columns.Add("desc_plan",typeof(string));
-            PlanLogic pl = new PlanLogic();
-            List<Plan> planes = pl.GetAll();
-            foreach(Plan plan in planes) {
-                if(plan.IDEspecialidad == idEsp) {
-                    dtPlanes.Rows.Add(new object[] { plan.ID,plan.Descripcion });
-                }
-            }
+            DataTable dtPlanes = GenerarComboBox.getPlanes(idEsp);
             planDDL.DataValueField = "id_plan";
             planDDL.DataTextField = "desc_plan";
             planDDL.DataSource = dtPlanes;
@@ -141,7 +125,6 @@ namespace UI.Web {
             usuario.Telefono = telefonoTextBox.Text;
             usuario.TipoPersona = int.Parse(tipoDDL.SelectedValue);
             usuario.IDPlan = int.Parse(planDDL.SelectedValue);
-
         }
 
         private void SaveEntity(Usuario usuario) {
@@ -149,31 +132,58 @@ namespace UI.Web {
         }
 
         protected void aceptarLinkButton_Click(object sender,EventArgs e) {
-            switch(FormMode) {
-                case FormModes.Baja:
-                    Entity.State = BusinessEntity.States.Deleted;
-                    SaveEntity(Entity);
-                    LoadGrid();
-                    break;
-                case FormModes.Modificacion:
-                    Entity = new Usuario();
-                    Entity.ID = SelectedID;
-                    Entity.State = BusinessEntity.States.Modified;
-                    LoadEntity(Entity);
-                    SaveEntity(Entity);
-                    LoadGrid();
-                    break;
-                case FormModes.Alta:
-                    Entity = new Usuario();
-                    Entity.State = BusinessEntity.States.New;
-                    LoadEntity(Entity);
-                    SaveEntity(Entity);
-                    LoadGrid();
-                    break;
-                default:
-                    break;
+            if(Validar()){
+                switch (FormMode) {
+                    case FormModes.Baja:
+                        Entity.State = BusinessEntity.States.Deleted;
+                        SaveEntity(Entity);
+                        LoadGrid();
+                        break;
+                    case FormModes.Modificacion:
+                        Entity = new Usuario();
+                        Entity.ID = SelectedID;
+                        Entity.State = BusinessEntity.States.Modified;
+                        LoadEntity(Entity);
+                        SaveEntity(Entity);
+                        LoadGrid();
+                        break;
+                    case FormModes.Alta:
+                        Entity = new Usuario();
+                        Entity.State = BusinessEntity.States.New;
+                        LoadEntity(Entity);
+                        SaveEntity(Entity);
+                        LoadGrid();
+                        break;
+                    default:
+                        break;
+                }
+                formPanel.Visible = false;
             }
-            formPanel.Visible = false;
+        }
+
+        protected bool Validar() {
+            lblRedAp.Visible = (string.IsNullOrWhiteSpace(apellidoTextBox.Text)) ? true : false;
+            lblRedClave.Visible = (string.IsNullOrWhiteSpace(claveTextBox.Text)) ? true : false;
+            lblRedDirec.Visible = (string.IsNullOrWhiteSpace(direccionTextBox.Text)) ? true : false;
+            lblRedNom.Visible = (string.IsNullOrWhiteSpace(nombreTextBox.Text)) ? true : false;
+            lblRedTel.Visible = (string.IsNullOrWhiteSpace(telefonoTextBox.Text)) ? true : false;
+            lblRedUser.Visible = (string.IsNullOrWhiteSpace(nombreUsuarioTextBox.Text)) ? true : false;
+            lblRedTipo.Visible = (tipoDDL.SelectedValue == null) ? true : false;
+            lblRedPlan.Visible = (especialidadDDL.SelectedValue == null || planDDL.SelectedValue == null) ? true : false;
+            lblRedEmail.Visible = (new EmailAddressAttribute().IsValid(emailTextBox.Text)) ? false : true;
+            DateTime dt;
+            lblRedNac.Visible = (DateTime.TryParseExact(fechaTextBox.Text, Util.Validar.FormatosFecha, null, DateTimeStyles.None, out dt) == true) ? false : true;
+
+            return !(lblRedAp.Visible ||
+                     lblRedClave.Visible ||
+                     lblRedDirec.Visible ||
+                     lblRedEmail.Visible ||
+                     lblRedNac.Visible ||
+                     lblRedNom.Visible ||
+                     lblRedPlan.Visible ||
+                     lblRedTel.Visible ||
+                     lblRedTipo.Visible ||
+                     lblRedUser.Visible);
         }
 
         protected void especialidadDDL_SelectedIndexChanged(object sender,EventArgs e) {
@@ -188,7 +198,6 @@ namespace UI.Web {
             claveTextBox.Enabled = enable;
             LegajoTextBox.Enabled = enable;
             habilitadoCheckBox.Enabled = enable;
-            repetirClaveTextBox.Enabled = enable;
             fechaTextBox.Enabled = enable;
             direccionTextBox.Enabled = enable;
             telefonoTextBox.Enabled = enable;
@@ -222,7 +231,6 @@ namespace UI.Web {
             nombreUsuarioTextBox.Text = string.Empty;
             claveTextBox.Text = string.Empty;
             habilitadoCheckBox.Text = string.Empty;
-            repetirClaveTextBox.Text = string.Empty;
             fechaTextBox.Text = string.Empty;
             direccionTextBox.Text = string.Empty;
             telefonoTextBox.Text = string.Empty;
