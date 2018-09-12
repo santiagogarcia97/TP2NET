@@ -66,7 +66,7 @@ namespace Data.Database {
         public void Delete(Especialidad especialidad) {
             try {
                 this.OpenConnection();
-                SqlCommand cmdDelete = new SqlCommand("UPDATE especialidades SET esp_hab@false WHERE id_especialidad=@id",SqlConn);
+                SqlCommand cmdDelete = new SqlCommand("UPDATE especialidades SET esp_hab = @false WHERE id_especialidad=@id",SqlConn);
                 cmdDelete.Parameters.Add("@id",SqlDbType.Int).Value = especialidad.ID;
                 cmdDelete.Parameters.Add("@false",SqlDbType.Bit).Value = false;
                 cmdDelete.ExecuteNonQuery();
@@ -107,6 +107,7 @@ namespace Data.Database {
                 SqlCommand cmdSave = new SqlCommand("INSERT INTO especialidades(desc_especialidad,esp_hab) " +
                     "values(@desc,@esp_hab) SELECT @@identity", SqlConn);
                 cmdSave.Parameters.Add("@desc", SqlDbType.VarChar, 50).Value = especialidad.Descripcion;
+                cmdSave.Parameters.Add("@esp_hab", SqlDbType.Bit).Value = especialidad.Habilitado;
                 especialidad.ID = Decimal.ToInt32((decimal)cmdSave.ExecuteScalar());
             }
             catch (Exception Ex) {

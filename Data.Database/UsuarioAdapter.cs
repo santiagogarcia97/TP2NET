@@ -169,7 +169,7 @@ namespace Data.Database
                     "tipo_persona=@tipo_persona,nombre_usuario=@nombre_usuario,clave=@clave," +
                     "user_hab=@user_hab,cambia_clave=@cambia_clave,id_plan=@id_plan WHERE id_usuario=@id", SqlConn);
 
-                
+                cmdSave.Parameters.Add("@id",SqlDbType.Int).Value = usuario.ID;
                 cmdSave.Parameters.Add("@nombre", SqlDbType.VarChar, 50).Value = usuario.Nombre;
                 cmdSave.Parameters.Add("@apellido", SqlDbType.VarChar, 50).Value = usuario.Apellido;
                 cmdSave.Parameters.Add("@direccion", SqlDbType.VarChar, 50).Value = usuario.Direccion;

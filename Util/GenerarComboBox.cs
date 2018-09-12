@@ -26,7 +26,9 @@ namespace Util {
             EspecialidadLogic el = new EspecialidadLogic();
             List<Especialidad> especialidades = el.GetAll();
             foreach (Especialidad esp in especialidades) {
-                dtEspecialidades.Rows.Add(new object[] { esp.ID, esp.Descripcion });
+                if (esp.Habilitado) {
+                    dtEspecialidades.Rows.Add(new object[] { esp.ID, esp.Descripcion });
+                }
             }
             return dtEspecialidades;
         }
@@ -37,7 +39,7 @@ namespace Util {
             PlanLogic pl = new PlanLogic();
             List<Plan> planes = pl.GetAll();
             foreach (Plan plan in planes) {
-                if (plan.IDEspecialidad == idEsp) {
+                if (plan.IDEspecialidad == idEsp && plan.Habilitado) {
                     dtPlanes.Rows.Add(new object[] { plan.ID, plan.Descripcion });
                 }
             }
@@ -61,7 +63,7 @@ namespace Util {
             MateriaLogic ml = new MateriaLogic();
             List<Materia> materias = ml.GetAll();
             foreach (Materia materia in materias) {
-                if (materia.IDPlan == idPlan) {
+                if (materia.IDPlan == idPlan && materia.Habilitado) {
                     dtMaterias.Rows.Add(new object[] { materia.ID, materia.Descripcion });
                 }
             }
@@ -74,7 +76,7 @@ namespace Util {
             ComisionLogic cl = new ComisionLogic();
             List<Comision> comisiones = cl.GetAll();
             foreach (Comision com in comisiones) {
-                if (com.IDPlan == idPlan) {
+                if (com.IDPlan == idPlan && com.Habilitado) {
                     dtComisiones.Rows.Add(new object[] { com.ID, com.Descripcion });
                 }
             }
