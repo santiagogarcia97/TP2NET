@@ -237,5 +237,9 @@ namespace UI.Web {
             LegajoTextBox.Text = string.Empty;
             GenerarEsp();
         }
+
+        protected void cancelarLinkButton_Click(object sender, EventArgs e) {
+            formPanel.Visible = false;
+        }
     }
 }

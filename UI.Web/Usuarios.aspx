@@ -3,11 +3,11 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="bodyContentPlaceHolder" runat="server">
     
     <asp:Panel ID="gridPanel" runat="server">
-        <head runat="server" />
+        <head />
         <asp:GridView ID="gridView" font-name="Georgia" runat="server" AutoGenerateColumns="False"
             SelectedRowStyle-BackColor="Black"
             SelectedRowStyle-ForeColor="White"
-            DataKeyNames="ID" OnLoad="Page_Load" OnSelectedIndexChanged="gridView_SelectedIndexChanged">
+            DataKeyNames="ID" OnLoad="Page_Load" OnSelectedIndexChanged="gridView_SelectedIndexChanged" Width="200px">
             <Columns>
                 <asp:BoundField HeaderText="Nombre" DataField="Nombre" />
                 <asp:BoundField HeaderText="Apellido" DataField="Apellido" />
@@ -86,7 +86,7 @@
         
             <asp:Panel ID="formActionsPanel" runat="server">
                 <asp:LinkButton font-name="Georgia" ID="aceptarLinkButton" runat="server" OnClick="aceptarLinkButton_Click">Aceptar</asp:LinkButton>
-                <asp:LinkButton font-name="Georgia" ID="cancelarLinkButton" runat="server">Cancelar</asp:LinkButton>
+                <asp:LinkButton font-name="Georgia" ID="cancelarLinkButton" runat="server" OnClick="cancelarLinkButton_Click">Cancelar</asp:LinkButton>
             </asp:Panel>
     </asp:Panel>
 
