@@ -52,8 +52,8 @@
 
 <div style="overflow:auto">
   <div class="menu">
-    <a href="#">Usuarios</a>
-    <a href="#">Especialidades</a>
+    <a href="Usuarios.aspx">Usuarios</a>
+    <a href="Especialidades.aspx">Especialidades</a>
     <a href="#">Planes</a>
     <a href="#">Cursos</a>
   </div>
