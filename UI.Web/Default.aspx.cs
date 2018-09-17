@@ -19,11 +19,11 @@ namespace UI.Web {
 
         protected void aceptarLinkButton_Click(object sender,EventArgs e) {
             UsuarioLogic ul = new UsuarioLogic();
-            Usuario user = ul.GetOne(userTextBox.Text);
-            if(userTextBox.Text.Equals(user.NombreUsuario) && passwordTextBox.Text.Equals(user.Clave)) {
+            Usuario user = ul.GetOne(userTextBox.Value);
+            if(userTextBox.Value.Equals(user.NombreUsuario) && passwordTextBox.Value.Equals(user.Clave)) {
                 Response.Redirect("Usuarios.aspx");
             }
-            else if(userTextBox.Text.Equals(user.NombreUsuario) && !passwordTextBox.Text.Equals(user.Clave)) {
+            else if(userTextBox.Value.Equals(user.NombreUsuario) && !passwordTextBox.Value.Equals(user.Clave)) {
                 MsgBox("La contraseña es incorrecta.",this.Page,this);
 
             }
