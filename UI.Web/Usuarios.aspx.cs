@@ -132,7 +132,7 @@ namespace UI.Web {
         }
 
         protected void aceptarLinkButton_Click(object sender,EventArgs e) {
-            if(Validar()){
+            if (Validar()){
                 switch (FormMode) {
                     case FormModes.Baja:
                         Entity.State = BusinessEntity.States.Deleted;
@@ -173,6 +173,8 @@ namespace UI.Web {
             lblRedEmail.Visible = (new EmailAddressAttribute().IsValid(emailTextBox.Text)) ? false : true;
             DateTime dt;
             lblRedNac.Visible = (DateTime.TryParseExact(fechaTextBox.Text, Util.Validar.FormatosFecha, null, DateTimeStyles.None, out dt) == true) ? false : true;
+            legajoValidator.Validate();
+            telefonoValidator.Validate();
 
             return !(lblRedAp.Visible ||
                      lblRedClave.Visible ||
@@ -183,7 +185,9 @@ namespace UI.Web {
                      lblRedPlan.Visible ||
                      lblRedTel.Visible ||
                      lblRedTipo.Visible ||
-                     lblRedUser.Visible);
+                     lblRedUser.Visible ||
+                     !legajoValidator.IsValid ||
+                     !telefonoValidator.IsValid);
         }
 
         protected void especialidadDDL_SelectedIndexChanged(object sender,EventArgs e) {

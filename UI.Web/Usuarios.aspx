@@ -51,6 +51,10 @@
             <br />
             <asp:Label font-name="Georgia" ID="LegajoLabel" runat="server" Text="Legajo: "></asp:Label>
             <asp:TextBox ID="LegajoTextBox" runat="server"></asp:TextBox>
+            <asp:RegularExpressionValidator id="legajoValidator" runat="server" 
+                ErrorMessage="Formato Invalido" 
+                ValidationExpression="^[0-9]*$" 
+                ControlToValidate="legajoTextBox" />
             <br />
             <asp:Label font-name="Georgia" ID="claveLabel" runat="server" Text="Clave: "></asp:Label>
             <asp:TextBox ID="claveTextBox" TextMode="Password" runat="server"></asp:TextBox>
@@ -66,7 +70,11 @@
             <br />
             <asp:Label font-name="Georgia" ID="telefonoLabel" runat="server" Text="Teléfono: "></asp:Label>
             <asp:TextBox ID="telefonoTextBox" runat="server"></asp:TextBox>
-            <asp:Label font-name="Georgia" ID="lblRedTel" forecolor="Red" runat="server" Text="*" Visible="False"></asp:Label>
+            <asp:RegularExpressionValidator id="telefonoValidator" runat="server" 
+                ErrorMessage="Formato Invalido" 
+                ValidationExpression="^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$" 
+                ControlToValidate="telefonoTextBox" />
+            <asp:Label font-name="Georgia" ID="lblRedTel" forecolor="Red" runat="server" Text="*" Visible="False"></asp:Label>            
             <br />
             <asp:Label font-name="Georgia" ID="tipoLabel" runat="server" Text="Tipo de Usuario: "></asp:Label>
             <asp:DropDownList ID="tipoDDL" runat="server">
