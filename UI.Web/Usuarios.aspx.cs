@@ -15,7 +15,7 @@ using System.ComponentModel.DataAnnotations;
 namespace UI.Web {
     public partial class Usuarios : System.Web.UI.Page {
 
-        public enum FormModes { Alta, Baja, Modificacion}
+        public enum FormModes { Alta, Baja, Modificacion }
 
         public FormModes FormMode {
             get { return (FormModes)ViewState["FormMode"]; }
@@ -44,14 +44,14 @@ namespace UI.Web {
 
         private UsuarioLogic _logic;
         private UsuarioLogic Logic {
-            get { 
-                if(_logic == null) _logic = new UsuarioLogic();
+            get {
+                if (_logic == null) _logic = new UsuarioLogic();
                 return _logic;
             }
         }
 
         private void LoadGrid() {
-            
+
             gridView.DataSource = Logic.GetAll();
             gridView.DataBind();
         }
@@ -59,7 +59,7 @@ namespace UI.Web {
 
         protected void Page_Load(object sender, EventArgs e) {
             LoadGrid();
-            
+
         }
 
         protected void gridView_SelectedIndexChanged(object sender, EventArgs e) {
@@ -102,7 +102,7 @@ namespace UI.Web {
 
 
         protected void editarLinkButton_Click(object sender, EventArgs e) {
-            if(IsEntitySelected) {
+            if (IsEntitySelected) {
                 EnableForm(true);
                 formPanel.Visible = true;
                 FormMode = FormModes.Modificacion;
@@ -119,7 +119,7 @@ namespace UI.Web {
             usuario.Habilitado = habilitadoCheckBox.Checked;
             usuario.Direccion = direccionLabel.Text;
             DateTime dt;
-            DateTime.TryParseExact(fechaTextBox.Text,Util.Validar.FormatosFecha,null,DateTimeStyles.None,out dt);
+            DateTime.TryParseExact(fechaTextBox.Text, Util.Validar.FormatosFecha, null, DateTimeStyles.None, out dt);
             usuario.FechaNacimiento = dt;
             usuario.Legajo = int.Parse(LegajoTextBox.Text);
             usuario.Telefono = telefonoTextBox.Text;
@@ -131,8 +131,8 @@ namespace UI.Web {
             Logic.Save(usuario);
         }
 
-        protected void aceptarLinkButton_Click(object sender,EventArgs e) {
-            if (Validar()){
+        protected void aceptarLinkButton_Click(object sender, EventArgs e) {
+            if (Validar()) {
                 switch (FormMode) {
                     case FormModes.Baja:
                         Entity.State = BusinessEntity.States.Deleted;
@@ -190,7 +190,7 @@ namespace UI.Web {
                      !telefonoValidator.IsValid);
         }
 
-        protected void especialidadDDL_SelectedIndexChanged(object sender,EventArgs e) {
+        protected void especialidadDDL_SelectedIndexChanged(object sender, EventArgs e) {
             GenerarPlanes(Int32.Parse(especialidadDDL.SelectedValue.ToString()));
         }
 
@@ -210,8 +210,8 @@ namespace UI.Web {
             planDDL.Enabled = enable;
         }
 
-        protected void eliminarLinkButton_Click(object sender,EventArgs e) {
-            if(this.IsEntitySelected) {
+        protected void eliminarLinkButton_Click(object sender, EventArgs e) {
+            if (this.IsEntitySelected) {
                 formPanel.Visible = true;
                 FormMode = FormModes.Baja;
                 EnableForm(false);
@@ -220,7 +220,7 @@ namespace UI.Web {
         }
 
 
-        protected void nuevoLinkButton_Click(object sender,EventArgs e) {
+        protected void nuevoLinkButton_Click(object sender, EventArgs e) {
             formPanel.Visible = true;
             FormMode = FormModes.Alta;
             ClearForm();

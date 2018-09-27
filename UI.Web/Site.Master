@@ -54,7 +54,7 @@
   <div class="menu">
     <a href="Usuarios.aspx">Usuarios</a>
     <a href="Especialidades.aspx">Especialidades</a>
-    <a href="#">Planes</a>
+    <a href="Planes.aspx">Planes</a>
     <a href="#">Cursos</a>
   </div>
 
