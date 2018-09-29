@@ -152,7 +152,7 @@ namespace UI.Desktop {
         }
 
         private void btnCursos_Click(object sender, EventArgs e) {
-            Cursos formCursos = new Cursos();
+            Cursos formCursos = new Cursos(UsuarioActual);
             formCursos.ShowDialog();
         }
 
@@ -168,6 +168,11 @@ namespace UI.Desktop {
 
         private void btnCambiarPass_Click(object sender, EventArgs e) {
             MessageBox.Show("Falta implementar");
+        }
+
+        private void btnDocenteCurso_Click(object sender, EventArgs e) {
+            DocentesCurso formDC = new DocentesCurso();
+            formDC.ShowDialog();
         }
     }
 }

@@ -13,9 +13,19 @@ using Business.Entities;
 namespace UI.Desktop {
     public partial class Cursos : ApplicationForm
     {
+        private Usuario _UsuarioActual;
+        public Usuario UsuarioActual { get => _UsuarioActual; set => _UsuarioActual = value; }
+
         public Cursos(){
             InitializeComponent();
             this.dgvCursos.AutoGenerateColumns = false;
+        }
+        public Cursos(Usuario user) : this() {
+            UsuarioActual = user;
+            if (UsuarioActual.TipoPersona == 2) {
+                tsbEliminar.Visible = false;
+                tsbNuevo.Visible = false;
+            }
         }
 
         public void Listar() {
@@ -24,7 +34,19 @@ namespace UI.Desktop {
             this.dgvCursos.Refresh();
 
             CursoLogic cl = new CursoLogic();
-            List<Curso> cursos = cl.GetAll();
+            List<Curso> cursos = new List<Curso>();
+            if (UsuarioActual.TipoPersona == 2) {
+                DocenteCursoLogic dcl = new DocenteCursoLogic();
+                List<DocenteCurso> dclist = dcl.GetAllFromUser(UsuarioActual.ID);
+
+                foreach (DocenteCurso dc in dclist) {
+                    cursos.Add(cl.GetOne(dc.IDCurso));
+                }
+            }
+            else {
+                cursos = cl.GetAll();
+            }
+
             if (cursos.Count() == 0) {
                 MessageBox.Show("No hay cursos cargados!");
             }
@@ -105,8 +127,14 @@ namespace UI.Desktop {
             if (this.dgvCursos.SelectedRows.Count != 0)
             {
                 int ID = (int)this.dgvCursos.SelectedRows[0].Cells["id"].Value;
-                CursoDesktop cursoDesktop = new CursoDesktop(ID, ApplicationForm.ModoForm.Modificacion);
-                cursoDesktop.ShowDialog();
+                if (UsuarioActual.TipoPersona == 3) {
+                    CursoDesktop cursoDesktop = new CursoDesktop(ID, ApplicationForm.ModoForm.Modificacion);
+                    cursoDesktop.ShowDialog();
+                }
+                else if(UsuarioActual.TipoPersona == 2) {
+                    AlumnoInscripciones ai = new AlumnoInscripciones(UsuarioActual, ID);
+                    ai.ShowDialog();                   
+                }
                 this.Listar();
             }
         }

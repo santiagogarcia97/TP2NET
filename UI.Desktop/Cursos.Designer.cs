@@ -23,7 +23,7 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            this.tcUsuarios = new System.Windows.Forms.ToolStripContainer();
+            this.tcCursos = new System.Windows.Forms.ToolStripContainer();
             this.tlUsuario = new System.Windows.Forms.TableLayoutPanel();
             this.dgvCursos = new System.Windows.Forms.DataGridView();
             this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -38,31 +38,32 @@
             this.tsbNuevo = new System.Windows.Forms.ToolStripButton();
             this.tsbEditar = new System.Windows.Forms.ToolStripButton();
             this.tsbEliminar = new System.Windows.Forms.ToolStripButton();
-            this.tcUsuarios.ContentPanel.SuspendLayout();
-            this.tcUsuarios.TopToolStripPanel.SuspendLayout();
-            this.tcUsuarios.SuspendLayout();
+            this.tcCursos.ContentPanel.SuspendLayout();
+            this.tcCursos.TopToolStripPanel.SuspendLayout();
+            this.tcCursos.SuspendLayout();
             this.tlUsuario.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCursos)).BeginInit();
             this.tsUsuarios.SuspendLayout();
             this.SuspendLayout();
             // 
-            // tcUsuarios
+            // tcCursos
             // 
             // 
-            // tcUsuarios.ContentPanel
+            // tcCursos.ContentPanel
             // 
-            this.tcUsuarios.ContentPanel.Controls.Add(this.tlUsuario);
-            this.tcUsuarios.ContentPanel.Size = new System.Drawing.Size(800, 425);
-            this.tcUsuarios.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tcUsuarios.Location = new System.Drawing.Point(0, 0);
-            this.tcUsuarios.Name = "tcUsuarios";
-            this.tcUsuarios.Size = new System.Drawing.Size(800, 450);
-            this.tcUsuarios.TabIndex = 1;
-            this.tcUsuarios.Text = "toolStripContainer1";
+            this.tcCursos.ContentPanel.Controls.Add(this.tlUsuario);
+            this.tcCursos.ContentPanel.Size = new System.Drawing.Size(800, 425);
+            this.tcCursos.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tcCursos.LeftToolStripPanelVisible = false;
+            this.tcCursos.Location = new System.Drawing.Point(0, 0);
+            this.tcCursos.Name = "tcCursos";
+            this.tcCursos.Size = new System.Drawing.Size(800, 450);
+            this.tcCursos.TabIndex = 1;
+            this.tcCursos.Text = "toolStripContainer1";
             // 
-            // tcUsuarios.TopToolStripPanel
+            // tcCursos.TopToolStripPanel
             // 
-            this.tcUsuarios.TopToolStripPanel.Controls.Add(this.tsUsuarios);
+            this.tcCursos.TopToolStripPanel.Controls.Add(this.tsUsuarios);
             // 
             // tlUsuario
             // 
@@ -226,16 +227,16 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.tcUsuarios);
+            this.Controls.Add(this.tcCursos);
             this.Name = "Cursos";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Cursos";
             this.Load += new System.EventHandler(this.Cursos_Load);
-            this.tcUsuarios.ContentPanel.ResumeLayout(false);
-            this.tcUsuarios.TopToolStripPanel.ResumeLayout(false);
-            this.tcUsuarios.TopToolStripPanel.PerformLayout();
-            this.tcUsuarios.ResumeLayout(false);
-            this.tcUsuarios.PerformLayout();
+            this.tcCursos.ContentPanel.ResumeLayout(false);
+            this.tcCursos.TopToolStripPanel.ResumeLayout(false);
+            this.tcCursos.TopToolStripPanel.PerformLayout();
+            this.tcCursos.ResumeLayout(false);
+            this.tcCursos.PerformLayout();
             this.tlUsuario.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvCursos)).EndInit();
             this.tsUsuarios.ResumeLayout(false);
@@ -246,7 +247,7 @@
 
         #endregion
 
-        private System.Windows.Forms.ToolStripContainer tcUsuarios;
+        private System.Windows.Forms.ToolStripContainer tcCursos;
         private System.Windows.Forms.TableLayoutPanel tlUsuario;
         private System.Windows.Forms.DataGridView dgvCursos;
         private System.Windows.Forms.Button btnSalir;

@@ -14,7 +14,9 @@ namespace UI.Desktop{
     public partial class AlumnoInscripciones : ApplicationForm{
 
         private Usuario _UsuarioActual;
+        private int _IDCurso;
         public Usuario UsuarioActual { get => _UsuarioActual; set => _UsuarioActual = value; }
+        public int IDCurso { get => _IDCurso; set => _IDCurso = value; }
 
         public AlumnoInscripciones(){
             InitializeComponent();
@@ -25,6 +27,12 @@ namespace UI.Desktop{
             if(UsuarioActual.TipoPersona == 1) {
                 tcAlumnoInscripciones.TopToolStripPanel.Visible = false;
             }
+        }
+        public AlumnoInscripciones(Usuario user, int id) : this() {
+            UsuarioActual = user;
+            IDCurso = id;
+            tsbNuevo.Visible = false;
+            tsbEliminar.Visible = false;
         }
         private void AlumnoInscripciones_Load(object sender, EventArgs e) {
             Listar();
@@ -38,6 +46,9 @@ namespace UI.Desktop{
             List<AlumnoInscripcion> inscripciones = new List<AlumnoInscripcion>();
             if (UsuarioActual.TipoPersona == 1) {
                 inscripciones = ins.GetAll().Where(x => x.IDAlumno == UsuarioActual.ID).ToList();
+            }
+            else if (UsuarioActual.TipoPersona == 2) {
+                inscripciones = ins.GetAllFromCurso(IDCurso);
             }
             else if (UsuarioActual.TipoPersona == 3) {
                 inscripciones = ins.GetAll();
@@ -98,6 +109,16 @@ namespace UI.Desktop{
 
         private void btnSalir_Click(object sender, EventArgs e){
             this.Close();
+        }
+
+        private void tsbEditar_Click(object sender, EventArgs e) {
+            if (this.dgvAlumnoInscripciones.SelectedRows.Count != 0) {
+                int ID = (int)this.dgvAlumnoInscripciones.SelectedRows[0].Cells["id"].Value;
+                AlumnoInscripcionLogic ins = new AlumnoInscripcionLogic();
+                AlumnoInscripcion inscripcion = ins.GetOne(ID);
+                CargaNotas cn = new CargaNotas(inscripcion);
+                cn.ShowDialog();
+            }
         }
     }
 }

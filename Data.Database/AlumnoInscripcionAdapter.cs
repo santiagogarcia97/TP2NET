@@ -21,14 +21,14 @@ namespace Data.Database
                 SqlDataReader drAlumnoInscripciones = cmdAlumnoInscripciones.ExecuteReader();
 
                 while (drAlumnoInscripciones.Read()){
-                    AlumnoInscripcion insc = new AlumnoInscripcion();
-
-                    insc.ID = (int)drAlumnoInscripciones["id_inscripcion"];
-                    insc.IDAlumno = (int)drAlumnoInscripciones["id_alumno"];
-                    insc.IDCurso = (int)drAlumnoInscripciones["id_curso"];
-                    insc.Habilitado = (bool)drAlumnoInscripciones["ai_hab"];
-                    insc.Nota = drAlumnoInscripciones["nota"].ToString();
-                    insc.Condicion = (AlumnoInscripcion.Condiciones)System.Enum.Parse(typeof(AlumnoInscripcion.Condiciones), (string)drAlumnoInscripciones["condicion"]);
+                    AlumnoInscripcion insc = new AlumnoInscripcion {
+                        ID = (int)drAlumnoInscripciones["id_inscripcion"],
+                        IDAlumno = (int)drAlumnoInscripciones["id_alumno"],
+                        IDCurso = (int)drAlumnoInscripciones["id_curso"],
+                        Habilitado = (bool)drAlumnoInscripciones["ai_hab"],
+                        Nota = drAlumnoInscripciones["nota"].ToString(),
+                        Condicion = (AlumnoInscripcion.Condiciones)System.Enum.Parse(typeof(AlumnoInscripcion.Condiciones), (string)drAlumnoInscripciones["condicion"])
+                    };
                     alumnoInscripciones.Add(insc);
                 }
                 drAlumnoInscripciones.Close();
@@ -55,14 +55,46 @@ namespace Data.Database
                 SqlDataReader drAlumnoInscripciones = cmdAlumnoInscripciones.ExecuteReader();
 
                 while (drAlumnoInscripciones.Read()) {
-                    AlumnoInscripcion insc = new AlumnoInscripcion();
+                    AlumnoInscripcion insc = new AlumnoInscripcion {
+                        ID = (int)drAlumnoInscripciones["id_inscripcion"],
+                        IDAlumno = (int)drAlumnoInscripciones["id_alumno"],
+                        IDCurso = (int)drAlumnoInscripciones["id_curso"],
+                        Habilitado = (bool)drAlumnoInscripciones["ai_hab"],
+                        Nota = drAlumnoInscripciones["nota"].ToString(),
+                        Condicion = (AlumnoInscripcion.Condiciones)System.Enum.Parse(typeof(AlumnoInscripcion.Condiciones), (string)drAlumnoInscripciones["condicion"])
+                    };
+                    alumnoInscripciones.Add(insc);
+                }
+                drAlumnoInscripciones.Close();
+            }
+            catch (Exception Ex) {
+                Exception ExcepcionManejada =
+                new Exception("Error al recuperar lista de Inscripciones", Ex);
+                throw ExcepcionManejada;
+            }
+            finally {
+                this.CloseConnection();
+            }
+            return alumnoInscripciones;
+        }
+        public List<AlumnoInscripcion> GetAllFromCurso(int IDCurso) {
+            List<AlumnoInscripcion> alumnoInscripciones = new List<AlumnoInscripcion>();
+            try {
+                this.OpenConnection();
+                SqlCommand cmdAlumnoInscripciones = new SqlCommand("SELECT * FROM alumnos_inscripciones WHERE id_curso = @ID AND ai_hab = @ai_hab", SqlConn);
+                cmdAlumnoInscripciones.Parameters.Add("@ID", SqlDbType.Int).Value = IDCurso;
+                cmdAlumnoInscripciones.Parameters.Add("@ai_hab", SqlDbType.Bit).Value = true;
+                SqlDataReader drAlumnoInscripciones = cmdAlumnoInscripciones.ExecuteReader();
 
-                    insc.ID = (int)drAlumnoInscripciones["id_inscripcion"];
-                    insc.IDAlumno = (int)drAlumnoInscripciones["id_alumno"];
-                    insc.IDCurso = (int)drAlumnoInscripciones["id_curso"];
-                    insc.Habilitado = (bool)drAlumnoInscripciones["ai_hab"];
-                    insc.Nota = drAlumnoInscripciones["nota"].ToString();
-                    insc.Condicion = (AlumnoInscripcion.Condiciones)System.Enum.Parse(typeof(AlumnoInscripcion.Condiciones), (string)drAlumnoInscripciones["condicion"]);
+                while (drAlumnoInscripciones.Read()) {
+                    AlumnoInscripcion insc = new AlumnoInscripcion {
+                        ID = (int)drAlumnoInscripciones["id_inscripcion"],
+                        IDAlumno = (int)drAlumnoInscripciones["id_alumno"],
+                        IDCurso = (int)drAlumnoInscripciones["id_curso"],
+                        Habilitado = (bool)drAlumnoInscripciones["ai_hab"],
+                        Nota = drAlumnoInscripciones["nota"].ToString(),
+                        Condicion = (AlumnoInscripcion.Condiciones)System.Enum.Parse(typeof(AlumnoInscripcion.Condiciones), (string)drAlumnoInscripciones["condicion"])
+                    };
                     alumnoInscripciones.Add(insc);
                 }
                 drAlumnoInscripciones.Close();
@@ -147,14 +179,14 @@ namespace Data.Database
             try{
                 this.OpenConnection();
                 SqlCommand cmdSave = new SqlCommand("UPDATE alumnos_inscripciones SET id_alumno = @id_alumno, " +
-                    "id_curso = @id_curso, nota = @nota, condicion = @condicion, ai_hab = @ai_hab" +
+                    "id_curso = @id_curso, nota = @nota, condicion = @condicion, ai_hab = @ai_hab " +
                     "WHERE id_inscripcion=@id", SqlConn);
 
                 cmdSave.Parameters.Add("@id", SqlDbType.Int).Value = insc.ID;
                 cmdSave.Parameters.Add("@id_alumno", SqlDbType.Int).Value = insc.IDAlumno;
                 cmdSave.Parameters.Add("@id_curso", SqlDbType.Int).Value = insc.IDCurso;
-                cmdSave.Parameters.Add("@nota", SqlDbType.Int).Value = insc.Nota.ToString(); ;
-                cmdSave.Parameters.Add("@condicion", SqlDbType.Int).Value = insc.Condicion.ToString();
+                cmdSave.Parameters.Add("@nota", SqlDbType.Int).Value = Int32.Parse(insc.Nota);
+                cmdSave.Parameters.Add("@condicion", SqlDbType.VarChar, 50).Value = insc.Condicion.ToString();
                 cmdSave.Parameters.Add("@ai_hab", SqlDbType.Bit).Value = insc.Habilitado;
                 cmdSave.ExecuteNonQuery();
             }
