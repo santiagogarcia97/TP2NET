@@ -4,52 +4,70 @@
 
 <html lang="es">
     
-    <head><meta name="viewport" content="width=device-width, initial-scale=1.0">http://localhost:50060/#
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Academia</title>
         
-        <link href="./Content/bootstrap.min.css" rel="stylesheet">
-        <link href="./Styles/master-page.css" rel="stylesheet">
-        <link href="./Styles/sticky-footer.css" rel="stylesheet">
+        <link href="Content/bootstrap.min.css" rel="stylesheet">
+        <link href="Styles/master-page.css" rel="stylesheet">
+        <script src="Scripts/jquery-3.3.1.js" type="text/javascript"></script>
+        <script src="Scripts/bootstrap.js" type="text/javascript"></script>
 
     </head>
 
-    <body style="font-family:Verdana;color:#aaaaaa;">
-
-        <div style="background-color:#e5e5e5;padding:15px;text-align:center;">
-            <h1>Academia</h1>
-        </div>
-
-        <div style="overflow:auto">
-            <div class="menu">
-                <a href="Usuarios.aspx">Usuarios</a>
-                <a href="Especialidades.aspx">Especialidades</a>
-                <a href="Planes.aspx">Planes</a>
-                <a href="#">Cursos</a>
-                </div>
-
+    <body>
+        <form id="bodyForm" runat="server">  
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand mb-0 h1" href="#">Academia</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" 
+                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+            
+            <div class="dropdown-menu-style collapse navbar-collapse " id="navbarNavDropdown">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        ABM
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="Usuarios.aspx">Usuarios</a>
+                            <a class="dropdown-item" href="Especialidades.aspx">Especialidades</a>
+                            <a class="dropdown-item" href="Planes.aspx">Planes</a>
+                            <a class="dropdown-item" href="#">Cursos</a>
+                            <a class="dropdown-item" href="#">Materias</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Reportes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Estadisticas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Configuración</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ml-auto">
+                    <li><button class="btn btn-outline-success my-2 my-sm-0" type="submit">Log out</button></li>
+                </ul>
+            </div>
+        </nav>
+        
+        <div class="container">
             <div class="main">
-                <form id="bodyForm" runat="server">
-                <%--<asp:Menu runat="server" ID ="menu" DataSourceID="SiteMapDataSource">
-                </asp:Menu>--%>
-                <asp:SiteMapDataSource ID="SiteMapDataSource" runat="server" />
-                <div>
                     <asp:ContentPlaceHolder ID="bodyContentPlaceHolder" runat="server">
                     </asp:ContentPlaceHolder>
-                </div>
-                </form>
-            </div>
-
-            <div class="right">
-                <h2>About</h2>
-                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</p>
             </div>
         </div>
 
-        <footer class="footer">
+        <footer class="footer navbar-dark bg-dark">
             <div class="container">
-                <span class="text-muted">Caracini, Bruno - Cardona, Joaquín - García, Santiago</span>
+                <span class="text-white">Caracini, Bruno - Cardona, Joaquín - García, Santiago</span>
             </div>
         </footer>
+
+    </form>
     </body>
 
 </html>

@@ -155,7 +155,6 @@
     <Content Include="Styles\bootstrap-solid.svg" />
     <Content Include="Styles\master-page.css" />
     <Content Include="Styles\signin.css" />
-    <Content Include="Styles\sticky-footer.css" />
     <Content Include="Web.sitemap" />
   </ItemGroup>
   <ItemGroup>
