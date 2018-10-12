@@ -13,40 +13,31 @@ namespace UI.Web {
     public partial class Especialidades {
         
         /// <summary>
-        /// Control formPanel.
+        /// Control ScriptManager1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel formPanel;
+        protected global::System.Web.UI.ScriptManager ScriptManager1;
         
         /// <summary>
-        /// Control IDLabel.
+        /// Control UpdatePanelModal.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label IDLabel;
+        protected global::System.Web.UI.UpdatePanel UpdatePanelModal;
         
         /// <summary>
-        /// Control IDTextBox.
+        /// Control inputID.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox IDTextBox;
-        
-        /// <summary>
-        /// Control descripcionLabel.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label descripcionLabel;
+        protected global::System.Web.UI.WebControls.TextBox inputID;
         
         /// <summary>
         /// Control descripcionTextBox.
@@ -85,31 +76,49 @@ namespace UI.Web {
         protected global::System.Web.UI.WebControls.Panel gridActionsPanel;
         
         /// <summary>
-        /// Control nuevoLinkButton.
+        /// Control UpdatePanelButtons.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton nuevoLinkButton;
+        protected global::System.Web.UI.UpdatePanel UpdatePanelButtons;
         
         /// <summary>
-        /// Control editarLinkButton.
+        /// Control nuevoButton.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton editarLinkButton;
+        protected global::System.Web.UI.WebControls.Button nuevoButton;
         
         /// <summary>
-        /// Control eliminarLinkButton.
+        /// Control editarButton.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton eliminarLinkButton;
+        protected global::System.Web.UI.WebControls.Button editarButton;
+        
+        /// <summary>
+        /// Control eliminarButton.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button eliminarButton;
+        
+        /// <summary>
+        /// Control UpdatePanelGrid.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanelGrid;
         
         /// <summary>
         /// Control gridView.
