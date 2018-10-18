@@ -11,9 +11,9 @@ using Business.Logic;
 using Business.Entities;
 
 namespace UI.Desktop{
-    public partial class DocentesCurso : ApplicationForm{
+    public partial class ABMDocentesCurso : ApplicationForm{
 
-        public DocentesCurso(){
+        public ABMDocentesCurso(){
             InitializeComponent();
             this.dgvDocenteCurso.AutoGenerateColumns = false;
         }
@@ -56,7 +56,7 @@ namespace UI.Desktop{
         }
 
         private void tsbNuevo_Click(object sender, EventArgs e){
-            DocentesCursosDesktop docentesCursosDesktop = new DocentesCursosDesktop(ApplicationForm.ModoForm.Alta);
+            ABMDocentesCursosDesktop docentesCursosDesktop = new ABMDocentesCursosDesktop(ApplicationForm.ModoForm.Alta);
             docentesCursosDesktop.ShowDialog();
             this.Listar();
         }
@@ -64,7 +64,7 @@ namespace UI.Desktop{
         private void tsbEliminar_Click(object sender, EventArgs e){
             if (this.dgvDocenteCurso.SelectedRows.Count != 0) {
                 int ID = (int)this.dgvDocenteCurso.SelectedRows[0].Cells["id"].Value;
-                DocentesCursosDesktop docentesCursosDesktop = new DocentesCursosDesktop(ID, ApplicationForm.ModoForm.Baja);
+                ABMDocentesCursosDesktop docentesCursosDesktop = new ABMDocentesCursosDesktop(ID, ApplicationForm.ModoForm.Baja);
                 docentesCursosDesktop.ShowDialog();
                 this.Listar();
             }

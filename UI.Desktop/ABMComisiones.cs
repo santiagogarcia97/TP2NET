@@ -11,8 +11,8 @@ using Business.Logic;
 using Business.Entities;
 
 namespace UI.Desktop {
-    public partial class Comisiones : Form {
-        public Comisiones() {
+    public partial class ABMComisiones : Form {
+        public ABMComisiones() {
             InitializeComponent();
             this.dgvComisiones.AutoGenerateColumns = false;
         }
@@ -72,7 +72,7 @@ namespace UI.Desktop {
         }
 
         private void tsbNuevo_Click(object sender, EventArgs e) {
-            ComisionDesktop comisionDesktop = new ComisionDesktop(ApplicationForm.ModoForm.Alta);
+            ABMComisionDesktop comisionDesktop = new ABMComisionDesktop(ApplicationForm.ModoForm.Alta);
             comisionDesktop.ShowDialog();
             this.Listar();
         }
@@ -80,7 +80,7 @@ namespace UI.Desktop {
         private void tsbEditar_Click(object sender, EventArgs e) {
             if (this.dgvComisiones.SelectedRows.Count != 0) {
                 int ID = (int)this.dgvComisiones.SelectedRows[0].Cells["id"].Value;
-                ComisionDesktop comisionDesktop = new ComisionDesktop(ID, ApplicationForm.ModoForm.Modificacion);
+                ABMComisionDesktop comisionDesktop = new ABMComisionDesktop(ID, ApplicationForm.ModoForm.Modificacion);
                 comisionDesktop.ShowDialog();
                 this.Listar();
             }
@@ -88,7 +88,7 @@ namespace UI.Desktop {
         private void tsbEliminar_Click(object sender, EventArgs e) {
             if (this.dgvComisiones.SelectedRows.Count != 0) {
                 int ID = (int)this.dgvComisiones.SelectedRows[0].Cells["id"].Value;
-                ComisionDesktop comisionDesktop = new ComisionDesktop(ID, ApplicationForm.ModoForm.Baja);
+                ABMComisionDesktop comisionDesktop = new ABMComisionDesktop(ID, ApplicationForm.ModoForm.Baja);
                 comisionDesktop.ShowDialog();
                 this.Listar();
             }

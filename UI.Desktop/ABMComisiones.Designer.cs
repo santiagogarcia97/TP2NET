@@ -1,5 +1,5 @@
 ﻿namespace UI.Desktop {
-    partial class Comisiones {
+    partial class ABMComisiones {
         /// <summary>
         /// Required designer variable.
         /// </summary>

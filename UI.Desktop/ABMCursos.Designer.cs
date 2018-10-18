@@ -1,5 +1,5 @@
 ﻿namespace UI.Desktop {
-    partial class Cursos {
+    partial class ABMCursos {
         /// <summary>
         /// Required designer variable.
         /// </summary>

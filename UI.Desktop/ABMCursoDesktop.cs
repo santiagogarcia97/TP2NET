@@ -13,12 +13,12 @@ using Util;
 
 namespace UI.Desktop
 {
-    public partial class CursoDesktop : ApplicationForm
+    public partial class ABMCursoDesktop : ApplicationForm
     {
         private Curso _cursoActual;
         public Curso CursoActual {get { return _cursoActual; }set { _cursoActual = value; }}
 
-        public CursoDesktop(){
+        public ABMCursoDesktop(){
             InitializeComponent();
 
             //Se genera el comobox de especialidades
@@ -29,11 +29,11 @@ namespace UI.Desktop
             cbEsp.DataSource = GenerarComboBox.getEspecialidades();
 
         }
-        public CursoDesktop(ModoForm modo) : this(){
+        public ABMCursoDesktop(ModoForm modo) : this(){
             Modo = modo;
         }
 
-        public CursoDesktop(int ID, ModoForm modo) : this(){
+        public ABMCursoDesktop(int ID, ModoForm modo) : this(){
             Modo = modo;
             CursoLogic auxCurso = new CursoLogic();
             CursoActual = auxCurso.GetOne(ID);        

@@ -12,20 +12,20 @@ using Business.Entities;
 
 
 namespace UI.Desktop {
-    public partial class DocentesCursosDesktop : ApplicationForm {
+    public partial class ABMDocentesCursosDesktop : ApplicationForm {
 
         private DocenteCurso _DocenteCursoActual;
         public DocenteCurso DocenteCursoActual { get => _DocenteCursoActual; set => _DocenteCursoActual = value; }
 
-        public DocentesCursosDesktop() {
+        public ABMDocentesCursosDesktop() {
             InitializeComponent();
         }
 
-        public DocentesCursosDesktop(ModoForm modo) : this() {
+        public ABMDocentesCursosDesktop(ModoForm modo) : this() {
             Modo = modo;
         }
 
-        public DocentesCursosDesktop(int ID, ModoForm modo) : this() {
+        public ABMDocentesCursosDesktop(int ID, ModoForm modo) : this() {
             Modo = modo;
             DocenteCursoLogic auxDocenteCurso = new DocenteCursoLogic();
             DocenteCursoActual = auxDocenteCurso.GetOne(ID);

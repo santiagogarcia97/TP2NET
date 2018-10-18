@@ -36,18 +36,27 @@ namespace UI.Desktop {
 
         private void MenuAlumno(){
             panelAD.Visible = true;
-            tlpAlumno.Visible = true;
+            tlpAcademico.Visible = true;
+            tlpDatos.Visible = true;
+            panelAdmin.Visible = false;
+            TSMIabms.Visible = false;
+            TSMIMisCursos.Visible = false;
             MapearDeDatos();
             GenerarEstadisticas();
         }
         private void MenuDocente() {
             panelAD.Visible = true;
-            tlpDocente.Visible = true;
+            tlpAcademico.Visible = true;
+            tlpDatos.Visible = true;
+            panelAdmin.Visible = false;
+            TSMIabms.Visible = false;
+            TSMIMisInscripciones.Visible = false;
             MapearDeDatos();
         }
         private void MenuAdmin() {
             panelAdmin.Visible = true;
-
+            TSMIMisInscripciones.Visible = false;
+            TSMIMisCursos.Visible = false;
         }
 
         private void MapearDeDatos() {
@@ -121,58 +130,58 @@ namespace UI.Desktop {
             }
         }
 
-        private void btnUsuarios_Click(object sender, EventArgs e) {
-            ABMUsuarios formUsuarios = new ABMUsuarios();
-            formUsuarios.ShowDialog();
-        }
-
-        private void btnPlanes_Click(object sender, EventArgs e) {
-            ABMPlanes formPlanes = new ABMPlanes();
-            formPlanes.ShowDialog();
-        }
-
-        private void btnEspecialidades_Click(object sender, EventArgs e) {
-            ABMEspecialidades formEspecialidades = new ABMEspecialidades();
-            formEspecialidades.ShowDialog();
-        }
-
-        private void btnMaterias_Click(object sender, EventArgs e) {
-            ABMMaterias formMaterias = new ABMMaterias();
-            formMaterias.ShowDialog();
-        }
-
-        private void btnComisiones_Click(object sender, EventArgs e) {
-            Comisiones formComisiones = new Comisiones();
-            formComisiones.ShowDialog();
-        }
-
         private void btnInscripciones_Click(object sender, EventArgs e) {
-            AlumnoInscripciones ai = new AlumnoInscripciones(UsuarioActual);
+            MisInscripciones ai = new MisInscripciones(UsuarioActual);
             ai.ShowDialog();
-        }
-
-        private void btnCursos_Click(object sender, EventArgs e) {
-            Cursos formCursos = new Cursos(UsuarioActual);
-            formCursos.ShowDialog();
-        }
-
-        private void button1_Click(object sender, EventArgs e) {
-            AlumnoInscripciones ai = new AlumnoInscripciones(UsuarioActual);
-            ai.ShowDialog();
-        }
-
-        private void button2_Click(object sender, EventArgs e) {
-            AlumnoInscripcionDesktop aid = new AlumnoInscripcionDesktop(ApplicationForm.ModoForm.Alta, UsuarioActual);
-            aid.ShowDialog();
         }
 
         private void btnCambiarPass_Click(object sender, EventArgs e) {
             MessageBox.Show("Falta implementar");
         }
 
-        private void btnDocenteCurso_Click(object sender, EventArgs e) {
-            DocentesCurso formDC = new DocentesCurso();
+        private void TSMIusuario_Click(object sender, EventArgs e) {
+            ABMUsuarios formUsuarios = new ABMUsuarios();
+            formUsuarios.ShowDialog();
+        }
+
+        private void TSMIespecialidades_Click(object sender, EventArgs e) {
+            ABMEspecialidades formEspecialidades = new ABMEspecialidades();
+            formEspecialidades.ShowDialog();
+        }
+
+        private void TSMIplanes_Click(object sender, EventArgs e) {
+            ABMPlanes formPlanes = new ABMPlanes();
+            formPlanes.ShowDialog();
+        }
+
+        private void TSMImaterias_Click(object sender, EventArgs e) {
+            ABMMaterias formMaterias = new ABMMaterias();
+            formMaterias.ShowDialog();
+        }
+
+        private void TSMIcomisiones_Click(object sender, EventArgs e) {
+            ABMComisiones formComisiones = new ABMComisiones();
+            formComisiones.ShowDialog();
+        }
+
+        private void TSMIcursos_Click(object sender, EventArgs e) {
+            ABMCursos formCursos = new ABMCursos(UsuarioActual);
+            formCursos.ShowDialog();
+        }
+
+        private void TSMIdocentes_Click(object sender, EventArgs e) {
+            ABMDocentesCurso formDC = new ABMDocentesCurso();
             formDC.ShowDialog();
+        }
+
+        private void TSMImateriasInscripto_Click(object sender, EventArgs e) {
+            MisInscripciones ai = new MisInscripciones(UsuarioActual);
+            ai.ShowDialog();
+        }
+
+        private void TSMIinscribirseACursado_Click(object sender, EventArgs e) {
+            MisInscripcionesDesktop aid = new MisInscripcionesDesktop(ApplicationForm.ModoForm.Alta, UsuarioActual);
+            aid.ShowDialog();
         }
     }
 }

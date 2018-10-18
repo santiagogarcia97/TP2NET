@@ -11,24 +11,24 @@ using Business.Logic;
 using Business.Entities;
 
 namespace UI.Desktop{
-    public partial class AlumnoInscripciones : ApplicationForm{
+    public partial class ABMAlumnoInscripciones : ApplicationForm{
 
         private Usuario _UsuarioActual;
         private int _IDCurso;
         public Usuario UsuarioActual { get => _UsuarioActual; set => _UsuarioActual = value; }
         public int IDCurso { get => _IDCurso; set => _IDCurso = value; }
 
-        public AlumnoInscripciones(){
+        public ABMAlumnoInscripciones(){
             InitializeComponent();
             this.dgvAlumnoInscripciones.AutoGenerateColumns = false;
         }
-        public AlumnoInscripciones(Usuario user) : this() {
+        public ABMAlumnoInscripciones(Usuario user) : this() {
             UsuarioActual = user;
             if(UsuarioActual.TipoPersona == 1) {
                 tcAlumnoInscripciones.TopToolStripPanel.Visible = false;
             }
         }
-        public AlumnoInscripciones(Usuario user, int id) : this() {
+        public ABMAlumnoInscripciones(Usuario user, int id) : this() {
             UsuarioActual = user;
             IDCurso = id;
             tsbNuevo.Visible = false;
@@ -96,13 +96,13 @@ namespace UI.Desktop{
         }
 
         private void tsbNuevo_Click(object sender, EventArgs e){
-            AlumnoInscripcionDesktop alumnoInscripcionDesktop = new AlumnoInscripcionDesktop(ApplicationForm.ModoForm.Alta, UsuarioActual);
+            MisInscripcionesDesktop alumnoInscripcionDesktop = new MisInscripcionesDesktop(ApplicationForm.ModoForm.Alta, UsuarioActual);
             alumnoInscripcionDesktop.ShowDialog();
             this.Listar();
         }
 
         private void tsbEliminar_Click(object sender, EventArgs e){
-                AlumnoInscripcionDesktop alumnoInscripcionDesktop = new AlumnoInscripcionDesktop(ApplicationForm.ModoForm.Baja, UsuarioActual);
+                MisInscripcionesDesktop alumnoInscripcionDesktop = new MisInscripcionesDesktop(ApplicationForm.ModoForm.Baja, UsuarioActual);
                 alumnoInscripcionDesktop.ShowDialog();
                 this.Listar();
         }
