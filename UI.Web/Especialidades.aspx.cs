@@ -21,10 +21,7 @@ namespace UI.Web {
             set { ViewState["FormMode"] = value; }
         }
 
-        private Especialidad Entity {
-            get;
-            set;
-        }
+        private Especialidad EspecialidadActual;
 
         private int SelectedID {
             get {
@@ -35,8 +32,6 @@ namespace UI.Web {
                 ViewState["SelectedID"] = value;
             }
         }
-
-
         private bool IsEntitySelected {
             get { return (SelectedID != 0); }
         }
@@ -50,15 +45,16 @@ namespace UI.Web {
         }
 
         private void LoadGrid() {
-
-            gridView.DataSource = Logic.GetAll();
+            gridView.SelectedIndex = -1;
+            List<Especialidad> lista = Logic.GetAll();
+            gridView.DataSource = lista.Where(x => x.Habilitado == true);
             gridView.DataBind();
         }
 
 
         protected void Page_Load(object sender,EventArgs e) {
             LoadGrid();
-
+            gridView.HeaderRow.TableSection = TableRowSection.TableHeader;
         }
 
         protected void gridView_SelectedIndexChanged(object sender,EventArgs e) {
@@ -66,80 +62,97 @@ namespace UI.Web {
         }
 
         private void LoadForm(int id) {
-            Entity = Logic.GetOne(id);
-            IDTextBox.Text = Entity.ID.ToString();
-            descripcionTextBox.Text = Entity.Descripcion;
+            EspecialidadActual = Logic.GetOne(id);
+            inputID.Text = EspecialidadActual.ID.ToString();
+            descripcionTextBox.Text = EspecialidadActual.Descripcion;
+            if (this.FormMode == FormModes.Baja) {
+                modalHeader.Text = "Eliminar Especialidad";
+                aceptarButton.Text = "Eliminar";
+            }
+            else if(this.FormMode == FormModes.Modificacion) {
+                modalHeader.Text = "Editar Especialidad";
+                aceptarButton.Text = "Editar";
+            }
+            UpdatePanelModal.Update();
         }
 
 
-        protected void editarLinkButton_Click(object sender,EventArgs e) {
+        protected void editarButton_Click(object sender,EventArgs e) {
             if(IsEntitySelected) {
                 EnableForm(true);
-                formPanel.Visible = true;
+ //               formPanel.Visible = true;
                 FormMode = FormModes.Modificacion;
                 LoadForm(SelectedID);
             }
         }
         private void LoadEntity(Especialidad especialidad) {
             especialidad.Descripcion = descripcionTextBox.Text;
-
         }
 
         private void SaveEntity(Especialidad especialidad) {
             Logic.Save(especialidad);
         }
 
-        protected void aceptarLinkButton_Click(object sender,EventArgs e) {
+        protected void aceptarButton_Click(object sender,EventArgs e) {
             switch(FormMode) {
                 case FormModes.Baja:
-                    Entity.State = BusinessEntity.States.Deleted;
-                    SaveEntity(Entity);
+                    EspecialidadActual = new Especialidad();
+                    EspecialidadActual.ID = SelectedID;
+                    EspecialidadActual.State = BusinessEntity.States.Deleted;
+                    SaveEntity(EspecialidadActual);
                     LoadGrid();
                     break;
                 case FormModes.Modificacion:
-                    Entity = new Especialidad();
-                    Entity.ID = SelectedID;
-                    Entity.State = BusinessEntity.States.Modified;
-                    LoadEntity(Entity);
-                    SaveEntity(Entity);
+                    EspecialidadActual = new Especialidad {
+                        ID = SelectedID,
+                        Habilitado = true,
+                        State = BusinessEntity.States.Modified
+                    };
+                    LoadEntity(EspecialidadActual);
+                    SaveEntity(EspecialidadActual);
                     LoadGrid();
                     break;
                 case FormModes.Alta:
-                    Entity = new Especialidad();
-                    Entity.State = BusinessEntity.States.New;
-                    LoadEntity(Entity);
-                    SaveEntity(Entity);
+                    EspecialidadActual = new Especialidad {
+                        State = BusinessEntity.States.New,
+                        Descripcion = descripcionTextBox.Text,
+                        Habilitado = true
+                    };
+                    SaveEntity(EspecialidadActual);
                     LoadGrid();
                     break;
-                default:
-                    break;
             }
-            formPanel.Visible = false;
+            ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "Pop", "$('#nuevoModal').modal('hide');", true);
+            //           formPanel.Visible = false;
         }
 
         private void EnableForm(bool enable) {
-            IDTextBox.Enabled = false;
+            //IDLabel.Enabled = false;
             descripcionTextBox.Enabled = enable;
         }
 
-        protected void eliminarLinkButton_Click(object sender,EventArgs e) {
+        protected void eliminarButton_Click(object sender,EventArgs e) {
             if(this.IsEntitySelected) {
-                formPanel.Visible = true;
+   //             formPanel.Visible = true;
                 FormMode = FormModes.Baja;
                 EnableForm(false);
                 LoadForm(this.SelectedID);
             }
         }
 
-        protected void nuevoLinkButton_Click(object sender,EventArgs e) {
-            formPanel.Visible = true;
-            FormMode = FormModes.Alta;
+        protected void nuevoButton_Click(object sender,EventArgs e) {
+ //           formPanel.Visible = true;
+            this.FormMode = FormModes.Alta;
             ClearForm();
             EnableForm(true);
         }
 
         private void ClearForm() {
+            inputID.Text = "";
             descripcionTextBox.Text = string.Empty;
+            modalHeader.Text = "Nueva Especialidad";
+            aceptarButton.Text = "Crear";
+            UpdatePanelModal.Update();
         }
     }
 }

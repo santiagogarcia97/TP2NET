@@ -1,82 +1,80 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="UI.Web.Site" %>
 
 <!DOCTYPE html>
-<html>
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">http://localhost:50060/#
-<style>
-* {
-  box-sizing: border-box;
-}
-.menu {
-  float:left;
-  width:20%;
-  text-align:center;
-}
-.menu a {
-  background-color:#e5e5e5;
-  padding:8px;
-  margin-top:7px;
-  display:block;
-  width:100%;
-  color:black;
-}
-.main {
-  text-align:center;
-  float:left;
-  width:640px;
-  padding:20px;
-}
-.right {
-  background-color:#e5e5e5;
-  float:left;
-  width:20%;
-  padding:15px;
-  margin-top:7px;
-  text-align:center;
-}
 
-@media only screen and (max-width:830px) {
-  /* For mobile phones: */
-  .menu, .main, .right {
-    width:100%;
-  }
-}
-</style>
-</head>
-<body style="font-family:Verdana;color:#aaaaaa;">
+<html lang="es">
+    
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Academia</title>
+        
+        <link href="Content/bootstrap.min.css" rel="stylesheet">
+        <link href="Styles/master-page.css" rel="stylesheet">
+        <script src="Scripts/jquery-3.3.1.js"></script>
+        <script src="Scripts/bootstrap.js"></script>
 
-<div style="background-color:#e5e5e5;padding:15px;text-align:center;">
-  <h1>Academia</h1>
-</div>
+    </head>
 
-<div style="overflow:auto">
-  <div class="menu">
-    <a href="Usuarios.aspx">Usuarios</a>
-    <a href="Especialidades.aspx">Especialidades</a>
-    <a href="Planes.aspx">Planes</a>
-    <a href="#">Cursos</a>
-  </div>
-
-  <div class="main">
-             <form id="bodyForm" runat="server">
-            <%--<asp:Menu runat="server" ID ="menu" DataSourceID="SiteMapDataSource">
-            </asp:Menu>--%>
-            <asp:SiteMapDataSource ID="SiteMapDataSource" runat="server" />
-            <div>
-                <asp:ContentPlaceHolder ID="bodyContentPlaceHolder" runat="server">
-                </asp:ContentPlaceHolder>
+    <body>
+        <form id="bodyForm" runat="server">
+        
+        <!-- necesario para el funcionamiento de UpdatePanel --> 
+        <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+        
+        <!-- barra superior -->     
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand mb-0 h1" href="#">Academia</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" 
+                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+            
+            <div class="dropdown-menu-style collapse navbar-collapse " id="navbarNavDropdown">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        ABM
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="Usuarios.aspx">Usuarios</a>
+                            <a class="dropdown-item" href="Especialidades.aspx">Especialidades</a>
+                            <a class="dropdown-item" href="Planes.aspx">Planes</a>
+                            <a class="dropdown-item" href="#">Cursos</a>
+                            <a class="dropdown-item" href="#">Materias</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Reportes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Estadisticas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Configuración</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ml-auto">
+                    <li><button class="btn btn-outline-success my-2 my-sm-0" type="submit">Log out</button></li>
+                </ul>
             </div>
-            </form>
-  </div>
+        </nav>
+        
+        <!-- container --> 
+        <div class="container">
+            <div class="main">
+                    <asp:ContentPlaceHolder ID="bodyContentPlaceHolder" runat="server">
+                    </asp:ContentPlaceHolder>
+            </div>
+        </div>
+        
+        <!-- pie de pagina --> 
+        <footer class="footer navbar-dark bg-dark">
+            <div class="container">
+                <span class="text-white">Caracini, Bruno - Cardona, Joaquín - García, Santiago</span>
+            </div>
+        </footer>
 
-  <div class="right">
-    <h2>About</h2>
-    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</p>
-  </div>
-</div>
+    </form>
+    </body>
 
-<div style="background-color:#e5e5e5;text-align:center;padding:10px;margin-top:7px;">Caracini, Bruno - Cardona, Joaquín - García, Santiago</div>
-
-</body>
 </html>
