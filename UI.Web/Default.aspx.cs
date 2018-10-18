@@ -21,7 +21,7 @@ namespace UI.Web {
             UsuarioLogic ul = new UsuarioLogic();
             Usuario user = ul.GetOne(userTextBox.Value);
             if(userTextBox.Value.Equals(user.NombreUsuario) && passwordTextBox.Value.Equals(user.Clave)) {
-                Response.Redirect("Usuarios.aspx");
+                Response.Redirect("Especialidades.aspx");
             }
             else if(userTextBox.Value.Equals(user.NombreUsuario) && !passwordTextBox.Value.Equals(user.Clave)) {
                 MsgBox("La contraseña es incorrecta.",this.Page,this);
