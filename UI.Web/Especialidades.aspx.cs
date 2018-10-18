@@ -21,10 +21,7 @@ namespace UI.Web {
             set { ViewState["FormMode"] = value; }
         }
 
-        private Especialidad EspecialidadActual {
-            get;
-            set;
-        }
+        private Especialidad EspecialidadActual;
 
         private int SelectedID {
             get {
@@ -35,8 +32,6 @@ namespace UI.Web {
                 ViewState["SelectedID"] = value;
             }
         }
-
-
         private bool IsEntitySelected {
             get { return (SelectedID != 0); }
         }
@@ -50,8 +45,9 @@ namespace UI.Web {
         }
 
         private void LoadGrid() {
-
-            gridView.DataSource = Logic.GetAll();
+            gridView.SelectedIndex = -1;
+            List<Especialidad> lista = Logic.GetAll();
+            gridView.DataSource = lista.Where(x => x.Habilitado == true);
             gridView.DataBind();
         }
 
@@ -69,6 +65,14 @@ namespace UI.Web {
             EspecialidadActual = Logic.GetOne(id);
             inputID.Text = EspecialidadActual.ID.ToString();
             descripcionTextBox.Text = EspecialidadActual.Descripcion;
+            if (this.FormMode == FormModes.Baja) {
+                modalHeader.Text = "Eliminar Especialidad";
+                aceptarButton.Text = "Eliminar";
+            }
+            else if(this.FormMode == FormModes.Modificacion) {
+                modalHeader.Text = "Editar Especialidad";
+                aceptarButton.Text = "Editar";
+            }
             UpdatePanelModal.Update();
         }
 
@@ -83,24 +87,27 @@ namespace UI.Web {
         }
         private void LoadEntity(Especialidad especialidad) {
             especialidad.Descripcion = descripcionTextBox.Text;
-
         }
 
         private void SaveEntity(Especialidad especialidad) {
             Logic.Save(especialidad);
         }
 
-        protected void aceptarLinkButton_Click(object sender,EventArgs e) {
+        protected void aceptarButton_Click(object sender,EventArgs e) {
             switch(FormMode) {
                 case FormModes.Baja:
+                    EspecialidadActual = new Especialidad();
+                    EspecialidadActual.ID = SelectedID;
                     EspecialidadActual.State = BusinessEntity.States.Deleted;
                     SaveEntity(EspecialidadActual);
                     LoadGrid();
                     break;
                 case FormModes.Modificacion:
-                    EspecialidadActual = new Especialidad();
-                    EspecialidadActual.ID = SelectedID;
-                    EspecialidadActual.State = BusinessEntity.States.Modified;
+                    EspecialidadActual = new Especialidad {
+                        ID = SelectedID,
+                        Habilitado = true,
+                        State = BusinessEntity.States.Modified
+                    };
                     LoadEntity(EspecialidadActual);
                     SaveEntity(EspecialidadActual);
                     LoadGrid();
@@ -115,7 +122,8 @@ namespace UI.Web {
                     LoadGrid();
                     break;
             }
- //           formPanel.Visible = false;
+            ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "Pop", "$('#nuevoModal').modal('hide');", true);
+            //           formPanel.Visible = false;
         }
 
         private void EnableForm(bool enable) {
@@ -136,11 +144,15 @@ namespace UI.Web {
  //           formPanel.Visible = true;
             this.FormMode = FormModes.Alta;
             ClearForm();
-            //           EnableForm(true);
+            EnableForm(true);
         }
 
         private void ClearForm() {
+            inputID.Text = "";
             descripcionTextBox.Text = string.Empty;
+            modalHeader.Text = "Nueva Especialidad";
+            aceptarButton.Text = "Crear";
+            UpdatePanelModal.Update();
         }
     }
 }

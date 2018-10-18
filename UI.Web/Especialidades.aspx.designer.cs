@@ -13,15 +13,6 @@ namespace UI.Web {
     public partial class Especialidades {
         
         /// <summary>
-        /// Control ScriptManager1.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.ScriptManager ScriptManager1;
-        
-        /// <summary>
         /// Control UpdatePanelModal.
         /// </summary>
         /// <remarks>
@@ -29,6 +20,15 @@ namespace UI.Web {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel UpdatePanelModal;
+        
+        /// <summary>
+        /// Control modalHeader.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label modalHeader;
         
         /// <summary>
         /// Control inputID.
@@ -49,22 +49,22 @@ namespace UI.Web {
         protected global::System.Web.UI.WebControls.TextBox descripcionTextBox;
         
         /// <summary>
-        /// Control aceptarLinkButton.
+        /// Control aceptarButton.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton aceptarLinkButton;
+        protected global::System.Web.UI.WebControls.Button aceptarButton;
         
         /// <summary>
-        /// Control cancelarLinkButton.
+        /// Control cancelarButton.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton cancelarLinkButton;
+        protected global::System.Web.UI.WebControls.Button cancelarButton;
         
         /// <summary>
         /// Control gridActionsPanel.

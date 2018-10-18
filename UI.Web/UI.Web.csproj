@@ -152,9 +152,9 @@
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
-    <Content Include="Styles\bootstrap-solid.svg" />
     <Content Include="Styles\master-page.css" />
     <Content Include="Styles\signin.css" />
+    <Content Include="Styles\utn-logo.png" />
     <Content Include="Web.sitemap" />
   </ItemGroup>
   <ItemGroup>

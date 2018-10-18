@@ -16,7 +16,12 @@
     </head>
 
     <body>
-        <form id="bodyForm" runat="server">  
+        <form id="bodyForm" runat="server">
+        
+        <!-- necesario para el funcionamiento de UpdatePanel --> 
+        <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+        
+        <!-- barra superior -->     
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <a class="navbar-brand mb-0 h1" href="#">Academia</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" 
@@ -54,13 +59,15 @@
             </div>
         </nav>
         
+        <!-- container --> 
         <div class="container">
             <div class="main">
                     <asp:ContentPlaceHolder ID="bodyContentPlaceHolder" runat="server">
                     </asp:ContentPlaceHolder>
             </div>
         </div>
-
+        
+        <!-- pie de pagina --> 
         <footer class="footer navbar-dark bg-dark">
             <div class="container">
                 <span class="text-white">Caracini, Bruno - Cardona, Joaquín - García, Santiago</span>
