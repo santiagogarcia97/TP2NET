@@ -11,8 +11,8 @@ using Business.Logic;
 using Business.Entities;
 
 namespace UI.Desktop {
-    public partial class Especialidades : ApplicationForm {
-        public Especialidades() {
+    public partial class ABMEspecialidades : ApplicationForm {
+        public ABMEspecialidades() {
             InitializeComponent();
             this.dgvEspecialidades.AutoGenerateColumns = false;
         }
@@ -34,7 +34,7 @@ namespace UI.Desktop {
         }
 
         private void tsbNuevo_Click(object sender, EventArgs e) {
-            EspecialidadDesktop especialidadDesktop = new EspecialidadDesktop(ApplicationForm.ModoForm.Alta);
+            ABMEspecialidadDesktop especialidadDesktop = new ABMEspecialidadDesktop(ApplicationForm.ModoForm.Alta);
             especialidadDesktop.ShowDialog();
             this.Listar();
         }
@@ -42,7 +42,7 @@ namespace UI.Desktop {
         private void tsbEditar_Click(object sender, EventArgs e) {
             if (this.dgvEspecialidades.SelectedRows.Count != 0) {
                 int ID = ((Business.Entities.Especialidad)this.dgvEspecialidades.SelectedRows[0].DataBoundItem).ID;
-                EspecialidadDesktop especialidadDesktop = new EspecialidadDesktop(ID, ApplicationForm.ModoForm.Modificacion);
+                ABMEspecialidadDesktop especialidadDesktop = new ABMEspecialidadDesktop(ID, ApplicationForm.ModoForm.Modificacion);
                 especialidadDesktop.ShowDialog();
                 this.Listar();
             }
@@ -51,7 +51,7 @@ namespace UI.Desktop {
         private void tsbEliminar_Click(object sender, EventArgs e) {
             if (this.dgvEspecialidades.SelectedRows.Count != 0) {
                 int ID = ((Business.Entities.Especialidad)this.dgvEspecialidades.SelectedRows[0].DataBoundItem).ID;
-                EspecialidadDesktop especialidadDesktop = new EspecialidadDesktop(ID, ApplicationForm.ModoForm.Baja);
+                ABMEspecialidadDesktop especialidadDesktop = new ABMEspecialidadDesktop(ID, ApplicationForm.ModoForm.Baja);
                 especialidadDesktop.ShowDialog();
                 this.Listar();
             }

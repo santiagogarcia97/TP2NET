@@ -122,22 +122,22 @@ namespace UI.Desktop {
         }
 
         private void btnUsuarios_Click(object sender, EventArgs e) {
-            Usuarios formUsuarios = new Usuarios();
+            ABMUsuarios formUsuarios = new ABMUsuarios();
             formUsuarios.ShowDialog();
         }
 
         private void btnPlanes_Click(object sender, EventArgs e) {
-            Planes formPlanes = new Planes();
+            ABMPlanes formPlanes = new ABMPlanes();
             formPlanes.ShowDialog();
         }
 
         private void btnEspecialidades_Click(object sender, EventArgs e) {
-            Especialidades formEspecialidades = new Especialidades();
+            ABMEspecialidades formEspecialidades = new ABMEspecialidades();
             formEspecialidades.ShowDialog();
         }
 
         private void btnMaterias_Click(object sender, EventArgs e) {
-            Materias formMaterias = new Materias();
+            ABMMaterias formMaterias = new ABMMaterias();
             formMaterias.ShowDialog();
         }
 

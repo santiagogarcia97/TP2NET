@@ -11,8 +11,8 @@ using Business.Entities;
 using Business.Logic;
 
 namespace UI.Desktop {
-    public partial class Materias : Form {
-        public Materias() {
+    public partial class ABMMaterias : Form {
+        public ABMMaterias() {
             InitializeComponent();
             this.dgvMaterias.AutoGenerateColumns = false;
         }
@@ -77,7 +77,7 @@ namespace UI.Desktop {
         }
 
         private void tsbNuevo_Click(object sender, EventArgs e) {
-            MateriaDesktop materiaDesktop = new MateriaDesktop(ApplicationForm.ModoForm.Alta);
+            ABMMateriaDesktop materiaDesktop = new ABMMateriaDesktop(ApplicationForm.ModoForm.Alta);
             materiaDesktop.ShowDialog();
             this.Listar();
         }
@@ -85,7 +85,7 @@ namespace UI.Desktop {
         private void tsbEditar_Click(object sender, EventArgs e) {
             if (this.dgvMaterias.SelectedRows.Count != 0) {
                 int ID = (int)this.dgvMaterias.SelectedRows[0].Cells["id"].Value;
-                MateriaDesktop materiaDesktop = new MateriaDesktop(ID, ApplicationForm.ModoForm.Modificacion);
+                ABMMateriaDesktop materiaDesktop = new ABMMateriaDesktop(ID, ApplicationForm.ModoForm.Modificacion);
                 materiaDesktop.ShowDialog();
                 this.Listar();
             }
@@ -94,7 +94,7 @@ namespace UI.Desktop {
         private void tsbEliminar_Click(object sender, EventArgs e) {
             if (this.dgvMaterias.SelectedRows.Count != 0) {
                 int ID = (int)this.dgvMaterias.SelectedRows[0].Cells["id"].Value;
-                MateriaDesktop materiaDesktop = new MateriaDesktop(ID, ApplicationForm.ModoForm.Baja);
+                ABMMateriaDesktop materiaDesktop = new ABMMateriaDesktop(ID, ApplicationForm.ModoForm.Baja);
                 materiaDesktop.ShowDialog();
                 this.Listar();
             }

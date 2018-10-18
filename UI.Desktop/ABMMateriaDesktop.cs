@@ -13,12 +13,12 @@ using Util;
 
 
 namespace UI.Desktop {
-    public partial class MateriaDesktop : ApplicationForm {
+    public partial class ABMMateriaDesktop : ApplicationForm {
 
         private Materia _materiaActual;
         public Materia MateriaActual {get { return _materiaActual; }set { _materiaActual = value; }}
 
-        public MateriaDesktop() {
+        public ABMMateriaDesktop() {
             InitializeComponent();
 
             //Se genera el comobox de especialidades
@@ -28,11 +28,11 @@ namespace UI.Desktop {
             cbEsp.DisplayMember = "desc_esp";
             cbEsp.DataSource = GenerarComboBox.getEspecialidades();
         }
-        public MateriaDesktop(ModoForm modo) : this() {
+        public ABMMateriaDesktop(ModoForm modo) : this() {
             Modo = modo;
         }
 
-        public MateriaDesktop(int ID, ModoForm modo) : this() {
+        public ABMMateriaDesktop(int ID, ModoForm modo) : this() {
             Modo = modo;
             MateriaLogic auxMateria = new MateriaLogic();
             MateriaActual = auxMateria.GetOne(ID);

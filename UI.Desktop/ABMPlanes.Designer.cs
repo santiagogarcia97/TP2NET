@@ -1,5 +1,5 @@
 ﻿namespace UI.Desktop {
-    partial class Planes {
+    partial class ABMPlanes {
         /// <summary>
         /// Required designer variable.
         /// </summary>

@@ -11,8 +11,8 @@ using Business.Entities;
 using Business.Logic;
 
 namespace UI.Desktop {
-    public partial class Planes : Form {
-        public Planes() {
+    public partial class ABMPlanes : Form {
+        public ABMPlanes() {
             InitializeComponent();
             this.dgvPlanes.AutoGenerateColumns = false;
         }
@@ -64,7 +64,7 @@ namespace UI.Desktop {
         }
 
         private void tsbNuevo_Click(object sender, EventArgs e) {
-            PlanDesktop planDesktop = new PlanDesktop(ApplicationForm.ModoForm.Alta);
+            ABMPlanDesktop planDesktop = new ABMPlanDesktop(ApplicationForm.ModoForm.Alta);
             planDesktop.ShowDialog();
             this.Listar();
         }
@@ -72,7 +72,7 @@ namespace UI.Desktop {
         private void tsbEditar_Click(object sender, EventArgs e) {
             if (this.dgvPlanes.SelectedRows.Count != 0) {
                 int ID = (int)this.dgvPlanes.SelectedRows[0].Cells["id"].Value;
-                PlanDesktop planDesktop = new PlanDesktop(ID, ApplicationForm.ModoForm.Modificacion);
+                ABMPlanDesktop planDesktop = new ABMPlanDesktop(ID, ApplicationForm.ModoForm.Modificacion);
                 planDesktop.ShowDialog();
                 this.Listar();
             }
@@ -81,7 +81,7 @@ namespace UI.Desktop {
         private void tsbEliminar_Click(object sender, EventArgs e) {
             if (this.dgvPlanes.SelectedRows.Count != 0) {
                 int ID = (int)this.dgvPlanes.SelectedRows[0].Cells["id"].Value;
-                PlanDesktop planDesktop = new PlanDesktop(ID, ApplicationForm.ModoForm.Baja);
+                ABMPlanDesktop planDesktop = new ABMPlanDesktop(ID, ApplicationForm.ModoForm.Baja);
                 planDesktop.ShowDialog();
                 this.Listar();
             }

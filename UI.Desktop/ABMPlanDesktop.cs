@@ -12,12 +12,12 @@ using Business.Entities;
 using Util;
 
 namespace UI.Desktop {
-    public partial class PlanDesktop : ApplicationForm {
+    public partial class ABMPlanDesktop : ApplicationForm {
 
         private Plan _planActual;
         public Plan PlanActual {get { return _planActual; }set { _planActual = value; }}
 
-        public PlanDesktop() {
+        public ABMPlanDesktop() {
             InitializeComponent();
 
             //Se genera el comobox de especialidades
@@ -28,11 +28,11 @@ namespace UI.Desktop {
             cbEspecialidad.DataSource = GenerarComboBox.getEspecialidades();
         }
 
-        public PlanDesktop(ModoForm modo) : this() {
+        public ABMPlanDesktop(ModoForm modo) : this() {
             Modo = modo;
         }
 
-        public PlanDesktop(int ID, ModoForm modo) : this() {
+        public ABMPlanDesktop(int ID, ModoForm modo) : this() {
             Modo = modo;
             PlanLogic auxPlan = new PlanLogic();
             PlanActual = auxPlan.GetOne(ID);

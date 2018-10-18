@@ -104,11 +104,11 @@
     <Compile Include="Cursos.Designer.cs">
       <DependentUpon>Cursos.cs</DependentUpon>
     </Compile>
-    <Compile Include="EspecialidadDesktop.cs">
+    <Compile Include="ABMEspecialidadDesktop.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="EspecialidadDesktop.Designer.cs">
-      <DependentUpon>EspecialidadDesktop.cs</DependentUpon>
+    <Compile Include="ABMEspecialidadDesktop.Designer.cs">
+      <DependentUpon>ABMEspecialidadDesktop.cs</DependentUpon>
     </Compile>
     <Compile Include="Comisiones.cs">
       <SubType>Form</SubType>
@@ -116,11 +116,11 @@
     <Compile Include="Comisiones.Designer.cs">
       <DependentUpon>Comisiones.cs</DependentUpon>
     </Compile>
-    <Compile Include="Especialidades.cs">
+    <Compile Include="ABMEspecialidades.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Especialidades.Designer.cs">
-      <DependentUpon>Especialidades.cs</DependentUpon>
+    <Compile Include="ABMEspecialidades.Designer.cs">
+      <DependentUpon>ABMEspecialidades.cs</DependentUpon>
     </Compile>
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
@@ -128,17 +128,17 @@
     <Compile Include="Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
-    <Compile Include="MateriaDesktop.cs">
+    <Compile Include="ABMMateriaDesktop.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MateriaDesktop.Designer.cs">
-      <DependentUpon>MateriaDesktop.cs</DependentUpon>
+    <Compile Include="ABMMateriaDesktop.Designer.cs">
+      <DependentUpon>ABMMateriaDesktop.cs</DependentUpon>
     </Compile>
-    <Compile Include="Materias.cs">
+    <Compile Include="ABMMaterias.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Materias.Designer.cs">
-      <DependentUpon>Materias.cs</DependentUpon>
+    <Compile Include="ABMMaterias.Designer.cs">
+      <DependentUpon>ABMMaterias.cs</DependentUpon>
     </Compile>
     <Compile Include="Menu.cs">
       <SubType>Form</SubType>
@@ -146,29 +146,29 @@
     <Compile Include="Menu.Designer.cs">
       <DependentUpon>Menu.cs</DependentUpon>
     </Compile>
-    <Compile Include="PlanDesktop.cs">
+    <Compile Include="ABMPlanDesktop.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PlanDesktop.Designer.cs">
-      <DependentUpon>PlanDesktop.cs</DependentUpon>
+    <Compile Include="ABMPlanDesktop.Designer.cs">
+      <DependentUpon>ABMPlanDesktop.cs</DependentUpon>
     </Compile>
-    <Compile Include="Planes.cs">
+    <Compile Include="ABMPlanes.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Planes.Designer.cs">
-      <DependentUpon>Planes.cs</DependentUpon>
+    <Compile Include="ABMPlanes.Designer.cs">
+      <DependentUpon>ABMPlanes.cs</DependentUpon>
     </Compile>
-    <Compile Include="UsuarioDesktop.cs">
+    <Compile Include="ABMUsuarioDesktop.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UsuarioDesktop.Designer.cs">
-      <DependentUpon>UsuarioDesktop.cs</DependentUpon>
+    <Compile Include="ABMUsuarioDesktop.Designer.cs">
+      <DependentUpon>ABMUsuarioDesktop.cs</DependentUpon>
     </Compile>
-    <Compile Include="Usuarios.cs">
+    <Compile Include="ABMUsuarios.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Usuarios.Designer.cs">
-      <DependentUpon>Usuarios.cs</DependentUpon>
+    <Compile Include="ABMUsuarios.Designer.cs">
+      <DependentUpon>ABMUsuarios.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -199,38 +199,38 @@
     <EmbeddedResource Include="Cursos.resx">
       <DependentUpon>Cursos.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="EspecialidadDesktop.resx">
-      <DependentUpon>EspecialidadDesktop.cs</DependentUpon>
+    <EmbeddedResource Include="ABMEspecialidadDesktop.resx">
+      <DependentUpon>ABMEspecialidadDesktop.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Comisiones.resx">
       <DependentUpon>Comisiones.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Especialidades.resx">
-      <DependentUpon>Especialidades.cs</DependentUpon>
+    <EmbeddedResource Include="ABMEspecialidades.resx">
+      <DependentUpon>ABMEspecialidades.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MateriaDesktop.resx">
-      <DependentUpon>MateriaDesktop.cs</DependentUpon>
+    <EmbeddedResource Include="ABMMateriaDesktop.resx">
+      <DependentUpon>ABMMateriaDesktop.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Materias.resx">
-      <DependentUpon>Materias.cs</DependentUpon>
+    <EmbeddedResource Include="ABMMaterias.resx">
+      <DependentUpon>ABMMaterias.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Menu.resx">
       <DependentUpon>Menu.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PlanDesktop.resx">
-      <DependentUpon>PlanDesktop.cs</DependentUpon>
+    <EmbeddedResource Include="ABMPlanDesktop.resx">
+      <DependentUpon>ABMPlanDesktop.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Planes.resx">
-      <DependentUpon>Planes.cs</DependentUpon>
+    <EmbeddedResource Include="ABMPlanes.resx">
+      <DependentUpon>ABMPlanes.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UsuarioDesktop.resx">
-      <DependentUpon>UsuarioDesktop.cs</DependentUpon>
+    <EmbeddedResource Include="ABMUsuarioDesktop.resx">
+      <DependentUpon>ABMUsuarioDesktop.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Usuarios.resx">
-      <DependentUpon>Usuarios.cs</DependentUpon>
+    <EmbeddedResource Include="ABMUsuarios.resx">
+      <DependentUpon>ABMUsuarios.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
