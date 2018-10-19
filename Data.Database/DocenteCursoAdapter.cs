@@ -151,12 +151,12 @@ namespace Data.Database
         protected void Insert(DocenteCurso dc){
             try{
                 this.OpenConnection();
-                SqlCommand cmdSave = new SqlCommand("INSERT INTO docentes_cursos(id_docente, id_curso, cargo, ai_hab) " +
+                SqlCommand cmdSave = new SqlCommand("INSERT INTO docentes_cursos(id_docente, id_curso, cargo, dc_hab) " +
                     "values(@id_docente, @id_curso, @cargo, @dc_hab) SELECT @@identity", SqlConn);
 
                 cmdSave.Parameters.Add("@id_docente", SqlDbType.Int).Value = dc.IDDocente;
                 cmdSave.Parameters.Add("@id_curso", SqlDbType.Int).Value = dc.IDCurso;
-                cmdSave.Parameters.Add("@cargo", SqlDbType.VarChar, 50).Value = dc.Cargo.ToString();
+                cmdSave.Parameters.Add("@cargo", SqlDbType.Int, 50).Value = dc.Cargo;
                 cmdSave.Parameters.Add("@dc_hab", SqlDbType.Bit).Value = dc.Habilitado;
 
                 dc.ID = Decimal.ToInt32((decimal)cmdSave.ExecuteScalar());

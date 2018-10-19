@@ -560,7 +560,7 @@
             this.lblRedNom.Text = "*";
             this.lblRedNom.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // UsuarioDesktop
+            // ABMUsuarioDesktop
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -571,7 +571,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(455, 480);
-            this.Name = "UsuarioDesktop";
+            this.Name = "ABMUsuarioDesktop";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "UsuarioDesktop";
             this.Load += new System.EventHandler(this.UsuarioDesktop_Load);

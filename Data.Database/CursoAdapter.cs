@@ -116,14 +116,14 @@ namespace Data.Database {
 
             try {
                 this.OpenConnection();
-                SqlCommand cmdSave = new SqlCommand("INSERT INTO cursos(cupo, anio_calendario,id_comision,id_materia,mat_hab) " +
-                    "values(@cupo, @anio_calendario, @id_comision,@id_materia,@mat_hab) SELECT @@identity", SqlConn);
+                SqlCommand cmdSave = new SqlCommand("INSERT INTO cursos(cupo, anio_calendario,id_comision,id_materia,curso_hab) " +
+                    "values(@cupo, @anio_calendario, @id_comision,@id_materia,@curso_hab) SELECT @@identity", SqlConn);
                 cmdSave.Parameters.Add("@id", SqlDbType.Int).Value = curso.ID;
                 cmdSave.Parameters.Add("@cupo", SqlDbType.Int).Value = curso.Cupo;
                 cmdSave.Parameters.Add("@anio_calendario", SqlDbType.Int).Value = curso.AnioCalendario;
                 cmdSave.Parameters.Add("@id_comision", SqlDbType.Int).Value = curso.IDComision;
                 cmdSave.Parameters.Add("@id_materia", SqlDbType.Int).Value = curso.IDMateria;
-                cmdSave.Parameters.Add("@mat_hab", SqlDbType.Bit).Value = curso.Habilitado;
+                cmdSave.Parameters.Add("@curso_hab", SqlDbType.Bit).Value = curso.Habilitado;
 
                 curso.ID = Decimal.ToInt32((decimal)cmdSave.ExecuteScalar());
             }

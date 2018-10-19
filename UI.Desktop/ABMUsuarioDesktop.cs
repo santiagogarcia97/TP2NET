@@ -78,7 +78,6 @@ namespace UI.Desktop {
             txtTel.Text = UsuarioActual.Telefono.ToString();
             txtEmail.Text = UsuarioActual.Email.ToString();
             txtNombreUsuario.Text = UsuarioActual.NombreUsuario.ToString();
-            txtClave.Text = UsuarioActual.Clave.ToString();
             cbxTipo.SelectedValue = UsuarioActual.TipoPersona;
             cbxEsp.SelectedValue = plan.IDEspecialidad;
             cbxPlan.SelectedValue = UsuarioActual.IDPlan;
@@ -118,7 +117,7 @@ namespace UI.Desktop {
                 UsuarioActual.Telefono = txtTel.Text;
                 UsuarioActual.Email = txtEmail.Text;
                 UsuarioActual.NombreUsuario = txtNombreUsuario.Text;
-                UsuarioActual.Clave = txtClave.Text;
+                UsuarioActual.Clave = Hashing.HashPassword(txtClave.Text);
                 UsuarioActual.TipoPersona = (int)cbxTipo.SelectedValue;
                 UsuarioActual.IDPlan = (int)cbxPlan.SelectedValue;
 

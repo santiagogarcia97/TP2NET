@@ -23,7 +23,7 @@ namespace UI.Desktop
         {
             UsuarioLogic ul = new UsuarioLogic();
             Usuario user = ul.GetOne(txtUsuario.Text);
-            if(txtUsuario.Text.Equals(user.NombreUsuario) && txtPassword.Text.Equals(user.Clave)){
+            if(txtUsuario.Text.Equals(user.NombreUsuario) && Hashing.ValidatePassword(txtPassword.Text, user.Clave)){
                 this.Visible = false;
 
                 Menu main = new Menu(user);
@@ -31,7 +31,7 @@ namespace UI.Desktop
 
                 this.Visible = true;
             }
-            else if(txtUsuario.Text.Equals(user.NombreUsuario) && !txtPassword.Text.Equals(user.Clave)){
+            else if(txtUsuario.Text.Equals(user.NombreUsuario) && !Hashing.ValidatePassword(txtPassword.Text, user.Clave)) {
                 MessageBox.Show("La contraseña es incorrecta.");
             }
             else {

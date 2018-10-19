@@ -179,7 +179,7 @@ namespace Data.Database
                 cmdSave.Parameters.Add("@legajo", SqlDbType.Int).Value = usuario.Legajo;
                 cmdSave.Parameters.Add("@tipo_persona", SqlDbType.Int).Value = usuario.TipoPersona;
                 cmdSave.Parameters.Add("@nombre_usuario", SqlDbType.VarChar, 50).Value = usuario.NombreUsuario;
-                cmdSave.Parameters.Add("@clave", SqlDbType.VarChar, 50).Value = usuario.Clave;
+                cmdSave.Parameters.Add("@clave", SqlDbType.Char, 60).Value = usuario.Clave;
                 cmdSave.Parameters.Add("@user_hab", SqlDbType.Bit).Value = usuario.Habilitado;
                 cmdSave.Parameters.Add("@cambia_clave", SqlDbType.Bit).Value = false;
                 cmdSave.Parameters.Add("@id_plan", SqlDbType.Int).Value = usuario.IDPlan;
@@ -212,7 +212,7 @@ namespace Data.Database
                 cmdSave.Parameters.Add("@legajo", SqlDbType.Int).Value = usuario.Legajo;
                 cmdSave.Parameters.Add("@tipo_persona", SqlDbType.Int).Value = usuario.TipoPersona;
                 cmdSave.Parameters.Add("@nombre_usuario", SqlDbType.VarChar, 50).Value = usuario.NombreUsuario;
-                cmdSave.Parameters.Add("@clave", SqlDbType.VarChar, 50).Value = usuario.Clave;
+                cmdSave.Parameters.Add("@clave", SqlDbType.Char, 60).Value = usuario.Clave;
                 cmdSave.Parameters.Add("@user_hab", SqlDbType.Bit).Value = usuario.Habilitado;
                 cmdSave.Parameters.Add("@cambia_clave", SqlDbType.Bit).Value = false;
                 cmdSave.Parameters.Add("@id_plan", SqlDbType.Int).Value = usuario.IDPlan;
