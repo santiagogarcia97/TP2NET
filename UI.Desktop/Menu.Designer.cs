@@ -816,6 +816,7 @@
             this.TSMIMisCursos.Name = "TSMIMisCursos";
             this.TSMIMisCursos.Size = new System.Drawing.Size(55, 20);
             this.TSMIMisCursos.Text = "Cursos";
+            this.TSMIMisCursos.Click += new System.EventHandler(this.TSMIcursos_Click);
             // 
             // TSMIMisInscripciones
             // 

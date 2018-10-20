@@ -180,7 +180,7 @@ namespace UI.Desktop {
         }
 
         private void TSMIinscribirseACursado_Click(object sender, EventArgs e) {
-            MisInscripcionesDesktop aid = new MisInscripcionesDesktop(ApplicationForm.ModoForm.Alta, UsuarioActual);
+            InscribirMaterias aid = new InscribirMaterias(ApplicationForm.ModoForm.Alta, UsuarioActual);
             aid.ShowDialog();
         }
     }

@@ -96,13 +96,13 @@ namespace UI.Desktop{
         }
 
         private void tsbNuevo_Click(object sender, EventArgs e){
-            MisInscripcionesDesktop alumnoInscripcionDesktop = new MisInscripcionesDesktop(ApplicationForm.ModoForm.Alta, UsuarioActual);
+            InscribirMaterias alumnoInscripcionDesktop = new InscribirMaterias(ApplicationForm.ModoForm.Alta, UsuarioActual);
             alumnoInscripcionDesktop.ShowDialog();
             this.Listar();
         }
 
         private void tsbEliminar_Click(object sender, EventArgs e){
-                MisInscripcionesDesktop alumnoInscripcionDesktop = new MisInscripcionesDesktop(ApplicationForm.ModoForm.Baja, UsuarioActual);
+                InscribirMaterias alumnoInscripcionDesktop = new InscribirMaterias(ApplicationForm.ModoForm.Baja, UsuarioActual);
                 alumnoInscripcionDesktop.ShowDialog();
                 this.Listar();
         }

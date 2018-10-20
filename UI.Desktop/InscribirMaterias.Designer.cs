@@ -1,5 +1,5 @@
 ﻿namespace UI.Desktop {
-    partial class MisInscripcionesDesktop {
+    partial class InscribirMaterias {
         /// <summary>
         /// Required designer variable.
         /// </summary>
