@@ -59,7 +59,7 @@
     <Compile Include="CambiarClave.Designer.cs">
       <DependentUpon>CambiarClave.cs</DependentUpon>
     </Compile>
-    <Compile Include="MisInscripcionesDesktop.cs">
+    <Compile Include="InscribirMaterias.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="InscribirMaterias.Designer.cs">
@@ -184,8 +184,8 @@
     <EmbeddedResource Include="ABMAlumnoInscripciones.resx">
       <DependentUpon>ABMAlumnoInscripciones.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MisInscripcionesDesktop.resx">
-      <DependentUpon>MisInscripcionesDesktop.cs</DependentUpon>
+    <EmbeddedResource Include="InscribirMaterias.resx">
+      <DependentUpon>InscribirMaterias.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CargaNotas.resx">
       <DependentUpon>CargaNotas.cs</DependentUpon>
