@@ -73,7 +73,7 @@ namespace UI.Desktop {
         }
 
         public override bool Validar() {
-            return !(string.IsNullOrEmpty(txtDescripcion.Text));
+            return !(string.IsNullOrWhiteSpace(txtDescripcion.Text));
         }
 
         private void btnAceptar_Click(object sender, EventArgs e) {

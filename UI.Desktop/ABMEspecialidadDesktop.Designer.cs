@@ -66,6 +66,7 @@
             // 
             this.tableLayoutPanel1.SetColumnSpan(this.txtDescripcion, 2);
             this.txtDescripcion.Location = new System.Drawing.Point(115, 58);
+            this.txtDescripcion.MaxLength = 50;
             this.txtDescripcion.Name = "txtDescripcion";
             this.txtDescripcion.Size = new System.Drawing.Size(184, 20);
             this.txtDescripcion.TabIndex = 13;
@@ -112,7 +113,7 @@
             this.btnAceptar.UseVisualStyleBackColor = true;
             this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
             // 
-            // EspecialidadDesktop
+            // ABMEspecialidadDesktop
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -120,7 +121,7 @@
             this.Controls.Add(this.tableLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
-            this.Name = "EspecialidadDesktop";
+            this.Name = "ABMEspecialidadDesktop";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "EspecialidadDesktop";
             this.tableLayoutPanel1.ResumeLayout(false);

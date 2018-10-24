@@ -25,7 +25,6 @@
         private void InitializeComponent() {
             this.cbEsp = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.txtAnio = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.btnAceptar = new System.Windows.Forms.Button();
             this.txtDescripcion = new System.Windows.Forms.TextBox();
@@ -34,15 +33,18 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.lblRedDesc = new System.Windows.Forms.Label();
             this.lblRedPlan = new System.Windows.Forms.Label();
-            this.lblRedAnio = new System.Windows.Forms.Label();
             this.cbPlan = new System.Windows.Forms.ComboBox();
             this.labelID = new System.Windows.Forms.Label();
+            this.nudAnio = new System.Windows.Forms.NumericUpDown();
+            this.lblRedAnio = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudAnio)).BeginInit();
             this.SuspendLayout();
             // 
             // cbEsp
             // 
             this.cbEsp.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.cbEsp.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbEsp.FormattingEnabled = true;
             this.cbEsp.Location = new System.Drawing.Point(93, 93);
             this.cbEsp.Name = "cbEsp";
@@ -60,15 +62,6 @@
             this.label1.TabIndex = 14;
             this.label1.Text = "Plan";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // txtAnio
-            // 
-            this.tableLayoutPanel1.SetColumnSpan(this.txtAnio, 2);
-            this.txtAnio.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtAnio.Location = new System.Drawing.Point(93, 68);
-            this.txtAnio.Name = "txtAnio";
-            this.txtAnio.Size = new System.Drawing.Size(202, 20);
-            this.txtAnio.TabIndex = 17;
             // 
             // label2
             // 
@@ -88,7 +81,7 @@
             this.btnAceptar.Location = new System.Drawing.Point(197, 133);
             this.btnAceptar.Name = "btnAceptar";
             this.btnAceptar.Size = new System.Drawing.Size(98, 24);
-            this.btnAceptar.TabIndex = 9;
+            this.btnAceptar.TabIndex = 23;
             this.btnAceptar.Text = "Aceptar";
             this.btnAceptar.UseVisualStyleBackColor = true;
             this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
@@ -98,6 +91,7 @@
             this.tableLayoutPanel1.SetColumnSpan(this.txtDescripcion, 2);
             this.txtDescripcion.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtDescripcion.Location = new System.Drawing.Point(93, 43);
+            this.txtDescripcion.MaxLength = 50;
             this.txtDescripcion.Name = "txtDescripcion";
             this.txtDescripcion.Size = new System.Drawing.Size(202, 20);
             this.txtDescripcion.TabIndex = 13;
@@ -139,15 +133,15 @@
             this.tableLayoutPanel1.Controls.Add(this.IDLabel, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.label1, 1, 4);
             this.tableLayoutPanel1.Controls.Add(this.txtDescripcion, 3, 2);
-            this.tableLayoutPanel1.Controls.Add(this.txtAnio, 3, 3);
             this.tableLayoutPanel1.Controls.Add(this.cbEsp, 3, 4);
             this.tableLayoutPanel1.Controls.Add(this.btnAceptar, 4, 6);
             this.tableLayoutPanel1.Controls.Add(this.label2, 1, 3);
             this.tableLayoutPanel1.Controls.Add(this.lblRedDesc, 5, 2);
             this.tableLayoutPanel1.Controls.Add(this.lblRedPlan, 5, 4);
-            this.tableLayoutPanel1.Controls.Add(this.lblRedAnio, 5, 3);
             this.tableLayoutPanel1.Controls.Add(this.cbPlan, 4, 4);
             this.tableLayoutPanel1.Controls.Add(this.labelID, 3, 1);
+            this.tableLayoutPanel1.Controls.Add(this.nudAnio, 3, 3);
+            this.tableLayoutPanel1.Controls.Add(this.lblRedAnio, 4, 3);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -188,22 +182,10 @@
             this.lblRedPlan.Text = "*";
             this.lblRedPlan.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // lblRedAnio
-            // 
-            this.lblRedAnio.AutoSize = true;
-            this.lblRedAnio.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblRedAnio.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRedAnio.ForeColor = System.Drawing.Color.Red;
-            this.lblRedAnio.Location = new System.Drawing.Point(301, 65);
-            this.lblRedAnio.Name = "lblRedAnio";
-            this.lblRedAnio.Size = new System.Drawing.Size(12, 25);
-            this.lblRedAnio.TabIndex = 19;
-            this.lblRedAnio.Text = "*";
-            this.lblRedAnio.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
             // cbPlan
             // 
             this.cbPlan.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.cbPlan.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbPlan.FormattingEnabled = true;
             this.cbPlan.Location = new System.Drawing.Point(197, 93);
             this.cbPlan.Name = "cbPlan";
@@ -221,7 +203,43 @@
             this.labelID.Text = "-";
             this.labelID.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // ComisionDesktop
+            // nudAnio
+            // 
+            this.nudAnio.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.nudAnio.Location = new System.Drawing.Point(93, 68);
+            this.nudAnio.Maximum = new decimal(new int[] {
+            3000,
+            0,
+            0,
+            0});
+            this.nudAnio.Minimum = new decimal(new int[] {
+            1900,
+            0,
+            0,
+            0});
+            this.nudAnio.Name = "nudAnio";
+            this.nudAnio.Size = new System.Drawing.Size(98, 20);
+            this.nudAnio.TabIndex = 14;
+            this.nudAnio.Value = new decimal(new int[] {
+            1900,
+            0,
+            0,
+            0});
+            // 
+            // lblRedAnio
+            // 
+            this.lblRedAnio.AutoSize = true;
+            this.lblRedAnio.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblRedAnio.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRedAnio.ForeColor = System.Drawing.Color.Red;
+            this.lblRedAnio.Location = new System.Drawing.Point(197, 65);
+            this.lblRedAnio.Name = "lblRedAnio";
+            this.lblRedAnio.Size = new System.Drawing.Size(98, 25);
+            this.lblRedAnio.TabIndex = 19;
+            this.lblRedAnio.Text = "*";
+            this.lblRedAnio.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // ABMComisionDesktop
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -229,12 +247,13 @@
             this.Controls.Add(this.tableLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
-            this.Name = "ComisionDesktop";
+            this.Name = "ABMComisionDesktop";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "ComisionDesktop";
             this.Load += new System.EventHandler(this.ComisionDesktop_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudAnio)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -248,7 +267,6 @@
         private System.Windows.Forms.Label IDLabel;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtDescripcion;
-        private System.Windows.Forms.TextBox txtAnio;
         private System.Windows.Forms.Button btnAceptar;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lblRedDesc;
@@ -256,5 +274,6 @@
         private System.Windows.Forms.Label lblRedAnio;
         private System.Windows.Forms.ComboBox cbPlan;
         private System.Windows.Forms.Label labelID;
+        private System.Windows.Forms.NumericUpDown nudAnio;
     }
 }

@@ -29,19 +29,24 @@ namespace UI.Desktop {
             cbxEsp.ValueMember = "id_esp";
             cbxEsp.DisplayMember = "desc_esp";
             cbxEsp.DataSource = GenerarComboBox.getEspecialidades();
+            cbxEsp.SelectedValue = 0;
         }
 
         public ABMUsuarioDesktop(ModoForm modo):this() {
             Modo = modo;
             btnAceptar.Text = "Crear";
             labelID.Text = "-";
+            txtClave.Visible = true;
+            btnCambiarClave.Visible = false;
+
             UsuarioLogic ul = new UsuarioLogic();
             labelLegajo.Text = ul.getNewLegajo().ToString();
-            chkHabilitado.Checked = true;
+            //chkHabilitado.Checked = true;
         }
 
         public ABMUsuarioDesktop(int ID, ModoForm modo) : this() {
             Modo = modo;
+
             UsuarioLogic ul = new UsuarioLogic();
             UsuarioActual = ul.GetOne(ID);
 
@@ -68,7 +73,7 @@ namespace UI.Desktop {
         }
 
         public void MapearDeDatos(Plan plan) {
-            chkHabilitado.Checked = UsuarioActual.Habilitado;
+            //chkHabilitado.Checked = UsuarioActual.Habilitado;
             labelID.Text = UsuarioActual.ID.ToString();
             labelLegajo.Text = UsuarioActual.Legajo.ToString();
             txtNombre.Text = UsuarioActual.Nombre.ToString();
@@ -85,7 +90,7 @@ namespace UI.Desktop {
 
             if (Modo == ApplicationForm.ModoForm.Baja) {
                 btnAceptar.Text = "Eliminar";
-                chkHabilitado.Enabled = false;
+                //chkHabilitado.Enabled = false;
                 txtNombre.ReadOnly = true;
                 txtApellido.ReadOnly = true;
                 txtFechaNac.ReadOnly = true;
@@ -93,10 +98,16 @@ namespace UI.Desktop {
                 txtTel.ReadOnly = true;
                 txtEmail.ReadOnly = true;
                 txtNombreUsuario.ReadOnly = true;
-                txtClave.ReadOnly = true;
                 cbxTipo.Enabled = false;
                 cbxEsp.Enabled = false;
                 cbxPlan.Enabled = false;
+                txtClave.Visible = false;
+                btnCambiarClave.Visible = false;
+            }
+            else if(Modo == ModoForm.Modificacion) {
+                btnAceptar.Text = "Guardar";
+                txtClave.Visible = false;
+                btnCambiarClave.Visible = true;
             }
             else {
                 btnAceptar.Text = "Guardar";
@@ -106,7 +117,7 @@ namespace UI.Desktop {
         public override void MapearADatos() {
             if(Modo == ModoForm.Alta || Modo == ModoForm.Modificacion) {
                 UsuarioActual = new Usuario();
-                UsuarioActual.Habilitado = chkHabilitado.Checked;
+                //UsuarioActual.Habilitado = chkHabilitado.Checked;
                 UsuarioActual.Legajo = Int32.Parse(labelLegajo.Text);
                 UsuarioActual.Nombre = txtNombre.Text;
                 UsuarioActual.Apellido = txtApellido.Text;
@@ -117,12 +128,12 @@ namespace UI.Desktop {
                 UsuarioActual.Telefono = txtTel.Text;
                 UsuarioActual.Email = txtEmail.Text;
                 UsuarioActual.NombreUsuario = txtNombreUsuario.Text;
-                UsuarioActual.Clave = Hashing.HashPassword(txtClave.Text);
                 UsuarioActual.TipoPersona = (int)cbxTipo.SelectedValue;
                 UsuarioActual.IDPlan = (int)cbxPlan.SelectedValue;
 
                 if (Modo == ModoForm.Alta) {
                     UsuarioActual.State = BusinessEntity.States.New;
+                    UsuarioActual.Clave = Hashing.HashPassword(txtClave.Text);
                 }
                 else if (Modo == ModoForm.Modificacion) {
                     UsuarioActual.State = BusinessEntity.States.Modified;
@@ -138,6 +149,7 @@ namespace UI.Desktop {
             cbxTipo.ValueMember = "tipo_persona";
             cbxTipo.DisplayMember = "desc_tipo";
             cbxTipo.DataSource = GenerarComboBox.getTiposPersona();
+            cbxTipo.SelectedValue = 0;
         }
         private void GenerarPlanes(int idEsp) {
             //Se genera el comobox de planes el funcionamiento es igual al de especialidades solo que se pasa
@@ -162,16 +174,18 @@ namespace UI.Desktop {
         }
         public override bool Validar() {
             lblRedAp.Visible = (string.IsNullOrWhiteSpace(txtApellido.Text)) ? true : false;
-            lblRedClave.Visible = (string.IsNullOrWhiteSpace(txtClave.Text)) ? true : false;
             lblRedDirec.Visible = (string.IsNullOrWhiteSpace(txtDirec.Text)) ? true : false;
             lblRedNom.Visible = (string.IsNullOrWhiteSpace(txtNombre.Text)) ? true : false;
             lblRedTel.Visible = (string.IsNullOrWhiteSpace(txtTel.Text)) ? true : false;
             lblRedUser.Visible = (string.IsNullOrWhiteSpace(txtNombreUsuario.Text)) ? true : false;
-            lblRedTipo.Visible = (cbxTipo.SelectedValue == null) ? true : false;
-            lblRedPlan.Visible = (cbxEsp.SelectedValue == null || cbxPlan.SelectedValue == null) ? true : false;
+            lblRedTipo.Visible = (cbxTipo.SelectedValue == null || (int)cbxTipo.SelectedValue == 0) ? true : false;
+            lblRedPlan.Visible = (cbxEsp.SelectedValue == null || cbxPlan.SelectedValue == null ||
+                                  (int)cbxEsp.SelectedValue == 0 || (int)cbxPlan.SelectedValue == 0) ? true : false;
             lblRedEmail.Visible = (new EmailAddressAttribute().IsValid(txtEmail.Text)) ? false : true;
             DateTime dt;
             lblRedNac.Visible = (DateTime.TryParseExact(txtFechaNac.Text, Util.Validar.FormatosFecha , null, DateTimeStyles.None, out dt) == true) ? false : true;
+
+            if(Modo == ModoForm.Modificacion) { lblRedClave.Visible = (string.IsNullOrWhiteSpace(txtClave.Text)) ? true : false; }
 
             return !(lblRedAp.Visible ||
                      lblRedClave.Visible ||
@@ -192,7 +206,13 @@ namespace UI.Desktop {
                 //pasando como argumento el id de la especialidad para mostrar solo los planes que
                 //corresponden a dicha especialidad
                 GenerarPlanes((int)cbxEsp.SelectedValue);
+                cbxPlan.SelectedValue = 0;
             }
+        }
+
+        private void btnCambiarClave_Click(object sender, EventArgs e) {
+            CambiarClave aux = new CambiarClave(UsuarioActual);
+            aux.ShowDialog();
         }
     }
 }

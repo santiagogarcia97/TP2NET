@@ -21,6 +21,7 @@ namespace UI.Desktop
 
         private void btnIngresar_Click(object sender, EventArgs e)
         {
+            this.Enabled = false;
             UsuarioLogic ul = new UsuarioLogic();
             Usuario user = ul.GetOne(txtUsuario.Text);
             if(txtUsuario.Text.Equals(user.NombreUsuario) && Hashing.ValidatePassword(txtPassword.Text, user.Clave)){
@@ -37,6 +38,8 @@ namespace UI.Desktop
             else {
                 MessageBox.Show("El usuario no existe.");
             }
+            txtPassword.Text = string.Empty;
+            this.Enabled = true;
         }
 
         private void btnSalir_Click(object sender, EventArgs e) {

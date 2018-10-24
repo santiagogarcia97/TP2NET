@@ -44,13 +44,6 @@
             this.lblRedTel = new System.Windows.Forms.Label();
             this.lblRedEmail = new System.Windows.Forms.Label();
             this.tlpAdmin = new System.Windows.Forms.TableLayoutPanel();
-            this.btnUsuarios = new System.Windows.Forms.Button();
-            this.btnEspecialidades = new System.Windows.Forms.Button();
-            this.btnPlanes = new System.Windows.Forms.Button();
-            this.btnMaterias = new System.Windows.Forms.Button();
-            this.btnComisiones = new System.Windows.Forms.Button();
-            this.btnCursos = new System.Windows.Forms.Button();
-            this.btnDocenteCurso = new System.Windows.Forms.Button();
             this.panelBottom = new System.Windows.Forms.Panel();
             this.btnSalir = new System.Windows.Forms.Button();
             this.panelAD = new System.Windows.Forms.Panel();
@@ -88,7 +81,6 @@
             this.TSMIreportes = new System.Windows.Forms.ToolStripMenuItem();
             this.TSMIacerca = new System.Windows.Forms.ToolStripMenuItem();
             this.tlpDatos.SuspendLayout();
-            this.tlpAdmin.SuspendLayout();
             this.panelBottom.SuspendLayout();
             this.panelAD.SuspendLayout();
             this.gbAcademico.SuspendLayout();
@@ -382,13 +374,6 @@
             this.tlpAdmin.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tlpAdmin.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tlpAdmin.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tlpAdmin.Controls.Add(this.btnUsuarios, 0, 0);
-            this.tlpAdmin.Controls.Add(this.btnEspecialidades, 0, 1);
-            this.tlpAdmin.Controls.Add(this.btnPlanes, 0, 2);
-            this.tlpAdmin.Controls.Add(this.btnMaterias, 0, 3);
-            this.tlpAdmin.Controls.Add(this.btnComisiones, 0, 4);
-            this.tlpAdmin.Controls.Add(this.btnCursos, 0, 5);
-            this.tlpAdmin.Controls.Add(this.btnDocenteCurso, 1, 0);
             this.tlpAdmin.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tlpAdmin.Location = new System.Drawing.Point(3, 16);
             this.tlpAdmin.Name = "tlpAdmin";
@@ -403,70 +388,6 @@
             this.tlpAdmin.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tlpAdmin.Size = new System.Drawing.Size(534, 315);
             this.tlpAdmin.TabIndex = 0;
-            // 
-            // btnUsuarios
-            // 
-            this.btnUsuarios.Location = new System.Drawing.Point(3, 3);
-            this.btnUsuarios.Name = "btnUsuarios";
-            this.btnUsuarios.Size = new System.Drawing.Size(127, 24);
-            this.btnUsuarios.TabIndex = 17;
-            this.btnUsuarios.Text = "Usuarios";
-            this.btnUsuarios.UseVisualStyleBackColor = true;
-            // 
-            // btnEspecialidades
-            // 
-            this.btnEspecialidades.Location = new System.Drawing.Point(3, 33);
-            this.btnEspecialidades.Name = "btnEspecialidades";
-            this.btnEspecialidades.Size = new System.Drawing.Size(127, 24);
-            this.btnEspecialidades.TabIndex = 19;
-            this.btnEspecialidades.Text = "Especialidades";
-            this.btnEspecialidades.UseVisualStyleBackColor = true;
-            // 
-            // btnPlanes
-            // 
-            this.btnPlanes.Location = new System.Drawing.Point(3, 63);
-            this.btnPlanes.Name = "btnPlanes";
-            this.btnPlanes.Size = new System.Drawing.Size(127, 24);
-            this.btnPlanes.TabIndex = 18;
-            this.btnPlanes.Text = "Planes";
-            this.btnPlanes.UseVisualStyleBackColor = true;
-            // 
-            // btnMaterias
-            // 
-            this.btnMaterias.Location = new System.Drawing.Point(3, 93);
-            this.btnMaterias.Name = "btnMaterias";
-            this.btnMaterias.Size = new System.Drawing.Size(127, 24);
-            this.btnMaterias.TabIndex = 20;
-            this.btnMaterias.Text = "Materias";
-            this.btnMaterias.UseVisualStyleBackColor = true;
-            // 
-            // btnComisiones
-            // 
-            this.btnComisiones.Location = new System.Drawing.Point(3, 123);
-            this.btnComisiones.Name = "btnComisiones";
-            this.btnComisiones.Size = new System.Drawing.Size(127, 24);
-            this.btnComisiones.TabIndex = 21;
-            this.btnComisiones.Text = "Comisiones";
-            this.btnComisiones.UseVisualStyleBackColor = true;
-            // 
-            // btnCursos
-            // 
-            this.btnCursos.Location = new System.Drawing.Point(3, 153);
-            this.btnCursos.Name = "btnCursos";
-            this.btnCursos.Size = new System.Drawing.Size(127, 24);
-            this.btnCursos.TabIndex = 23;
-            this.btnCursos.Text = "Cursos";
-            this.btnCursos.UseVisualStyleBackColor = true;
-            // 
-            // btnDocenteCurso
-            // 
-            this.btnDocenteCurso.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnDocenteCurso.Location = new System.Drawing.Point(136, 3);
-            this.btnDocenteCurso.Name = "btnDocenteCurso";
-            this.btnDocenteCurso.Size = new System.Drawing.Size(127, 24);
-            this.btnDocenteCurso.TabIndex = 24;
-            this.btnDocenteCurso.Text = "Docentes";
-            this.btnDocenteCurso.UseVisualStyleBackColor = true;
             // 
             // panelBottom
             // 
@@ -688,7 +609,7 @@
             // gbAdmin
             // 
             this.gbAdmin.Controls.Add(this.tlpAdmin);
-            this.gbAdmin.Location = new System.Drawing.Point(6, 6);
+            this.gbAdmin.Location = new System.Drawing.Point(0, 0);
             this.gbAdmin.Name = "gbAdmin";
             this.gbAdmin.Size = new System.Drawing.Size(540, 334);
             this.gbAdmin.TabIndex = 2;
@@ -869,7 +790,6 @@
             this.Load += new System.EventHandler(this.Menu_Load);
             this.tlpDatos.ResumeLayout(false);
             this.tlpDatos.PerformLayout();
-            this.tlpAdmin.ResumeLayout(false);
             this.panelBottom.ResumeLayout(false);
             this.panelAD.ResumeLayout(false);
             this.gbAcademico.ResumeLayout(false);
@@ -895,10 +815,6 @@
         private System.Windows.Forms.Button btnSalir;
         private System.Windows.Forms.Panel panelAD;
         private System.Windows.Forms.Panel panelAdmin;
-        private System.Windows.Forms.Button btnComisiones;
-        private System.Windows.Forms.Button btnMaterias;
-        private System.Windows.Forms.Button btnEspecialidades;
-        private System.Windows.Forms.Button btnPlanes;
         private System.Windows.Forms.Panel panelBienvenido;
         private System.Windows.Forms.Label lblLegajo;
         private System.Windows.Forms.Label lblBienvenido;
@@ -922,8 +838,6 @@
         private System.Windows.Forms.Label lblRedDirec;
         private System.Windows.Forms.Label lblRedTel;
         private System.Windows.Forms.Label lblRedEmail;
-        private System.Windows.Forms.Button btnCursos;
-        private System.Windows.Forms.Button btnUsuarios;
         private System.Windows.Forms.GroupBox gbAcademico;
         private System.Windows.Forms.GroupBox gbDatos;
         private System.Windows.Forms.GroupBox gbAdmin;
@@ -936,7 +850,6 @@
         private System.Windows.Forms.Label lblRegularizadas;
         private System.Windows.Forms.Label lblLibres;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Button btnDocenteCurso;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem TSMIabms;
         private System.Windows.Forms.ToolStripMenuItem TSMIusuario;

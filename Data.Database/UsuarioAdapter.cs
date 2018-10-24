@@ -166,7 +166,7 @@ namespace Data.Database
                 this.OpenConnection();
                 SqlCommand cmdSave = new SqlCommand("UPDATE usuarios SET nombre=@nombre,apellido=@apellido,direccion=@direccion,email=@email," +
                     "telefono=@telefono,fecha_nac=@fecha_nac,legajo=@legajo," +
-                    "tipo_persona=@tipo_persona,nombre_usuario=@nombre_usuario,clave=@clave," +
+                    "tipo_persona=@tipo_persona,nombre_usuario=@nombre_usuario," +
                     "user_hab=@user_hab,cambia_clave=@cambia_clave,id_plan=@id_plan WHERE id_usuario=@id", SqlConn);
 
                 cmdSave.Parameters.Add("@id",SqlDbType.Int).Value = usuario.ID;
@@ -179,10 +179,27 @@ namespace Data.Database
                 cmdSave.Parameters.Add("@legajo", SqlDbType.Int).Value = usuario.Legajo;
                 cmdSave.Parameters.Add("@tipo_persona", SqlDbType.Int).Value = usuario.TipoPersona;
                 cmdSave.Parameters.Add("@nombre_usuario", SqlDbType.VarChar, 50).Value = usuario.NombreUsuario;
-                cmdSave.Parameters.Add("@clave", SqlDbType.Char, 60).Value = usuario.Clave;
                 cmdSave.Parameters.Add("@user_hab", SqlDbType.Bit).Value = usuario.Habilitado;
                 cmdSave.Parameters.Add("@cambia_clave", SqlDbType.Bit).Value = false;
                 cmdSave.Parameters.Add("@id_plan", SqlDbType.Int).Value = usuario.IDPlan;
+                cmdSave.ExecuteNonQuery();
+            }
+            catch (Exception Ex) {
+                Exception ExcepcionManejada = new Exception("Error al modificar datos del usuario", Ex);
+                throw ExcepcionManejada;
+            }
+            finally {
+                this.CloseConnection();
+            }
+        }
+
+        protected void UpdatePassword(Usuario usuario) {
+            try {
+                this.OpenConnection();
+                SqlCommand cmdSave = new SqlCommand("UPDATE usuarios SET clave=@clave WHERE id_usuario=@id", SqlConn);
+
+                cmdSave.Parameters.Add("@id", SqlDbType.Int).Value = usuario.ID;
+                cmdSave.Parameters.Add("@clave", SqlDbType.Char, 60).Value = usuario.Clave;
                 cmdSave.ExecuteNonQuery();
             }
             catch (Exception Ex) {
@@ -242,6 +259,9 @@ namespace Data.Database
                 this.Update(usuario);
             }
             usuario.State = BusinessEntity.States.Unmodified;            
+        }
+        public void SavePassword(Usuario user) {
+            this.UpdatePassword(user);
         }
     }
 }

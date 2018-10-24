@@ -25,6 +25,7 @@ namespace Util {
             dtEspecialidades.Columns.Add("desc_esp", typeof(string));
             EspecialidadLogic el = new EspecialidadLogic();
             List<Especialidad> especialidades = el.GetAll();
+            dtEspecialidades.Rows.Add(new object[] { 0, string.Empty });
             foreach (Especialidad esp in especialidades) {
                 if (esp.Habilitado) {
                     dtEspecialidades.Rows.Add(new object[] { esp.ID, esp.Descripcion });
@@ -38,6 +39,7 @@ namespace Util {
             dtPlanes.Columns.Add("desc_plan", typeof(string));
             PlanLogic pl = new PlanLogic();
             List<Plan> planes = pl.GetAll();
+            dtPlanes.Rows.Add(new object[] { 0, string.Empty });
             foreach (Plan plan in planes) {
                 if (plan.IDEspecialidad == idEsp && plan.Habilitado) {
                     dtPlanes.Rows.Add(new object[] { plan.ID, plan.Descripcion });
@@ -50,6 +52,7 @@ namespace Util {
 
             dtTiposPersona.Columns.Add("tipo_persona", typeof(int));
             dtTiposPersona.Columns.Add("desc_tipo", typeof(string));
+            dtTiposPersona.Rows.Add(new object[] { 0, string.Empty });
             dtTiposPersona.Rows.Add(new object[] { 1, "Alumno" });
             dtTiposPersona.Rows.Add(new object[] { 2, "Docente" });
             dtTiposPersona.Rows.Add(new object[] { 3, "Administrativo" });
@@ -62,6 +65,7 @@ namespace Util {
             dtMaterias.Columns.Add("desc_mat", typeof(string));
             MateriaLogic ml = new MateriaLogic();
             List<Materia> materias = ml.GetAll();
+            dtMaterias.Rows.Add(new object[] { 0, string.Empty });
             foreach (Materia materia in materias) {
                 if (materia.IDPlan == idPlan && materia.Habilitado) {
                     dtMaterias.Rows.Add(new object[] { materia.ID, materia.Descripcion });
@@ -75,6 +79,7 @@ namespace Util {
             dtComisiones.Columns.Add("desc_com", typeof(string));
             ComisionLogic cl = new ComisionLogic();
             List<Comision> comisiones = cl.GetAll();
+            dtComisiones.Rows.Add(new object[] { 0, string.Empty });
             foreach (Comision com in comisiones) {
                 if (com.IDPlan == idPlan && com.Habilitado) {
                     dtComisiones.Rows.Add(new object[] { com.ID, com.Descripcion });

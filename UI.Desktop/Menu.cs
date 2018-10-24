@@ -136,7 +136,8 @@ namespace UI.Desktop {
         }
 
         private void btnCambiarPass_Click(object sender, EventArgs e) {
-            MessageBox.Show("Falta implementar");
+            CambiarClave aux = new CambiarClave(UsuarioActual);
+            aux.ShowDialog();
         }
 
         private void TSMIusuario_Click(object sender, EventArgs e) {

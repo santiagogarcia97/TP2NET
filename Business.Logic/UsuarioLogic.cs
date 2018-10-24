@@ -28,6 +28,9 @@ namespace Business.Logic {
         public void Save(Usuario user) {
             UsuarioData.Save(user);
         }
+        public void SavePassword(Usuario user) {
+            UsuarioData.SavePassword(user);
+        }
         public int getNewLegajo() {
             int legajo = UsuarioData.getMaxLegajo();
             legajo++;

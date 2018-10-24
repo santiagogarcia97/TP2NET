@@ -27,6 +27,7 @@ namespace UI.Desktop {
             cbEsp.ValueMember = "id_esp";
             cbEsp.DisplayMember = "desc_esp";
             cbEsp.DataSource = GenerarComboBox.getEspecialidades();
+            cbEsp.SelectedValue = 0;
         }
         public ABMMateriaDesktop(ModoForm modo) : this() {
             Modo = modo;
@@ -55,8 +56,8 @@ namespace UI.Desktop {
         public void MapearDeDatos(Plan pln) {
             labelID.Text = MateriaActual.ID.ToString();
             txtDescripcion.Text = MateriaActual.Descripcion;
-            txtHSSemanales.Text = MateriaActual.HSSemanales.ToString(); ;
-            txtHSTotales.Text = MateriaActual.HSTotales.ToString(); ;
+            nudHSSem.Value = MateriaActual.HSSemanales;
+            nudHSTot.Value = MateriaActual.HSTotales;
             cbEsp.SelectedValue = pln.IDEspecialidad;
             cbPlan.SelectedValue = MateriaActual.IDPlan;
 
@@ -67,8 +68,8 @@ namespace UI.Desktop {
                     break;
                 case ModoForm.Baja:
                     btnAceptar.Text = "Eliminar";
-                    txtHSSemanales.ReadOnly = true;
-                    txtHSTotales.ReadOnly = true;
+                    nudHSSem.ReadOnly = true;
+                    nudHSTot.ReadOnly = true;
                     txtDescripcion.ReadOnly = true;
                     cbEsp.Enabled = false;
                     cbPlan.Enabled = false;
@@ -80,8 +81,8 @@ namespace UI.Desktop {
             if (Modo == ModoForm.Alta || Modo == ModoForm.Modificacion) {
                 MateriaActual = new Materia();
                 MateriaActual.Descripcion = txtDescripcion.Text;
-                MateriaActual.HSSemanales = Int32.Parse(txtHSSemanales.Text);
-                MateriaActual.HSTotales = Int32.Parse(txtHSTotales.Text);
+                MateriaActual.HSSemanales = (int)nudHSSem.Value;
+                MateriaActual.HSTotales = (int)nudHSTot.Value;
                 MateriaActual.IDPlan = (int)cbPlan.SelectedValue;
 
                 MateriaActual.Habilitado = true;
@@ -104,6 +105,7 @@ namespace UI.Desktop {
             cbPlan.ValueMember = "id_plan";
             cbPlan.DisplayMember = "desc_plan";
             cbPlan.DataSource = GenerarComboBox.getPlanes(idEsp);
+            cbPlan.SelectedValue = 0;
         }
 
         public override void GuardarCambios() {
@@ -114,9 +116,10 @@ namespace UI.Desktop {
 
         public override bool Validar() {
             lblRedDesc.Visible = (string.IsNullOrWhiteSpace(txtDescripcion.Text)) ? true : false;
-            lblRedHSS.Visible = (string.IsNullOrWhiteSpace(txtHSSemanales.Text)) ? true : false;
-            lblRedHST.Visible = (string.IsNullOrWhiteSpace(txtHSTotales.Text)) ? true : false;
-            lblRedPlan.Visible = (cbEsp.SelectedValue == null || cbPlan.SelectedValue == null) ? true : false;
+            lblRedHSS.Visible = (nudHSSem.Value == 0) ? true : false;
+            lblRedHST.Visible = (nudHSTot.Value == 0) ? true : false;
+            lblRedPlan.Visible = ((int)cbEsp.SelectedValue == 0 || (int)cbPlan.SelectedValue == 0 ||
+                                    cbEsp.SelectedValue == null || cbPlan.SelectedValue == null) ? true : false;
 
             if (lblRedDesc.Visible == true ||
                 lblRedHSS.Visible == true ||

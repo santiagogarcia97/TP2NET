@@ -26,6 +26,7 @@ namespace UI.Desktop {
             cbEspecialidad.ValueMember = "id_esp";
             cbEspecialidad.DisplayMember = "desc_esp";
             cbEspecialidad.DataSource = GenerarComboBox.getEspecialidades();
+            cbEspecialidad.SelectedValue = 0;
         }
 
         public ABMPlanDesktop(ModoForm modo) : this() {
@@ -94,9 +95,11 @@ namespace UI.Desktop {
         }
 
         public override bool Validar() {
-            return !(                                     //Si cualquiera de estas condiciones es verdadera, retorna false
-            string.IsNullOrEmpty(txtDescripcion.Text) ||
-            string.IsNullOrEmpty(cbEspecialidad.Text));
+
+            lblDescRed.Visible = string.IsNullOrWhiteSpace(txtDescripcion.Text) ? true : false;
+            lblEspRed.Visible = ((int)cbEspecialidad.SelectedValue == 0 || cbEspecialidad.SelectedValue == null) ? true : false;
+
+            return !(lblEspRed.Visible || lblDescRed.Visible);
         }
 
         private void btnAceptar_Click(object sender, EventArgs e) {

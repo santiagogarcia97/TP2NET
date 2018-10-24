@@ -67,8 +67,8 @@
             this.tlPlanes.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tlPlanes.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tlPlanes.Controls.Add(this.dgvPlanes, 0, 0);
-            this.tlPlanes.Controls.Add(this.btnSalir, 1, 1);
             this.tlPlanes.Controls.Add(this.btnActualizar, 0, 1);
+            this.tlPlanes.Controls.Add(this.btnSalir, 1, 1);
             this.tlPlanes.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tlPlanes.Location = new System.Drawing.Point(0, 0);
             this.tlPlanes.Name = "tlPlanes";
@@ -131,7 +131,7 @@
             this.btnSalir.Location = new System.Drawing.Point(706, 310);
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.Size = new System.Drawing.Size(75, 23);
-            this.btnSalir.TabIndex = 1;
+            this.btnSalir.TabIndex = 2;
             this.btnSalir.Text = "Salir";
             this.btnSalir.UseVisualStyleBackColor = true;
             this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
@@ -142,7 +142,7 @@
             this.btnActualizar.Location = new System.Drawing.Point(625, 310);
             this.btnActualizar.Name = "btnActualizar";
             this.btnActualizar.Size = new System.Drawing.Size(75, 23);
-            this.btnActualizar.TabIndex = 2;
+            this.btnActualizar.TabIndex = 1;
             this.btnActualizar.Text = "Actualizar";
             this.btnActualizar.UseVisualStyleBackColor = true;
             this.btnActualizar.Click += new System.EventHandler(this.Planes_Load);
@@ -192,14 +192,14 @@
             this.tsbEliminar.ToolTipText = "Eliminar";
             this.tsbEliminar.Click += new System.EventHandler(this.tsbEliminar_Click);
             // 
-            // Planes
+            // ABMPlanes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 361);
             this.Controls.Add(this.tcUsuarios);
             this.MinimumSize = new System.Drawing.Size(600, 300);
-            this.Name = "Planes";
+            this.Name = "ABMPlanes";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Planes";
             this.Load += new System.EventHandler(this.Planes_Load);

@@ -27,6 +27,7 @@ namespace UI.Desktop {
             cbEsp.ValueMember = "id_esp";
             cbEsp.DisplayMember = "desc_esp";
             cbEsp.DataSource = GenerarComboBox.getEspecialidades();
+            cbEsp.SelectedValue = 0;
         }
 
         public ABMComisionDesktop(ModoForm modo) : this() {
@@ -56,7 +57,7 @@ namespace UI.Desktop {
         public void MapearDeDatos(Plan plan) {
             labelID.Text = ComisionActual.ID.ToString();
             txtDescripcion.Text = ComisionActual.Descripcion;
-            txtAnio.Text = ComisionActual.AnioEspecialidad.ToString();
+            nudAnio.Value = ComisionActual.AnioEspecialidad;
             cbEsp.SelectedValue = plan.IDEspecialidad;
             cbPlan.SelectedValue = ComisionActual.IDPlan;
 
@@ -78,7 +79,7 @@ namespace UI.Desktop {
             if(Modo == ModoForm.Alta || Modo == ModoForm.Modificacion) {
                 ComisionActual = new Comision();
                 ComisionActual.Descripcion = txtDescripcion.Text;
-                ComisionActual.AnioEspecialidad = Int32.Parse(txtAnio.Text);
+                ComisionActual.AnioEspecialidad = (int)nudAnio.Value;
                 ComisionActual.IDPlan = (int)cbPlan.SelectedValue;
 
                 ComisionActual.Habilitado = true;
@@ -104,8 +105,9 @@ namespace UI.Desktop {
 
         public override bool Validar() {
             lblRedDesc.Visible = (string.IsNullOrWhiteSpace(txtDescripcion.Text)) ? true : false;
-            lblRedAnio.Visible = (string.IsNullOrWhiteSpace(txtAnio.Text)) ? true : false;
-            lblRedPlan.Visible = (cbEsp.SelectedValue == null || cbPlan.SelectedValue == null) ? true : false;
+            lblRedAnio.Visible = (nudAnio.Value == 1900) ? true : false;
+            lblRedPlan.Visible = (cbEsp.SelectedValue == null || cbPlan.SelectedValue == null ||
+                                    (int)cbEsp.SelectedValue == 0 || (int)cbPlan.SelectedValue == 0) ? true : false;
 
             if (lblRedDesc.Visible == true ||
                 lblRedAnio.Visible == true ||
@@ -123,6 +125,7 @@ namespace UI.Desktop {
             cbPlan.ValueMember = "id_plan";
             cbPlan.DisplayMember = "desc_plan";
             cbPlan.DataSource = GenerarComboBox.getPlanes(idEsp);
+            cbPlan.SelectedValue = 0;
         }
 
         private void btnAceptar_Click(object sender, EventArgs e) {
