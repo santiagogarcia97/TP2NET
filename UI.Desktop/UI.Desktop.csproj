@@ -62,8 +62,8 @@
     <Compile Include="MisInscripcionesDesktop.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MisInscripcionesDesktop.Designer.cs">
-      <DependentUpon>MisInscripcionesDesktop.cs</DependentUpon>
+    <Compile Include="InscribirMaterias.Designer.cs">
+      <DependentUpon>InscribirMaterias.cs</DependentUpon>
     </Compile>
     <Compile Include="CargaNotas.cs">
       <SubType>Form</SubType>
@@ -183,9 +183,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="ABMAlumnoInscripciones.resx">
       <DependentUpon>ABMAlumnoInscripciones.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="CambiarClave.resx">
-      <DependentUpon>CambiarClave.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MisInscripcionesDesktop.resx">
       <DependentUpon>MisInscripcionesDesktop.cs</DependentUpon>
