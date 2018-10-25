@@ -24,7 +24,6 @@
         /// </summary>
         private void InitializeComponent() {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.cbNota = new System.Windows.Forms.ComboBox();
             this.IDLabel = new System.Windows.Forms.Label();
             this.LegajoLabel = new System.Windows.Forms.Label();
             this.AlumnoLabel = new System.Windows.Forms.Label();
@@ -37,7 +36,9 @@
             this.lblLegajo = new System.Windows.Forms.Label();
             this.lblRedNota = new System.Windows.Forms.Label();
             this.lblRedCond = new System.Windows.Forms.Label();
+            this.nudNota = new System.Windows.Forms.NumericUpDown();
             this.tableLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudNota)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -51,7 +52,6 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 5F));
-            this.tableLayoutPanel1.Controls.Add(this.cbNota, 3, 6);
             this.tableLayoutPanel1.Controls.Add(this.IDLabel, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.LegajoLabel, 1, 3);
             this.tableLayoutPanel1.Controls.Add(this.AlumnoLabel, 1, 2);
@@ -64,6 +64,7 @@
             this.tableLayoutPanel1.Controls.Add(this.lblLegajo, 3, 3);
             this.tableLayoutPanel1.Controls.Add(this.lblRedNota, 4, 6);
             this.tableLayoutPanel1.Controls.Add(this.lblRedCond, 4, 5);
+            this.tableLayoutPanel1.Controls.Add(this.nudNota, 3, 6);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -80,16 +81,6 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(296, 200);
             this.tableLayoutPanel1.TabIndex = 3;
-            // 
-            // cbNota
-            // 
-            this.cbNota.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbNota.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbNota.FormattingEnabled = true;
-            this.cbNota.Location = new System.Drawing.Point(87, 133);
-            this.cbNota.Name = "cbNota";
-            this.cbNota.Size = new System.Drawing.Size(91, 21);
-            this.cbNota.TabIndex = 28;
             // 
             // IDLabel
             // 
@@ -230,6 +221,19 @@
             this.lblRedCond.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.lblRedCond.Visible = false;
             // 
+            // nudNota
+            // 
+            this.nudNota.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.nudNota.Location = new System.Drawing.Point(87, 133);
+            this.nudNota.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.nudNota.Name = "nudNota";
+            this.nudNota.Size = new System.Drawing.Size(91, 20);
+            this.nudNota.TabIndex = 39;
+            // 
             // CargaNotas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -243,6 +247,7 @@
             this.Text = "CargaNotas";
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudNota)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -256,7 +261,6 @@
         private System.Windows.Forms.Label LegajoLabel;
         private System.Windows.Forms.Label AlumnoLabel;
         private System.Windows.Forms.Label NotaLabel;
-        private System.Windows.Forms.ComboBox cbNota;
         private System.Windows.Forms.Label labelID;
         private System.Windows.Forms.Label CondicionLabel;
         private System.Windows.Forms.ComboBox cbCondicion;
@@ -264,5 +268,6 @@
         private System.Windows.Forms.Label lblRedNota;
         private System.Windows.Forms.Label lblAlumno;
         private System.Windows.Forms.Label lblLegajo;
+        private System.Windows.Forms.NumericUpDown nudNota;
     }
 }

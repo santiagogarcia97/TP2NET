@@ -21,12 +21,10 @@ namespace UI.Desktop
         public CargaNotas(){
             InitializeComponent();
 
-            cbCondicion.DataSource = Enum.GetValues(typeof(AlumnoInscripcion.Condiciones));
-            cbNota.Items.Clear();
-            cbNota.Items.Add(string.Empty);
-            for (int i = 0; i <= 10; i++) {
-                cbNota.Items.Add(i.ToString());
-            }
+            cbCondicion.ValueMember = "id_cond";
+            cbCondicion.DisplayMember = "desc_cond";
+            cbCondicion.DataSource = GenerarComboBox.getCondiciones();
+            cbCondicion.SelectedValue = 4;
         }
         public CargaNotas(AlumnoInscripcion ai) : this(){
             AlumnoInscripcionActual = ai;
@@ -43,14 +41,14 @@ namespace UI.Desktop
             Usuario alumno = ul.GetOne(AlumnoInscripcionActual.IDAlumno);
             lblAlumno.Text = alumno.Apellido + ", " + alumno.Nombre;
             lblLegajo.Text = alumno.Legajo.ToString();
-            cbCondicion.SelectedItem = AlumnoInscripcionActual.Condicion;
-            cbNota.SelectedItem = AlumnoInscripcionActual.Nota;
+            cbCondicion.SelectedValue = AlumnoInscripcionActual.Condicion;
+            nudNota.Value = AlumnoInscripcionActual.Nota;
 
         }
 
         public override void MapearADatos(){
-            AlumnoInscripcionActual.Condicion = (AlumnoInscripcion.Condiciones)cbCondicion.SelectedItem;
-            AlumnoInscripcionActual.Nota = (string)cbNota.SelectedItem;
+            AlumnoInscripcionActual.Condicion = (AlumnoInscripcion.Condiciones)cbCondicion.SelectedValue;
+            AlumnoInscripcionActual.Nota = (int)nudNota.Value;
             AlumnoInscripcionActual.State = BusinessEntity.States.Modified;
         }
         public override void GuardarCambios()
@@ -63,8 +61,8 @@ namespace UI.Desktop
         public override bool Validar()
         {
 
-            lblRedCond.Visible = (cbCondicion.SelectedItem == null) ? true : false;
-            lblRedNota.Visible = (cbNota.SelectedItem == null) ? true : false;
+            lblRedCond.Visible = (cbCondicion.SelectedItem == null || (int)cbCondicion.SelectedValue == 0) ? true : false;
+            lblRedNota.Visible = ((int)nudNota.Value == 0 && (int)cbCondicion.SelectedValue == 1) ? true : false;
 
             if (lblRedNota.Visible == true ||
                 lblRedCond.Visible == true) {

@@ -13,27 +13,11 @@ using Business.Entities;
 namespace UI.Desktop{
     public partial class ABMAlumnoInscripciones : ApplicationForm{
 
-        private Usuario _UsuarioActual;
-        private int _IDCurso;
-        public Usuario UsuarioActual { get => _UsuarioActual; set => _UsuarioActual = value; }
-        public int IDCurso { get => _IDCurso; set => _IDCurso = value; }
-
         public ABMAlumnoInscripciones(){
             InitializeComponent();
             this.dgvAlumnoInscripciones.AutoGenerateColumns = false;
         }
-        public ABMAlumnoInscripciones(Usuario user) : this() {
-            UsuarioActual = user;
-            if(UsuarioActual.TipoPersona == 1) {
-                tcAlumnoInscripciones.TopToolStripPanel.Visible = false;
-            }
-        }
-        public ABMAlumnoInscripciones(Usuario user, int id) : this() {
-            UsuarioActual = user;
-            IDCurso = id;
-            tsbNuevo.Visible = false;
-            tsbEliminar.Visible = false;
-        }
+       
         private void AlumnoInscripciones_Load(object sender, EventArgs e) {
             Listar();
         }
@@ -44,15 +28,8 @@ namespace UI.Desktop{
 
             AlumnoInscripcionLogic ins = new AlumnoInscripcionLogic();
             List<AlumnoInscripcion> inscripciones = new List<AlumnoInscripcion>();
-            if (UsuarioActual.TipoPersona == 1) {
-                inscripciones = ins.GetAll().Where(x => x.IDAlumno == UsuarioActual.ID).ToList();
-            }
-            else if (UsuarioActual.TipoPersona == 2) {
-                inscripciones = ins.GetAllFromCurso(IDCurso);
-            }
-            else if (UsuarioActual.TipoPersona == 3) {
-                inscripciones = ins.GetAll();
-            }
+            inscripciones = ins.GetAll().Where(x => x.Habilitado == true).ToList();;
+               
             if (inscripciones.Count() == 0){
                 MessageBox.Show("No hay inscripciones cargadas!");
             }
@@ -77,7 +54,7 @@ namespace UI.Desktop{
                 DataRow Linea = Listado.NewRow();
 
                 Linea["ID"] = ai.ID;
-                Linea["Nota"] = (ai.Nota.Equals("")) ? "-" : ai.Nota;
+                Linea["Nota"] = (ai.Nota == 0) ? "-" : ai.Nota.ToString();
                 Linea["Condicion"] = ai.Condicion.ToString();
 
                 Usuario user = usuarios.FirstOrDefault(x => x.ID == ai.IDAlumno);
@@ -96,14 +73,14 @@ namespace UI.Desktop{
         }
 
         private void tsbNuevo_Click(object sender, EventArgs e){
-            InscribirMaterias alumnoInscripcionDesktop = new InscribirMaterias(ApplicationForm.ModoForm.Alta, UsuarioActual);
-            alumnoInscripcionDesktop.ShowDialog();
+         //   InscribirMaterias alumnoInscripcionDesktop = new InscribirMaterias(ApplicationForm.ModoForm.Alta, UsuarioActual);
+        //    alumnoInscripcionDesktop.ShowDialog();
             this.Listar();
         }
 
         private void tsbEliminar_Click(object sender, EventArgs e){
-                InscribirMaterias alumnoInscripcionDesktop = new InscribirMaterias(ApplicationForm.ModoForm.Baja, UsuarioActual);
-                alumnoInscripcionDesktop.ShowDialog();
+          //      InscribirMaterias alumnoInscripcionDesktop = new InscribirMaterias(ApplicationForm.ModoForm.Baja, UsuarioActual);
+     //           alumnoInscripcionDesktop.ShowDialog();
                 this.Listar();
         }
 

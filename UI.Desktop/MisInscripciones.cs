@@ -77,7 +77,7 @@ namespace UI.Desktop{
                 DataRow Linea = Listado.NewRow();
 
                 Linea["ID"] = ai.ID;
-                Linea["Nota"] = (ai.Nota.Equals("")) ? "-" : ai.Nota;
+                Linea["Nota"] = (ai.Nota == 0) ? "-" : ai.Nota.ToString();
                 Linea["Condicion"] = ai.Condicion.ToString();
 
                 Usuario user = usuarios.FirstOrDefault(x => x.ID == ai.IDAlumno);

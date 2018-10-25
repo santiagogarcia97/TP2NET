@@ -724,6 +724,7 @@
             this.TSMIinscripciones.Name = "TSMIinscripciones";
             this.TSMIinscripciones.Size = new System.Drawing.Size(194, 22);
             this.TSMIinscripciones.Text = "Inscripciones Alumnos";
+            this.TSMIinscripciones.Click += new System.EventHandler(this.TSMIinscripciones_Click);
             // 
             // TSMIdocentes
             // 

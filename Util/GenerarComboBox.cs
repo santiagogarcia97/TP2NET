@@ -87,5 +87,19 @@ namespace Util {
             }
             return dtComisiones;
         }
+        public static DataTable getCondiciones() {
+            DataTable dtCondiciones = new DataTable();
+            dtCondiciones.Columns.Add("id_cond", typeof(int));
+            dtCondiciones.Columns.Add("desc_cond", typeof(string));
+            dtCondiciones.Rows.Add(new object[] { 4, string.Empty });
+
+            dtCondiciones.Rows.Add(new object[] { 0, "Regular" });
+            dtCondiciones.Rows.Add(new object[] { 1, "Aprobado" });
+            dtCondiciones.Rows.Add(new object[] { 2, "Cursando" });
+            dtCondiciones.Rows.Add(new object[] { 3, "Libre" });
+
+            return dtCondiciones;
+        }
+
     }
 }

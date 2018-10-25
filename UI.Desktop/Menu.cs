@@ -184,5 +184,10 @@ namespace UI.Desktop {
             InscribirMaterias aid = new InscribirMaterias(ApplicationForm.ModoForm.Alta, UsuarioActual);
             aid.ShowDialog();
         }
+
+        private void TSMIinscripciones_Click(object sender, EventArgs e) {
+            ABMAlumnoInscripciones formAI = new ABMAlumnoInscripciones();
+            formAI.ShowDialog();
+        }
     }
 }

@@ -26,7 +26,7 @@ namespace Data.Database
                         IDAlumno = (int)drAlumnoInscripciones["id_alumno"],
                         IDCurso = (int)drAlumnoInscripciones["id_curso"],
                         Habilitado = (bool)drAlumnoInscripciones["ai_hab"],
-                        Nota = drAlumnoInscripciones["nota"].ToString(),
+                        Nota = (drAlumnoInscripciones["nota"] == DBNull.Value) ? 0 : (int)drAlumnoInscripciones["nota"],
                         Condicion = (AlumnoInscripcion.Condiciones)System.Enum.Parse(typeof(AlumnoInscripcion.Condiciones), (string)drAlumnoInscripciones["condicion"])
                     };
                     alumnoInscripciones.Add(insc);
@@ -60,7 +60,7 @@ namespace Data.Database
                         IDAlumno = (int)drAlumnoInscripciones["id_alumno"],
                         IDCurso = (int)drAlumnoInscripciones["id_curso"],
                         Habilitado = (bool)drAlumnoInscripciones["ai_hab"],
-                        Nota = drAlumnoInscripciones["nota"].ToString(),
+                        Nota = (drAlumnoInscripciones["nota"] == DBNull.Value) ? 0 : (int)drAlumnoInscripciones["nota"],
                         Condicion = (AlumnoInscripcion.Condiciones)System.Enum.Parse(typeof(AlumnoInscripcion.Condiciones), (string)drAlumnoInscripciones["condicion"])
                     };
                     alumnoInscripciones.Add(insc);
@@ -92,7 +92,7 @@ namespace Data.Database
                         IDAlumno = (int)drAlumnoInscripciones["id_alumno"],
                         IDCurso = (int)drAlumnoInscripciones["id_curso"],
                         Habilitado = (bool)drAlumnoInscripciones["ai_hab"],
-                        Nota = drAlumnoInscripciones["nota"].ToString(),
+                        Nota = (drAlumnoInscripciones["nota"] == DBNull.Value) ? 0 : (int)drAlumnoInscripciones["nota"],
                         Condicion = (AlumnoInscripcion.Condiciones)System.Enum.Parse(typeof(AlumnoInscripcion.Condiciones), (string)drAlumnoInscripciones["condicion"])
                     };
                     alumnoInscripciones.Add(insc);
@@ -125,7 +125,7 @@ namespace Data.Database
                     insc.IDAlumno = (int)drAlumnoInscripciones["id_alumno"];
                     insc.IDCurso = (int)drAlumnoInscripciones["id_curso"];
                     insc.Habilitado = (bool)drAlumnoInscripciones["ai_hab"];
-                    insc.Nota = drAlumnoInscripciones["nota"].ToString();
+                    insc.Nota = (drAlumnoInscripciones["nota"] == DBNull.Value) ? 0 : (int)drAlumnoInscripciones["nota"];
                     insc.Condicion = (AlumnoInscripcion.Condiciones)System.Enum.Parse(typeof(AlumnoInscripcion.Condiciones), (string)drAlumnoInscripciones["condicion"]);
                 }
                 drAlumnoInscripciones.Close();
@@ -185,7 +185,7 @@ namespace Data.Database
                 cmdSave.Parameters.Add("@id", SqlDbType.Int).Value = insc.ID;
                 cmdSave.Parameters.Add("@id_alumno", SqlDbType.Int).Value = insc.IDAlumno;
                 cmdSave.Parameters.Add("@id_curso", SqlDbType.Int).Value = insc.IDCurso;
-                cmdSave.Parameters.Add("@nota", SqlDbType.Int).Value = Int32.Parse(insc.Nota);
+                cmdSave.Parameters.Add("@nota", SqlDbType.Int).Value = insc.Nota;
                 cmdSave.Parameters.Add("@condicion", SqlDbType.VarChar, 50).Value = insc.Condicion.ToString();
                 cmdSave.Parameters.Add("@ai_hab", SqlDbType.Bit).Value = insc.Habilitado;
                 cmdSave.ExecuteNonQuery();

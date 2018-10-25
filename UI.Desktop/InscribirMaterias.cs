@@ -113,7 +113,7 @@ namespace UI.Desktop {
                 InscripcionActual.IDAlumno = UsuarioActual.ID;
                 InscripcionActual.Condicion = Condiciones.Cursando;
                 InscripcionActual.Habilitado = true;
-                InscripcionActual.Nota = "";
+                InscripcionActual.Nota = 0;
                 InscripcionActual.State = BusinessEntity.States.New;
 
                 AlumnoInscripcionLogic ail = new AlumnoInscripcionLogic();

@@ -35,11 +35,11 @@
             this.cbPlan = new System.Windows.Forms.ComboBox();
             this.cbEsp = new System.Windows.Forms.ComboBox();
             this.lblRedDesc = new System.Windows.Forms.Label();
-            this.lblRedHSS = new System.Windows.Forms.Label();
-            this.lblRedHST = new System.Windows.Forms.Label();
             this.lblRedPlan = new System.Windows.Forms.Label();
             this.nudHSSem = new System.Windows.Forms.NumericUpDown();
             this.nudHSTot = new System.Windows.Forms.NumericUpDown();
+            this.lblRedHSS = new System.Windows.Forms.Label();
+            this.lblRedHST = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudHSSem)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudHSTot)).BeginInit();
@@ -186,11 +186,12 @@
             // 
             // cbEsp
             // 
+            this.cbEsp.Dock = System.Windows.Forms.DockStyle.Fill;
             this.cbEsp.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbEsp.FormattingEnabled = true;
             this.cbEsp.Location = new System.Drawing.Point(109, 118);
             this.cbEsp.Name = "cbEsp";
-            this.cbEsp.Size = new System.Drawing.Size(113, 21);
+            this.cbEsp.Size = new System.Drawing.Size(115, 21);
             this.cbEsp.TabIndex = 19;
             this.cbEsp.SelectedValueChanged += new System.EventHandler(this.cbEsp_SelectedValueChanged);
             // 
@@ -206,32 +207,6 @@
             this.lblRedDesc.TabIndex = 29;
             this.lblRedDesc.Text = "*";
             this.lblRedDesc.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // lblRedHSS
-            // 
-            this.lblRedHSS.AutoSize = true;
-            this.lblRedHSS.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblRedHSS.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRedHSS.ForeColor = System.Drawing.Color.Red;
-            this.lblRedHSS.Location = new System.Drawing.Point(230, 65);
-            this.lblRedHSS.Name = "lblRedHSS";
-            this.lblRedHSS.Size = new System.Drawing.Size(115, 25);
-            this.lblRedHSS.TabIndex = 30;
-            this.lblRedHSS.Text = "*";
-            this.lblRedHSS.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // lblRedHST
-            // 
-            this.lblRedHST.AutoSize = true;
-            this.lblRedHST.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblRedHST.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRedHST.ForeColor = System.Drawing.Color.Red;
-            this.lblRedHST.Location = new System.Drawing.Point(230, 90);
-            this.lblRedHST.Name = "lblRedHST";
-            this.lblRedHST.Size = new System.Drawing.Size(115, 25);
-            this.lblRedHST.TabIndex = 31;
-            this.lblRedHST.Text = "*";
-            this.lblRedHST.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblRedPlan
             // 
@@ -271,6 +246,32 @@
             this.nudHSTot.Name = "nudHSTot";
             this.nudHSTot.Size = new System.Drawing.Size(115, 20);
             this.nudHSTot.TabIndex = 18;
+            // 
+            // lblRedHSS
+            // 
+            this.lblRedHSS.AutoSize = true;
+            this.lblRedHSS.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblRedHSS.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRedHSS.ForeColor = System.Drawing.Color.Red;
+            this.lblRedHSS.Location = new System.Drawing.Point(230, 65);
+            this.lblRedHSS.Name = "lblRedHSS";
+            this.lblRedHSS.Size = new System.Drawing.Size(115, 25);
+            this.lblRedHSS.TabIndex = 30;
+            this.lblRedHSS.Text = "*";
+            this.lblRedHSS.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lblRedHST
+            // 
+            this.lblRedHST.AutoSize = true;
+            this.lblRedHST.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblRedHST.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRedHST.ForeColor = System.Drawing.Color.Red;
+            this.lblRedHST.Location = new System.Drawing.Point(230, 90);
+            this.lblRedHST.Name = "lblRedHST";
+            this.lblRedHST.Size = new System.Drawing.Size(115, 25);
+            this.lblRedHST.TabIndex = 31;
+            this.lblRedHST.Text = "*";
+            this.lblRedHST.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // ABMMateriaDesktop
             // 
