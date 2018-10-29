@@ -72,7 +72,7 @@ namespace UI.Desktop {
         }
 
         private void tsbNuevo_Click(object sender, EventArgs e) {
-            ABMComisionDesktop comisionDesktop = new ABMComisionDesktop(ApplicationForm.ModoForm.Alta);
+            ABMComisionesDesktop comisionDesktop = new ABMComisionesDesktop(ApplicationForm.ModoForm.Alta);
             comisionDesktop.ShowDialog();
             this.Listar();
         }
@@ -80,7 +80,7 @@ namespace UI.Desktop {
         private void tsbEditar_Click(object sender, EventArgs e) {
             if (this.dgvComisiones.SelectedRows.Count != 0) {
                 int ID = (int)this.dgvComisiones.SelectedRows[0].Cells["id"].Value;
-                ABMComisionDesktop comisionDesktop = new ABMComisionDesktop(ID, ApplicationForm.ModoForm.Modificacion);
+                ABMComisionesDesktop comisionDesktop = new ABMComisionesDesktop(ID, ApplicationForm.ModoForm.Modificacion);
                 comisionDesktop.ShowDialog();
                 this.Listar();
             }
@@ -88,7 +88,7 @@ namespace UI.Desktop {
         private void tsbEliminar_Click(object sender, EventArgs e) {
             if (this.dgvComisiones.SelectedRows.Count != 0) {
                 int ID = (int)this.dgvComisiones.SelectedRows[0].Cells["id"].Value;
-                ABMComisionDesktop comisionDesktop = new ABMComisionDesktop(ID, ApplicationForm.ModoForm.Baja);
+                ABMComisionesDesktop comisionDesktop = new ABMComisionesDesktop(ID, ApplicationForm.ModoForm.Baja);
                 comisionDesktop.ShowDialog();
                 this.Listar();
             }

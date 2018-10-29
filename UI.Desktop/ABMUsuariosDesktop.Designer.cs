@@ -1,5 +1,5 @@
 ﻿namespace UI.Desktop {
-    partial class ABMUsuarioDesktop {
+    partial class ABMUsuariosDesktop {
         /// <summary>
         /// Required designer variable.
         /// </summary>

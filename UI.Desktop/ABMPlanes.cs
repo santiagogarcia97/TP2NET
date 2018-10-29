@@ -64,7 +64,7 @@ namespace UI.Desktop {
         }
 
         private void tsbNuevo_Click(object sender, EventArgs e) {
-            ABMPlanDesktop planDesktop = new ABMPlanDesktop(ApplicationForm.ModoForm.Alta);
+            ABMPlanesDesktop planDesktop = new ABMPlanesDesktop(ApplicationForm.ModoForm.Alta);
             planDesktop.ShowDialog();
             this.Listar();
         }
@@ -72,7 +72,7 @@ namespace UI.Desktop {
         private void tsbEditar_Click(object sender, EventArgs e) {
             if (this.dgvPlanes.SelectedRows.Count != 0) {
                 int ID = (int)this.dgvPlanes.SelectedRows[0].Cells["id"].Value;
-                ABMPlanDesktop planDesktop = new ABMPlanDesktop(ID, ApplicationForm.ModoForm.Modificacion);
+                ABMPlanesDesktop planDesktop = new ABMPlanesDesktop(ID, ApplicationForm.ModoForm.Modificacion);
                 planDesktop.ShowDialog();
                 this.Listar();
             }
@@ -81,7 +81,7 @@ namespace UI.Desktop {
         private void tsbEliminar_Click(object sender, EventArgs e) {
             if (this.dgvPlanes.SelectedRows.Count != 0) {
                 int ID = (int)this.dgvPlanes.SelectedRows[0].Cells["id"].Value;
-                ABMPlanDesktop planDesktop = new ABMPlanDesktop(ID, ApplicationForm.ModoForm.Baja);
+                ABMPlanesDesktop planDesktop = new ABMPlanesDesktop(ID, ApplicationForm.ModoForm.Baja);
                 planDesktop.ShowDialog();
                 this.Listar();
             }

@@ -13,12 +13,12 @@ using Util;
 
 namespace UI.Desktop
 {
-    public partial class ABMCursoDesktop : ApplicationForm
+    public partial class ABMCursosDesktop : ApplicationForm
     {
         private Curso _cursoActual;
         public Curso CursoActual {get { return _cursoActual; }set { _cursoActual = value; }}
 
-        public ABMCursoDesktop(){
+        public ABMCursosDesktop(){
             InitializeComponent();
 
             //Se genera el comobox de especialidades
@@ -27,13 +27,14 @@ namespace UI.Desktop
             cbEsp.ValueMember = "id_esp";
             cbEsp.DisplayMember = "desc_esp";
             cbEsp.DataSource = GenerarComboBox.getEspecialidades();
+            cbEsp.SelectedValue = 0;
 
         }
-        public ABMCursoDesktop(ModoForm modo) : this(){
+        public ABMCursosDesktop(ModoForm modo) : this(){
             Modo = modo;
         }
 
-        public ABMCursoDesktop(int ID, ModoForm modo) : this(){
+        public ABMCursosDesktop(int ID, ModoForm modo) : this(){
             Modo = modo;
             CursoLogic auxCurso = new CursoLogic();
             CursoActual = auxCurso.GetOne(ID);        
@@ -61,8 +62,8 @@ namespace UI.Desktop
         public void MapearDeDatos(Plan pln)
         {
             labelID.Text = CursoActual.ID.ToString();
-            txtAnio.Text = CursoActual.AnioCalendario.ToString();
-            txtCupo.Text = CursoActual.Cupo.ToString();
+            nudAnio.Value = CursoActual.AnioCalendario;
+            nudCupo.Value = CursoActual.Cupo;
             cbMateria.SelectedValue = CursoActual.IDMateria;
             cbComision.SelectedValue = CursoActual.IDComision;
             cbEsp.SelectedValue = pln.IDEspecialidad;
@@ -75,8 +76,8 @@ namespace UI.Desktop
                     break;
                 case ModoForm.Baja:
                     btnAceptar.Text = "Eliminar";
-                    txtAnio.ReadOnly = true;
-                    txtCupo.ReadOnly = true;
+                    nudAnio.ReadOnly = true;
+                    nudCupo.ReadOnly = true;
                     cbMateria.Enabled = false;
                     cbComision.Enabled = false;
                     cbMateria.Enabled = false;
@@ -89,8 +90,8 @@ namespace UI.Desktop
         public override void MapearADatos(){
             if (Modo == ModoForm.Alta || Modo == ModoForm.Modificacion) {
                 CursoActual = new Curso();
-                CursoActual.Cupo = Int32.Parse(txtCupo.Text);
-                CursoActual.AnioCalendario = Int32.Parse(txtAnio.Text);
+                CursoActual.Cupo = (int)nudCupo.Value;
+                CursoActual.AnioCalendario = (int)nudAnio.Value;
                 CursoActual.IDComision = (int)cbComision.SelectedValue;
                 CursoActual.IDMateria = (int)cbMateria.SelectedValue;
 
@@ -114,6 +115,7 @@ namespace UI.Desktop
             cbPlan.ValueMember = "id_plan";
             cbPlan.DisplayMember = "desc_plan";
             cbPlan.DataSource = GenerarComboBox.getPlanes(idEsp);
+            cbPlan.SelectedValue = 0;
         }
         private void GenerarMaterias(int idPlan) {
             //Se genera el comobox de materias el funcionamiento es igual al de planes solo que se pasa
@@ -121,12 +123,14 @@ namespace UI.Desktop
             cbMateria.ValueMember = "id_mat";
             cbMateria.DisplayMember = "desc_mat";
             cbMateria.DataSource = GenerarComboBox.getMaterias(idPlan);
+            cbMateria.SelectedValue = 0;
         }
         private void GenerarComisiones(int idPlan) {
             //Se genera el combobox de comisiones, funciona exactamente igual que el de materias
             cbComision.ValueMember = "id_com";
             cbComision.DisplayMember = "desc_com";
             cbComision.DataSource = GenerarComboBox.getComisiones(idPlan);
+            cbComision.SelectedValue = 0;
         }
         public override void GuardarCambios()
         {
@@ -137,11 +141,12 @@ namespace UI.Desktop
 
         public override bool Validar()
         {
-            lblRedCupo.Visible = (string.IsNullOrWhiteSpace(txtCupo.Text)) ? true : false;
-            lblRedAnio.Visible = (string.IsNullOrWhiteSpace(txtAnio.Text)) ? true : false;
-            lblRedPlan.Visible = (cbEsp.SelectedValue == null || cbPlan.SelectedValue == null) ? true : false;
-            lblRedCom.Visible = (cbComision.SelectedValue == null) ? true : false;
-            lblRedMat.Visible = (cbMateria.SelectedValue == null) ? true : false;
+            lblRedCupo.Visible = (nudCupo.Value == 0) ? true : false;
+            lblRedAnio.Visible = (nudAnio.Value == 1900) ? true : false;
+            lblRedPlan.Visible = (cbEsp.SelectedValue == null || cbPlan.SelectedValue == null ||
+                                   (int)cbEsp.SelectedValue == 0 || (int)cbPlan.SelectedValue == 0) ? true : false;
+            lblRedCom.Visible = (cbComision.SelectedValue == null || (int)cbComision.SelectedValue == 0) ? true : false;
+            lblRedMat.Visible = (cbMateria.SelectedValue == null || (int)cbMateria.SelectedValue == 0) ? true : false;
 
             if (lblRedCupo.Visible == true ||
                 lblRedAnio.Visible == true ||

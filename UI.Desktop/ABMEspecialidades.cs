@@ -34,7 +34,7 @@ namespace UI.Desktop {
         }
 
         private void tsbNuevo_Click(object sender, EventArgs e) {
-            ABMEspecialidadDesktop especialidadDesktop = new ABMEspecialidadDesktop(ApplicationForm.ModoForm.Alta);
+            ABMEspecialidadesDesktop especialidadDesktop = new ABMEspecialidadesDesktop(ApplicationForm.ModoForm.Alta);
             especialidadDesktop.ShowDialog();
             this.Listar();
         }
@@ -42,7 +42,7 @@ namespace UI.Desktop {
         private void tsbEditar_Click(object sender, EventArgs e) {
             if (this.dgvEspecialidades.SelectedRows.Count != 0) {
                 int ID = ((Business.Entities.Especialidad)this.dgvEspecialidades.SelectedRows[0].DataBoundItem).ID;
-                ABMEspecialidadDesktop especialidadDesktop = new ABMEspecialidadDesktop(ID, ApplicationForm.ModoForm.Modificacion);
+                ABMEspecialidadesDesktop especialidadDesktop = new ABMEspecialidadesDesktop(ID, ApplicationForm.ModoForm.Modificacion);
                 especialidadDesktop.ShowDialog();
                 this.Listar();
             }
@@ -51,7 +51,7 @@ namespace UI.Desktop {
         private void tsbEliminar_Click(object sender, EventArgs e) {
             if (this.dgvEspecialidades.SelectedRows.Count != 0) {
                 int ID = ((Business.Entities.Especialidad)this.dgvEspecialidades.SelectedRows[0].DataBoundItem).ID;
-                ABMEspecialidadDesktop especialidadDesktop = new ABMEspecialidadDesktop(ID, ApplicationForm.ModoForm.Baja);
+                ABMEspecialidadesDesktop especialidadDesktop = new ABMEspecialidadesDesktop(ID, ApplicationForm.ModoForm.Baja);
                 especialidadDesktop.ShowDialog();
                 this.Listar();
             }

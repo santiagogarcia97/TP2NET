@@ -72,12 +72,6 @@ namespace UI.Desktop{
             this.dgvAlumnoInscripciones.DataSource = Listado;
         }
 
-        private void tsbNuevo_Click(object sender, EventArgs e){
-         //   InscribirMaterias alumnoInscripcionDesktop = new InscribirMaterias(ApplicationForm.ModoForm.Alta, UsuarioActual);
-        //    alumnoInscripcionDesktop.ShowDialog();
-            this.Listar();
-        }
-
         private void tsbEliminar_Click(object sender, EventArgs e){
           //      InscribirMaterias alumnoInscripcionDesktop = new InscribirMaterias(ApplicationForm.ModoForm.Baja, UsuarioActual);
      //           alumnoInscripcionDesktop.ShowDialog();

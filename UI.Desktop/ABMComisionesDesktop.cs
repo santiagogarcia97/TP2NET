@@ -13,12 +13,12 @@ using Util;
 
 
 namespace UI.Desktop {
-    public partial class ABMComisionDesktop : ApplicationForm {
+    public partial class ABMComisionesDesktop : ApplicationForm {
 
         private Comision _ComisionActual;
         public Comision ComisionActual { get => _ComisionActual; set => _ComisionActual = value; }
 
-        public ABMComisionDesktop() {
+        public ABMComisionesDesktop() {
             InitializeComponent();
 
             //Se genera el comobox de especialidades
@@ -30,11 +30,11 @@ namespace UI.Desktop {
             cbEsp.SelectedValue = 0;
         }
 
-        public ABMComisionDesktop(ModoForm modo) : this() {
+        public ABMComisionesDesktop(ModoForm modo) : this() {
             Modo = modo;
         }
 
-        public ABMComisionDesktop(int ID, ModoForm modo) : this() {
+        public ABMComisionesDesktop(int ID, ModoForm modo) : this() {
             Modo = modo;
             ComisionLogic auxComision = new ComisionLogic();
             ComisionActual = auxComision.GetOne(ID);

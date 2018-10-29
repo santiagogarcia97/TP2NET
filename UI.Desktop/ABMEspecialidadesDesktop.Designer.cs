@@ -1,5 +1,5 @@
 ﻿namespace UI.Desktop {
-    partial class ABMEspecialidadDesktop {
+    partial class ABMEspecialidadesDesktop {
         /// <summary>
         /// Required designer variable.
         /// </summary>

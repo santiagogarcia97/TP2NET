@@ -77,7 +77,7 @@ namespace UI.Desktop {
         }
 
         private void tsbNuevo_Click(object sender, EventArgs e) {
-            ABMMateriaDesktop materiaDesktop = new ABMMateriaDesktop(ApplicationForm.ModoForm.Alta);
+            ABMMateriasDesktop materiaDesktop = new ABMMateriasDesktop(ApplicationForm.ModoForm.Alta);
             materiaDesktop.ShowDialog();
             this.Listar();
         }
@@ -85,7 +85,7 @@ namespace UI.Desktop {
         private void tsbEditar_Click(object sender, EventArgs e) {
             if (this.dgvMaterias.SelectedRows.Count != 0) {
                 int ID = (int)this.dgvMaterias.SelectedRows[0].Cells["id"].Value;
-                ABMMateriaDesktop materiaDesktop = new ABMMateriaDesktop(ID, ApplicationForm.ModoForm.Modificacion);
+                ABMMateriasDesktop materiaDesktop = new ABMMateriasDesktop(ID, ApplicationForm.ModoForm.Modificacion);
                 materiaDesktop.ShowDialog();
                 this.Listar();
             }
@@ -94,7 +94,7 @@ namespace UI.Desktop {
         private void tsbEliminar_Click(object sender, EventArgs e) {
             if (this.dgvMaterias.SelectedRows.Count != 0) {
                 int ID = (int)this.dgvMaterias.SelectedRows[0].Cells["id"].Value;
-                ABMMateriaDesktop materiaDesktop = new ABMMateriaDesktop(ID, ApplicationForm.ModoForm.Baja);
+                ABMMateriasDesktop materiaDesktop = new ABMMateriasDesktop(ID, ApplicationForm.ModoForm.Baja);
                 materiaDesktop.ShowDialog();
                 this.Listar();
             }

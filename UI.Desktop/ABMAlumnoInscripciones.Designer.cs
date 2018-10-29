@@ -34,9 +34,8 @@
             this.btnSalir = new System.Windows.Forms.Button();
             this.btnActualizar = new System.Windows.Forms.Button();
             this.tsAlumnoInscripciones = new System.Windows.Forms.ToolStrip();
-            this.tsbNuevo = new System.Windows.Forms.ToolStripButton();
-            this.tsbEliminar = new System.Windows.Forms.ToolStripButton();
             this.tsbEditar = new System.Windows.Forms.ToolStripButton();
+            this.tsbEliminar = new System.Windows.Forms.ToolStripButton();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAlumnoInscripciones)).BeginInit();
             this.tcAlumnoInscripciones.ContentPanel.SuspendLayout();
             this.tcAlumnoInscripciones.TopToolStripPanel.SuspendLayout();
@@ -175,35 +174,12 @@
             // 
             this.tsAlumnoInscripciones.Dock = System.Windows.Forms.DockStyle.None;
             this.tsAlumnoInscripciones.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsbNuevo,
             this.tsbEditar,
             this.tsbEliminar});
             this.tsAlumnoInscripciones.Location = new System.Drawing.Point(3, 0);
             this.tsAlumnoInscripciones.Name = "tsAlumnoInscripciones";
-            this.tsAlumnoInscripciones.Size = new System.Drawing.Size(112, 25);
+            this.tsAlumnoInscripciones.Size = new System.Drawing.Size(89, 25);
             this.tsAlumnoInscripciones.TabIndex = 0;
-            // 
-            // tsbNuevo
-            // 
-            this.tsbNuevo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbNuevo.Image = global::UI.Desktop.Properties.Resources.image18;
-            this.tsbNuevo.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbNuevo.Name = "tsbNuevo";
-            this.tsbNuevo.Size = new System.Drawing.Size(23, 22);
-            this.tsbNuevo.Text = "toolStripButton1";
-            this.tsbNuevo.ToolTipText = "Nuevo";
-            this.tsbNuevo.Click += new System.EventHandler(this.tsbNuevo_Click);
-            // 
-            // tsbEliminar
-            // 
-            this.tsbEliminar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbEliminar.Image = global::UI.Desktop.Properties.Resources.delete;
-            this.tsbEliminar.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbEliminar.Name = "tsbEliminar";
-            this.tsbEliminar.Size = new System.Drawing.Size(23, 22);
-            this.tsbEliminar.Text = "toolStripButton1";
-            this.tsbEliminar.ToolTipText = "Eliminar";
-            this.tsbEliminar.Click += new System.EventHandler(this.tsbEliminar_Click);
             // 
             // tsbEditar
             // 
@@ -216,13 +192,24 @@
             this.tsbEditar.ToolTipText = "Editar";
             this.tsbEditar.Click += new System.EventHandler(this.tsbEditar_Click);
             // 
-            // AlumnoInscripciones
+            // tsbEliminar
+            // 
+            this.tsbEliminar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbEliminar.Image = global::UI.Desktop.Properties.Resources.delete;
+            this.tsbEliminar.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbEliminar.Name = "tsbEliminar";
+            this.tsbEliminar.Size = new System.Drawing.Size(23, 22);
+            this.tsbEliminar.Text = "toolStripButton1";
+            this.tsbEliminar.ToolTipText = "Eliminar";
+            this.tsbEliminar.Click += new System.EventHandler(this.tsbEliminar_Click);
+            // 
+            // ABMAlumnoInscripciones
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.tcAlumnoInscripciones);
-            this.Name = "AlumnoInscripciones";
+            this.Name = "ABMAlumnoInscripciones";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "AlumnoInscripciones";
             this.Load += new System.EventHandler(this.AlumnoInscripciones_Load);
@@ -247,7 +234,6 @@
         private System.Windows.Forms.Button btnActualizar;
         private System.Windows.Forms.ToolStripContainer tcAlumnoInscripciones;
         private System.Windows.Forms.ToolStrip tsAlumnoInscripciones;
-        private System.Windows.Forms.ToolStripButton tsbNuevo;
         private System.Windows.Forms.ToolStripButton tsbEliminar;
         private System.Windows.Forms.DataGridViewTextBoxColumn id;
         private System.Windows.Forms.DataGridViewTextBoxColumn alumno;

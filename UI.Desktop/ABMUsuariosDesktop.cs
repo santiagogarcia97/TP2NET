@@ -14,12 +14,12 @@ using System.Globalization;
 using Util;
 
 namespace UI.Desktop {
-    public partial class ABMUsuarioDesktop : ApplicationForm {
+    public partial class ABMUsuariosDesktop : ApplicationForm {
 
         private Business.Entities.Usuario _usuarioActual;
         public Usuario UsuarioActual { get => _usuarioActual; set => _usuarioActual = value; }
 
-        public ABMUsuarioDesktop() {
+        public ABMUsuariosDesktop() {
             InitializeComponent();
             this.GenerarTipoPersona();
 
@@ -32,7 +32,7 @@ namespace UI.Desktop {
             cbxEsp.SelectedValue = 0;
         }
 
-        public ABMUsuarioDesktop(ModoForm modo):this() {
+        public ABMUsuariosDesktop(ModoForm modo):this() {
             Modo = modo;
             btnAceptar.Text = "Crear";
             labelID.Text = "-";
@@ -44,7 +44,7 @@ namespace UI.Desktop {
             //chkHabilitado.Checked = true;
         }
 
-        public ABMUsuarioDesktop(int ID, ModoForm modo) : this() {
+        public ABMUsuariosDesktop(int ID, ModoForm modo) : this() {
             Modo = modo;
 
             UsuarioLogic ul = new UsuarioLogic();

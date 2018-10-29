@@ -9,9 +9,9 @@ namespace Business.Entities {
         private TipoCargos _Cargo;
         private int _IDCurso, _IDDocente;
 
-        public enum TipoCargos { Titular = 0,
-                                 Auxiliar = 1,
-                                 JefeTP = 2 }
+        public enum TipoCargos { Titular = 1,
+                                 Auxiliar = 2,
+                                 JefeTP = 3 }
 
 
         public TipoCargos Cargo { get => _Cargo; set => _Cargo = value; }

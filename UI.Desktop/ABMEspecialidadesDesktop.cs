@@ -12,20 +12,20 @@ using Business.Entities;
 
 
 namespace UI.Desktop {
-    public partial class ABMEspecialidadDesktop : ApplicationForm {
+    public partial class ABMEspecialidadesDesktop : ApplicationForm {
 
         private Business.Entities.Especialidad especialidadActual;
         public Especialidad EspecialidadActual { get => especialidadActual; set => especialidadActual = value; }
 
-        public ABMEspecialidadDesktop() {
+        public ABMEspecialidadesDesktop() {
             InitializeComponent();
         }
 
-        public ABMEspecialidadDesktop(ModoForm modo) : this() {
+        public ABMEspecialidadesDesktop(ModoForm modo) : this() {
             Modo = modo;
         }
 
-        public ABMEspecialidadDesktop(int ID, ModoForm modo) : this() {
+        public ABMEspecialidadesDesktop(int ID, ModoForm modo) : this() {
             Modo = modo;
             EspecialidadLogic auxEspecialidad = new EspecialidadLogic();
             EspecialidadActual = auxEspecialidad.GetOne(ID);

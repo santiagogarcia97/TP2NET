@@ -101,5 +101,57 @@ namespace Util {
             return dtCondiciones;
         }
 
+        public static DataTable getCargos() {
+            DataTable dtCargos = new DataTable();
+            dtCargos.Columns.Add("id_cargo", typeof(int));
+            dtCargos.Columns.Add("desc_cargo", typeof(string));
+            dtCargos.Rows.Add(new object[] { 0, string.Empty });
+
+            dtCargos.Rows.Add(new object[] { 1, "Titular" });
+            dtCargos.Rows.Add(new object[] { 2, "Auxiliar" });
+            dtCargos.Rows.Add(new object[] { 3, "JefeTP" });
+
+            return dtCargos;
+        }
+
+        public static DataTable getCursos() {
+            DataTable dtCursos = new DataTable();
+            dtCursos.Columns.Add("id_curso", typeof(int));
+            dtCursos.Columns.Add("desc_curso", typeof(string));
+            dtCursos.Rows.Add(new object[] { 0, string.Empty });
+
+            CursoLogic cursol = new CursoLogic();
+            MateriaLogic matl = new MateriaLogic();
+            ComisionLogic coml = new ComisionLogic();
+            List<Curso> cursos = cursol.GetAll().Where(x => x.Habilitado == true).ToList();
+            List<Materia> materias = matl.GetAll();
+            List<Comision> comisiones = coml.GetAll();
+
+            foreach(Curso curso in cursos) {
+                Materia materia = materias.FirstOrDefault(x => x.ID == curso.IDMateria);
+                Comision comision = comisiones.FirstOrDefault(x => x.ID == curso.IDComision);
+                dtCursos.Rows.Add(new object[] { curso.ID, comision.Descripcion + " - " + materia.Descripcion });
+            }
+
+            return dtCursos;
+        }
+
+        public static DataTable getDocentes() {
+            DataTable dtDocentes = new DataTable();
+            dtDocentes.Columns.Add("id_docente", typeof(int));
+            dtDocentes.Columns.Add("desc_docente", typeof(string));
+            dtDocentes.Rows.Add(new object[] { 0, string.Empty });
+
+            UsuarioLogic ul = new UsuarioLogic();
+            List<Usuario> usuarios = ul.GetAll().Where(x => x.TipoPersona == 2).ToList();
+
+            foreach (Usuario docente in usuarios) {
+                dtDocentes.Rows.Add(new object[] { docente.ID, docente.Legajo + " - " + docente.Apellido + ", " + docente.Nombre });
+            }
+
+            return dtDocentes;
+        }
+
+
     }
 }

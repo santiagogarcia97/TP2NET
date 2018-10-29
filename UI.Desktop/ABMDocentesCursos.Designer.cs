@@ -1,5 +1,5 @@
 ﻿namespace UI.Desktop {
-    partial class ABMDocentesCurso {
+    partial class ABMDocentesCursos {
         /// <summary>
         /// Required designer variable.
         /// </summary>
@@ -24,10 +24,6 @@
         /// </summary>
         private void InitializeComponent() {
             this.dgvDocenteCurso = new System.Windows.Forms.DataGridView();
-            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.IDCurso = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.IDDocente = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cargo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tcAlumnoInscripciones = new System.Windows.Forms.ToolStripContainer();
             this.tlAlumnoInscripciones = new System.Windows.Forms.TableLayoutPanel();
             this.btnSalir = new System.Windows.Forms.Button();
@@ -35,6 +31,10 @@
             this.tsAlumnoInscripciones = new System.Windows.Forms.ToolStrip();
             this.tsbNuevo = new System.Windows.Forms.ToolStripButton();
             this.tsbEliminar = new System.Windows.Forms.ToolStripButton();
+            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Curso = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Docente = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cargo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDocenteCurso)).BeginInit();
             this.tcAlumnoInscripciones.ContentPanel.SuspendLayout();
             this.tcAlumnoInscripciones.TopToolStripPanel.SuspendLayout();
@@ -53,8 +53,8 @@
             this.dgvDocenteCurso.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgvDocenteCurso.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.id,
-            this.IDCurso,
-            this.IDDocente,
+            this.Curso,
+            this.Docente,
             this.Cargo});
             this.tlAlumnoInscripciones.SetColumnSpan(this.dgvDocenteCurso, 2);
             this.dgvDocenteCurso.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -66,42 +66,6 @@
             this.dgvDocenteCurso.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvDocenteCurso.Size = new System.Drawing.Size(794, 390);
             this.dgvDocenteCurso.TabIndex = 0;
-            // 
-            // id
-            // 
-            this.id.DataPropertyName = "ID";
-            this.id.HeaderText = "ID Dictado";
-            this.id.MinimumWidth = 100;
-            this.id.Name = "id";
-            this.id.ReadOnly = true;
-            this.id.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // IDCurso
-            // 
-            this.IDCurso.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.IDCurso.DataPropertyName = "IDCurso";
-            this.IDCurso.HeaderText = "ID Curso";
-            this.IDCurso.MinimumWidth = 130;
-            this.IDCurso.Name = "IDCurso";
-            this.IDCurso.ReadOnly = true;
-            // 
-            // IDDocente
-            // 
-            this.IDDocente.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.IDDocente.DataPropertyName = "IDDocente";
-            this.IDDocente.HeaderText = "ID Docente";
-            this.IDDocente.MinimumWidth = 130;
-            this.IDDocente.Name = "IDDocente";
-            this.IDDocente.ReadOnly = true;
-            // 
-            // Cargo
-            // 
-            this.Cargo.DataPropertyName = "Cargo";
-            this.Cargo.HeaderText = "Cargo";
-            this.Cargo.MinimumWidth = 50;
-            this.Cargo.Name = "Cargo";
-            this.Cargo.ReadOnly = true;
-            this.Cargo.Width = 50;
             // 
             // tcAlumnoInscripciones
             // 
@@ -167,7 +131,7 @@
             this.tsbEliminar});
             this.tsAlumnoInscripciones.Location = new System.Drawing.Point(3, 0);
             this.tsAlumnoInscripciones.Name = "tsAlumnoInscripciones";
-            this.tsAlumnoInscripciones.Size = new System.Drawing.Size(89, 25);
+            this.tsAlumnoInscripciones.Size = new System.Drawing.Size(58, 25);
             this.tsAlumnoInscripciones.TabIndex = 0;
             // 
             // tsbNuevo
@@ -192,13 +156,49 @@
             this.tsbEliminar.ToolTipText = "Eliminar";
             this.tsbEliminar.Click += new System.EventHandler(this.tsbEliminar_Click);
             // 
-            // DocentesCurso
+            // id
+            // 
+            this.id.DataPropertyName = "ID";
+            this.id.HeaderText = "ID Dictado";
+            this.id.MinimumWidth = 100;
+            this.id.Name = "id";
+            this.id.ReadOnly = true;
+            this.id.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // Curso
+            // 
+            this.Curso.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Curso.DataPropertyName = "Curso";
+            this.Curso.HeaderText = "Curso";
+            this.Curso.MinimumWidth = 130;
+            this.Curso.Name = "Curso";
+            this.Curso.ReadOnly = true;
+            // 
+            // Docente
+            // 
+            this.Docente.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Docente.DataPropertyName = "Docente";
+            this.Docente.HeaderText = "Docente";
+            this.Docente.MinimumWidth = 130;
+            this.Docente.Name = "Docente";
+            this.Docente.ReadOnly = true;
+            // 
+            // Cargo
+            // 
+            this.Cargo.DataPropertyName = "Cargo";
+            this.Cargo.HeaderText = "Cargo";
+            this.Cargo.MinimumWidth = 50;
+            this.Cargo.Name = "Cargo";
+            this.Cargo.ReadOnly = true;
+            this.Cargo.Width = 50;
+            // 
+            // ABMDocentesCursos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.tcAlumnoInscripciones);
-            this.Name = "DocentesCurso";
+            this.Name = "ABMDocentesCursos";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Docentes - Cursos";
             this.Load += new System.EventHandler(this.DocenteCurso_Load);
@@ -226,8 +226,8 @@
         private System.Windows.Forms.ToolStripButton tsbNuevo;
         private System.Windows.Forms.ToolStripButton tsbEliminar;
         private System.Windows.Forms.DataGridViewTextBoxColumn id;
-        private System.Windows.Forms.DataGridViewTextBoxColumn IDCurso;
-        private System.Windows.Forms.DataGridViewTextBoxColumn IDDocente;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Curso;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Docente;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cargo;
     }
 }

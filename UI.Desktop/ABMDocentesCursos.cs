@@ -11,9 +11,9 @@ using Business.Logic;
 using Business.Entities;
 
 namespace UI.Desktop{
-    public partial class ABMDocentesCurso : ApplicationForm{
+    public partial class ABMDocentesCursos : ApplicationForm{
 
-        public ABMDocentesCurso(){
+        public ABMDocentesCursos(){
             InitializeComponent();
             this.dgvDocenteCurso.AutoGenerateColumns = false;
         }
@@ -24,6 +24,15 @@ namespace UI.Desktop{
         public void Listar(){
             this.dgvDocenteCurso.DataSource = null;
             this.dgvDocenteCurso.Refresh();
+
+            UsuarioLogic ul = new UsuarioLogic();
+            List<Usuario> usuarios = ul.GetAll();
+            CursoLogic cursol = new CursoLogic();
+            List<Curso> cursos = cursol.GetAll();
+            ComisionLogic comisionl = new ComisionLogic();
+            List<Comision> comisiones = comisionl.GetAll();
+            MateriaLogic matl = new MateriaLogic();
+            List<Materia> materias = matl.GetAll();
 
             DocenteCursoLogic dcl = new DocenteCursoLogic();
             List<DocenteCurso> dclist = new List<DocenteCurso>();
@@ -36,17 +45,21 @@ namespace UI.Desktop{
 
                 DataTable Listado = new DataTable();
                 Listado.Columns.Add("ID", typeof(int));
-                Listado.Columns.Add("IDCurso", typeof(int));
-                Listado.Columns.Add("IDDocente", typeof(int));
+                Listado.Columns.Add("Curso", typeof(string));
+                Listado.Columns.Add("Docente", typeof(string));
                 Listado.Columns.Add("Cargo", typeof(string));
 
                 foreach (DocenteCurso dc in dclist) {
                     DataRow Linea = Listado.NewRow();
-
                     Linea["ID"] = dc.ID;
-                    Linea["IDCurso"] = dc.IDCurso;
-                    Linea["IDDocente"] = dc.IDDocente;
                     Linea["Cargo"] = dc.Cargo.ToString();
+
+                    Curso curso = cursos.FirstOrDefault(x => x.ID == dc.IDCurso);
+                    Materia materia = materias.FirstOrDefault(x => x.ID == curso.IDMateria);
+                    Comision comision = comisiones.FirstOrDefault(x => x.ID == curso.IDComision);
+                    Usuario docente = usuarios.FirstOrDefault(x => x.ID == dc.IDDocente);
+                    Linea["Curso"] = comision.Descripcion + " - " + materia.Descripcion;
+                    Linea["Docente"] = docente.Legajo.ToString() + " - " + docente.Apellido + " "+ docente.Nombre;
 
                     Listado.Rows.Add(Linea);
                 }

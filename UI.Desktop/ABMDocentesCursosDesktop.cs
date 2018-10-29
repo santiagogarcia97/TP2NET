@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Business.Logic;
 using Business.Entities;
+using Util;
 
 
 namespace UI.Desktop {
@@ -19,6 +20,25 @@ namespace UI.Desktop {
 
         public ABMDocentesCursosDesktop() {
             InitializeComponent();
+
+            cbCurso.DisplayMember = "desc_curso";
+            cbCurso.ValueMember = "id_curso";
+            cbCurso.DataSource = GenerarComboBox.getCursos();
+            cbCurso.SelectedValue = 0;
+
+            cbDocente.DisplayMember = "desc_docente";
+            cbDocente.ValueMember = "id_docente";
+            cbDocente.DataSource = GenerarComboBox.getDocentes();
+            cbDocente.SelectedValue = 0;
+
+            cbCargo.DisplayMember = "desc_cargo";
+            cbCargo.ValueMember = "id_cargo";
+            cbCargo.DataSource = GenerarComboBox.getCargos();
+            cbCargo.SelectedValue = 0;
+
+            lblCargoRed.Visible = false;
+            lblCursoRed.Visible = false;
+            lblDocenteRed.Visible = false;
         }
 
         public ABMDocentesCursosDesktop(ModoForm modo) : this() {
@@ -33,10 +53,10 @@ namespace UI.Desktop {
         }
 
         public override void MapearDeDatos() {
-            txtID.Text = DocenteCursoActual.ID.ToString();
-            txtIDCurso.Text = DocenteCursoActual.IDCurso.ToString();
-            txtIDDocente.Text = DocenteCursoActual.IDDocente.ToString();
-            txtCargo.Text = DocenteCursoActual.Cargo.ToString();
+            lblID.Text = DocenteCursoActual.ID.ToString();
+            cbCurso.SelectedValue = DocenteCursoActual.IDCurso;
+            cbDocente.SelectedValue = DocenteCursoActual.IDDocente;
+            cbCargo.SelectedValue = DocenteCursoActual.Cargo;
 
             switch (Modo) {
                 case ModoForm.Alta:
@@ -45,7 +65,9 @@ namespace UI.Desktop {
                     break;
                 case ModoForm.Baja:
                     btnAceptar.Text = "Eliminar";
-                    txtCargo.ReadOnly = true;
+                    cbCargo.Enabled = false;
+                    cbCurso.Enabled = false;
+                    cbDocente.Enabled = false;
                     break;
             }
         }
@@ -54,16 +76,16 @@ namespace UI.Desktop {
             switch (Modo) {                                      
                 case ModoForm.Alta:
                     DocenteCursoActual = new DocenteCurso();
-                    DocenteCursoActual.IDCurso = Int32.Parse(txtIDCurso.Text);
-                    DocenteCursoActual.IDDocente = Int32.Parse(txtIDDocente.Text);
-                    DocenteCursoActual.Cargo = (DocenteCurso.TipoCargos)System.Enum.Parse(typeof(DocenteCurso.TipoCargos), txtCargo.Text);
+                    DocenteCursoActual.IDCurso = Int32.Parse(lblID.Text);
+                    DocenteCursoActual.IDDocente = (int)cbDocente.SelectedValue;
+                    DocenteCursoActual.Cargo = (DocenteCurso.TipoCargos)cbCargo.SelectedValue;
                     DocenteCursoActual.Habilitado = true;
                     DocenteCursoActual.State = BusinessEntity.States.New;
                     break;
                 case ModoForm.Modificacion:
-                    DocenteCursoActual.IDCurso = Int32.Parse(txtIDCurso.Text);
-                    DocenteCursoActual.IDDocente = Int32.Parse(txtIDDocente.Text);
-                    DocenteCursoActual.Cargo = (DocenteCurso.TipoCargos)System.Enum.Parse(typeof(DocenteCurso.TipoCargos), txtCargo.Text);
+                    DocenteCursoActual.IDCurso = Int32.Parse(lblID.Text);
+                    DocenteCursoActual.IDDocente = (int)cbDocente.SelectedValue;
+                    DocenteCursoActual.Cargo = (DocenteCurso.TipoCargos)cbCargo.SelectedValue;
                     DocenteCursoActual.State = BusinessEntity.States.Modified;
                     break;
                 case ModoForm.Baja:
@@ -79,7 +101,13 @@ namespace UI.Desktop {
         }
 
         public override bool Validar() {
-            return !(string.IsNullOrEmpty(txtCargo.Text));
+            lblCursoRed.Visible = (cbCurso.SelectedValue == null || (int)cbCurso.SelectedValue == 0) ? true : false;
+            lblDocenteRed.Visible = (cbDocente.SelectedValue == null || (int)cbDocente.SelectedValue == 0) ? true : false;
+            lblCargoRed.Visible = (cbCargo.SelectedValue == null || (int)cbCargo.SelectedValue == 0) ? true : false;
+
+            return !(lblCargoRed.Visible ||
+                    lblCursoRed.Visible ||
+                    lblDocenteRed.Visible);
         }
 
         private void btnAceptar_Click(object sender, EventArgs e) {

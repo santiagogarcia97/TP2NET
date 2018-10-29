@@ -171,7 +171,7 @@ namespace UI.Desktop {
         }
 
         private void TSMIdocentes_Click(object sender, EventArgs e) {
-            ABMDocentesCurso formDC = new ABMDocentesCurso();
+            ABMDocentesCursos formDC = new ABMDocentesCursos();
             formDC.ShowDialog();
         }
 

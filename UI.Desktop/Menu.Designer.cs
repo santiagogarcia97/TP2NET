@@ -386,7 +386,7 @@
             this.tlpAdmin.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tlpAdmin.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tlpAdmin.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tlpAdmin.Size = new System.Drawing.Size(534, 315);
+            this.tlpAdmin.Size = new System.Drawing.Size(540, 315);
             this.tlpAdmin.TabIndex = 0;
             // 
             // panelBottom
@@ -401,7 +401,7 @@
             // btnSalir
             // 
             this.btnSalir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSalir.Location = new System.Drawing.Point(471, 0);
+            this.btnSalir.Location = new System.Drawing.Point(474, 3);
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.Size = new System.Drawing.Size(75, 23);
             this.btnSalir.TabIndex = 0;
@@ -609,12 +609,12 @@
             // gbAdmin
             // 
             this.gbAdmin.Controls.Add(this.tlpAdmin);
-            this.gbAdmin.Location = new System.Drawing.Point(0, 0);
+            this.gbAdmin.Location = new System.Drawing.Point(3, 0);
             this.gbAdmin.Name = "gbAdmin";
-            this.gbAdmin.Size = new System.Drawing.Size(540, 334);
+            this.gbAdmin.Size = new System.Drawing.Size(546, 334);
             this.gbAdmin.TabIndex = 2;
             this.gbAdmin.TabStop = false;
-            this.gbAdmin.Text = "Tareas administrativas";
+            this.gbAdmin.Text = "Estadisticas";
             // 
             // panelBienvenido
             // 

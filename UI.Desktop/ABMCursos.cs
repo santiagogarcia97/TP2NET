@@ -117,7 +117,7 @@ namespace UI.Desktop {
 
         private void tsbNuevo_Click(object sender, EventArgs e)
         {
-            ABMCursoDesktop cursoDesktop = new ABMCursoDesktop(ApplicationForm.ModoForm.Alta);
+            ABMCursosDesktop cursoDesktop = new ABMCursosDesktop(ApplicationForm.ModoForm.Alta);
             cursoDesktop.ShowDialog();
             this.Listar();
         }
@@ -128,7 +128,7 @@ namespace UI.Desktop {
             {
                 int ID = (int)this.dgvCursos.SelectedRows[0].Cells["id"].Value;
                 if (UsuarioActual.TipoPersona == 3) {
-                    ABMCursoDesktop cursoDesktop = new ABMCursoDesktop(ID, ApplicationForm.ModoForm.Modificacion);
+                    ABMCursosDesktop cursoDesktop = new ABMCursosDesktop(ID, ApplicationForm.ModoForm.Modificacion);
                     cursoDesktop.ShowDialog();
                 }
                 else if(UsuarioActual.TipoPersona == 2) {
@@ -144,7 +144,7 @@ namespace UI.Desktop {
             if (this.dgvCursos.SelectedRows.Count != 0)
             {
                 int ID = (int)this.dgvCursos.SelectedRows[0].Cells["id"].Value;
-                ABMCursoDesktop cursoDesktop = new ABMCursoDesktop(ID, ApplicationForm.ModoForm.Baja);
+                ABMCursosDesktop cursoDesktop = new ABMCursosDesktop(ID, ApplicationForm.ModoForm.Baja);
                 cursoDesktop.ShowDialog();
                 this.Listar();
             }
