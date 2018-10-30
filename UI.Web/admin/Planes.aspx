@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Especialidades" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Especialidades.aspx.cs" Inherits="UI.Web.Especialidades" %>
+﻿<%@ Page Title="Planes" Language="C#" MasterPageFile="Site.Master" AutoEventWireup="true" CodeBehind="Planes.aspx.cs" Inherits="UI.Web.Planes" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="bodyContentPlaceHolder" runat="server">
     
@@ -24,7 +24,15 @@
                             
                     <div class="form-group">
                         <label for="descripcionTextBox" class="col-form-label">Descripción</label>
+                        <asp:Label ID="descRed" forecolor="Red" runat="server" Text="*" Visible="False"></asp:Label>
                         <asp:TextBox ID="descripcionTextBox" runat="server" CssClass="form-control"></asp:TextBox>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="especialidadDropDown" class="col-form-label">Especialidad</label>
+                        <asp:Label ID="espRed" forecolor="Red" runat="server" Text="*" Visible="False"></asp:Label>
+                        <asp:DropDownList ID="especialidadDropDown" runat="server" AutoPostBack="True" 
+                             CssClass="form-control"></asp:DropDownList>
                     </div>
                 </div>
 
@@ -41,13 +49,13 @@
 
     <!-- tabla -->
     <div>
-        <p class="font-weight-bold text-left h2">Especialidades</p>
+        <p class="font-weight-bold text-left h2">Planes</p>
     </div>
 
     <hr />
 
     <div>    
-    <asp:Panel ID="gridActionsPanel" runat="server">
+    <asp:Panel ID="Panel1" runat="server">
        <p>
         <asp:UpdatePanel ID="UpdatePanelButtons" runat="server" UpdateMode="Conditional">
             <ContentTemplate>
@@ -76,15 +84,16 @@
                     CssClass="table table-bordered table-striped table-sm table-responsive table-hover">
                 <Columns>
                     <asp:BoundField HeaderText="ID" DataField="Id" />
-                    <asp:BoundField HeaderText="Descripción" DataField="Descripcion"  ItemStyle-Width="100%"/>
+                    <asp:BoundField HeaderText="Descripción" DataField="Descripcion" ItemStyle-Width="60%" />
+                    <asp:BoundField HeaderText="ID Especialidad" DataField="IDEspecialidad" ItemStyle-Width="40%" />
                     <asp:CommandField SelectText="Seleccionar" ShowSelectButton="True" />
                 </Columns>
                 <HeaderStyle CssClass=”thead-light” />
                 </asp:GridView>
 
-                <asp:ObjectDataSource ID="EspecialidadesDataSource" runat="server"></asp:ObjectDataSource>
+                <asp:ObjectDataSource ID="PlanesDataSurce" runat="server"></asp:ObjectDataSource>
             </ContentTemplate>
         </asp:UpdatePanel>
-    </div>
+    </div>   
 
 </asp:Content>
