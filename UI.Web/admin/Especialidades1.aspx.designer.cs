@@ -7,10 +7,10 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-namespace UI.Web.admin {
+namespace UI.Web {
     
     
-    public partial class Especialidades {
+    public partial class Especialidades1 {
         
         /// <summary>
         /// Control UpdatePanelModal.
@@ -40,31 +40,40 @@ namespace UI.Web.admin {
         protected global::System.Web.UI.WebControls.TextBox inputID;
         
         /// <summary>
-        /// Control txtDescripcion.
+        /// Control descripcionTextBox.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDescripcion;
+        protected global::System.Web.UI.WebControls.TextBox descripcionTextBox;
         
         /// <summary>
-        /// Control btnAceptar.
+        /// Control aceptarButton.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAceptar;
+        protected global::System.Web.UI.WebControls.Button aceptarButton;
         
         /// <summary>
-        /// Control btnCancelar.
+        /// Control cancelarButton.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCancelar;
+        protected global::System.Web.UI.WebControls.Button cancelarButton;
+        
+        /// <summary>
+        /// Control gridActionsPanel.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel gridActionsPanel;
         
         /// <summary>
         /// Control UpdatePanelButtons.
@@ -121,12 +130,21 @@ namespace UI.Web.admin {
         protected global::System.Web.UI.UpdatePanel UpdatePanelGrid;
         
         /// <summary>
-        /// Control gvEspecialidades.
+        /// Control gridView.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvEspecialidades;
+        protected global::System.Web.UI.WebControls.GridView gridView;
+        
+        /// <summary>
+        /// Control Label1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label1;
     }
 }

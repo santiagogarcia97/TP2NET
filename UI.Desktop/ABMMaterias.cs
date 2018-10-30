@@ -23,49 +23,7 @@ namespace UI.Desktop {
             this.dgvMaterias.Refresh();
 
             MateriaLogic ml = new MateriaLogic();
-            List<Materia> materias = ml.GetAll();
-
-            if (materias.Count() == 0) {
-                MessageBox.Show("No hay materias cargadas!");
-            }
-            else {
-                //Se crea el DataTable que va a ser el DataSource del dgv
-                DataTable Listado = new DataTable();
-                Listado.Columns.Add("ID", typeof(int));
-                Listado.Columns.Add("Descripcion", typeof(string));
-                Listado.Columns.Add("HSSemanales", typeof(int));
-                Listado.Columns.Add("HSTotales", typeof(int));
-                Listado.Columns.Add("Plan", typeof(string));
-
-                //Se obtienen las especialidades y los planes para mostrar en la columna Plan = esp.Descripcion + plan.Descripcion
-                PlanLogic pl = new PlanLogic();
-                List<Plan> planes = pl.GetAll();
-                EspecialidadLogic el = new EspecialidadLogic();
-                List<Especialidad> especialidades = el.GetAll();
-
-                foreach (Materia mat in materias) {
-                    DataRow Linea = Listado.NewRow();
-
-                    Linea["ID"] = mat.ID;
-                    Linea["Descripcion"] = mat.Descripcion;
-                    Linea["HSSemanales"] = mat.HSSemanales;
-                    Linea["HSTotales"] = mat.HSTotales;
-                    //Dos foreach anidados cargan la columna Plan
-                    foreach (Plan plan in planes) {
-                        if (plan.ID == mat.IDPlan) {
-                            foreach (Especialidad esp in especialidades) {
-                                if (esp.ID == plan.IDEspecialidad) {
-                                    Linea["Plan"] = esp.Descripcion + " - " + plan.Descripcion;
-                                    break;
-                                }
-                            }
-                            break;
-                        }
-                    }
-                    Listado.Rows.Add(Linea);
-                }
-                this.dgvMaterias.DataSource = Listado;
-            }
+            this.dgvMaterias.DataSource = ml.GetListado();
         }
 
         private void Materias_Load(object sender, EventArgs e) {

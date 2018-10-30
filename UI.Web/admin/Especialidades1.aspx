@@ -1,42 +1,43 @@
-﻿<%@ Page Title="Especialidades" Language="C#" MasterPageFile="~/admin/Site.Master" AutoEventWireup="true" CodeBehind="Especialidades.aspx.cs" Inherits="UI.Web.admin.Especialidades" %>
-
+﻿<%@ Page Title="Especialidades" Language="C#" MasterPageFile="Site.Master" AutoEventWireup="true" CodeBehind="Especialidades1.aspx.cs" Inherits="UI.Web.Especialidades" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="bodyContentPlaceHolder" runat="server">
-
-    <!-- Modal para cargar, editar o eliminar -->    
-    <div class="modal fade" id="nuevoModal" tabindex="-1" role="dialog" >
+    
+    <!-- Modal para cargar, editar o eliminar -->
+    <div class="modal fade" id="nuevoModal" tabindex="-1" role="dialog" aria-labelledby="nuevoModal" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
 
             <div class="modal-content">                
             <asp:UpdatePanel ID="UpdatePanelModal" runat="server" UpdateMode="Conditional">
             <ContentTemplate>                
                 <div class="modal-header">
-                    <h5 class="modal-title"><asp:Label ID="modalHeader" runat="server" Text="modalHeader"></asp:Label></h5>                    
-                    <button type="button" class="close" data-dismiss="modal">
+                    <h5 class="modal-title" id="exampleModalLabel"><asp:Label ID="modalHeader" runat="server" Text="modalHeader"></asp:Label></h5>                    
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="inputID" class="col-form-label">ID</label>
-                        <asp:TextBox id="inputID" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                        <asp:TextBox id="inputID" runat="server" CssClass="form-control" Enabled="False"></asp:TextBox>
                     </div>
                             
                     <div class="form-group">
-                        <label for="txtDescripcion" class="col-form-label">Descripción</label>
-                        <asp:TextBox ID="txtDescripcion" runat="server" CssClass="form-control"></asp:TextBox>
+                        <label for="descripcionTextBox" class="col-form-label">Descripción</label>
+                        <asp:TextBox ID="descripcionTextBox" runat="server" CssClass="form-control"></asp:TextBox>
                     </div>
                 </div>
 
                 <div class="modal-footer" runat="server">
-                    <asp:Button ID="btnAceptar" runat="server" Text="btnAceptar" class="btn btn-primary" />
-                    <asp:Button ID="btnCancelar" runat="server" Text="Cerrar" class="btn btn-secondary" data-dismiss="modal" />
+                    <asp:Button ID="aceptarButton" runat="server" Text="aceptarBtn"  OnClick="aceptarButton_Click" class="btn btn-primary" />
+                    <asp:Button ID="cancelarButton" runat="server" Text="Cerrar" class="btn btn-secondary" data-dismiss="modal" />
                 </div>
             </ContentTemplate>
             </asp:UpdatePanel>
             </div>
         </div>
     </div>
+
 
     <!-- tabla -->
     <div>
@@ -46,33 +47,36 @@
     <hr />
 
     <div>    
+    <asp:Panel ID="gridActionsPanel" runat="server">
        <p>
         <asp:UpdatePanel ID="UpdatePanelButtons" runat="server" UpdateMode="Conditional">
             <ContentTemplate>
-                <asp:Button ID="btnNuevo" Text="Nuevo" runat="server"
+                <asp:Button ID="btnNuevo" Text="Nuevo" runat="server"  OnClick="nuevoButton_Click" 
                     CssClass="btn btn-outline-success btn-sm" />
-                <asp:Button ID="btnEditar" Text="Editar" runat="server"
+                <asp:Button ID="btnEditar" Text="Editar" runat="server" OnClick="editarButton_Click" 
                     CssClass="btn btn-outline-secondary btn-sm" Enabled="false"/>
-                <asp:Button ID="btnEliminar" Text="Eliminar" runat="server"
+                <asp:Button ID="btnEliminar" Text="Eliminar" runat="server" OnClick="eliminarButton_Click" 
                     CssClass="btn btn-outline-secondary btn-sm" Enabled="false" />
                 <asp:Button ID="btnDesseleccionar" CssClass="btn btn-outline-danger btn-sm" runat="server" 
-                    Visible="false" Text="x" />
+                    OnClick="btnDeseleccionar_Click" Visible="false" Text="x" />
             </ContentTemplate>
         </asp:UpdatePanel>
+           <p>
+           </p>
        </p>    
+    </asp:Panel>
     </div>
 
     <div class="grid-view">
         <asp:UpdatePanel ID="UpdatePanelGrid" runat="server" UpdateMode="Conditional">
             <Triggers>
-                <asp:AsyncPostBackTrigger ControlID="btnAceptar"/>
+                <asp:AsyncPostBackTrigger ControlID="aceptarButton"/>
             </Triggers>
-
             <ContentTemplate>
-                <asp:GridView ID="gvEspecialidades" runat="server" AutoGenerateColumns="False"
+                <asp:GridView ID="gridView" runat="server" AutoGenerateColumns="False"
                     SelectedRowStyle-BackColor="#343a40"
                     SelectedRowStyle-ForeColor="White"
-                    DataKeyNames="ID" OnLoad="Page_Load"
+                    DataKeyNames="ID" OnLoad="Page_Load" OnSelectedIndexChanged="gridView_SelectedIndexChanged"
                     CssClass="table table-bordered table-striped table-sm table-responsive table-hover">
                 <Columns>
                     <asp:BoundField HeaderText="ID" DataField="Id" />
@@ -81,6 +85,7 @@
                 </Columns>
                 <HeaderStyle CssClass=”thead-light” />
                 </asp:GridView>
+                <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
             </ContentTemplate>
         </asp:UpdatePanel>
     </div>

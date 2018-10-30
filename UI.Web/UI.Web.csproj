@@ -113,6 +113,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="admin\Especialidades.aspx" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.min.css" />
@@ -121,7 +122,7 @@
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <None Include="packages.config" />
     <Content Include="Default.aspx" />
-    <Content Include="admin\Especialidades.aspx" />
+    <Content Include="admin\Especialidades1.aspx" />
     <Content Include="admin\Planes.aspx" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -150,6 +151,13 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="admin\Especialidades.aspx.cs">
+      <DependentUpon>Especialidades.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\Especialidades.aspx.designer.cs">
+      <DependentUpon>Especialidades.aspx</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\BootstrapBundleConfig.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
@@ -158,12 +166,12 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
-    <Compile Include="admin\Especialidades.aspx.cs">
-      <DependentUpon>Especialidades.aspx</DependentUpon>
+    <Compile Include="admin\Especialidades1.aspx.cs">
+      <DependentUpon>Especialidades1.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="admin\Especialidades.aspx.designer.cs">
-      <DependentUpon>Especialidades.aspx</DependentUpon>
+    <Compile Include="admin\Especialidades1.aspx.designer.cs">
+      <DependentUpon>Especialidades1.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
