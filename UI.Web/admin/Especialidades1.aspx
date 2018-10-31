@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Especialidades" Language="C#" MasterPageFile="Site.Master" AutoEventWireup="true" CodeBehind="Especialidades1.aspx.cs" Inherits="UI.Web.Especialidades" %>
+﻿<%@ Page Title="Especialidades" Language="C#" MasterPageFile="Site.Master" AutoEventWireup="true" CodeBehind="Especialidades1.aspx.cs" Inherits="UI.Web.Especialidades1" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="bodyContentPlaceHolder" runat="server">
     

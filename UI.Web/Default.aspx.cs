@@ -21,6 +21,8 @@ namespace UI.Web {
             UsuarioLogic ul = new UsuarioLogic();
             Usuario user = ul.GetOne(txtUser.Text);
             if(txtUser.Text.Equals(user.NombreUsuario) && Hashing.ValidatePassword(txtPassword.Text, user.Clave)) {
+                Session["username"] = user.NombreUsuario;
+                Session["tipo"] = user.TipoPersona;
                 Response.Redirect("admin/Especialidades.aspx");
             }
             else if(txtUser.Text.Equals(user.NombreUsuario) && !Hashing.ValidatePassword(txtPassword.Text, user.Clave)) {

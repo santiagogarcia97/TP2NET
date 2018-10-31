@@ -40,6 +40,15 @@ namespace UI.Web.admin {
         protected global::System.Web.UI.WebControls.TextBox inputID;
         
         /// <summary>
+        /// Control lblRedDesc.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblRedDesc;
+        
+        /// <summary>
         /// Control txtDescripcion.
         /// </summary>
         /// <remarks>
@@ -103,13 +112,13 @@ namespace UI.Web.admin {
         protected global::System.Web.UI.WebControls.Button btnEliminar;
         
         /// <summary>
-        /// Control btnDesseleccionar.
+        /// Control btnDeseleccionar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnDesseleccionar;
+        protected global::System.Web.UI.WebControls.Button btnDeseleccionar;
         
         /// <summary>
         /// Control UpdatePanelGrid.
