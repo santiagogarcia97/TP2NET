@@ -14,16 +14,14 @@ using System.ComponentModel.DataAnnotations;
 
 namespace UI.Web {
     public partial class Planes : System.Web.UI.Page {
-
         public enum FormModes { Alta, Baja, Modificacion }
-
+        private Plan _PlanActual;
+        private PlanLogic _PlanLogic;
         public FormModes FormMode {
             get { return (FormModes)ViewState["FormMode"]; }
             set { ViewState["FormMode"] = value; }
         }
-
-        private Plan PlanActual { get; set; }
-
+        public Plan PlanActual { get => _PlanActual; set => _PlanActual = value; }
         private int SelectedID {
             get {
                 if (ViewState["SelectedID"] != null) return (int)ViewState["SelectedID"];
@@ -33,88 +31,136 @@ namespace UI.Web {
                 ViewState["SelectedID"] = value;
             }
         }
-
-
-        private bool IsEntitySelected {
-            get { return (SelectedID != 0); }
-        }
-
-        private PlanLogic _logic;
-        private PlanLogic Logic {
+        public PlanLogic PlanLogic {
             get {
-                if (_logic == null) _logic = new PlanLogic();
-                return _logic;
+                if (_PlanLogic == null) { _PlanLogic = new PlanLogic(); }
+                return _PlanLogic;
             }
-        }
-
-        private void LoadGrid() {
-            gridView.SelectedIndex = -1;
-            List<Plan> lista = Logic.GetAll();
-            gridView.DataSource = lista.Where(x => x.Habilitado == true);
-            gridView.DataBind();
         }
 
         protected void Page_Load(object sender, EventArgs e) {
-            LoadGrid();
-            gridView.HeaderRow.TableSection = TableRowSection.TableHeader;
+            if (!IsPostBack) {
+                Listar();
+                gvPlanes.HeaderRow.TableSection = TableRowSection.TableHeader;
+                ddEsp.DataValueField = "id_esp";
+                ddEsp.DataTextField = "desc_esp";
+                ddEsp.DataSource = GenerarComboBox.getEspecialidades();
+                ddEsp.DataBind();
+            }
         }
-
-        protected void gridView_SelectedIndexChanged(object sender, EventArgs e) {
-            SelectedID = (int)gridView.SelectedValue;
+        private void Listar() {
+            PlanLogic el = new PlanLogic();
+            gvPlanes.DataSource = el.GetListado();
+            gvPlanes.DataBind();
+            gvPlanes.SelectedIndex = -1;
+            ButtonState();
         }
-
+        private void ClearForm() {
+            txtID.Text = "";
+            txtDescripcion.Text = string.Empty;
+            ddEsp.SelectedValue = 0.ToString();
+            modalHeader.Text = "Nuevo Plan";
+            btnAceptar.Text = "Crear";
+            UpdatePanelModal.Update();
+        }
+        private void EnableForm(bool enable) {
+            txtDescripcion.Enabled = enable;
+            ddEsp.Enabled = enable;
+        }
         private void LoadForm(int id) {
-            PlanActual = Logic.GetOne(id);
-            inputID.Text = PlanActual.ID.ToString();
-            descripcionTextBox.Text = PlanActual.Descripcion;
+            PlanActual = PlanLogic.GetOne(id);
+            txtID.Text = PlanActual.ID.ToString();
+            txtDescripcion.Text = PlanActual.Descripcion;
+            ddEsp.SelectedValue = PlanActual.IDEspecialidad.ToString();
             if (this.FormMode == FormModes.Baja) {
                 modalHeader.Text = "Eliminar Plan";
-                aceptarButton.Text = "Eliminar";
+                btnAceptar.Text = "Eliminar";
             }
             else if (this.FormMode == FormModes.Modificacion) {
                 modalHeader.Text = "Editar Plan";
-                aceptarButton.Text = "Editar";
+                btnAceptar.Text = "Guardar";
             }
-            this.GenerarEsp();
             UpdatePanelModal.Update();
         }
 
-        private void GenerarEsp() {
-            DataTable dtEspecialidades = GenerarComboBox.getEspecialidades();
-            especialidadDropDown.DataValueField = "id_esp";
-            especialidadDropDown.DataTextField = "desc_esp";
-            especialidadDropDown.DataSource = dtEspecialidades;
-            especialidadDropDown.DataBind();
-        }
-
-
-        protected void editarButton_Click(object sender, EventArgs e) {
-            if (IsEntitySelected) {
-                EnableForm(true);
-                FormMode = FormModes.Modificacion;
-                descRed.Visible = false;
-                espRed.Visible = false;
-                LoadForm(SelectedID);
-                this.GenerarEsp();
-            }
-        }
         private void LoadEntity() {
-            PlanActual.Descripcion = descripcionTextBox.Text;
-            PlanActual.IDEspecialidad = int.Parse(especialidadDropDown.SelectedValue);
+            PlanActual.Descripcion = txtDescripcion.Text;
+            PlanActual.IDEspecialidad = Int32.Parse(ddEsp.SelectedValue);
         }
-
         private void SaveEntity(Plan plan) {
-            Logic.Save(plan);
+            PlanLogic.Save(plan);
+        }
+        private void ButtonState() {
+
+            if (SelectedID == 0) {
+                btnEditar.CssClass = "btn btn-outline-secondary btn-sm";
+                btnEditar.Enabled = false;
+                btnEliminar.CssClass = "btn btn-outline-secondary btn-sm";
+                btnEliminar.Enabled = false;
+                btnDeseleccionar.Visible = false;
+            }
+            else {
+                btnEditar.CssClass = "btn btn-outline-success btn-sm";
+                btnEditar.Enabled = true;
+                btnEliminar.CssClass = "btn btn-outline-success btn-sm";
+                btnEliminar.Enabled = true;
+                btnDeseleccionar.Visible = true;
+            }
+            UpdatePanelButtons.Update();
+        }
+        private bool Validar() {
+            lblRedDesc.Visible = (string.IsNullOrEmpty(txtDescripcion.Text) ||
+                                    string.IsNullOrWhiteSpace(txtDescripcion.Text)) ? true : false;
+            lblRedEsp.Visible = (ddEsp.SelectedValue == null) ? true : false;
+            return !(lblRedDesc.Visible ||
+                     lblRedEsp.Visible);
+        }
+        protected void gvPlanes_SelectedIndexChanged(object sender, EventArgs e) {
+            SelectedID = (gvPlanes.SelectedValue != null) ? (int)gvPlanes.SelectedValue : 0;
+            ButtonState();
         }
 
-        protected void aceptarButton_Click(object sender, EventArgs e) {
-            if (Validar()) {
+        protected void btnNuevo_Click(object sender, EventArgs e) {
+            this.FormMode = FormModes.Alta;
+            ClearForm();
+            EnableForm(true);
+            lblRedDesc.Visible = false;
+            lblRedEsp.Visible = false;
+            ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "Pop", "$('#ModalPlanes').modal('show');", true);
+        }
+
+        protected void btnEditar_Click(object sender, EventArgs e) {
+            EnableForm(true);
+            FormMode = FormModes.Modificacion;
+            LoadForm(this.SelectedID);
+            lblRedDesc.Visible = false;
+            lblRedEsp.Visible = false;
+            ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "Pop", "$('#ModalPlanes').modal('show');", true);
+        }
+
+
+        protected void btnEliminar_Click(object sender, EventArgs e) {
+            FormMode = FormModes.Baja;
+            EnableForm(false);
+            LoadForm(this.SelectedID);
+            lblRedDesc.Visible = false;
+            lblRedEsp.Visible = false;
+            ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "Pop", "$('#ModalPlanes').modal('show');", true);
+        }
+
+        protected void btnDeseleccionar_Click(object sender, EventArgs e) {
+            gvPlanes.SelectedIndex = -1;
+            gvPlanes_SelectedIndexChanged(sender, e);
+            UpdatePanelGrid.Update();
+        }
+
+        protected void btnAceptar_Click(object sender, EventArgs e) {
+            if (Validar() == true) {
                 switch (FormMode) {
                     case FormModes.Baja:
                         PlanActual = new Plan();
                         PlanActual.ID = SelectedID;
                         PlanActual.State = BusinessEntity.States.Deleted;
-                        SaveEntity(PlanActual);
                         break;
                     case FormModes.Modificacion:
                         PlanActual = new Plan {
@@ -123,64 +169,27 @@ namespace UI.Web {
                             State = BusinessEntity.States.Modified
                         };
                         LoadEntity();
-                        SaveEntity(PlanActual);
                         break;
                     case FormModes.Alta:
                         PlanActual = new Plan {
                             State = BusinessEntity.States.New,
+                            Descripcion = txtDescripcion.Text,
+                            IDEspecialidad = Int32.Parse(ddEsp.SelectedValue),
                             Habilitado = true
                         };
-                        LoadEntity();
-                        SaveEntity(PlanActual);
                         break;
                 }
-                LoadGrid();
-                ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "Pop", "$('#nuevoModal').modal('hide');", true);
+                SaveEntity(PlanActual);
+                SelectedID = 0;
+                Listar();
+                ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "Pop", "$('#ModalPlanes').modal('hide');", true);
             }
-        }
-
-        protected bool Validar() {
-            descRed.Visible = (string.IsNullOrWhiteSpace(descripcionTextBox.Text)) ? true : false;
-            espRed.Visible = (especialidadDropDown.SelectedValue == null) ? true : false;
-            UpdatePanelModal.Update();
-
-            return !(descRed.Visible ||
-                        espRed.Visible);
-        }
-        private void EnableForm(bool enable) {
-            descripcionTextBox.Enabled = enable;
-            especialidadDropDown.Enabled = enable;
-        }
-
-        protected void eliminarButton_Click(object sender, EventArgs e) {
-            if (this.IsEntitySelected) {
-                FormMode = FormModes.Baja;
-                EnableForm(false);
-                LoadForm(this.SelectedID);
+            {
+                UpdatePanelGrid.Update();
+                UpdatePanelModal.Update();
             }
+
         }
 
-
-        protected void nuevoButton_Click(object sender, EventArgs e) {
-            FormMode = FormModes.Alta;
-            ClearForm();
-            EnableForm(true);
-        }
-        protected void cerrarModal_Click(object sender, EventArgs e) {
-            descRed.Visible = false;
-            espRed.Visible = false;
-            UpdatePanelModal.Update();
-        }
-
-        private void ClearForm() {
-            inputID.Text = "";
-            descripcionTextBox.Text = string.Empty;
-            modalHeader.Text = "Nueva Especialidad";
-            aceptarButton.Text = "Crear";
-            descRed.Visible = false;
-            espRed.Visible = false;
-            GenerarEsp();
-            UpdatePanelModal.Update();
-        }
     }
 }

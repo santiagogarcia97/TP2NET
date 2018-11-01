@@ -33,9 +33,9 @@
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" 
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">ABM</a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <a class="dropdown-item" href="Usuarios.aspx">Usuarios</a>
                                 <a class="dropdown-item" href="Especialidades.aspx">Especialidades</a>
                                 <a class="dropdown-item" href="Planes.aspx">Planes</a>
+                                <a class="dropdown-item" href="Usuarios.aspx">Usuarios</a>
                                 <a class="dropdown-item" href="#">Cursos</a>
                                 <a class="dropdown-item" href="#">Materias</a>
                             </div>
@@ -60,7 +60,7 @@
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navDropDownLink">
                                 <a class="dropdown-item" href="#">Perfil</a>
                                 <div class="dropdown-divider"></div>
-                                <asp:Button ID="Button1" CssClass="dropdown-item" runat="server" Text="Button" />
+                                <asp:Button ID="btnLogOut" CssClass="dropdown-item" runat="server" Text="Log Out" />
                             </div>
                         </li>
                     </ul>

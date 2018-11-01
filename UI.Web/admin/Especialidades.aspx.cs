@@ -20,11 +20,11 @@ namespace UI.Web.admin {
         public Especialidad EspecialidadActual { get => _EspecialidadActual; set => _EspecialidadActual = value; }
         private int SelectedID {
             get {
-                if (Session["SelectedID"] != null) return (int)Session["SelectedID"];
+                if (ViewState["SelectedID"] != null) return (int)ViewState["SelectedID"];
                 else return 0;
             }
             set {
-                Session["SelectedID"] = value;
+                ViewState["SelectedID"] = value;
             }
         }
         public EspecialidadLogic EspecialidadLogic {
