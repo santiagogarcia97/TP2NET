@@ -96,11 +96,6 @@ namespace UI.Web.admin {
             }
             UpdatePanelButtons.Update();
         }
-        private bool Validar() {
-            lblRedDesc.Visible = (string.IsNullOrEmpty(txtDescripcion.Text) ||
-                                    string.IsNullOrWhiteSpace(txtDescripcion.Text)) ? true : false;
-            return !lblRedDesc.Visible;
-        }
         protected void gvEspecialidades_SelectedIndexChanged(object sender, EventArgs e) {
             SelectedID = (gvEspecialidades.SelectedValue != null) ? (int)gvEspecialidades.SelectedValue : 0;
             algo();
@@ -109,26 +104,26 @@ namespace UI.Web.admin {
 
         protected void btnNuevo_Click(object sender, EventArgs e) {
             this.FormMode = FormModes.Alta;
+            txtDescripcion.CssClass = "form-control";
             ClearForm();
             EnableForm(true);
-            lblRedDesc.Visible = false;
             ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "Pop", "$('#ModalEspecialidad').modal('show');", true);
         }
 
         protected void btnEditar_Click(object sender, EventArgs e) {
             EnableForm(true);
+            txtDescripcion.CssClass = "form-control";
             FormMode = FormModes.Modificacion;
             LoadForm(this.SelectedID);
-            lblRedDesc.Visible = false;
             ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "Pop", "$('#ModalEspecialidad').modal('show');", true);
         }
       
 
         protected void btnEliminar_Click(object sender, EventArgs e) {
             FormMode = FormModes.Baja;
+            txtDescripcion.CssClass = "form-control";
             EnableForm(false);
             LoadForm(this.SelectedID);
-            lblRedDesc.Visible = false;
             ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "Pop", "$('#ModalEspecialidad').modal('show');", true);
         }
 
@@ -172,6 +167,17 @@ namespace UI.Web.admin {
                 UpdatePanelModal.Update();
             }
 
+        }
+
+        private bool Validar() {
+            if (string.IsNullOrEmpty(txtDescripcion.Text) ||
+                string.IsNullOrWhiteSpace(txtDescripcion.Text)) {
+                txtDescripcion.CssClass = "form-control is-invalid";
+                return false;
+            }
+            else {
+                return true;
+            }
         }
     }
 }

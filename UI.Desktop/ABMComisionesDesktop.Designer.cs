@@ -239,7 +239,7 @@
             this.lblRedAnio.Text = "*";
             this.lblRedAnio.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // ABMComisionDesktop
+            // ABMComisionesDesktop
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -247,7 +247,7 @@
             this.Controls.Add(this.tableLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
-            this.Name = "ABMComisionDesktop";
+            this.Name = "ABMComisionesDesktop";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "ComisionDesktop";
             this.Load += new System.EventHandler(this.ComisionDesktop_Load);

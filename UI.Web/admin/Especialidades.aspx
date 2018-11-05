@@ -23,8 +23,7 @@
                     </div>
                             
                     <div class="form-group">
-                        <label for="txtDescripcion" class="col-form-label">Descripción </label>
-                        <label id="lblRedDesc" runat="server" class="red-label">*</label>
+                        <label for="txtDescripcion" class="col-form-label">Descripción</label>
                         <asp:TextBox ID="txtDescripcion" runat="server" CssClass="form-control"></asp:TextBox>
                     </div>
                 </div>
@@ -81,7 +80,7 @@
                     <asp:BoundField HeaderText="Descripción" DataField="Descripcion"  ItemStyle-Width="100%"/>
                     <asp:CommandField SelectText="Seleccionar" ShowSelectButton="True" />
                 </Columns>
-                <HeaderStyle CssClass=”thead-light” />
+                <HeaderStyle CssClass="thead-light" />
                 </asp:GridView>
             </ContentTemplate>
         </asp:UpdatePanel>

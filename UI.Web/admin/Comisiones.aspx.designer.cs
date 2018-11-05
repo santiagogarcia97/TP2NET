@@ -7,10 +7,10 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-namespace UI.Web {
+namespace UI.Web.admin {
     
     
-    public partial class Planes {
+    public partial class Comisiones {
         
         /// <summary>
         /// Control UpdatePanelModal.
@@ -49,6 +49,15 @@ namespace UI.Web {
         protected global::System.Web.UI.WebControls.TextBox txtDescripcion;
         
         /// <summary>
+        /// Control txtAnio.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtAnio;
+        
+        /// <summary>
         /// Control ddEsp.
         /// </summary>
         /// <remarks>
@@ -56,6 +65,15 @@ namespace UI.Web {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddEsp;
+        
+        /// <summary>
+        /// Control ddPlan.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddPlan;
         
         /// <summary>
         /// Control btnAceptar.
@@ -130,12 +148,12 @@ namespace UI.Web {
         protected global::System.Web.UI.UpdatePanel UpdatePanelGrid;
         
         /// <summary>
-        /// Control gvPlanes.
+        /// Control gvCom.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvPlanes;
+        protected global::System.Web.UI.WebControls.GridView gvCom;
     }
 }

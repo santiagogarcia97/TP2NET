@@ -1,9 +1,9 @@
-﻿<%@ Page Title="Planes" Language="C#" MasterPageFile="Site.Master" AutoEventWireup="true" CodeBehind="Planes.aspx.cs" Inherits="UI.Web.Planes" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/admin/Site.Master" AutoEventWireup="true" CodeBehind="Comisiones.aspx.cs" Inherits="UI.Web.admin.Comisiones" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="bodyContentPlaceHolder" runat="server">
 
     <!-- Modal para cargar, editar o eliminar -->    
-    <div class="modal fade" id="ModalPlanes" tabindex="-1" role="dialog" >
+    <div class="modal fade" id="ModalComisiones" tabindex="-1" role="dialog" >
         <div class="modal-dialog modal-dialog-centered" role="document">
 
             <div class="modal-content">                
@@ -25,9 +25,21 @@
                         <label for="txtDescripcion" class="col-form-label">Descripción</label>
                         <asp:TextBox ID="txtDescripcion" runat="server" CssClass="form-control"></asp:TextBox>
                     </div>
+
                     <div class="form-group">
-                        <label for="ddEsp" class="col-form-label">Especialidad</label>
-                        <asp:DropDownList ID="ddEsp" runat="server" CssClass="form-control"></asp:DropDownList>
+                        <label for="txtAnio" class="col-form-label">Año</label>
+                        <asp:TextBox ID="txtAnio" TextMode="Number" min="1900" max="3000" step="1" runat="server" CssClass="form-control"></asp:TextBox>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="ddEsp" class="col-form-label">Especialidad</label>
+                            <asp:DropDownList ID="ddEsp" runat="server" CssClass="form-control" OnSelectedIndexChanged="ddEsp_SelectedIndexChanged"></asp:DropDownList>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="ddPlan" class="col-form-label">Plan</label>
+                            <asp:DropDownList ID="ddPlan" runat="server" CssClass="form-control"></asp:DropDownList>
+                        </div>
                     </div>
                 </div>
 
@@ -43,7 +55,7 @@
 
     <!-- tabla -->
     <div>
-        <p class="font-weight-bold text-left h2">Planes</p>
+        <p class="font-weight-bold text-left h2">Comisiones</p>
     </div>
 
     <hr />
@@ -72,16 +84,17 @@
             </Triggers>
 
             <ContentTemplate>
-                <asp:GridView ID="gvPlanes" runat="server" AutoGenerateColumns="False"
+                <asp:GridView ID="gvCom" runat="server" AutoGenerateColumns="False"
                     SelectedRowStyle-BackColor="#343a40"
                     SelectedRowStyle-ForeColor="White"
                     DataKeyNames="ID" OnLoad="Page_Load"
                     CssClass="table table-bordered table-sm table-responsive table-hover" 
-                    OnSelectedIndexChanged="gvPlanes_SelectedIndexChanged" >
+                    OnSelectedIndexChanged="gvCom_SelectedIndexChanged" >
                 <Columns>
                     <asp:BoundField HeaderText="ID" DataField="Id" />
-                    <asp:BoundField HeaderText="Descripción" DataField="Descripcion"  ItemStyle-Width="100%"/>
-                    <asp:BoundField HeaderText="Especialidad" DataField="Especialidad" />
+                    <asp:BoundField HeaderText="Descripción" DataField="Descripcion" ItemStyle-Width="50%"/>
+                    <asp:BoundField HeaderText="Año" DataField="AnioEspecialidad" />
+                    <asp:BoundField HeaderText="Plan" DataField="Plan" ItemStyle-Width="50%"/>
                     <asp:CommandField SelectText="Seleccionar" ShowSelectButton="True" />
                 </Columns>
                 <HeaderStyle CssClass="thead-light" />
