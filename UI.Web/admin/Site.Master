@@ -35,9 +35,10 @@
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                 <a class="dropdown-item" href="Especialidades.aspx">Especialidades</a>
                                 <a class="dropdown-item" href="Planes.aspx">Planes</a>
+                                <a class="dropdown-item" href="Comisiones.aspx">Comisiones</a>
+                                <a class="dropdown-item" href="Materias.aspx">Materias</a>
+                                <a class="dropdown-item" href="Cursos.aspx">Cursos</a>
                                 <a class="dropdown-item" href="Usuarios.aspx">Usuarios</a>
-                                <a class="dropdown-item" href="#">Cursos</a>
-                                <a class="dropdown-item" href="#">Materias</a>
                             </div>
                         </li>
                         <li class="nav-item">

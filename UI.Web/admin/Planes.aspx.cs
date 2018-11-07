@@ -191,7 +191,7 @@ namespace UI.Web {
             else {
                 txtDescripcion.CssClass = "form-control";
             }
-            if (ddEsp.SelectedValue == null || int.Parse(ddEsp.SelectedValue) == 0) {
+            if (ddEsp.SelectedValue == string.Empty || int.Parse(ddEsp.SelectedValue) == 0) {
                 ddEsp.CssClass = "form-control is-invalid";
                 isvalid = false;
             }

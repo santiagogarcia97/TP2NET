@@ -129,7 +129,7 @@ namespace UI.Web.admin {
             SetFormControlCSS();
             ClearForm();
             EnableForm(true);
-            ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "Pop", "$('#ModalComisiones').modal('show');", true);
+            ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "Pop", "$('#ModalMaterias').modal('show');", true);
         }
 
         protected void btnEditar_Click(object sender, EventArgs e) {
@@ -137,7 +137,7 @@ namespace UI.Web.admin {
             EnableForm(true);
             FormMode = FormModes.Modificacion;
             LoadForm(this.SelectedID);
-            ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "Pop", "$('#ModalComisiones').modal('show');", true);
+            ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "Pop", "$('#ModalMaterias').modal('show');", true);
         }
 
 
@@ -146,7 +146,7 @@ namespace UI.Web.admin {
             SetFormControlCSS();
             EnableForm(false);
             LoadForm(this.SelectedID);
-            ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "Pop", "$('#ModalComisiones').modal('show');", true);
+            ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "Pop", "$('#ModalMaterias').modal('show');", true);
         }
 
         protected void btnDeseleccionar_Click(object sender, EventArgs e) {
@@ -183,7 +183,7 @@ namespace UI.Web.admin {
                 SaveEntity();
                 SelectedID = 0;
                 Listar();
-                ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "Pop", "$('#ModalComisiones').modal('hide');", true);
+                ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "Pop", "$('#ModalMaterias').modal('hide');", true);
                 UpdatePanelGrid.Update();
             }
             UpdatePanelModal.Update();
@@ -217,20 +217,19 @@ namespace UI.Web.admin {
             else {
                 txtHSTot.CssClass = "form-control";
             }
-            if (ddEsp.SelectedValue == null || int.Parse(ddEsp.SelectedValue) == 0) {
+            if (ddEsp.SelectedValue == string.Empty || int.Parse(ddEsp.SelectedValue) == 0) {
                 ddEsp.CssClass = "form-control is-invalid";
-                ddPlan.CssClass = "form-control is-invalid";
                 isvalid = false;
             }
             else {
                 ddEsp.CssClass = "form-control";
-                if (ddPlan.SelectedValue == null || int.Parse(ddPlan.SelectedValue) == 0) {
-                    ddPlan.CssClass = "form-control is-invalid";
-                    isvalid = false;
-                }
-                else {
-                    ddPlan.CssClass = "form-control";
-                }
+            }
+            if (ddPlan.SelectedValue == string.Empty || int.Parse(ddPlan.SelectedValue) == 0) {
+                ddPlan.CssClass = "form-control is-invalid";
+                isvalid = false;
+            }
+            else {
+                ddPlan.CssClass = "form-control";
             }
 
             return isvalid;
