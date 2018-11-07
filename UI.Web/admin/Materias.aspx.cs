@@ -9,15 +9,15 @@ using Business.Logic;
 using Util;
 
 namespace UI.Web.admin {
-    public partial class Comisiones : System.Web.UI.Page {
+    public partial class Materias : System.Web.UI.Page {
         public enum FormModes { Alta, Baja, Modificacion }
-        private Comision _ComisionActual;
-        private ComisionLogic _ComisionLogic;
+        private Materia _MateriaActual;
+        private MateriaLogic _MateriaLogic;
         public FormModes FormMode {
             get { return (FormModes)ViewState["FormMode"]; }
             set { ViewState["FormMode"] = value; }
         }
-        public Comision ComisionActual { get => _ComisionActual; set => _ComisionActual = value; }
+        public Materia MateriaActual { get => _MateriaActual; set => _MateriaActual = value; }
         private int SelectedID {
             get {
                 if (ViewState["SelectedID"] != null) return (int)ViewState["SelectedID"];
@@ -27,17 +27,17 @@ namespace UI.Web.admin {
                 ViewState["SelectedID"] = value;
             }
         }
-        public ComisionLogic ComisionLogic {
+        public MateriaLogic MateriaLogic {
             get {
-                if (_ComisionLogic == null) { _ComisionLogic = new ComisionLogic(); }
-                return _ComisionLogic;
+                if (_MateriaLogic == null) { _MateriaLogic = new MateriaLogic(); }
+                return _MateriaLogic;
             }
         }
 
         protected void Page_Load(object sender, EventArgs e) {
             if (!IsPostBack) {
                 Listar();
-                gvCom.HeaderRow.TableSection = TableRowSection.TableHeader;
+                gvMat.HeaderRow.TableSection = TableRowSection.TableHeader;
                 ddEsp.DataValueField = "id_esp";
                 ddEsp.DataTextField = "desc_esp";
                 ddEsp.DataSource = GenerarComboBox.getEspecialidades();
@@ -45,57 +45,61 @@ namespace UI.Web.admin {
             }
         }
         private void Listar() {
-            gvCom.DataSource = ComisionLogic.GetListado();
-            gvCom.DataBind();
-            gvCom.SelectedIndex = -1;
+            gvMat.DataSource = MateriaLogic.GetListado();
+            gvMat.DataBind();
+            gvMat.SelectedIndex = -1;
             ButtonState();
         }
         private void ClearForm() {
             txtID.Text = "";
             txtDescripcion.Text = string.Empty;
-            txtAnio.Text = DateTime.Today.Year.ToString();
+            txtHSSem.Text = 0.ToString();
+            txtHSTot.Text = 0.ToString();
             ddPlan.SelectedValue = 0.ToString();
             ddEsp.SelectedValue = 0.ToString();
-            modalHeader.Text = "Nueva Comision";
+            modalHeader.Text = "Nueva Materia";
             btnAceptar.Text = "Crear";
             UpdatePanelModal.Update();
         }
         private void EnableForm(bool enable) {
             txtDescripcion.Enabled = enable;
-            txtAnio.Enabled = enable;
+            txtHSSem.Enabled = enable;
+            txtHSTot.Enabled = enable;
             ddPlan.Enabled = enable;
             ddEsp.Enabled = enable;
         }
         private void LoadForm(int id) {
-            ComisionActual = ComisionLogic.GetOne(id);
+            MateriaActual = MateriaLogic.GetOne(id);
             PlanLogic pl = new PlanLogic();
-            Plan plan = pl.GetOne(ComisionActual.IDPlan);
+            Plan plan = pl.GetOne(MateriaActual.IDPlan);
 
-            txtID.Text = ComisionActual.ID.ToString();
-            txtDescripcion.Text = ComisionActual.Descripcion;
-            txtAnio.Text = ComisionActual.AnioEspecialidad.ToString();
+            txtID.Text = MateriaActual.ID.ToString();
+            txtDescripcion.Text = MateriaActual.Descripcion;
+            txtHSSem.Text = MateriaActual.HSSemanales.ToString();
+            txtHSTot.Text = MateriaActual.HSTotales.ToString();
             ddEsp.SelectedValue = plan.IDEspecialidad.ToString();
             GenerarPlanes(plan.IDEspecialidad);
-            ddPlan.SelectedValue = ComisionActual.IDPlan.ToString();
+            ddPlan.SelectedValue = MateriaActual.IDPlan.ToString();
 
             if (this.FormMode == FormModes.Baja) {
-                modalHeader.Text = "Eliminar Comision";
+                modalHeader.Text = "Eliminar Materia";
                 btnAceptar.Text = "Eliminar";
             }
             else if (this.FormMode == FormModes.Modificacion) {
-                modalHeader.Text = "Editar Comision";
+                modalHeader.Text = "Editar Materia";
                 btnAceptar.Text = "Guardar";
             }
             UpdatePanelModal.Update();
         }
 
         private void LoadEntity() {
-            ComisionActual.Descripcion = txtDescripcion.Text;
-            ComisionActual.AnioEspecialidad = int.Parse(txtAnio.Text);
-            ComisionActual.IDPlan = Int32.Parse(ddPlan.SelectedValue);
+            MateriaActual.Descripcion = txtDescripcion.Text;
+            MateriaActual.HSSemanales = int.Parse(txtHSSem.Text);
+            MateriaActual.HSTotales = int.Parse(txtHSTot.Text);
+            MateriaActual.IDPlan = Int32.Parse(ddPlan.SelectedValue);
         }
         private void SaveEntity() {
-            ComisionLogic.Save(ComisionActual);
+            MateriaLogic.Save(MateriaActual);
         }
         private void ButtonState() {
 
@@ -115,8 +119,8 @@ namespace UI.Web.admin {
             }
             UpdatePanelButtons.Update();
         }
-        protected void gvCom_SelectedIndexChanged(object sender, EventArgs e) {
-            SelectedID = (gvCom.SelectedValue != null) ? (int)gvCom.SelectedValue : 0;
+        protected void gvMat_SelectedIndexChanged(object sender, EventArgs e) {
+            SelectedID = (gvMat.SelectedValue != null) ? (int)gvMat.SelectedValue : 0;
             ButtonState();
         }
 
@@ -146,8 +150,8 @@ namespace UI.Web.admin {
         }
 
         protected void btnDeseleccionar_Click(object sender, EventArgs e) {
-            gvCom.SelectedIndex = -1;
-            gvCom_SelectedIndexChanged(sender, e);
+            gvMat.SelectedIndex = -1;
+            gvMat_SelectedIndexChanged(sender, e);
             UpdatePanelGrid.Update();
         }
 
@@ -155,13 +159,13 @@ namespace UI.Web.admin {
             if (Validar() == true) {
                 switch (FormMode) {
                     case FormModes.Baja:
-                        ComisionActual = new Comision {
+                        MateriaActual = new Materia {
                             ID = SelectedID,
                             State = BusinessEntity.States.Deleted
                         };
                         break;
                     case FormModes.Modificacion:
-                        ComisionActual = new Comision {
+                        MateriaActual = new Materia {
                             ID = SelectedID,
                             Habilitado = true,
                             State = BusinessEntity.States.Modified
@@ -169,7 +173,7 @@ namespace UI.Web.admin {
                         LoadEntity();
                         break;
                     case FormModes.Alta:
-                        ComisionActual = new Comision {
+                        MateriaActual = new Materia {
                             Habilitado = true,
                             State = BusinessEntity.States.New
                         };
@@ -195,13 +199,23 @@ namespace UI.Web.admin {
             else {
                 txtDescripcion.CssClass = "form-control";
             }
-            if (string.IsNullOrEmpty(txtAnio.Text) ||
-                string.IsNullOrWhiteSpace(txtAnio.Text)) {
-                txtAnio.CssClass = "form-control is-invalid";
+            if (string.IsNullOrEmpty(txtHSSem.Text) ||
+                string.IsNullOrWhiteSpace(txtHSSem.Text) ||
+                int.Parse(txtHSSem.Text) == 0) {
+                txtHSSem.CssClass = "form-control is-invalid";
                 isvalid = false;
             }
             else {
-                txtAnio.CssClass = "form-control";
+                txtHSSem.CssClass = "form-control";
+            }
+            if (string.IsNullOrEmpty(txtHSTot.Text) ||
+                string.IsNullOrWhiteSpace(txtHSTot.Text) ||
+                int.Parse(txtHSTot.Text) == 0) {
+                txtHSTot.CssClass = "form-control is-invalid";
+                isvalid = false;
+            }
+            else {
+                txtHSTot.CssClass = "form-control";
             }
             if (ddEsp.SelectedValue == null || int.Parse(ddEsp.SelectedValue) == 0) {
                 ddEsp.CssClass = "form-control is-invalid";
@@ -224,7 +238,8 @@ namespace UI.Web.admin {
 
         private void SetFormControlCSS() {
             txtDescripcion.CssClass = "form-control";
-            txtAnio.CssClass = "form-control";
+            txtHSSem.CssClass = "form-control";
+            txtHSTot.CssClass = "form-control";
             ddEsp.CssClass = "form-control";
             ddPlan.CssClass = "form-control";
         }

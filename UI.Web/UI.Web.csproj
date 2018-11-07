@@ -115,6 +115,7 @@
   <ItemGroup>
     <Content Include="admin\Comisiones.aspx" />
     <Content Include="admin\Especialidades.aspx" />
+    <Content Include="admin\Materias.aspx" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.min.css" />
@@ -164,6 +165,13 @@
     </Compile>
     <Compile Include="admin\Especialidades.aspx.designer.cs">
       <DependentUpon>Especialidades.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\Materias.aspx.cs">
+      <DependentUpon>Materias.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\Materias.aspx.designer.cs">
+      <DependentUpon>Materias.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\BootstrapBundleConfig.cs" />
     <Compile Include="Default.aspx.cs">

@@ -1,9 +1,8 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/admin/Site.Master" AutoEventWireup="true" CodeBehind="Comisiones.aspx.cs" Inherits="UI.Web.admin.Comisiones" %>
-
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/admin/Site.Master" AutoEventWireup="true" CodeBehind="Materias.aspx.cs" Inherits="UI.Web.admin.Materias" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="bodyContentPlaceHolder" runat="server">
-
+    
     <!-- Modal para cargar, editar o eliminar -->    
-    <div class="modal fade" id="ModalComisiones" tabindex="-1" role="dialog" >
+    <div class="modal fade" id="ModalMaterias" tabindex="-1" role="dialog" >
         <div class="modal-dialog modal-dialog-centered" role="document">
 
             <div class="modal-content">                
@@ -26,9 +25,15 @@
                         <asp:TextBox ID="txtDescripcion" runat="server" CssClass="form-control"></asp:TextBox>
                     </div>
 
-                    <div class="form-group">
-                        <label for="txtAnio" class="col-form-label">Año</label>
-                        <asp:TextBox ID="txtAnio" TextMode="Number" min="1900" max="3000" step="1" runat="server" CssClass="form-control"></asp:TextBox>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="txtHSSem" class="col-form-label">Hrs Semanales</label>
+                            <asp:TextBox ID="txtHSSem" TextMode="Number" min="0" max="100" step="1" runat="server" CssClass="form-control"></asp:TextBox>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="txtHSTot" class="col-form-label">Hrs Totales</label>
+                            <asp:TextBox ID="txtHSTot" TextMode="Number" min="0" max="300" step="1" runat="server" CssClass="form-control"></asp:TextBox>
+                        </div>
                     </div>
 
                     <div class="form-row">
@@ -55,7 +60,7 @@
 
     <!-- tabla -->
     <div>
-        <p class="font-weight-bold text-left h2">Comisiones</p>
+        <p class="font-weight-bold text-left h2">Materias</p>
     </div>
 
     <hr />
@@ -84,17 +89,18 @@
             </Triggers>
 
             <ContentTemplate>
-                <asp:GridView ID="gvCom" runat="server" AutoGenerateColumns="False"
+                <asp:GridView ID="gvMat" runat="server" AutoGenerateColumns="False"
                     SelectedRowStyle-BackColor="#343a40"
                     SelectedRowStyle-ForeColor="White"
                     DataKeyNames="ID" OnLoad="Page_Load"
                     CssClass="table table-bordered table-sm table-responsive table-hover" 
-                    OnSelectedIndexChanged="gvCom_SelectedIndexChanged" >
+                    OnSelectedIndexChanged="gvMat_SelectedIndexChanged" >
                 <Columns>
                     <asp:BoundField HeaderText="ID" DataField="Id" />
-                    <asp:BoundField HeaderText="Descripción" DataField="Descripcion" ItemStyle-Width="50%"/>
-                    <asp:BoundField HeaderText="Año" DataField="AnioEspecialidad" />
-                    <asp:BoundField HeaderText="Plan" DataField="Plan" ItemStyle-Width="50%"/>
+                    <asp:BoundField HeaderText="Descripción" DataField="Descripcion" ItemStyle-Width="40%"/>
+                    <asp:BoundField HeaderText="Hrs Sem" DataField="HSSemanales" ItemStyle-Width="20%"/>
+                    <asp:BoundField HeaderText="Hrs Tot" DataField="HSTotales" ItemStyle-Width="20%"/>
+                    <asp:BoundField HeaderText="Plan" DataField="Plan" ItemStyle-Width="20%"/>
                     <asp:CommandField SelectText="Seleccionar" ShowSelectButton="True" />
                 </Columns>
                 <HeaderStyle CssClass="thead-light" />
@@ -102,5 +108,4 @@
             </ContentTemplate>
         </asp:UpdatePanel>
     </div>
-
 </asp:Content>
