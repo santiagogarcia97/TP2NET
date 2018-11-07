@@ -101,11 +101,11 @@
                     OnSelectedIndexChanged="gvCursos_SelectedIndexChanged" >
                 <Columns>
                     <asp:BoundField HeaderText="ID" DataField="Id" />
-                    <asp:BoundField HeaderText="Año" DataField="AnioCalendario" ItemStyle-Width="100%"/>
-                    <asp:BoundField HeaderText="Cupo" DataField="Cupo" />
-                    <asp:BoundField HeaderText="Materia" DataField="Materia" />
-                    <asp:BoundField HeaderText="Comision" DataField="Comision" />
-                    <asp:BoundField HeaderText="Plan" DataField="Plan"/>
+                    <asp:BoundField HeaderText="Año" DataField="AnioCalendario" />
+                    <asp:BoundField HeaderText="Materia" DataField="Materia" ItemStyle-Width="50%"/>
+                    <asp:BoundField HeaderText="Comision" DataField="Comision" ItemStyle-Width="10%"/>
+                    <asp:BoundField HeaderText="Cupo" DataField="Cupo" ItemStyle-Width="10%"/>
+                    <asp:BoundField HeaderText="Plan" DataField="Plan" ItemStyle-Width="30%"/>
                     <asp:CommandField SelectText="Seleccionar" ShowSelectButton="True" />
                 </Columns>
                 <HeaderStyle CssClass="thead-light" />

@@ -115,6 +115,7 @@
   <ItemGroup>
     <Content Include="admin\Comisiones.aspx" />
     <Content Include="admin\Cursos.aspx" />
+    <Content Include="admin\DocentesCursos.aspx" />
     <Content Include="admin\Especialidades.aspx" />
     <Content Include="admin\Materias.aspx" />
     <Content Include="Content\bootstrap-grid.min.css" />
@@ -166,6 +167,13 @@
     </Compile>
     <Compile Include="admin\Cursos.aspx.designer.cs">
       <DependentUpon>Cursos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\DocentesCursos.aspx.cs">
+      <DependentUpon>DocentesCursos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\DocentesCursos.aspx.designer.cs">
+      <DependentUpon>DocentesCursos.aspx</DependentUpon>
     </Compile>
     <Compile Include="admin\Especialidades.aspx.cs">
       <DependentUpon>Especialidades.aspx</DependentUpon>

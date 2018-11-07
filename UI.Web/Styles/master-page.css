@@ -14,12 +14,12 @@ body {
     overflow: visible;
 }
 
-.main {
+/*.main {
     text-align: left;
     float: left;
     width: 640px;
     padding: 20px;
-}
+}*/
 
 .grid-view{
     text-align: center;
@@ -36,10 +36,10 @@ body {
     text-align: center;
 }
 
-.container {
+.main {
     width: auto;
-    max-width: 720px;
-    padding: 0 15px;
-    overflow:auto;
+    max-width: 1280px;
+    padding: 20px;
+    overflow: auto;
 }
 

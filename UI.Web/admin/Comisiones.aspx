@@ -92,8 +92,8 @@
                     OnSelectedIndexChanged="gvCom_SelectedIndexChanged" >
                 <Columns>
                     <asp:BoundField HeaderText="ID" DataField="Id" />
-                    <asp:BoundField HeaderText="Descripción" DataField="Descripcion" ItemStyle-Width="50%"/>
                     <asp:BoundField HeaderText="Año" DataField="AnioEspecialidad" />
+                    <asp:BoundField HeaderText="Descripción" DataField="Descripcion" ItemStyle-Width="50%"/>
                     <asp:BoundField HeaderText="Plan" DataField="Plan" ItemStyle-Width="50%"/>
                     <asp:CommandField SelectText="Seleccionar" ShowSelectButton="True" />
                 </Columns>

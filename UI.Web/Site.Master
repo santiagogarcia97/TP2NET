@@ -33,12 +33,13 @@
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" 
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">ABM</a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <a class="dropdown-item" href="Especialidades.aspx">Especialidades</a>
-                                <a class="dropdown-item" href="Planes.aspx">Planes</a>
-                                <a class="dropdown-item" href="Comisiones.aspx">Comisiones</a>
-                                <a class="dropdown-item" href="Materias.aspx">Materias</a>
-                                <a class="dropdown-item" href="Cursos.aspx">Cursos</a>
-                                <a class="dropdown-item" href="Usuarios.aspx">Usuarios</a>
+                                <a class="dropdown-item" href="/admin/Especialidades.aspx">Especialidades</a>
+                                <a class="dropdown-item" href="/admin/Planes.aspx">Planes</a>
+                                <a class="dropdown-item" href="/admin/Comisiones.aspx">Comisiones</a>
+                                <a class="dropdown-item" href="/admin/Materias.aspx">Materias</a>
+                                <a class="dropdown-item" href="/admin/Cursos.aspx">Cursos</a>
+                                <a class="dropdown-item" href="/admin/Usuarios.aspx">Usuarios</a>
+                                <a class="dropdown-item" href="/admin/DocentesCursos.aspx">Docentes - Cursos</a>
                             </div>
                         </li>
                         <li class="nav-item">
@@ -65,16 +66,15 @@
                             </div>
                         </li>
                     </ul>
+
                 </div>
             </nav>
         </header>
         
         <!-- container --> 
-        <div class="container">
-            <div class="main">
+        <div class="container main">
                     <asp:ContentPlaceHolder ID="bodyContentPlaceHolder" runat="server">
                     </asp:ContentPlaceHolder>
-            </div>
         </div>
         
         <!-- pie de pagina --> 

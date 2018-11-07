@@ -1,10 +1,8 @@
-﻿<%@ Page Title="Especialidades" Language="C#" MasterPageFile="../Site.Master" AutoEventWireup="true" CodeBehind="Especialidades.aspx.cs" Inherits="UI.Web.admin.Especialidades" %>
-
-
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="DocentesCursos.aspx.cs" Inherits="UI.Web.admin.DocentesCursos" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="bodyContentPlaceHolder" runat="server">
 
     <!-- Modal para cargar, editar o eliminar -->    
-    <div class="modal fade" id="ModalEspecialidad" tabindex="-1" role="dialog" >
+    <div class="modal fade" id="ModalDocentesCursos" tabindex="-1" role="dialog" >
         <div class="modal-dialog modal-dialog-centered" role="document">
 
             <div class="modal-content">                
@@ -18,14 +16,25 @@
                 
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for="inputID" class="col-form-label">ID</label>
-                        <asp:TextBox id="inputID" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                        <label for="txtID" class="col-form-label">ID</label>
+                        <asp:TextBox id="txtID" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
                     </div>
-                            
+
                     <div class="form-group">
-                        <label for="txtDescripcion" class="col-form-label">Descripción</label>
-                        <asp:TextBox ID="txtDescripcion" runat="server" CssClass="form-control"></asp:TextBox>
+                        <label for="ddCurso" class="col-form-label">Curso</label>
+                        <asp:DropDownList ID="ddCurso" runat="server" CssClass="form-control"></asp:DropDownList>
                     </div>
+
+                    <div class="form-group">
+                        <label for="ddDocente" class="col-form-label">Docente</label>
+                        <asp:DropDownList ID="ddDocente" runat="server" CssClass="form-control"></asp:DropDownList>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ddCargo" class="col-form-label">Cargo</label>
+                        <asp:DropDownList ID="ddCargo" runat="server" CssClass="form-control"></asp:DropDownList>
+                    </div>
+
                 </div>
 
                 <div class="modal-footer" runat="server">
@@ -40,7 +49,7 @@
 
     <!-- tabla -->
     <div>
-        <p class="font-weight-bold text-left h2">Especialidades</p>
+        <p class="font-weight-bold text-left h2">Docentes - Cursos</p>
     </div>
 
     <hr />
@@ -69,15 +78,17 @@
             </Triggers>
 
             <ContentTemplate>
-                <asp:GridView ID="gvEspecialidades" runat="server" AutoGenerateColumns="False"
+                <asp:GridView ID="gvDC" runat="server" AutoGenerateColumns="False"
                     SelectedRowStyle-BackColor="#343a40"
                     SelectedRowStyle-ForeColor="White"
                     DataKeyNames="ID" OnLoad="Page_Load"
                     CssClass="table table-bordered table-sm table-responsive table-hover" 
-                    OnSelectedIndexChanged="gvEspecialidades_SelectedIndexChanged">
+                    OnSelectedIndexChanged="gvDC_SelectedIndexChanged" >
                 <Columns>
                     <asp:BoundField HeaderText="ID" DataField="Id" />
-                    <asp:BoundField HeaderText="Descripción" DataField="Descripcion" ItemStyle-Width="100%" />
+                    <asp:BoundField HeaderText="Curso" DataField="Curso" ItemStyle-Width="40%"/>
+                    <asp:BoundField HeaderText="Docente" DataField="Docente" ItemStyle-Width="40%"/>
+                    <asp:BoundField HeaderText="Cargo" DataField="Cargo" ItemStyle-Width="20%"/>
                     <asp:CommandField SelectText="Seleccionar" ShowSelectButton="True" />
                 </Columns>
                 <HeaderStyle CssClass="thead-light" />
