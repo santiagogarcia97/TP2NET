@@ -14,7 +14,13 @@ using System.Globalization;
 namespace UI.Web {
     public partial class Default : System.Web.UI.Page {
         protected void Page_Load(object sender, EventArgs e) {
-
+            if (!IsPostBack)
+            {
+                if (Session["username"] != null && Session["tipo"] != null)
+                {
+                    Response.Redirect("/inicio.aspx");
+                }
+            }
         }
 
         protected void aceptarLinkButton_Click(object sender,EventArgs e) {
@@ -23,22 +29,16 @@ namespace UI.Web {
             if(txtUser.Text.Equals(user.NombreUsuario) && Hashing.ValidatePassword(txtPassword.Text, user.Clave)) {
                 Session["username"] = user.NombreUsuario;
                 Session["tipo"] = user.TipoPersona;
-                Response.Redirect("admin/Especialidades.aspx");
+                Response.Redirect("/inicio.aspx");
             }
             else if(txtUser.Text.Equals(user.NombreUsuario) && !Hashing.ValidatePassword(txtPassword.Text, user.Clave)) {
-                MsgBox("La contraseña es incorrecta.",this.Page,this);
-
+                lblBadPass.Visible = true;
+                lblBadUser.Visible = false;
             }
             else {
-                MsgBox("El usuario no existe.",this.Page,this);
+                lblBadPass.Visible = false;
+                lblBadUser.Visible = true;
             }
-        }
-
-        public void MsgBox(String ex,Page pg,Object obj) {
-            string s = "<SCRIPT language='javascript'>alert('" + ex.Replace("\r\n","\\n").Replace("'","") + "'); </SCRIPT>";
-            Type cstype = obj.GetType();
-            ClientScriptManager cs = pg.ClientScript;
-            cs.RegisterClientScriptBlock(cstype,s,s.ToString());
         }
     }
 }

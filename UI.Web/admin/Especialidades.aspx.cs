@@ -35,9 +35,16 @@ namespace UI.Web.admin {
         }
 
         protected void Page_Load(object sender, EventArgs e) {
-            if (!IsPostBack) {
-                Listar();
-                gvEspecialidades.HeaderRow.TableSection = TableRowSection.TableHeader;
+            if (Session["tipo"]==null || (int)Session["tipo"] != 3) { 
+                Response.Clear();
+                Response.StatusCode = 404;
+                Response.End();
+            }
+            else {
+                if (!IsPostBack) {
+                    Listar();
+                    gvEspecialidades.HeaderRow.TableSection = TableRowSection.TableHeader;
+                }
             }
         }
         private void Listar() {

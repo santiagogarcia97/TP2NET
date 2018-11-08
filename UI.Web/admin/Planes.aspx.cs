@@ -39,13 +39,20 @@ namespace UI.Web {
         }
 
         protected void Page_Load(object sender, EventArgs e) {
-            if (!IsPostBack) {
-                Listar();
-                gvPlanes.HeaderRow.TableSection = TableRowSection.TableHeader;
-                ddEsp.DataValueField = "id_esp";
-                ddEsp.DataTextField = "desc_esp";
-                ddEsp.DataSource = GenerarComboBox.getEspecialidades();
-                ddEsp.DataBind();
+            if (Session["tipo"] == null || (int)Session["tipo"] != 3) {
+                Response.Clear();
+                Response.StatusCode = 404;
+                Response.End();
+            }
+            else {
+                if (!IsPostBack) {
+                    Listar();
+                    gvPlanes.HeaderRow.TableSection = TableRowSection.TableHeader;
+                    ddEsp.DataValueField = "id_esp";
+                    ddEsp.DataTextField = "desc_esp";
+                    ddEsp.DataSource = GenerarComboBox.getEspecialidades();
+                    ddEsp.DataBind();
+                }
             }
         }
         private void Listar() {

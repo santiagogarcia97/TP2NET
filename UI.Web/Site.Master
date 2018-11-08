@@ -10,7 +10,8 @@
         
         <link href="/../Content/bootstrap.min.css" rel="stylesheet">
         <link href="/../Styles/master-page.css" rel="stylesheet">
-
+        <script src="/../Scripts/jquery-3.3.1.min.js"></script>
+        <script src="/../Scripts/bootstrap.min.js"></script>
     </head>
 
     <body>
@@ -29,6 +30,9 @@
                 </button>
                 <div class="dropdown-menu-style collapse navbar-collapse" id="navbarCollapse" style="">
                     <ul class="navbar-nav mr-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/inicio.aspx">Inicio</a>
+                        </li>                        
                         <li class="nav-item dropdown" id="ddABM" runat="server">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" 
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">ABM</a>
@@ -40,13 +44,8 @@
                                 <a class="dropdown-item" href="/admin/Cursos.aspx">Cursos</a>
                                 <a class="dropdown-item" href="/admin/Usuarios.aspx">Usuarios</a>
                                 <a class="dropdown-item" href="/admin/DocentesCursos.aspx">Docentes - Cursos</a>
+                                <a class="dropdown-item" href="/admin/Inscripciones.aspx">Inscripciones</a>
                             </div>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Configuración</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Estadisticas</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Reportes</a>
@@ -60,9 +59,9 @@
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <asp:Label ID="lblUser" runat="server" Text="User"></asp:Label></a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navDropDownLink">
-                                <a class="dropdown-item" href="#">Perfil</a>
+                                <a class="dropdown-item" href="/Perfil.aspx">Perfil</a>
                                 <div class="dropdown-divider"></div>
-                                <asp:Button ID="btnLogOut" CssClass="dropdown-item" runat="server" Text="Log Out" />
+                                <asp:LinkButton ID="btnLogOut" CssClass="dropdown-item" runat="server" OnClick="btnLogOut_Click">Log out</asp:LinkButton>
                             </div>
                         </li>
                     </ul>
@@ -85,8 +84,7 @@
         </footer>
 
     </form>
-        <script src="/../Scripts/jquery-3.3.1.min.js"></script>
-        <script src="/../Scripts/bootstrap.min.js"></script>
+
     </body>
 
 </html>
