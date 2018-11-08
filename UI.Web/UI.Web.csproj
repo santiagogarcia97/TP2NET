@@ -127,6 +127,9 @@
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <None Include="packages.config" />
     <Content Include="inicio.aspx" />
+    <Content Include="inscribir-cursos.aspx" />
+    <Content Include="mis-cursos.aspx" />
+    <Content Include="mis-inscripciones.aspx" />
     <Content Include="login.aspx" />
     <Content Include="admin\Planes.aspx" />
     <Content Include="Perfil.aspx" />
@@ -206,6 +209,27 @@
     </Compile>
     <Compile Include="inicio.aspx.designer.cs">
       <DependentUpon>inicio.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="inscribir-cursos.aspx.cs">
+      <DependentUpon>inscribir-cursos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="inscribir-cursos.aspx.designer.cs">
+      <DependentUpon>inscribir-cursos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="mis-cursos.aspx.cs">
+      <DependentUpon>mis-cursos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="mis-cursos.aspx.designer.cs">
+      <DependentUpon>mis-cursos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="mis-inscripciones.aspx.cs">
+      <DependentUpon>mis-inscripciones.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="mis-inscripciones.aspx.designer.cs">
+      <DependentUpon>mis-inscripciones.aspx</DependentUpon>
     </Compile>
     <Compile Include="login.aspx.cs">
       <DependentUpon>login.aspx</DependentUpon>

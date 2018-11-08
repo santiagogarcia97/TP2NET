@@ -15,9 +15,18 @@ namespace UI.Web {
                 lblUser.Text = Session["username"].ToString();
                 if ((int)Session["tipo"] == 3) {
                     ddABM.Visible = true;
+                    ddCursos.Visible = false;
+                    MisCursos.Visible = false;
                 }
-                else {
+                else if((int)Session["tipo"] == 2) {
                     ddABM.Visible = false;
+                    ddCursos.Visible = false;
+                    MisCursos.Visible = true;
+                }
+                else if ((int)Session["tipo"] == 1) {
+                    ddABM.Visible = false;
+                    ddCursos.Visible = true;
+                    MisCursos.Visible = false;
                 }
             }
         }

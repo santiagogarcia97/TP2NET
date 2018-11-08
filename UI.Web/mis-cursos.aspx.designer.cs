@@ -10,78 +10,51 @@
 namespace UI.Web {
     
     
-    public partial class Site {
+    public partial class mis_cursos {
         
         /// <summary>
-        /// Control bodyForm.
+        /// Control UpdatePanelButtons.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm bodyForm;
+        protected global::System.Web.UI.UpdatePanel UpdatePanelButtons;
         
         /// <summary>
-        /// Control ScriptManager1.
+        /// Control btnCarga.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.ScriptManager ScriptManager1;
+        protected global::System.Web.UI.WebControls.Button btnCarga;
         
         /// <summary>
-        /// Control ddABM.
+        /// Control btnDeseleccionar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl ddABM;
+        protected global::System.Web.UI.WebControls.Button btnDeseleccionar;
         
         /// <summary>
-        /// Control ddCursos.
+        /// Control UpdatePanelGrid.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl ddCursos;
+        protected global::System.Web.UI.UpdatePanel UpdatePanelGrid;
         
         /// <summary>
-        /// Control MisCursos.
+        /// Control gvCursos.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl MisCursos;
-        
-        /// <summary>
-        /// Control lblUser.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblUser;
-        
-        /// <summary>
-        /// Control btnLogOut.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnLogOut;
-        
-        /// <summary>
-        /// Control bodyContentPlaceHolder.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder bodyContentPlaceHolder;
+        protected global::System.Web.UI.WebControls.GridView gvCursos;
     }
 }
