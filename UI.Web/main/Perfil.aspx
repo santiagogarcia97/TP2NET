@@ -74,8 +74,6 @@
         </div>          
         <hr />     
 
-        <asp:UpdatePanel ID="UpdatePanelDatos" runat="server" UpdateMode="Conditional">
-            <ContentTemplate>
                 <div class="form-group">
                     <label for="txtDirec" class="col-form-label font-weight-bold">Direccion</label>
                     <asp:TextBox ID="txtDirec" runat="server" CssClass="form-control"></asp:TextBox>
@@ -89,16 +87,24 @@
                     <asp:TextBox ID="txtTel" runat="server" CssClass="form-control"></asp:TextBox>
                 </div>
                 <br />
+
+        <asp:UpdatePanel ID="UpdatePanelDatos" runat="server" UpdateMode="Conditional">
+            <Triggers>
+                <asp:AsyncPostBackTrigger ControlID="btnGuardar"/>
+                <asp:AsyncPostBackTrigger ControlID="btnAceptar"/>
+            </Triggers>
+            <ContentTemplate>
                 <div id="alertSuccess" class="alert alert-success" runat="server" visible="false">
                     <asp:Label ID="lblPass" runat="server" Text="La contraseña ha sido cambiada" visible="false"></asp:Label>
                     <asp:Label ID="lblCambios" runat="server" Text="Los cambios se han guardado con exito" visible="false"></asp:Label>
                 </div>
             </ContentTemplate>
         </asp:UpdatePanel>
-                        <div class="form-group row float-right">
-                    <asp:Button ID="btnPass" CssClass="btn btn-outline-secondary mr-1" runat="server" Text="Cambiar contraseña" OnClick="btnPass_Click" />
-                    <asp:Button ID="btnGuardar" CssClass="btn btn-outline-success" runat="server" Text="Guardar cambios" OnClick="btnGuardar_Click" />
-                </div>
+        
+        <div class="text-right">
+            <asp:Button ID="btnPass" CssClass="btn btn-outline-secondary" runat="server" Text="Cambiar contraseña" OnClick="btnPass_Click" />
+            <asp:Button ID="btnGuardar" CssClass="btn btn-outline-success" runat="server" Text="Guardar cambios" OnClick="btnGuardar_Click"/>
+        </div>
     </div>   
 
 </asp:Content>

@@ -126,13 +126,14 @@
     <Content Include="Content\bootstrap-reboot.min.css.map" />
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <None Include="packages.config" />
-    <Content Include="inicio.aspx" />
-    <Content Include="inscribir-cursos.aspx" />
-    <Content Include="mis-cursos.aspx" />
-    <Content Include="mis-inscripciones.aspx" />
+    <Content Include="main\cargaNotas.aspx" />
+    <Content Include="main\inicio.aspx" />
+    <Content Include="main\inscribirCursos.aspx" />
+    <Content Include="main\misCursos.aspx" />
+    <Content Include="main\misInscripciones.aspx" />
     <Content Include="login.aspx" />
     <Content Include="admin\Planes.aspx" />
-    <Content Include="Perfil.aspx" />
+    <Content Include="main\Perfil.aspx" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
@@ -203,33 +204,40 @@
       <DependentUpon>Materias.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\BootstrapBundleConfig.cs" />
-    <Compile Include="inicio.aspx.cs">
+    <Compile Include="main\cargaNotas.aspx.cs">
+      <DependentUpon>cargaNotas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="main\cargaNotas.aspx.designer.cs">
+      <DependentUpon>cargaNotas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="main\inicio.aspx.cs">
       <DependentUpon>inicio.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="inicio.aspx.designer.cs">
+    <Compile Include="main\inicio.aspx.designer.cs">
       <DependentUpon>inicio.aspx</DependentUpon>
     </Compile>
-    <Compile Include="inscribir-cursos.aspx.cs">
-      <DependentUpon>inscribir-cursos.aspx</DependentUpon>
+    <Compile Include="main\inscribirCursos.aspx.cs">
+      <DependentUpon>inscribirCursos.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="inscribir-cursos.aspx.designer.cs">
-      <DependentUpon>inscribir-cursos.aspx</DependentUpon>
+    <Compile Include="main\inscribirCursos.aspx.designer.cs">
+      <DependentUpon>inscribirCursos.aspx</DependentUpon>
     </Compile>
-    <Compile Include="mis-cursos.aspx.cs">
-      <DependentUpon>mis-cursos.aspx</DependentUpon>
+    <Compile Include="main\misCursos.aspx.cs">
+      <DependentUpon>misCursos.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="mis-cursos.aspx.designer.cs">
-      <DependentUpon>mis-cursos.aspx</DependentUpon>
+    <Compile Include="main\misCursos.aspx.designer.cs">
+      <DependentUpon>misCursos.aspx</DependentUpon>
     </Compile>
-    <Compile Include="mis-inscripciones.aspx.cs">
-      <DependentUpon>mis-inscripciones.aspx</DependentUpon>
+    <Compile Include="main\misInscripciones.aspx.cs">
+      <DependentUpon>misInscripciones.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="mis-inscripciones.aspx.designer.cs">
-      <DependentUpon>mis-inscripciones.aspx</DependentUpon>
+    <Compile Include="main\misInscripciones.aspx.designer.cs">
+      <DependentUpon>misInscripciones.aspx</DependentUpon>
     </Compile>
     <Compile Include="login.aspx.cs">
       <DependentUpon>login.aspx</DependentUpon>
@@ -248,11 +256,11 @@
     <Compile Include="admin\Planes.aspx.designer.cs">
       <DependentUpon>Planes.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Perfil.aspx.cs">
+    <Compile Include="main\Perfil.aspx.cs">
       <DependentUpon>Perfil.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Perfil.aspx.designer.cs">
+    <Compile Include="main\Perfil.aspx.designer.cs">
       <DependentUpon>Perfil.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />

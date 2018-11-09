@@ -18,12 +18,16 @@ namespace UI.Web
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
-            if (Session["username"] != null && Session["tipo"] != null) {
-                MapearDeDatos();
-            }
-            else {
-                Response.Redirect("/login.aspx");
+            if (!IsPostBack) {
+                if (Session["username"] != null && Session["tipo"] != null) {
+                    alertSuccess.Visible = false;
+                    lblPass.Visible = false;
+                    lblCambios.Visible = false;
+                    MapearDeDatos();
+                }
+                else {
+                    Response.Redirect("/login.aspx");
+                }
             }
             
         }
@@ -69,35 +73,9 @@ namespace UI.Web
             txtNuevaPass1.CssClass = "form-control";
             txtNuevaPass2.CssClass = "form-control";
             txtViejaPass.CssClass = "form-control";
-            ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "Pop", "$('#ModalPass').modal('show');", true);
             UpdatePanelModal.Update();
+            ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "Pop", "$('#ModalPass').modal('show');", true);
 
-        }
-        private bool Validar() {
-            bool isvalid = true;
-
-            if(string.IsNullOrEmpty(txtTel.Text) == true || int.Parse(txtTel.Text) == 0) {
-                txtTel.CssClass = "form-control is-invalid";
-                isvalid = false;
-            }
-            else {
-                txtTel.CssClass = "form-control";
-            }
-            if (string.IsNullOrEmpty(txtDirec.Text) == true || string.IsNullOrWhiteSpace(txtDirec.Text)) {
-                txtDirec.CssClass = "form-control is-invalid";
-                isvalid = false;
-            }
-            else {
-                txtDirec.CssClass = "form-control";
-            }
-            if(!new EmailAddressAttribute().IsValid(txtEmail.Text)) {
-                txtEmail.CssClass = "form-control is-invalid";
-                isvalid = false;
-            }
-            else {
-                txtEmail.CssClass = "form-control";
-            }
-            return isvalid;
         }
 
         protected void btnAceptar_Click(object sender, EventArgs e) {
@@ -111,6 +89,7 @@ namespace UI.Web
                 lblCambios.Visible = false;
                 lblPass.Visible = true;
                 alertSuccess.Visible = true;
+                
             }
             else {
                 txtViejaPass.CssClass = "form-control is-invalid";
@@ -118,6 +97,34 @@ namespace UI.Web
                 txtNuevaPass2.CssClass = "form-control is-invalid";
             }
             UpdatePanelModal.Update();
+        }
+
+
+        private bool Validar() {
+            bool isvalid = true;
+
+            if (string.IsNullOrEmpty(txtTel.Text) == true || int.Parse(txtTel.Text) == 0) {
+                txtTel.CssClass = "form-control is-invalid";
+                isvalid = false;
+            }
+            else {
+                txtTel.CssClass = "form-control";
+            }
+            if (string.IsNullOrEmpty(txtDirec.Text) == true || string.IsNullOrWhiteSpace(txtDirec.Text)) {
+                txtDirec.CssClass = "form-control is-invalid";
+                isvalid = false;
+            }
+            else {
+                txtDirec.CssClass = "form-control";
+            }
+            if (!new EmailAddressAttribute().IsValid(txtEmail.Text)) {
+                txtEmail.CssClass = "form-control is-invalid";
+                isvalid = false;
+            }
+            else {
+                txtEmail.CssClass = "form-control";
+            }
+            return isvalid;
         }
     }
 }

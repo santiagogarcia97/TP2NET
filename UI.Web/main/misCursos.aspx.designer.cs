@@ -10,7 +10,7 @@
 namespace UI.Web {
     
     
-    public partial class mis_cursos {
+    public partial class misCursos {
         
         /// <summary>
         /// Control UpdatePanelButtons.

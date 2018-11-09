@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GenerarComboBox.cs" />
+    <Compile Include="Listado.cs" />
     <Compile Include="Hashing.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Validar.cs" />

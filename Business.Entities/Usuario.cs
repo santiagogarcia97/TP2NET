@@ -11,6 +11,12 @@ namespace Business.Entities {
         private bool _CambiaClave;
         private int _Legajo,_TipoPersona,_IDPlan;
 
+        public enum TiposPersona {
+            Alumno = 1,
+            Docente = 2,
+            Administrador = 3
+        }
+
         public string Nombre { get => _Nombre; set => _Nombre = value; }
         public string Apellido { get => _Apellido; set => _Apellido = value; }
         public string Direccion { get => _Direccion; set => _Direccion = value; }

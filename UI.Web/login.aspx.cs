@@ -18,7 +18,7 @@ namespace UI.Web {
             {
                 if (Session["username"] != null && Session["tipo"] != null)
                 {
-                    Response.Redirect("/inicio.aspx");
+                    Response.Redirect("/main/inicio.aspx");
                 }
             }
         }
@@ -29,7 +29,7 @@ namespace UI.Web {
             if(txtUser.Text.Equals(user.NombreUsuario) && Hashing.ValidatePassword(txtPassword.Text, user.Clave)) {
                 Session["username"] = user.NombreUsuario;
                 Session["tipo"] = user.TipoPersona;
-                Response.Redirect("/inicio.aspx");
+                Response.Redirect("/main/inicio.aspx");
             }
             else if(txtUser.Text.Equals(user.NombreUsuario) && !Hashing.ValidatePassword(txtPassword.Text, user.Clave)) {
                 lblBadPass.Visible = true;

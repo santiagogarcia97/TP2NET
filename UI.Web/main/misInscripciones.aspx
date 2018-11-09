@@ -1,9 +1,14 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="mis-inscripciones.aspx.cs" Inherits="UI.Web.inscripciones" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="misInscripciones.aspx.cs" Inherits="UI.Web.misInscripciones" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="bodyContentPlaceHolder" runat="server">
 
     <!-- tabla -->
     <div>
         <p class="font-weight-bold text-left h2">Mis Inscripciones</p>
+        <br />
+        <p class="text-left h5">
+            <asp:Label ID="lblAlumno" runat="server" Text="lblAlumno"></asp:Label>
+
+        </p>
     </div>
 
     <hr />

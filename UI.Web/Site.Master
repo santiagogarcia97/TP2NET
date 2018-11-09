@@ -31,7 +31,7 @@
                 <div class="dropdown-menu-style collapse navbar-collapse" id="navbarCollapse" style="">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="/inicio.aspx">Inicio</a>
+                            <a class="nav-link" href="/main/inicio.aspx">Inicio</a>
                         </li>                        
                         <li class="nav-item dropdown" id="ddABM" runat="server">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" 
@@ -51,12 +51,12 @@
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink2" 
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Materias</a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <a class="dropdown-item" href="/mis-inscripciones.aspx">Inscripto</a>
-                                <a class="dropdown-item" href="/inscribir-cursos.aspx">Inscribirse a cursado</a>
+                                <a class="dropdown-item" href="/main/misInscripciones.aspx">Inscripto</a>
+                                <a class="dropdown-item" href="/main/inscribirCursos.aspx">Inscribirse a cursado</a>
                             </div>
                         </li>
                         <li class="nav-item" runat="server" id="MisCursos">
-                            <a class="nav-link" href="/mis-cursos.aspx">Mis cursos</a>
+                            <a class="nav-link" href="/main/misCursos.aspx">Mis cursos</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Reportes</a>
@@ -70,7 +70,7 @@
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <asp:Label ID="lblUser" runat="server" Text="User"></asp:Label></a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navDropDownLink">
-                                <a class="dropdown-item" href="/Perfil.aspx">Perfil</a>
+                                <a class="dropdown-item" href="/main/Perfil.aspx">Perfil</a>
                                 <div class="dropdown-divider"></div>
                                 <asp:LinkButton ID="btnLogOut" CssClass="dropdown-item" runat="server" OnClick="btnLogOut_Click">Log out</asp:LinkButton>
                             </div>

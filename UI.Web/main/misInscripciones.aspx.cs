@@ -11,17 +11,21 @@ using System.Data;
 
 
 namespace UI.Web {
-    public partial class inscripciones : System.Web.UI.Page {
+    public partial class misInscripciones : System.Web.UI.Page {
         protected void Page_Load(object sender, EventArgs e) {
-            if (Session["tipo"] == null || (int)Session["tipo"] == 3) {
+            if (Session["tipo"] == null || (int)Session["tipo"] == 3 || (int)Session["tipo"] == 2) {
                 Response.Redirect("/inicio.aspx");
             }
             else {
                 if (!IsPostBack) {
+                    UsuarioLogic ul = new UsuarioLogic();
+                    Usuario usuario = ul.GetOne(Session["username"].ToString());
+                    lblAlumno.Text = "Estado de inscripciones de " + usuario.Apellido + ", " + usuario.Nombre + " al día " + DateTime.Now.ToString();
                     Listar();
                 }
             }
         }
+
 
         private void Listar() {
 

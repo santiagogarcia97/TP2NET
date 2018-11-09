@@ -11,7 +11,8 @@ using System.Data;
 
 
 namespace UI.Web {
-    public partial class inscribir_cursos : System.Web.UI.Page {
+    public partial class inscribirCursos : System.Web.UI.Page {
+
         private Usuario _UsuarioActual;
         private int SelectedID {
             get {
@@ -26,9 +27,13 @@ namespace UI.Web {
         public Usuario UsuarioActual { get => _UsuarioActual; set => _UsuarioActual = value; }
 
         protected void Page_Load(object sender, EventArgs e) {
-            UsuarioLogic ul = new UsuarioLogic();
-            UsuarioActual = ul.GetOne(Session["username"].ToString());
-            Listar();
+            if (!IsPostBack) {
+                SelectedID = 0;
+                ButtonState();
+                UsuarioLogic ul = new UsuarioLogic();
+                UsuarioActual = ul.GetOne(Session["username"].ToString());
+                Listar();
+            }
         }
 
         private void Listar() {
@@ -97,13 +102,28 @@ namespace UI.Web {
             }
             UpdatePanelButtons.Update();
         }
+
         protected void gvCursos_SelectedIndexChanged(object sender, EventArgs e) {
             SelectedID = (gvCursos.SelectedValue != null) ? (int)gvCursos.SelectedValue : 0;
             ButtonState();
         }
 
-        protected void btnInscribir_Click(object sender, EventArgs e) {
 
+        protected void btnInscribir_Click(object sender, EventArgs e) {
+            lblCurso.Text = SelectedID.ToString();
+            UpdatePanelModal.Update();
+            ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "Pop", "$('#ModalConfirm').modal('show');", true);
+        }
+
+        protected void btnDeseleccionar_Click(object sender, EventArgs e) {
+            gvCursos.SelectedIndex = -1;
+            gvCursos_SelectedIndexChanged(sender, e);
+            UpdatePanelGrid.Update();
+        }
+
+        protected void btnAceptar_Click(object sender, EventArgs e) {
+            UsuarioLogic ul = new UsuarioLogic();
+            UsuarioActual = ul.GetOne(Session["username"].ToString());
             AlumnoInscripcion InscripcionActual = new AlumnoInscripcion();
             InscripcionActual.IDCurso = SelectedID;
             InscripcionActual.IDAlumno = UsuarioActual.ID;
@@ -114,7 +134,7 @@ namespace UI.Web {
 
             AlumnoInscripcionLogic ail = new AlumnoInscripcionLogic();
             ail.Save(InscripcionActual);
-
+            Response.Redirect(Request.RawUrl);
         }
     }
     
