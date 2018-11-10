@@ -10,13 +10,10 @@ using Util;
 
 namespace UI.Web.main {
     public partial class cargaNotas : System.Web.UI.Page {
-   /*     public enum FormModes { Alta, Baja, Modificacion }
+
         private AlumnoInscripcion _AlumnoInscripcionActual;
         private AlumnoInscripcionLogic _AlumnoInscripcionLogic;
-        public FormModes FormMode {
-            get { return (FormModes)ViewState["FormMode"]; }
-            set { ViewState["FormMode"] = value; }
-        }
+
         public AlumnoInscripcion AlumnoInscripcionActual { get => _AlumnoInscripcionActual; set => _AlumnoInscripcionActual = value; }
         private int SelectedID {
             get {
@@ -36,14 +33,22 @@ namespace UI.Web.main {
 
         protected void Page_Load(object sender, EventArgs e) {
             if (Session["tipo"] == null || (int)Session["tipo"] != 2) {
-                Response.Clear();
-                Response.StatusCode = 404;
-                Response.End();
+                Response.Redirect("/login.aspx");
             }
             else {
-                if (!IsPostBack) {
-                    Listar();
-                    gvIns.HeaderRow.TableSection = TableRowSection.TableHeader;
+                UsuarioLogic ul = new UsuarioLogic();
+                Usuario user = ul.GetOne(Session["username"].ToString());
+                DocenteCursoLogic dcl = new DocenteCursoLogic();
+                DocenteCurso dc = dcl.GetOne(user.ID, int.Parse(Request.QueryString["curso"]));
+
+                if (dc.ID != 0) {
+                    if (!IsPostBack) {
+                        Listar();
+                        gvIns.HeaderRow.TableSection = TableRowSection.TableHeader;
+                    }
+                }
+                else {
+                    Response.Redirect("/login.aspx");
                 }
             }
         }
@@ -54,12 +59,6 @@ namespace UI.Web.main {
             ButtonState();
         }
 
-        private void EnableForm(bool enable) {
-            txtNota.Enabled = enable;
-            ddCurso.Enabled = enable;
-            ddCondicion.Enabled = enable;
-            ddAlumno.Enabled = enable;
-        }
         private void LoadForm(int id) {
             AlumnoInscripcionActual = AlumnoInscripcionLogic.GetOne(id);
 
@@ -69,14 +68,6 @@ namespace UI.Web.main {
             ddCurso.SelectedValue = AlumnoInscripcionActual.IDCurso.ToString();
             ddCondicion.SelectedValue = ((int)AlumnoInscripcionActual.Condicion).ToString();
 
-            if (this.FormMode == FormModes.Baja) {
-                modalHeader.Text = "Eliminar Inscripcion";
-                btnAceptar.Text = "Eliminar";
-            }
-            else if (this.FormMode == FormModes.Modificacion) {
-                modalHeader.Text = "Editar Inscripcion";
-                btnAceptar.Text = "Guardar";
-            }
             UpdatePanelModal.Update();
         }
 
@@ -91,7 +82,7 @@ namespace UI.Web.main {
         }
         private void ButtonState() {
 
-            if (SelectedID == 0) {
+ /*           if (SelectedID == 0) {
                 btnEditar.CssClass = "btn btn-outline-secondary btn-sm";
                 btnEditar.Enabled = false;
                 btnEliminar.CssClass = "btn btn-outline-secondary btn-sm";
@@ -104,7 +95,7 @@ namespace UI.Web.main {
                 btnEliminar.CssClass = "btn btn-outline-success btn-sm";
                 btnEliminar.Enabled = true;
                 btnDeseleccionar.Visible = true;
-            }
+            }*/
             UpdatePanelButtons.Update();
         }
         protected void gvIns_SelectedIndexChanged(object sender, EventArgs e) {
@@ -114,17 +105,17 @@ namespace UI.Web.main {
 
         protected void btnEditar_Click(object sender, EventArgs e) {
             SetFormControlCSS();
-            EnableForm(true);
-            FormMode = FormModes.Modificacion;
+     //       EnableForm(true);
+        
             LoadForm(this.SelectedID);
             ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "Pop", "$('#ModalInscripciones').modal('show');", true);
         }
 
 
         protected void btnEliminar_Click(object sender, EventArgs e) {
-            FormMode = FormModes.Baja;
+          
             SetFormControlCSS();
-            EnableForm(false);
+   //         EnableForm(false);
             LoadForm(this.SelectedID);
             ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "Pop", "$('#ModalInscripciones').modal('show');", true);
         }
@@ -136,9 +127,9 @@ namespace UI.Web.main {
         }
 
         protected void btnAceptar_Click(object sender, EventArgs e) {
-            if (Validar() == true) {
-                switch (FormMode) {
-                    case FormModes.Baja:
+    /*        if (Validar() == true) {
+              switch (FormMode) {
+                   case FormModes.Baja:
                         AlumnoInscripcionActual = new AlumnoInscripcion {
                             ID = SelectedID,
                             State = BusinessEntity.States.Deleted
@@ -166,7 +157,7 @@ namespace UI.Web.main {
                 ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "Pop", "$('#ModalInscripciones').modal('hide');", true);
                 UpdatePanelGrid.Update();
             }
-            UpdatePanelModal.Update();
+            UpdatePanelModal.Update();*/
         }
         private bool Validar() {
             bool isvalid = true;
@@ -220,6 +211,6 @@ namespace UI.Web.main {
             UpdatePanelModal.Update();
         }
 
-        */
+        
     }
 }

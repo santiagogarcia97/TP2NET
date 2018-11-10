@@ -81,7 +81,7 @@
                 <asp:GridView ID="gvDC" runat="server" AutoGenerateColumns="False"
                     SelectedRowStyle-BackColor="#343a40"
                     SelectedRowStyle-ForeColor="White"
-                    DataKeyNames="ID" OnLoad="Page_Load"
+                    DataKeyNames="ID" 
                     CssClass="table table-bordered table-sm table-responsive table-hover" 
                     OnSelectedIndexChanged="gvDC_SelectedIndexChanged" >
                 <Columns>

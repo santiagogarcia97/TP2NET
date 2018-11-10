@@ -109,6 +109,34 @@ namespace Data.Database
             }
             return dc;
         }
+        public DocenteCurso GetOne(int IDDocente, int IDCurso) {
+            DocenteCurso dc = new DocenteCurso();
+            try {
+                this.OpenConnection();
+                SqlCommand cmdDocenteCurso = new SqlCommand("SELECT * FROM docentes_cursos WHERE id_docente=@iddocente AND id_curso=@idcurso", SqlConn);
+                cmdDocenteCurso.Parameters.Add("@iddocente", SqlDbType.Int).Value = IDDocente;
+                cmdDocenteCurso.Parameters.Add("@idcurso", SqlDbType.Int).Value = IDCurso;
+                SqlDataReader drDocenteCurso = cmdDocenteCurso.ExecuteReader();
+
+                if (drDocenteCurso.Read()) {
+                    dc.ID = (int)drDocenteCurso["id_dictado"];
+                    dc.IDCurso = (int)drDocenteCurso["id_curso"];
+                    dc.IDDocente = (int)drDocenteCurso["id_docente"];
+                    dc.Habilitado = (bool)drDocenteCurso["dc_hab"];
+                    dc.Cargo = (DocenteCurso.TipoCargos)drDocenteCurso["cargo"];
+                }
+                drDocenteCurso.Close();
+            }
+            catch (Exception Ex) {
+                Exception ExcepcionManejada =
+                new Exception("Error al recuperar DocenteCurso", Ex);
+                throw ExcepcionManejada;
+            }
+            finally {
+                this.CloseConnection();
+            }
+            return dc;
+        }
 
         public void Delete(DocenteCurso dc) {
             try{

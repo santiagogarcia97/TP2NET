@@ -40,6 +40,15 @@ namespace UI.Web {
         protected global::System.Web.UI.WebControls.Label lblCurso;
         
         /// <summary>
+        /// Control btnAceptar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnAceptar;
+        
+        /// <summary>
         /// Control btnCancelar.
         /// </summary>
         /// <remarks>
@@ -49,40 +58,13 @@ namespace UI.Web {
         protected global::System.Web.UI.WebControls.Button btnCancelar;
         
         /// <summary>
-        /// Control UpdatePanelButtons.
+        /// Control lblEstado.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanelButtons;
-        
-        /// <summary>
-        /// Control btnInscribir.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnInscribir;
-        
-        /// <summary>
-        /// Control btnDeseleccionar.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnDeseleccionar;
-        
-        /// <summary>
-        /// Control UpdatePanelGrid.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanelGrid;
+        protected global::System.Web.UI.WebControls.Label lblEstado;
         
         /// <summary>
         /// Control gvCursos.
@@ -92,5 +74,14 @@ namespace UI.Web {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gvCursos;
+        
+        /// <summary>
+        /// Control divSinCursos.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divSinCursos;
     }
 }

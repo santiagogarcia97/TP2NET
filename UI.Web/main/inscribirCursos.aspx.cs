@@ -29,9 +29,9 @@ namespace UI.Web {
         protected void Page_Load(object sender, EventArgs e) {
             if (!IsPostBack) {
                 SelectedID = 0;
-                ButtonState();
                 UsuarioLogic ul = new UsuarioLogic();
                 UsuarioActual = ul.GetOne(Session["username"].ToString());
+                lblEstado.Text = "Cursos habilitados para " + UsuarioActual.Apellido + ", " + UsuarioActual.Nombre + " al día " + DateTime.Now.ToString();
                 Listar();
             }
         }
@@ -41,13 +41,6 @@ namespace UI.Web {
             CursoLogic cl = new CursoLogic();
             List<Curso> cursos = cl.GetAll();
 
-            //Se crea el DataTable que va a ser el DataSource del dgv
-            DataTable Listado = new DataTable();
-            Listado.Columns.Add("ID", typeof(int));
-            Listado.Columns.Add("AnioCalendario", typeof(int));
-            Listado.Columns.Add("Cupo", typeof(string));
-            Listado.Columns.Add("Curso", typeof(string));
-
             MateriaLogic ml = new MateriaLogic();
             List<Materia> materias = ml.GetAll();
             ComisionLogic coml = new ComisionLogic();
@@ -55,70 +48,49 @@ namespace UI.Web {
 
             //Cargo las materias en la que ya esta inscripto en una nueva lista
             AlumnoInscripcionLogic ail = new AlumnoInscripcionLogic();
-            List<AlumnoInscripcion> inscripciones = ail.GetAllFromUser(UsuarioActual.ID);
+            List<AlumnoInscripcion> inscripciones = ail.GetAllFromUser(UsuarioActual.ID); //Obtengo todas las insc del alumno
             List<Materia> matInscripto = new List<Materia>();
+
             foreach (AlumnoInscripcion ai in inscripciones) {
                 Curso cur = cursos.First(x => x.ID == ai.IDCurso);
                 Materia mat = materias.First(x => x.ID == cur.IDMateria);
-                matInscripto.Add(mat);
+                if(ai.Condicion != AlumnoInscripcion.Condiciones.Libre) matInscripto.Add(mat);// Creo una list con las materias a las que se puede inscribir, sin contar las inscripciones "libres"
             }
 
-            foreach (Curso cur in cursos) {
+            List<Curso> cursosHabilitado = new List<Curso>(); //creo la lista de cursos que se van a mostrar
 
+            foreach (Curso cur in cursos) {
                 // Valido que no este inscripto a la materia
                 Materia mat = materias.FirstOrDefault(x => x.ID == cur.IDMateria);
-                if (!matInscripto.Exists(x => x.ID == mat.ID)) {
+                if (!matInscripto.Exists(x => x.ID == mat.ID) &&    //Para poder inscribirme a un curso no puedo estar inscripto a otro de la misma materia a menos que esté "libre"
+                    !inscripciones.Exists(x => x.IDCurso == cur.ID && x.Condicion == AlumnoInscripcion.Condiciones.Libre)) {//Si estoy libre no puedo inscribirme a ese mismo curso
 
                     //Solo se muestran los cursos correspondientes al mismo plan del usuario
                     if (mat.IDPlan == UsuarioActual.IDPlan) {
-
-                        DataRow Linea = Listado.NewRow();
-
-                        Linea["ID"] = cur.ID;
-                        Linea["AnioCalendario"] = cur.AnioCalendario.ToString();
-                        Linea["Cupo"] = ail.GetCantCupo(cur.ID) + "/" + cur.Cupo;
-
-                        Comision com = comisiones.FirstOrDefault(x => x.ID == cur.IDComision);
-                        Linea["Curso"] = com.Descripcion + " - " + mat.Descripcion;
-                        Listado.Rows.Add(Linea);
+                        if(cur.Cupo > ail.GetCantCupo(cur.ID))
+                            cursosHabilitado.Add(cur);
                     }
                 }
             }
-            gvCursos.DataSource = Listado;
-            gvCursos.DataBind();
 
-        }
-        private void ButtonState() {
+            cursos = null; materias = null; comisiones = null; //para liberar memoria
 
-            if (SelectedID == 0) {
-                btnInscribir.CssClass = "btn btn-outline-secondary btn-sm";
-                btnInscribir.Enabled = false;
-                btnDeseleccionar.Visible = false;
+            if(cursosHabilitado.Count == 0) {
+                divSinCursos.Visible = true;
             }
             else {
-                btnInscribir.CssClass = "btn btn-outline-success btn-sm";
-                btnInscribir.Enabled = true;
-                btnDeseleccionar.Visible = true;
+                gvCursos.DataSource = Listado.Generar(cursosHabilitado); // paso la lista de cursos para que me devuelva el datatable 
+                gvCursos.DataBind();
             }
-            UpdatePanelButtons.Update();
+
         }
 
         protected void gvCursos_SelectedIndexChanged(object sender, EventArgs e) {
             SelectedID = (gvCursos.SelectedValue != null) ? (int)gvCursos.SelectedValue : 0;
-            ButtonState();
-        }
-
-
-        protected void btnInscribir_Click(object sender, EventArgs e) {
-            lblCurso.Text = SelectedID.ToString();
+            
+            lblCurso.Text = gvCursos.SelectedRow.Cells[2].Text;
             UpdatePanelModal.Update();
             ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "Pop", "$('#ModalConfirm').modal('show');", true);
-        }
-
-        protected void btnDeseleccionar_Click(object sender, EventArgs e) {
-            gvCursos.SelectedIndex = -1;
-            gvCursos_SelectedIndexChanged(sender, e);
-            UpdatePanelGrid.Update();
         }
 
         protected void btnAceptar_Click(object sender, EventArgs e) {

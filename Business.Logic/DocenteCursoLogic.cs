@@ -27,6 +27,9 @@ namespace Business.Logic {
         public DocenteCurso GetOne(int id) {
             return DocenteCursoData.GetOne(id);
         }
+        public DocenteCurso GetOne(int IDDocente, int IDCurso) {
+            return DocenteCursoData.GetOne(IDDocente, IDCurso);
+        }
 
         public void Save(DocenteCurso dc) {
             DocenteCursoData.Save(dc);

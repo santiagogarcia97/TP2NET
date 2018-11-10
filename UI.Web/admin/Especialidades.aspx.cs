@@ -173,7 +173,6 @@ namespace UI.Web.admin {
                 UpdatePanelGrid.Update();
                 UpdatePanelModal.Update();
             }
-
         }
 
         private bool Validar() {

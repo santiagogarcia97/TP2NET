@@ -25,10 +25,14 @@ namespace UI.Web {
             }
         }
         protected void Page_Load(object sender, EventArgs e) {
-            if (!IsPostBack) {
+            if(Session["username"] == null || Session["tipo"] == null || (int)Session["tipo"] != 2) {
+                Response.Redirect("/login.aspx");
+            }
+            else { 
                 SelectedID = 0;
                 UserLogic = new UsuarioLogic();
                 UsuarioActual = UserLogic.GetOne(Session["username"].ToString());
+                lblCurso.Text = "Cursos de " + UsuarioActual.Apellido + ", " + UsuarioActual.Nombre + " al día " + DateTime.Now.ToString();
                 Listar();
             }
         }
@@ -38,26 +42,8 @@ namespace UI.Web {
             gvCursos.DataSource = cl.GetListado(UsuarioActual);
             gvCursos.DataBind();
         }
-        private void ButtonState() {
-
-            if (SelectedID == 0) {
-                btnCarga.CssClass = "btn btn-outline-secondary btn-sm";
-                btnCarga.Enabled = false;
-                btnDeseleccionar.Visible = false;
-            }
-            else {
-                btnCarga.CssClass = "btn btn-outline-success btn-sm";
-                btnCarga.Enabled = true;
-                btnDeseleccionar.Visible = true;
-            }
-            UpdatePanelButtons.Update();
-        }
         protected void gvCursos_SelectedIndexChanged(object sender, EventArgs e) {
             SelectedID = (gvCursos.SelectedValue != null) ? (int)gvCursos.SelectedValue : 0;
-            ButtonState();
-        }
-
-        protected void btnCarga_Click(object sender, EventArgs e) {
             Response.Redirect(String.Format("/main/cargaNotas.aspx?curso={0}", SelectedID));
         }
     }

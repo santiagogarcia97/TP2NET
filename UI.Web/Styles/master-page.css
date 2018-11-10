@@ -8,6 +8,7 @@ html {
 
 body {
     margin-bottom: 60px; /* Margin bottom by footer height */
+    background-color: white;
 }
 
 .dropdown-menu-style {
@@ -21,9 +22,10 @@ body {
     padding: 20px;
 }*/
 
-.grid-view{
+.grid-view {
     text-align: center;
     padding-bottom: 20px;
+
 }
 
 

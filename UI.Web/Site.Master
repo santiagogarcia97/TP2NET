@@ -22,7 +22,7 @@
         
         <!-- barra superior -->     
         <header>
-            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
                 <a class="navbar-brand mb-0 h1" href="#">Academia</a>
                 <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" 
                     data-target="#navbarCollapse" >
@@ -63,7 +63,6 @@
                         </li>
                     </ul>
 
-                    <!-- PROFILE DROPDOWN - scrolling off the page to the right -->
                     <ul class="navbar-nav ">
                         <li class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" id="navDropDownLink" 
@@ -80,11 +79,12 @@
                 </div>
             </nav>
         </header>
-        
-        <!-- container --> 
+        <!-- fin de la barra superior -->     
+
+        <!-- container para los webforms --> 
         <div class="container main">
-                    <asp:ContentPlaceHolder ID="bodyContentPlaceHolder" runat="server">
-                    </asp:ContentPlaceHolder>
+            <asp:ContentPlaceHolder ID="bodyContentPlaceHolder" runat="server">
+            </asp:ContentPlaceHolder>
         </div>
         
         <!-- pie de pagina --> 

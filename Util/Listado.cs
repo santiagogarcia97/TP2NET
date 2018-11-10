@@ -19,8 +19,8 @@ namespace Util {
         private static DocenteCursoLogic _DCLogic;
 
         private static UsuarioLogic UserLogic { get { if (_UserLogic == null) _UserLogic = new UsuarioLogic(); return _UserLogic; } }
-        private static EspecialidadLogic EspLogic { get { if (_EspLogic == null) _EspLogic = new EspecialidadLogic(); return EspLogic; } }
-        private static PlanLogic PlanLogic { get { if (_PlanLogic == null) _PlanLogic = new PlanLogic(); return PlanLogic; } }
+        private static EspecialidadLogic EspLogic { get { if (_EspLogic == null) _EspLogic = new EspecialidadLogic(); return _EspLogic; } }
+        private static PlanLogic PlanLogic { get { if (_PlanLogic == null) _PlanLogic = new PlanLogic(); return _PlanLogic; } }
         private static MateriaLogic MatLogic { get { if (_MatLogic == null) _MatLogic = new MateriaLogic(); return _MatLogic; } }
         private static ComisionLogic ComLogic { get { if (_ComLogic == null) _ComLogic = new ComisionLogic(); return _ComLogic; } }
         private static CursoLogic CursoLogic { get { if (_CursoLogic == null) _CursoLogic = new CursoLogic(); return _CursoLogic; } }
@@ -65,7 +65,42 @@ namespace Util {
             }
             return Listado;
         }
+        public static DataTable Generar(List<Curso> cursos) {
 
+            DataTable Listado = new DataTable();
+            Listado.Columns.Add("ID", typeof(int));
+            Listado.Columns.Add("AnioCalendario", typeof(int));
+            Listado.Columns.Add("Cupo", typeof(string));
+            Listado.Columns.Add("Curso", typeof(string));
+            Listado.Columns.Add("Materia", typeof(string));
+            Listado.Columns.Add("Comision", typeof(string));
+            Listado.Columns.Add("Plan", typeof(string));
+
+            List<Especialidad> especialidades = EspLogic.GetAll();
+            List<Plan> planes = PlanLogic.GetAll();
+            List<Materia> materias = MatLogic.GetAll();
+            List<Comision> comisiones = ComLogic.GetAll();
+
+            foreach (Curso cur in cursos) {
+                DataRow Linea = Listado.NewRow();
+
+                Linea["ID"] = cur.ID;
+                Linea["AnioCalendario"] = cur.AnioCalendario;
+                Linea["Cupo"] = AILogic.GetCantCupo(cur.ID) + "/" + cur.Cupo;
+                Comision com = comisiones.FirstOrDefault(x => x.ID == cur.IDComision);
+                Linea["Comision"] = com.Descripcion;
+                Materia materia = materias.FirstOrDefault(x => x.ID == cur.IDMateria);
+                Linea["Materia"] = materia.Descripcion;
+                Plan plan = planes.FirstOrDefault(x => x.ID == materia.IDPlan);
+                Especialidad esp = especialidades.FirstOrDefault(x => x.ID == plan.IDEspecialidad);
+                Linea["Plan"] = esp.Descripcion + " - " + plan.Descripcion;
+                Linea["Curso"] = com.Descripcion + " - " + materia.Descripcion;
+
+                Listado.Rows.Add(Linea);
+            }
+
+            return Listado;
+        }
 
 
 

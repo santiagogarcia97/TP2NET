@@ -43,7 +43,7 @@
                 </div>
 
                 <div class="modal-footer" runat="server">
-                    <asp:Button ID="btnAceptar" runat="server" Text="btnAceptar" class="btn btn-primary" OnClick="btnAceptar_Click" />
+                    <asp:Button ID="btnAceptar" runat="server" Text="btnAceptar" class="btn btn-primary"  />
                     <asp:Button ID="btnCancelar" runat="server" Text="Cerrar" class="btn btn-secondary" data-dismiss="modal" />
                 </div>
             </ContentTemplate>
@@ -68,7 +68,7 @@
                 <asp:Button ID="btnCarga" Text="Editar" runat="server"
                     CssClass="btn btn-outline-secondary btn-sm" Enabled="false"/>
                 <asp:Button ID="btnDeseleccionar" CssClass="btn btn-outline-danger btn-sm" runat="server" 
-                    Visible="false" Text="x" OnClick="btnDeseleccionar_Click" />
+                    Visible="false" Text="x"/>
             </ContentTemplate>
         </asp:UpdatePanel>
        </p>    
@@ -84,9 +84,9 @@
                 <asp:GridView ID="gvIns" runat="server" AutoGenerateColumns="False"
                     SelectedRowStyle-BackColor="#343a40"
                     SelectedRowStyle-ForeColor="White"
-                    DataKeyNames="ID" OnLoad="Page_Load"
+                    DataKeyNames="ID" 
                     CssClass="table table-bordered table-sm table-responsive table-hover" 
-                    OnSelectedIndexChanged="gvIns_SelectedIndexChanged" >
+                    >
                 <Columns>
                     <asp:BoundField HeaderText="ID" DataField="Id" />
                     <asp:BoundField HeaderText="Alumno" DataField="Alumno" ItemStyle-Width="40%"/>
