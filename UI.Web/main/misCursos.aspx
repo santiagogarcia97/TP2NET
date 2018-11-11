@@ -16,8 +16,6 @@
 
             <ContentTemplate>
                 <asp:GridView ID="gvCursos" runat="server" AutoGenerateColumns="False"
-                    SelectedRowStyle-BackColor="#343a40"
-                    SelectedRowStyle-ForeColor="White"
                     DataKeyNames="ID"
                     CssClass="table table-bordered table-sm table-responsive table-hover" 
                     OnSelectedIndexChanged="gvCursos_SelectedIndexChanged">
@@ -28,12 +26,17 @@
                         <asp:BoundField HeaderText="Comision" DataField="Comision" ItemStyle-Width="10%" />
                         <asp:BoundField HeaderText="Cupo" DataField="Cupo" ItemStyle-Width="10%" />
                         <asp:BoundField HeaderText="Plan" DataField="Plan" ItemStyle-Width="30%" />
-                        <asp:CommandField SelectText="Seleccionar" ShowSelectButton="True" />
+                        <asp:CommandField SelectText="Ver" ShowSelectButton="True" />
                     </Columns>
                 <HeaderStyle CssClass="thead-light" />
                 </asp:GridView>
             </ContentTemplate>
         </asp:UpdatePanel>
+    </div>
+    
+    <div runat="server" id="divSinCursos" visible="false">
+        <br />
+        <p class="text-center">No hay cursos disponibles</p>
     </div>
 
 </asp:Content>

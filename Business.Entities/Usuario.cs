@@ -9,7 +9,8 @@ namespace Business.Entities {
         private string _Nombre,_Apellido,_Direccion,_Email,_Telefono,_NombreUsuario,_Clave;
         private DateTime _FechaNacimiento;
         private bool _CambiaClave;
-        private int _Legajo,_TipoPersona,_IDPlan;
+        private int _Legajo,_IDPlan;
+        private TiposPersona _TipoPersona;
 
         public enum TiposPersona {
             Alumno = 1,
@@ -27,7 +28,7 @@ namespace Business.Entities {
         public DateTime FechaNacimiento { get => _FechaNacimiento; set => _FechaNacimiento = value; }
         public bool CambiaClave { get => _CambiaClave; set => _CambiaClave = value; }
         public int Legajo { get => _Legajo; set => _Legajo = value; }
-        public int TipoPersona { get => _TipoPersona; set => _TipoPersona = value; }
+        public TiposPersona TipoPersona { get => _TipoPersona; set => _TipoPersona = value; }
         public int IDPlan { get => _IDPlan; set => _IDPlan = value; }
     }
 

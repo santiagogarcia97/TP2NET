@@ -10,6 +10,7 @@ namespace Business.Entities
     {
 
         public enum States { Deleted, New, Modified, Unmodified }
+
         private int _ID;
         private States _State;
         private bool _Habilitado;

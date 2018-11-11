@@ -11,7 +11,7 @@ namespace Business.Entities {
         private int _IDCurso;
         private int _Nota;
 
-        public enum Condiciones { Regular, Aprobado, Cursando, Libre}
+        public enum Condiciones { Regular = 1, Aprobado = 2, Cursando = 3, Libre = 4}
 
         public Condiciones Condicion {
             get { return _Condicion; }

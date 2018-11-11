@@ -53,7 +53,7 @@ namespace UI.Web.admin {
         }
         private void Listar() {
             Usuario user = new Usuario();
-            user.TipoPersona = 3;
+            user.TipoPersona = Usuario.TiposPersona.Administrador;
 
             gvCursos.DataSource = CursoLogic.GetListado(user);
             gvCursos.DataBind();

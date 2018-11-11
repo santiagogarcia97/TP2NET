@@ -128,7 +128,7 @@ namespace UI.Desktop {
                 UsuarioActual.Telefono = txtTel.Text;
                 UsuarioActual.Email = txtEmail.Text;
                 UsuarioActual.NombreUsuario = txtNombreUsuario.Text;
-                UsuarioActual.TipoPersona = (int)cbxTipo.SelectedValue;
+                UsuarioActual.TipoPersona = (Usuario.TiposPersona)cbxTipo.SelectedValue;
                 UsuarioActual.IDPlan = (int)cbxPlan.SelectedValue;
 
                 if (Modo == ModoForm.Alta) {

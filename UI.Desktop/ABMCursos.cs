@@ -22,7 +22,7 @@ namespace UI.Desktop {
         }
         public ABMCursos(Usuario user) : this() {
             UsuarioActual = user;
-            if (UsuarioActual.TipoPersona == 2) {
+            if ((int)UsuarioActual.TipoPersona == 2) {
                 tsbEliminar.Visible = false;
                 tsbNuevo.Visible = false;
             }
@@ -55,11 +55,11 @@ namespace UI.Desktop {
             if (this.dgvCursos.SelectedRows.Count != 0)
             {
                 int ID = (int)this.dgvCursos.SelectedRows[0].Cells["id"].Value;
-                if (UsuarioActual.TipoPersona == 3) {
+                if ((int)UsuarioActual.TipoPersona == 3) {
                     ABMCursosDesktop cursoDesktop = new ABMCursosDesktop(ID, ApplicationForm.ModoForm.Modificacion);
                     cursoDesktop.ShowDialog();
                 }
-                else if(UsuarioActual.TipoPersona == 2) {
+                else if((int)UsuarioActual.TipoPersona == 2) {
                     MisInscripciones ai = new MisInscripciones(UsuarioActual, ID);
                     ai.ShowDialog();                   
                 }

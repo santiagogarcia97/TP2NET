@@ -91,12 +91,12 @@ namespace Util {
             DataTable dtCondiciones = new DataTable();
             dtCondiciones.Columns.Add("id_cond", typeof(int));
             dtCondiciones.Columns.Add("desc_cond", typeof(string));
-            dtCondiciones.Rows.Add(new object[] { 4, string.Empty });
+            dtCondiciones.Rows.Add(new object[] { 0, string.Empty });
 
-            dtCondiciones.Rows.Add(new object[] { 0, "Regular" });
-            dtCondiciones.Rows.Add(new object[] { 1, "Aprobado" });
-            dtCondiciones.Rows.Add(new object[] { 2, "Cursando" });
-            dtCondiciones.Rows.Add(new object[] { 3, "Libre" });
+            dtCondiciones.Rows.Add(new object[] { 1, "Regular" });
+            dtCondiciones.Rows.Add(new object[] { 2, "Aprobado" });
+            dtCondiciones.Rows.Add(new object[] { 3, "Cursando" });
+            dtCondiciones.Rows.Add(new object[] { 4, "Libre" });
 
             return dtCondiciones;
         }
@@ -143,7 +143,7 @@ namespace Util {
             dtDocentes.Rows.Add(new object[] { 0, string.Empty });
 
             UsuarioLogic ul = new UsuarioLogic();
-            List<Usuario> usuarios = ul.GetAll().Where(x => x.TipoPersona == 2).ToList();
+            List<Usuario> usuarios = ul.GetAll().Where(x => (int)x.TipoPersona == 2).ToList();
 
             foreach (Usuario docente in usuarios) {
                 dtDocentes.Rows.Add(new object[] { docente.ID, docente.Legajo + " - " + docente.Apellido + ", " + docente.Nombre });

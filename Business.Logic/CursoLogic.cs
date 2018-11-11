@@ -36,7 +36,7 @@ namespace Business.Logic {
         public DataTable GetListado(Usuario user) {
 
             List<Curso> cursos = new List<Curso>();
-            if (user.TipoPersona == 2) {
+            if ((int)user.TipoPersona == 2) {
                 DocenteCursoLogic dcl = new DocenteCursoLogic();
                 List<DocenteCurso> dclist = dcl.GetAllFromUser(user.ID);
 

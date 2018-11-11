@@ -24,7 +24,7 @@ namespace UI.Desktop{
         }
         public MisInscripciones(Usuario user) : this() {
             UsuarioActual = user;
-            if(UsuarioActual.TipoPersona == 1) {
+            if((int)UsuarioActual.TipoPersona == 1) {
                 tcAlumnoInscripciones.TopToolStripPanel.Visible = false;
             }
         }
@@ -44,13 +44,13 @@ namespace UI.Desktop{
 
             AlumnoInscripcionLogic ins = new AlumnoInscripcionLogic();
             List<AlumnoInscripcion> inscripciones = new List<AlumnoInscripcion>();
-            if (UsuarioActual.TipoPersona == 1) {
+            if ((int)UsuarioActual.TipoPersona == 1) {
                 inscripciones = ins.GetAll().Where(x => x.IDAlumno == UsuarioActual.ID).ToList();
             }
-            else if (UsuarioActual.TipoPersona == 2) {
+            else if ((int)UsuarioActual.TipoPersona == 2) {
                 inscripciones = ins.GetAllFromCurso(IDCurso);
             }
-            else if (UsuarioActual.TipoPersona == 3) {
+            else if ((int)UsuarioActual.TipoPersona == 3) {
                 inscripciones = ins.GetAll();
             }
             if (inscripciones.Count() == 0){

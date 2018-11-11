@@ -102,7 +102,45 @@ namespace Util {
             return Listado;
         }
 
+        public static DataTable Generar(List<Usuario> users)
+        {
 
+            DataTable Listado = new DataTable();
+            Listado.Columns.Add("ID", typeof(int));
+            Listado.Columns.Add("NombreUsuario", typeof(string));
+            Listado.Columns.Add("Nombre", typeof(string));
+            Listado.Columns.Add("Apellido", typeof(string));
+            Listado.Columns.Add("Email", typeof(string));
+            Listado.Columns.Add("Direccion", typeof(string));
+            Listado.Columns.Add("Telefono", typeof(string));
+            Listado.Columns.Add("FechaNac", typeof(string));
+            Listado.Columns.Add("Legajo", typeof(int));
+            Listado.Columns.Add("Tipo", typeof(string));
+            Listado.Columns.Add("Plan", typeof(string));
+
+            foreach (Usuario user in users) {
+                DataRow Linea = Listado.NewRow();
+
+                Linea["ID"] = user.ID;
+                Linea["NombreUsuario"] = user.NombreUsuario;
+                Linea["Nombre"] = user.Nombre;
+                Linea["Apellido"] = user.Apellido;
+                Linea["Email"] = user.Email;
+                Linea["Direccion"] = user.Direccion;
+                Linea["Telefono"] = user.Telefono;
+                Linea["FechaNac"] = user.FechaNacimiento.ToString("dd/MM/yyyy");
+                Linea["Legajo"] = user.Legajo;
+                Linea["Tipo"] = user.TipoPersona.ToString();
+
+                Plan plan = PlanLogic.GetOne(user.IDPlan);
+                Especialidad esp = EspLogic.GetOne(plan.IDEspecialidad);
+                Linea["Plan"] = esp.Descripcion + " - " + plan.Descripcion;
+
+                Listado.Rows.Add(Linea);
+            }
+                        
+            return Listado;
+        }
 
 
 

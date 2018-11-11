@@ -59,7 +59,7 @@
 
     <div runat="server" id="divSinCursos" visible="false">
         <br />
-        <p>No hay cursos disponibles</p>
+        <p class="text-center">No hay cursos disponibles</p>
     </div>
 
 </asp:Content>

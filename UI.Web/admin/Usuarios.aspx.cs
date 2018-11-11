@@ -16,16 +16,13 @@ namespace UI.Web {
     public partial class Usuarios : System.Web.UI.Page {
 
         public enum FormModes { Alta, Baja, Modificacion }
-
+        private Usuario _UsuarioActual;
+        private UsuarioLogic _UserLogic;
         public FormModes FormMode {
             get { return (FormModes)ViewState["FormMode"]; }
             set { ViewState["FormMode"] = value; }
         }
-
-        private Usuario Entity {
-            get;
-            set;
-        }
+        public Usuario UsuarioActual { get => _UsuarioActual; set => _UsuarioActual = value; }
 
         private int SelectedID {
             get {
@@ -37,213 +34,277 @@ namespace UI.Web {
             }
         }
 
-
-        private bool IsEntitySelected {
-            get { return (SelectedID != 0); }
-        }
-
-        private UsuarioLogic _logic;
-        private UsuarioLogic Logic {
+        public UsuarioLogic UserLogic {
             get {
-                if (_logic == null) _logic = new UsuarioLogic();
-                return _logic;
+                if (_UserLogic == null) { _UserLogic = new UsuarioLogic(); }
+                return _UserLogic;
             }
         }
 
-        private void LoadGrid() {
-
-            gridView.DataSource = Logic.GetAll();
-            gridView.DataBind();
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (Session["tipo"] == null || (int)Session["tipo"] != 3) {
+                Response.Clear();
+                Response.StatusCode = 404;
+                Response.End();
+            }
+            else {
+                if (!IsPostBack) {
+                    Listar();
+                    gvUsuarios.HeaderRow.TableSection = TableRowSection.TableHeader;
+     //               ddEsp.DataValueField = "id_esp";
+       //             ddEsp.DataTextField = "desc_esp";
+         //           ddEsp.DataSource = GenerarComboBox.getEspecialidades();
+           //         ddEsp.DataBind();
+                }
+            }
         }
+        private void Listar()
+        {
+            List<Usuario> users = UserLogic.GetAll();
 
-
-        protected void Page_Load(object sender, EventArgs e) {
-            LoadGrid();
-
+            gvUsuarios.DataSource = Listado.Generar(users);
+            gvUsuarios.DataBind();
+            gvUsuarios.SelectedIndex = -1;
+ //           ButtonState();
         }
-
-        protected void gridView_SelectedIndexChanged(object sender, EventArgs e) {
-            SelectedID = (int)gridView.SelectedValue;
+/*         private void ClearForm()
+        {
+            txtID.Text = "";
+            txtAnio.Text = DateTime.Today.Year.ToString();
+            ddPlan.SelectedValue = 0.ToString();
+            ddEsp.SelectedValue = 0.ToString();
+            ddCom.SelectedValue = 0.ToString();
+            ddMat.SelectedValue = 0.ToString();
+            txtCupo.Text = 0.ToString();
+            modalHeader.Text = "Nuevo Curso";
+            btnAceptar.Text = "Crear";
+            UpdatePanelModal.Update();
         }
-
-        private void LoadForm(int id) {
-            Entity = Logic.GetOne(id);
-            IDLabel.Text = "ID: " + id.ToString();
-            nombreTextBox.Text = Entity.Nombre;
-            apellidoTextBox.Text = Entity.Apellido;
-            emailTextBox.Text = Entity.Email;
-            habilitadoCheckBox.Checked = Entity.Habilitado;
-            nombreUsuarioTextBox.Text = Entity.NombreUsuario;
-            fechaTextBox.Text = Entity.FechaNacimiento.ToString("dd/MM/yyyy");
-            LegajoTextBox.Text = Entity.Legajo.ToString();
-            direccionTextBox.Text = Entity.Direccion;
-            telefonoTextBox.Text = Entity.Telefono;
-            GenerarEsp();
-
+       private void EnableForm(bool enable)
+        {
+            txtCupo.Enabled = enable;
+            txtAnio.Enabled = enable;
+            ddPlan.Enabled = enable;
+            ddEsp.Enabled = enable;
+            ddMat.Enabled = enable;
+            ddCom.Enabled = enable;
+        }
+        private void LoadForm(int id)
+        {
+            CursoActual = CursoLogic.GetOne(id);
+            MateriaLogic ml = new MateriaLogic();
+            Materia mat = ml.GetOne(CursoActual.IDMateria);
             PlanLogic pl = new PlanLogic();
-            Plan plan = pl.GetOne(Entity.IDPlan);
+            Plan plan = pl.GetOne(mat.IDPlan);
+
+            txtID.Text = CursoActual.ID.ToString();
+            txtCupo.Text = CursoActual.Cupo.ToString();
+            txtAnio.Text = CursoActual.AnioCalendario.ToString();
+            ddEsp.SelectedValue = plan.IDEspecialidad.ToString();
             GenerarPlanes(plan.IDEspecialidad);
-        }
+            ddPlan.SelectedValue = mat.IDPlan.ToString();
+            GenerarMaterias(plan.ID);
+            GenerarComisiones(plan.ID);
+            ddCom.SelectedValue = CursoActual.IDComision.ToString();
+            ddMat.SelectedValue = CursoActual.IDMateria.ToString();
 
-        private void GenerarEsp() {
-            DataTable dtEspecialidades = GenerarComboBox.getEspecialidades();
-            especialidadDDL.DataValueField = "id_esp";
-            especialidadDDL.DataTextField = "desc_esp";
-            especialidadDDL.DataSource = dtEspecialidades;
-            especialidadDDL.DataBind();
-        }
-        private void GenerarPlanes(int idEsp) {
-            DataTable dtPlanes = GenerarComboBox.getPlanes(idEsp);
-            planDDL.DataValueField = "id_plan";
-            planDDL.DataTextField = "desc_plan";
-            planDDL.DataSource = dtPlanes;
-            planDDL.DataBind();
-        }
-
-
-        protected void editarLinkButton_Click(object sender, EventArgs e) {
-            if (IsEntitySelected) {
-                EnableForm(true);
-                formPanel.Visible = true;
-                FormMode = FormModes.Modificacion;
-                LoadForm(SelectedID);
-                GenerarEsp();
+            if (this.FormMode == FormModes.Baja) {
+                modalHeader.Text = "Eliminar Curso";
+                btnAceptar.Text = "Eliminar";
             }
-        }
-        private void LoadEntity(Usuario usuario) {
-            usuario.Nombre = nombreTextBox.Text;
-            usuario.Apellido = apellidoTextBox.Text;
-            usuario.Email = emailTextBox.Text;
-            usuario.NombreUsuario = nombreUsuarioTextBox.Text;
-            usuario.Clave = claveTextBox.Text;
-            usuario.Habilitado = habilitadoCheckBox.Checked;
-            usuario.Direccion = direccionLabel.Text;
-            DateTime dt;
-            DateTime.TryParseExact(fechaTextBox.Text, Util.Validar.FormatosFecha, null, DateTimeStyles.None, out dt);
-            usuario.FechaNacimiento = dt;
-            usuario.Legajo = int.Parse(LegajoTextBox.Text);
-            usuario.Telefono = telefonoTextBox.Text;
-            usuario.TipoPersona = int.Parse(tipoDDL.SelectedValue);
-            usuario.IDPlan = int.Parse(planDDL.SelectedValue);
+            else if (this.FormMode == FormModes.Modificacion) {
+                modalHeader.Text = "Editar Curso";
+                btnAceptar.Text = "Guardar";
+            }
+            UpdatePanelModal.Update();
         }
 
-        private void SaveEntity(Usuario usuario) {
-            Logic.Save(usuario);
+        private void LoadEntity()
+        {
+            CursoActual.AnioCalendario = int.Parse(txtAnio.Text);
+            CursoActual.Cupo = int.Parse(txtCupo.Text);
+            CursoActual.IDComision = Int32.Parse(ddCom.SelectedValue);
+            CursoActual.IDMateria = Int32.Parse(ddMat.SelectedValue);
+        }
+        private void SaveEntity()
+        {
+            CursoLogic.Save(CursoActual);
+        }
+        private void ButtonState()
+        {
+
+            if (SelectedID == 0) {
+                btnEditar.CssClass = "btn btn-outline-secondary btn-sm";
+                btnEditar.Enabled = false;
+                btnEliminar.CssClass = "btn btn-outline-secondary btn-sm";
+                btnEliminar.Enabled = false;
+                btnDeseleccionar.Visible = false;
+            }
+            else {
+                btnEditar.CssClass = "btn btn-outline-success btn-sm";
+                btnEditar.Enabled = true;
+                btnEliminar.CssClass = "btn btn-outline-success btn-sm";
+                btnEliminar.Enabled = true;
+                btnDeseleccionar.Visible = true;
+            }
+            UpdatePanelButtons.Update();
+        }*/
+        protected void gvUsuarios_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SelectedID = (gvUsuarios.SelectedValue != null) ? (int)gvUsuarios.SelectedValue : 0;
+//            ButtonState();
         }
 
-        protected void aceptarLinkButton_Click(object sender, EventArgs e) {
-            if (Validar()) {
+       protected void btnNuevo_Click(object sender, EventArgs e)
+        {
+            this.FormMode = FormModes.Alta;
+           // SetFormControlCSS();
+            //ClearForm();
+            //EnableForm(true);
+            ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "Pop", "$('#ModalUsuarios').modal('show');", true);
+        }
+/* 
+        protected void btnEditar_Click(object sender, EventArgs e)
+        {
+            SetFormControlCSS();
+            EnableForm(true);
+            FormMode = FormModes.Modificacion;
+            LoadForm(this.SelectedID);
+            ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "Pop", "$('#ModalCursos').modal('show');", true);
+        }
+
+
+        protected void btnEliminar_Click(object sender, EventArgs e)
+        {
+            FormMode = FormModes.Baja;
+            SetFormControlCSS();
+            EnableForm(false);
+            LoadForm(this.SelectedID);
+            ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "Pop", "$('#ModalCursos').modal('show');", true);
+        }
+
+        protected void btnDeseleccionar_Click(object sender, EventArgs e)
+        {
+            gvCursos.SelectedIndex = -1;
+            gvCursos_SelectedIndexChanged(sender, e);
+            UpdatePanelGrid.Update();
+        }
+
+        protected void btnAceptar_Click(object sender, EventArgs e)
+        {
+            if (Validar() == true) {
                 switch (FormMode) {
                     case FormModes.Baja:
-                        Entity.State = BusinessEntity.States.Deleted;
-                        SaveEntity(Entity);
-                        LoadGrid();
+                        CursoActual = new Curso {
+                            ID = SelectedID,
+                            State = BusinessEntity.States.Deleted
+                        };
                         break;
                     case FormModes.Modificacion:
-                        Entity = new Usuario();
-                        Entity.ID = SelectedID;
-                        Entity.State = BusinessEntity.States.Modified;
-                        LoadEntity(Entity);
-                        SaveEntity(Entity);
-                        LoadGrid();
+                        CursoActual = new Curso {
+                            ID = SelectedID,
+                            Habilitado = true,
+                            State = BusinessEntity.States.Modified
+                        };
+                        LoadEntity();
                         break;
                     case FormModes.Alta:
-                        Entity = new Usuario();
-                        Entity.State = BusinessEntity.States.New;
-                        LoadEntity(Entity);
-                        SaveEntity(Entity);
-                        LoadGrid();
-                        break;
-                    default:
+                        CursoActual = new Curso {
+                            Habilitado = true,
+                            State = BusinessEntity.States.New
+                        };
+                        LoadEntity();
                         break;
                 }
-                formPanel.Visible = false;
+                SaveEntity();
+                SelectedID = 0;
+                Listar();
+                ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "Pop", "$('#ModalCursos').modal('hide');", true);
+                UpdatePanelGrid.Update();
             }
+            UpdatePanelModal.Update();
         }
+        private bool Validar()
+        {
+            bool isvalid = true;
 
-        protected bool Validar() {
-            lblRedAp.Visible = (string.IsNullOrWhiteSpace(apellidoTextBox.Text)) ? true : false;
-            lblRedClave.Visible = (string.IsNullOrWhiteSpace(claveTextBox.Text)) ? true : false;
-            lblRedDirec.Visible = (string.IsNullOrWhiteSpace(direccionTextBox.Text)) ? true : false;
-            lblRedNom.Visible = (string.IsNullOrWhiteSpace(nombreTextBox.Text)) ? true : false;
-            lblRedTel.Visible = (string.IsNullOrWhiteSpace(telefonoTextBox.Text)) ? true : false;
-            lblRedUser.Visible = (string.IsNullOrWhiteSpace(nombreUsuarioTextBox.Text)) ? true : false;
-            lblRedTipo.Visible = (tipoDDL.SelectedValue == null) ? true : false;
-            lblRedPlan.Visible = (especialidadDDL.SelectedValue == null || planDDL.SelectedValue == null) ? true : false;
-            lblRedEmail.Visible = (new EmailAddressAttribute().IsValid(emailTextBox.Text)) ? false : true;
-            DateTime dt;
-            lblRedNac.Visible = (DateTime.TryParseExact(fechaTextBox.Text, Util.Validar.FormatosFecha, null, DateTimeStyles.None, out dt) == true) ? false : true;
-            legajoValidator.Validate();
-            telefonoValidator.Validate();
-
-            return !(lblRedAp.Visible ||
-                     lblRedClave.Visible ||
-                     lblRedDirec.Visible ||
-                     lblRedEmail.Visible ||
-                     lblRedNac.Visible ||
-                     lblRedNom.Visible ||
-                     lblRedPlan.Visible ||
-                     lblRedTel.Visible ||
-                     lblRedTipo.Visible ||
-                     lblRedUser.Visible ||
-                     !legajoValidator.IsValid ||
-                     !telefonoValidator.IsValid);
-        }
-
-        protected void especialidadDDL_SelectedIndexChanged(object sender, EventArgs e) {
-            GenerarPlanes(Int32.Parse(especialidadDDL.SelectedValue.ToString()));
-        }
-
-        private void EnableForm(bool enable) {
-            nombreTextBox.Enabled = enable;
-            apellidoTextBox.Enabled = enable;
-            emailTextBox.Enabled = enable;
-            nombreUsuarioTextBox.Enabled = enable;
-            claveTextBox.Enabled = enable;
-            LegajoTextBox.Enabled = enable;
-            habilitadoCheckBox.Enabled = enable;
-            fechaTextBox.Enabled = enable;
-            direccionTextBox.Enabled = enable;
-            telefonoTextBox.Enabled = enable;
-            tipoDDL.Enabled = enable;
-            especialidadDDL.Enabled = enable;
-            planDDL.Enabled = enable;
-        }
-
-        protected void eliminarLinkButton_Click(object sender, EventArgs e) {
-            if (this.IsEntitySelected) {
-                formPanel.Visible = true;
-                FormMode = FormModes.Baja;
-                EnableForm(false);
-                LoadForm(this.SelectedID);
+            if (string.IsNullOrEmpty(txtAnio.Text) ||
+                 string.IsNullOrWhiteSpace(txtAnio.Text) ||
+                 int.Parse(txtAnio.Text) == 0) {
+                txtAnio.CssClass = "form-control is-invalid";
+                isvalid = false;
             }
+            else {
+                txtAnio.CssClass = "form-control";
+            }
+            if (string.IsNullOrEmpty(txtCupo.Text) ||
+                string.IsNullOrWhiteSpace(txtCupo.Text) ||
+                int.Parse(txtCupo.Text) == 0) {
+                txtCupo.CssClass = "form-control is-invalid";
+                isvalid = false;
+            }
+            else {
+                txtCupo.CssClass = "form-control";
+            }
+            if (ddEsp.SelectedValue == string.Empty || int.Parse(ddEsp.SelectedValue) == 0) {
+                ddEsp.CssClass = "form-control is-invalid";
+                isvalid = false;
+            }
+            else {
+                ddEsp.CssClass = "form-control";
+            }
+            if (ddPlan.SelectedValue == string.Empty || int.Parse(ddPlan.SelectedValue) == 0) {
+                ddPlan.CssClass = "form-control is-invalid";
+                isvalid = false;
+            }
+            else {
+                ddPlan.CssClass = "form-control";
+            }
+            if (ddCom.SelectedValue == string.Empty || int.Parse(ddCom.SelectedValue) == 0) {
+                ddCom.CssClass = "form-control is-invalid";
+                isvalid = false;
+            }
+            else {
+                ddCom.CssClass = "form-control";
+            }
+            if (ddMat.SelectedValue == string.Empty || int.Parse(ddMat.SelectedValue) == 0) {
+                ddMat.CssClass = "form-control is-invalid";
+                isvalid = false;
+            }
+            else {
+                ddMat.CssClass = "form-control";
+            }
+
+            return isvalid;
         }
 
-
-        protected void nuevoLinkButton_Click(object sender, EventArgs e) {
-            formPanel.Visible = true;
-            FormMode = FormModes.Alta;
-            ClearForm();
-            EnableForm(true);
+        private void SetFormControlCSS()
+        {
+            txtCupo.CssClass = "form-control";
+            txtAnio.CssClass = "form-control";
+            ddEsp.CssClass = "form-control";
+            ddPlan.CssClass = "form-control";
+            ddCom.CssClass = "form-control";
+            ddMat.CssClass = "form-control";
         }
 
-        private void ClearForm() {
-            IDLabel.Text = "ID: -";
-            nombreTextBox.Text = string.Empty;
-            apellidoTextBox.Text = string.Empty;
-            emailTextBox.Text = string.Empty;
-            nombreUsuarioTextBox.Text = string.Empty;
-            claveTextBox.Text = string.Empty;
-            habilitadoCheckBox.Text = string.Empty;
-            fechaTextBox.Text = string.Empty;
-            direccionTextBox.Text = string.Empty;
-            telefonoTextBox.Text = string.Empty;
-            LegajoTextBox.Text = string.Empty;
-            GenerarEsp();
+        protected void ddEsp_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            GenerarPlanes(int.Parse(ddEsp.SelectedValue));
         }
+        protected void ddPlan_SelectedIndexChanged(object sender, EventArgs e)
+        {
 
-        protected void cancelarLinkButton_Click(object sender, EventArgs e) {
-            formPanel.Visible = false;
         }
+        protected void GenerarPlanes(int idEsp)
+        {
+            ddPlan.DataValueField = "id_plan";
+            ddPlan.DataTextField = "desc_plan";
+            ddPlan.DataSource = GenerarComboBox.getPlanes(idEsp);
+            ddPlan.DataBind();
+            ddPlan.SelectedValue = 0.ToString();
+            UpdatePanelModal.Update();
+        }*/
     }
 }

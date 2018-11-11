@@ -38,13 +38,28 @@ namespace UI.Web {
         }
 
         private void Listar() {
+            List<Curso> cursos = new List<Curso>();
+
+            DocenteCursoLogic dcl = new DocenteCursoLogic();
+            List<DocenteCurso> dclist = dcl.GetAllFromUser(UsuarioActual.ID);
             CursoLogic cl = new CursoLogic();
-            gvCursos.DataSource = cl.GetListado(UsuarioActual);
-            gvCursos.DataBind();
+
+            foreach (DocenteCurso dc in dclist)
+                {
+                    cursos.Add(cl.GetOne(dc.IDCurso));
+                }
+
+            if(cursos.Count == 0) {
+                divSinCursos.Visible = true;
+            }
+            else {
+                gvCursos.DataSource = Listado.Generar(cursos);
+                gvCursos.DataBind();
+            }
         }
         protected void gvCursos_SelectedIndexChanged(object sender, EventArgs e) {
             SelectedID = (gvCursos.SelectedValue != null) ? (int)gvCursos.SelectedValue : 0;
-            Response.Redirect(String.Format("/main/cargaNotas.aspx?curso={0}", SelectedID));
+            if(SelectedID!=0) Response.Redirect(String.Format("/main/cargaNotas.aspx?curso={0}", SelectedID));
         }
     }
 }

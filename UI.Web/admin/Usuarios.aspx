@@ -2,100 +2,172 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="bodyContentPlaceHolder" runat="server">
     
-    <asp:Panel ID="gridPanel" runat="server">
-        <head />
-        <asp:GridView ID="gridView" font-name="Georgia" runat="server" AutoGenerateColumns="False"
-            SelectedRowStyle-BackColor="Black"
-            SelectedRowStyle-ForeColor="White"
-            DataKeyNames="ID" OnLoad="Page_Load" OnSelectedIndexChanged="gridView_SelectedIndexChanged" Width="200px">
-            <Columns>
-                <asp:BoundField HeaderText="Nombre" DataField="Nombre" />
-                <asp:BoundField HeaderText="Apellido" DataField="Apellido" />
-                <asp:BoundField HeaderText="Usuario" DataField="NombreUsuario" />
-                <asp:BoundField HeaderText="Email" DataField="EMail" />
-                <asp:BoundField HeaderText="Habilitado" DataField="Habilitado" />
-                <asp:CommandField SelectText="Seleccionar" ShowSelectButton="True" />
-            </Columns>
-        </asp:GridView>
-        <asp:ObjectDataSource ID="UsuariosDataSource" runat="server"></asp:ObjectDataSource>
-    </asp:Panel>
+    <!-- Modal para cargar, editar o eliminar -->    
+    <div class="modal fade" id="ModalUsuarios" tabindex="-1" role="dialog" >
+        <div class="modal-dialog modal-dialog-centered" role="document">
 
-    <asp:Panel ID="gridActionsPanel" runat="server">
-        <asp:LinkButton font-name="Georgia" ID="editarLinkButton" runat="server" OnClick="editarLinkButton_Click">Editar</asp:LinkButton>
-        <asp:LinkButton font-name="Georgia" ID="eliminarLinkButton" runat="server" OnClick="eliminarLinkButton_Click">Eliminar</asp:LinkButton>
-        <asp:LinkButton font-name="Georgia" ID="nuevoLinkButton" runat="server" OnClick="nuevoLinkButton_Click">Nuevo</asp:LinkButton>
-    </asp:Panel>
+            <div class="modal-content">                
+            <asp:UpdatePanel ID="UpdatePanelModal" runat="server" UpdateMode="Conditional">
+            <ContentTemplate>                
+                <div class="modal-header">
+                    <h5 class="modal-title"><asp:Label ID="modalHeader" runat="server" Text="modalHeader"></asp:Label></h5>                    
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                
+                <div class="modal-body">
+                    <div class="form-row">
+                        <label for="lblID" class="col-4 font-weight-bold">ID</label>
+                        <div class="col-8">
+                            <asp:Label ID="lblID" runat="server" Text="Label"></asp:Label>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <label for="lblLegajo" class="col-4 font-weight-bold">Legajo</label>
+                        <div class="col-8">
+                            <asp:Label ID="lblLegajo" runat="server" Text="Label"></asp:Label>                 
+                        </div>
+                    </div>
+
+                    <hr />
+
+                    <div class="form-group row">
+                        <label for="txtNombre" class="col-4 font-weight-bold">Nombre</label>
+                        <div class="col-8">
+                            <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control"></asp:TextBox>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="txtApellido" class="col-4 font-weight-bold">Apellido</label>
+                        <div class="col-8">
+                            <asp:TextBox ID="txtApellido" runat="server" CssClass="form-control"></asp:TextBox>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="txtFechaNac" class="col-4 font-weight-bold">Fecha nacimiento</label>
+                        <div class="col-8">
+                            <asp:TextBox ID="txtFechaNac" runat="server" CssClass="form-control"></asp:TextBox>
+                        </div>
+                    </div>
+
+                    <hr />
+
+                    <div class="form-group row">
+                        <label for="txtDirec" class="col-4 font-weight-bold">Dirección</label>
+                        <div class="col-8">
+                            <asp:TextBox ID="txtDirec" runat="server" CssClass="form-control"></asp:TextBox>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="txtTel" class="col-4 font-weight-bold">Telefono</label>
+                        <div class="col-8">
+                            <asp:TextBox ID="txtTel" runat="server" CssClass="form-control"></asp:TextBox>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="txtEmail" class="col-4 font-weight-bold">Email</label>
+                        <div class="col-8">
+                            <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control"></asp:TextBox>
+                        </div>
+                    </div>
+
+                    <hr />
+                    
+                    <div class="form-group row">
+                        <label for="txtUser" class="col-4 font-weight-bold">Usuario</label>
+                        <div class="col-8">
+                            <asp:TextBox ID="txtUser" runat="server" CssClass="form-control"></asp:TextBox>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="txtPass" class="col-4 font-weight-bold">Clave</label>
+                        <div class="col-8">
+                            <asp:TextBox ID="txtPass" runat="server" CssClass="form-control"></asp:TextBox>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="ddEsp" class="col-form-label">Tipo de usuario</label>
+                        <asp:DropDownList ID="ddTipo" runat="server" CssClass="form-control" AutoPostBack="True"></asp:DropDownList>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="ddEsp" class="col-form-label">Especialidad</label>
+                            <asp:DropDownList ID="ddEsp" runat="server" CssClass="form-control" AutoPostBack="True"></asp:DropDownList>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="ddPlan" class="col-form-label">Plan</label>
+                            <asp:DropDownList ID="ddPlan" runat="server" CssClass="form-control"  AutoPostBack="True"></asp:DropDownList>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer" runat="server">
+                    <asp:Button ID="btnAceptar" runat="server" Text="btnAceptar" class="btn btn-primary"  />
+                    <asp:Button ID="btnCancelar" runat="server" Text="Cerrar" class="btn btn-secondary" data-dismiss="modal" />
+                </div>
+            </ContentTemplate>
+            </asp:UpdatePanel>
+            </div>
+        </div>
+    </div>
+
+    <!-- tabla -->
+    <div>
+        <p class="font-weight-bold text-left h2">Usuarios</p>
+    </div>
+
+    <hr />
+
+    <div>    
+       <p>
+        <asp:UpdatePanel ID="UpdatePanelButtons" runat="server" UpdateMode="Conditional">
+            <ContentTemplate>
+                <asp:Button ID="btnNuevo" Text="Nuevo" runat="server"
+                    CssClass="btn btn-outline-success btn-sm" OnClick="btnNuevo_Click"  />
+                <asp:Button ID="btnEditar" Text="Editar" runat="server"
+                    CssClass="btn btn-outline-secondary btn-sm" Enabled="false" />
+                <asp:Button ID="btnEliminar" Text="Eliminar" runat="server"
+                    CssClass="btn btn-outline-secondary btn-sm" Enabled="false"  />
+                <asp:Button ID="btnDeseleccionar" CssClass="btn btn-outline-danger btn-sm" runat="server" 
+                    Visible="false" Text="x"  />
+            </ContentTemplate>
+        </asp:UpdatePanel>
+       </p>    
+    </div>
+
+    <div class="grid-view">
+        <asp:UpdatePanel ID="UpdatePanelGrid" runat="server" UpdateMode="Conditional">
+            <Triggers>
+                <asp:AsyncPostBackTrigger ControlID="btnAceptar"/>
+            </Triggers>
+
+            <ContentTemplate>
+                <asp:GridView ID="gvUsuarios" runat="server" AutoGenerateColumns="False"
+                    SelectedRowStyle-BackColor="#343a40"
+                    SelectedRowStyle-ForeColor="White"
+                    DataKeyNames="ID"
+                    CssClass="table table-bordered table-sm table-responsive table-hover" 
+                     >
+                <Columns>
+                    <asp:BoundField HeaderText="ID" DataField="Id" />
+                    <asp:BoundField HeaderText="NombreUsuario" DataField="NombreUsuario" />
+                    <asp:BoundField HeaderText="Nombre" DataField="Nombre" />
+                    <asp:BoundField HeaderText="Apellido" DataField="Apellido" />
+                    <asp:BoundField HeaderText="Email" DataField="Email" ItemStyle-Width="100%" />
+                    <asp:BoundField HeaderText="Direccion" DataField="Direccion" />
+                    <asp:BoundField HeaderText="Telefono" DataField="Telefono" />
+                    <asp:BoundField HeaderText="FechaNac" DataField="FechaNac" />
+                    <asp:BoundField HeaderText="Legajo" DataField="Legajo" />
+                    <asp:BoundField HeaderText="Tipo" DataField="Tipo" />
+                    <asp:BoundField HeaderText="Plan" DataField="Plan" />
 
 
-    <asp:Panel ID="formPanel" Visible="false" runat="server">
-            <asp:Label font-name="Georgia" ID="IDLabel" runat="server" Text="ID: -"></asp:Label>
-            <br />
-            <asp:Label font-name="Georgia" ID="nombreLabel" runat="server" Text="Nombre: "></asp:Label>
-            <asp:TextBox ID="nombreTextBox" runat="server"></asp:TextBox>
-            <asp:Label font-name="Georgia" ID="lblRedNom" forecolor="Red" runat="server" Text="*" Visible="False"></asp:Label>
-            <br />
-            <asp:Label font-name="Georgia" ID="apellidoLabel" runat="server" Text="Apellido: "></asp:Label>
-            <asp:TextBox ID="apellidoTextBox" runat="server"></asp:TextBox>
-            <asp:Label font-name="Georgia" ID="lblRedAp" forecolor="Red" runat="server" Text="*" Visible="False"></asp:Label>
-            <br />
-            <asp:Label font-name="Georgia" ID="emailLabel" runat="server" Text="Email: "></asp:Label>
-            <asp:TextBox ID="emailTextBox" runat="server"></asp:TextBox>
-            <asp:Label font-name="Georgia" ID="lblRedEmail" forecolor="Red" runat="server" Text="*" Visible="False"></asp:Label>
-            <br />
-            <asp:Label font-name="Georgia" ID="habilitadoLabel" runat="server" Text="Habilitado: "></asp:Label>
-            <asp:CheckBox ID="habilitadoCheckBox" runat="server"></asp:CheckBox>
-            <br />
-            <asp:Label font-name="Georgia" ID="nombreUsuarioLabel" runat="server" Text="Usuario: "></asp:Label>
-            <asp:TextBox ID="nombreUsuarioTextBox" runat="server"></asp:TextBox>
-            <asp:Label font-name="Georgia" ID="lblRedUser" forecolor="Red" runat="server" Text="*" Visible="False"></asp:Label>
-            <br />
-            <asp:Label font-name="Georgia" ID="LegajoLabel" runat="server" Text="Legajo: "></asp:Label>
-            <asp:TextBox ID="LegajoTextBox" runat="server"></asp:TextBox>
-            <asp:RegularExpressionValidator id="legajoValidator" runat="server" 
-                ErrorMessage="Formato Invalido" 
-                ValidationExpression="^[0-9]*$" 
-                ControlToValidate="legajoTextBox" />
-            <br />
-            <asp:Label font-name="Georgia" ID="claveLabel" runat="server" Text="Clave: "></asp:Label>
-            <asp:TextBox ID="claveTextBox" TextMode="Password" runat="server"></asp:TextBox>
-            <asp:Label font-name="Georgia" ID="lblRedClave" forecolor="Red" runat="server" Text="*" Visible="False"></asp:Label>
-            <br />
-            <asp:Label font-name="Georgia" ID="fechaLabel" runat="server" Text="Fecha nacimiento: "></asp:Label>
-            <asp:TextBox ID="fechaTextBox" runat="server"></asp:TextBox>
-            <asp:Label font-name="Georgia" ID="lblRedNac" forecolor="Red" runat="server" Text="*" Visible="False"></asp:Label>
-            <br />
-            <asp:Label font-name="Georgia" ID="direccionLabel" runat="server" Text="Dirección: "></asp:Label>
-            <asp:TextBox ID="direccionTextBox" runat="server"></asp:TextBox>
-            <asp:Label font-name="Georgia" ID="lblRedDirec" forecolor="Red" runat="server" Text="*" Visible="False"></asp:Label>
-            <br />
-            <asp:Label font-name="Georgia" ID="telefonoLabel" runat="server" Text="Teléfono: "></asp:Label>
-            <asp:TextBox ID="telefonoTextBox" runat="server"></asp:TextBox>
-            <asp:RegularExpressionValidator id="telefonoValidator" runat="server" 
-                ErrorMessage="Formato Invalido" 
-                ValidationExpression="^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$" 
-                ControlToValidate="telefonoTextBox" />
-            <asp:Label font-name="Georgia" ID="lblRedTel" forecolor="Red" runat="server" Text="*" Visible="False"></asp:Label>            
-            <br />
-            <asp:Label font-name="Georgia" ID="tipoLabel" runat="server" Text="Tipo de Usuario: "></asp:Label>
-            <asp:DropDownList ID="tipoDDL" runat="server">
-                <asp:ListItem Value=1>Alumno</asp:ListItem>
-                <asp:ListItem Value=2>Docente</asp:ListItem>
-                <asp:ListItem Value=3>Administrativo</asp:ListItem>
-            </asp:DropDownList>
-            <asp:Label font-name="Georgia" ID="lblRedTipo" forecolor="Red" runat="server" Text="*" Visible="False"></asp:Label>
-            <br />
-            <asp:Label font-name="Georgia" ID="especialidadLabel" runat="server" Text="Especialidad: "></asp:Label>
-            <asp:DropDownList ID="especialidadDDL" runat="server" AutoPostBack="True" OnSelectedIndexChanged="especialidadDDL_SelectedIndexChanged"></asp:DropDownList>
-            <br />
-            <asp:Label font-name="Georgia" ID="planLabel" runat="server" Text="Plan: "></asp:Label>
-            <asp:DropDownList ID="planDDL" runat="server"></asp:DropDownList>
-            <asp:Label font-name="Georgia" ID="lblRedPlan" forecolor="Red" runat="server" Text="*" Visible="False"></asp:Label>
-            <br />
-        
-            <asp:Panel ID="formActionsPanel" runat="server">
-                <asp:LinkButton font-name="Georgia" ID="aceptarLinkButton" runat="server" OnClick="aceptarLinkButton_Click">Aceptar</asp:LinkButton>
-                <asp:LinkButton font-name="Georgia" ID="cancelarLinkButton" runat="server" OnClick="cancelarLinkButton_Click">Cancelar</asp:LinkButton>
-            </asp:Panel>
-    </asp:Panel>
+                    <asp:CommandField SelectText="Seleccionar" ShowSelectButton="True" />
+                </Columns>
+                <HeaderStyle CssClass="thead-light" />
+                </asp:GridView>
+            </ContentTemplate>
+        </asp:UpdatePanel>
+    </div>
 
 </asp:Content>

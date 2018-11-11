@@ -21,7 +21,7 @@ namespace UI.Desktop {
             InitializeComponent();
 
             UsuarioActual = user;
-            switch (UsuarioActual.TipoPersona) {
+            switch ((int)UsuarioActual.TipoPersona) {
                 case 1:
                     MenuAlumno();
                     break;

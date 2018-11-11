@@ -16,18 +16,13 @@
                 
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for="txtID" class="col-form-label">ID</label>
-                        <asp:TextBox id="txtID" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                        <label for="lblID" class="col-form-label">ID</label>
+                        <asp:Label ID="lblID" runat="server" CssClass="form-control" Text="Label"></asp:Label>
                     </div>
 
                     <div class="form-group">
                         <label for="ddAlumno" class="col-form-label">Alumno</label>
-                        <asp:DropDownList ID="ddAlumno" runat="server" CssClass="form-control"></asp:DropDownList>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="ddCurso" class="col-form-label">Curso</label>
-                        <asp:DropDownList ID="ddCurso" runat="server" CssClass="form-control"></asp:DropDownList>
+                        <asp:Label ID="lblAlumno" runat="server" CssClass="form-control" Text="Label"></asp:Label>
                     </div>
 
                     <div class="form-group">
@@ -36,14 +31,14 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="ddCondicion" class="col-form-label">Condicion</label>
-                        <asp:TextBox id="txtNota" TextMode="Number" min="0" max="10" step="1" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                        <label for="ddCondicion" class="col-form-label">Nota</label>
+                        <asp:TextBox id="txtNota" TextMode="Number" min="0" max="10" step="1" runat="server" CssClass="form-control"></asp:TextBox>
                     </div>
 
                 </div>
 
                 <div class="modal-footer" runat="server">
-                    <asp:Button ID="btnAceptar" runat="server" Text="btnAceptar" class="btn btn-primary"  />
+                    <asp:Button ID="btnAceptar" runat="server" Text="btnAceptar" class="btn btn-primary" OnClick="btnAceptar_Click"  />
                     <asp:Button ID="btnCancelar" runat="server" Text="Cerrar" class="btn btn-secondary" data-dismiss="modal" />
                 </div>
             </ContentTemplate>
@@ -61,19 +56,6 @@
 
     <hr />
 
-    <div>    
-       <p>
-        <asp:UpdatePanel ID="UpdatePanelButtons" runat="server" UpdateMode="Conditional">
-            <ContentTemplate>
-                <asp:Button ID="btnCarga" Text="Editar" runat="server"
-                    CssClass="btn btn-outline-secondary btn-sm" Enabled="false"/>
-                <asp:Button ID="btnDeseleccionar" CssClass="btn btn-outline-danger btn-sm" runat="server" 
-                    Visible="false" Text="x"/>
-            </ContentTemplate>
-        </asp:UpdatePanel>
-       </p>    
-    </div>
-
     <div class="grid-view">
         <asp:UpdatePanel ID="UpdatePanelGrid" runat="server" UpdateMode="Conditional">
             <Triggers>
@@ -82,23 +64,26 @@
 
             <ContentTemplate>
                 <asp:GridView ID="gvIns" runat="server" AutoGenerateColumns="False"
-                    SelectedRowStyle-BackColor="#343a40"
-                    SelectedRowStyle-ForeColor="White"
                     DataKeyNames="ID" 
                     CssClass="table table-bordered table-sm table-responsive table-hover" 
-                    >
+                    OnSelectedIndexChanged="gvIns_SelectedIndexChanged">
                 <Columns>
                     <asp:BoundField HeaderText="ID" DataField="Id" />
                     <asp:BoundField HeaderText="Alumno" DataField="Alumno" ItemStyle-Width="40%"/>
                     <asp:BoundField HeaderText="Curso" DataField="Curso" ItemStyle-Width="20%"/>
                     <asp:BoundField HeaderText="Nota" DataField="Nota" ItemStyle-Width="20%"/>
                     <asp:BoundField HeaderText="Condicion" DataField="Condicion" ItemStyle-Width="20%"/>
-                    <asp:CommandField SelectText="Seleccionar" ShowSelectButton="True" />
+                    <asp:CommandField SelectText="Editar" ShowSelectButton="True" />
                 </Columns>
                 <HeaderStyle CssClass="thead-light" />
                 </asp:GridView>
             </ContentTemplate>
         </asp:UpdatePanel>
+    </div>
+
+    <div runat="server" id="divSinAlumnos" visible="false">
+        <br />
+        <p class="text-center">No hay alumnos inscriptos</p>
     </div>
 
 </asp:Content>
