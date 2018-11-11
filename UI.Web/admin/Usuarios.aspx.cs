@@ -52,10 +52,8 @@ namespace UI.Web {
                 if (!IsPostBack) {
                     Listar();
                     gvUsuarios.HeaderRow.TableSection = TableRowSection.TableHeader;
-     //               ddEsp.DataValueField = "id_esp";
-       //             ddEsp.DataTextField = "desc_esp";
-         //           ddEsp.DataSource = GenerarComboBox.getEspecialidades();
-           //         ddEsp.DataBind();
+                    GenerarEsp();
+                    GenerarTipos();
                 }
             }
         }
@@ -68,58 +66,72 @@ namespace UI.Web {
             gvUsuarios.SelectedIndex = -1;
  //           ButtonState();
         }
-/*         private void ClearForm()
+        private void ClearForm()
         {
-            txtID.Text = "";
-            txtAnio.Text = DateTime.Today.Year.ToString();
+            lblID.Text = "-";
+            lblLegajo.Text = "-";
+            txtNombre.Text = string.Empty;
+            txtApellido.Text = string.Empty;
+            txtFechaNac.Text = string.Empty;
+            txtDirec.Text = string.Empty;
+            txtTel.Text = string.Empty;
+            txtEmail.Text = string.Empty;
+            txtUser.Text = string.Empty;
+            txtPass.Text = string.Empty;
+            ddTipo.SelectedValue = 0.ToString();
             ddPlan.SelectedValue = 0.ToString();
             ddEsp.SelectedValue = 0.ToString();
-            ddCom.SelectedValue = 0.ToString();
-            ddMat.SelectedValue = 0.ToString();
-            txtCupo.Text = 0.ToString();
-            modalHeader.Text = "Nuevo Curso";
-            btnAceptar.Text = "Crear";
-            UpdatePanelModal.Update();
+
+            modalHeader.Text = "Nuevo Usuario";
+            btnAceptar.Text = "Guardar";
         }
        private void EnableForm(bool enable)
         {
-            txtCupo.Enabled = enable;
-            txtAnio.Enabled = enable;
+            txtNombre.Enabled = enable;
+            txtApellido.Enabled = enable;
+            txtFechaNac.Enabled = enable;
+            txtDirec.Enabled = enable;
+            txtTel.Enabled = enable;
+            txtEmail.Enabled = enable;
+            txtUser.Enabled = enable;
+            txtPass.Enabled = enable;
+            ddTipo.Enabled = enable;
             ddPlan.Enabled = enable;
             ddEsp.Enabled = enable;
-            ddMat.Enabled = enable;
-            ddCom.Enabled = enable;
         }
-        private void LoadForm(int id)
+         private void LoadForm()
         {
-            CursoActual = CursoLogic.GetOne(id);
-            MateriaLogic ml = new MateriaLogic();
-            Materia mat = ml.GetOne(CursoActual.IDMateria);
+            UsuarioActual = UserLogic.GetOne(SelectedID);
             PlanLogic pl = new PlanLogic();
-            Plan plan = pl.GetOne(mat.IDPlan);
+            Plan plan = pl.GetOne(UsuarioActual.IDPlan);
 
-            txtID.Text = CursoActual.ID.ToString();
-            txtCupo.Text = CursoActual.Cupo.ToString();
-            txtAnio.Text = CursoActual.AnioCalendario.ToString();
+            lblID.Text = UsuarioActual.ID.ToString();
+            lblLegajo.Text = UsuarioActual.Legajo.ToString();
+            txtNombre.Text = UsuarioActual.Nombre;
+            txtApellido.Text = UsuarioActual.Apellido;
+            txtFechaNac.Text = UsuarioActual.FechaNacimiento.ToString("dd/MM/yyyy");
+            txtDirec.Text = UsuarioActual.Direccion;
+            txtTel.Text = UsuarioActual.Telefono;
+            txtEmail.Text = UsuarioActual.Email;
+            txtUser.Text = UsuarioActual.NombreUsuario;
+
+            divPass.Visible = false;
+
+            ddTipo.SelectedValue = ((int)UsuarioActual.TipoPersona).ToString();
             ddEsp.SelectedValue = plan.IDEspecialidad.ToString();
             GenerarPlanes(plan.IDEspecialidad);
-            ddPlan.SelectedValue = mat.IDPlan.ToString();
-            GenerarMaterias(plan.ID);
-            GenerarComisiones(plan.ID);
-            ddCom.SelectedValue = CursoActual.IDComision.ToString();
-            ddMat.SelectedValue = CursoActual.IDMateria.ToString();
+            ddPlan.SelectedValue = UsuarioActual.IDPlan.ToString();
 
             if (this.FormMode == FormModes.Baja) {
-                modalHeader.Text = "Eliminar Curso";
+                modalHeader.Text = "Eliminar Usuario";
                 btnAceptar.Text = "Eliminar";
             }
             else if (this.FormMode == FormModes.Modificacion) {
-                modalHeader.Text = "Editar Curso";
+                modalHeader.Text = "Editar Usuario";
                 btnAceptar.Text = "Guardar";
             }
-            UpdatePanelModal.Update();
         }
-
+/*
         private void LoadEntity()
         {
             CursoActual.AnioCalendario = int.Parse(txtAnio.Text);
@@ -130,7 +142,7 @@ namespace UI.Web {
         private void SaveEntity()
         {
             CursoLogic.Save(CursoActual);
-        }
+        }*/
         private void ButtonState()
         {
 
@@ -149,32 +161,34 @@ namespace UI.Web {
                 btnDeseleccionar.Visible = true;
             }
             UpdatePanelButtons.Update();
-        }*/
+        }
         protected void gvUsuarios_SelectedIndexChanged(object sender, EventArgs e)
         {
             SelectedID = (gvUsuarios.SelectedValue != null) ? (int)gvUsuarios.SelectedValue : 0;
-//            ButtonState();
+            ButtonState();
         }
 
        protected void btnNuevo_Click(object sender, EventArgs e)
         {
             this.FormMode = FormModes.Alta;
-           // SetFormControlCSS();
-            //ClearForm();
-            //EnableForm(true);
+            SetFormControlCSS();
+            ClearForm();
+            EnableForm(true);
+            UpdatePanelModal.Update();
             ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "Pop", "$('#ModalUsuarios').modal('show');", true);
         }
-/* 
+
         protected void btnEditar_Click(object sender, EventArgs e)
         {
             SetFormControlCSS();
             EnableForm(true);
             FormMode = FormModes.Modificacion;
-            LoadForm(this.SelectedID);
-            ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "Pop", "$('#ModalCursos').modal('show');", true);
+            LoadForm();
+            UpdatePanelModal.Update();
+            ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "Pop", "$('#ModalUsuarios').modal('show');", true);
         }
 
-
+/* 
         protected void btnEliminar_Click(object sender, EventArgs e)
         {
             FormMode = FormModes.Baja;
@@ -278,17 +292,22 @@ namespace UI.Web {
 
             return isvalid;
         }
-
+*/
         private void SetFormControlCSS()
         {
-            txtCupo.CssClass = "form-control";
-            txtAnio.CssClass = "form-control";
+            txtNombre.CssClass = "form-control";
+            txtApellido.CssClass = "form-control";
+            txtFechaNac.CssClass = "form-control";
+            txtDirec.CssClass = "form-control";
+            txtTel.CssClass = "form-control";
+            txtEmail.CssClass = "form-control";
+            txtPass.CssClass = "form-control";
+            txtUser.CssClass = "form-control";
+            ddTipo.CssClass = "form-control";
             ddEsp.CssClass = "form-control";
             ddPlan.CssClass = "form-control";
-            ddCom.CssClass = "form-control";
-            ddMat.CssClass = "form-control";
         }
-
+/*
         protected void ddEsp_SelectedIndexChanged(object sender, EventArgs e)
         {
             GenerarPlanes(int.Parse(ddEsp.SelectedValue));
@@ -296,7 +315,7 @@ namespace UI.Web {
         protected void ddPlan_SelectedIndexChanged(object sender, EventArgs e)
         {
 
-        }
+        }*/
         protected void GenerarPlanes(int idEsp)
         {
             ddPlan.DataValueField = "id_plan";
@@ -304,7 +323,22 @@ namespace UI.Web {
             ddPlan.DataSource = GenerarComboBox.getPlanes(idEsp);
             ddPlan.DataBind();
             ddPlan.SelectedValue = 0.ToString();
-            UpdatePanelModal.Update();
-        }*/
+        }
+        protected void GenerarEsp()
+        {
+            ddEsp.DataValueField = "id_esp";
+            ddEsp.DataTextField = "desc_esp";
+            ddEsp.DataSource = GenerarComboBox.getEspecialidades();
+            ddEsp.DataBind();
+            ddPlan.SelectedValue = 0.ToString();
+        }
+        protected void GenerarTipos()
+        {
+            ddTipo.DataValueField = "tipo_persona";
+            ddTipo.DataTextField = "desc_tipo";
+            ddTipo.DataSource = GenerarComboBox.getTiposPersona();
+            ddTipo.DataBind();
+            ddTipo.SelectedValue = 0.ToString();
+        }
     }
 }

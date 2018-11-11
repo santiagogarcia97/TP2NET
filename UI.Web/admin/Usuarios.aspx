@@ -17,14 +17,14 @@
                 
                 <div class="modal-body">
                     <div class="form-row">
-                        <label for="lblID" class="col-4 font-weight-bold">ID</label>
-                        <div class="col-8">
+                        <label for="lblID" class="col-4 form-text font-weight-bold">ID</label>
+                        <div class="col-8 form-text">
                             <asp:Label ID="lblID" runat="server" Text="Label"></asp:Label>
                         </div>
                     </div>
                     <div class="form-row">
-                        <label for="lblLegajo" class="col-4 font-weight-bold">Legajo</label>
-                        <div class="col-8">
+                        <label for="lblLegajo" class="col-4 form-text font-weight-bold">Legajo</label>
+                        <div class="col-8 form-text">
                             <asp:Label ID="lblLegajo" runat="server" Text="Label"></asp:Label>                 
                         </div>
                     </div>
@@ -32,19 +32,19 @@
                     <hr />
 
                     <div class="form-group row">
-                        <label for="txtNombre" class="col-4 font-weight-bold">Nombre</label>
+                        <label for="txtNombre" class="col-4 form-text font-weight-bold">Nombre</label>
                         <div class="col-8">
                             <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control"></asp:TextBox>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="txtApellido" class="col-4 font-weight-bold">Apellido</label>
+                        <label for="txtApellido" class="col-4 form-text font-weight-bold">Apellido</label>
                         <div class="col-8">
                             <asp:TextBox ID="txtApellido" runat="server" CssClass="form-control"></asp:TextBox>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="txtFechaNac" class="col-4 font-weight-bold">Fecha nacimiento</label>
+                        <label for="txtFechaNac" class="col-4 form-text font-weight-bold">Fecha nacimiento</label>
                         <div class="col-8">
                             <asp:TextBox ID="txtFechaNac" runat="server" CssClass="form-control"></asp:TextBox>
                         </div>
@@ -53,19 +53,19 @@
                     <hr />
 
                     <div class="form-group row">
-                        <label for="txtDirec" class="col-4 font-weight-bold">Dirección</label>
+                        <label for="txtDirec" class="col-4 form-text font-weight-bold">Dirección</label>
                         <div class="col-8">
                             <asp:TextBox ID="txtDirec" runat="server" CssClass="form-control"></asp:TextBox>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="txtTel" class="col-4 font-weight-bold">Telefono</label>
+                        <label for="txtTel" class="col-4 form-text font-weight-bold">Telefono</label>
                         <div class="col-8">
                             <asp:TextBox ID="txtTel" runat="server" CssClass="form-control"></asp:TextBox>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="txtEmail" class="col-4 font-weight-bold">Email</label>
+                        <label for="txtEmail" class="col-4 form-text font-weight-bold">Email</label>
                         <div class="col-8">
                             <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control"></asp:TextBox>
                         </div>
@@ -74,28 +74,33 @@
                     <hr />
                     
                     <div class="form-group row">
-                        <label for="txtUser" class="col-4 font-weight-bold">Usuario</label>
+                        <label for="txtUser" class="col-4 form-text font-weight-bold">Usuario</label>
                         <div class="col-8">
                             <asp:TextBox ID="txtUser" runat="server" CssClass="form-control"></asp:TextBox>
                         </div>
                     </div>
-                    <div class="form-group row">
-                        <label for="txtPass" class="col-4 font-weight-bold">Clave</label>
+                    <div class="form-group row" runat="server" id="divPass">
+                        <label for="txtPass" class="col-4 form-text font-weight-bold">Clave</label>
                         <div class="col-8">
                             <asp:TextBox ID="txtPass" runat="server" CssClass="form-control"></asp:TextBox>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label for="ddEsp" class="col-form-label">Tipo de usuario</label>
-                        <asp:DropDownList ID="ddTipo" runat="server" CssClass="form-control" AutoPostBack="True"></asp:DropDownList>
+                    <div class="form-group row">
+                        <label for="ddTipo" class="col-4 form-text font-weight-bold">Tipo de usuario</label>
+                        <div class="col-8">
+                            <asp:DropDownList ID="ddTipo" runat="server" CssClass="form-control" AutoPostBack="True"></asp:DropDownList>
+                        </div>
                     </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label for="ddEsp" class="col-form-label">Especialidad</label>
+
+                    <hr />
+                    
+                    <div class="form-group row">
+                        <div class="form-group col-6">
+                            <label for="ddEsp" class="form-text font-weight-bold">Especialidad</label>
                             <asp:DropDownList ID="ddEsp" runat="server" CssClass="form-control" AutoPostBack="True"></asp:DropDownList>
                         </div>
-                        <div class="form-group col-md-6">
-                            <label for="ddPlan" class="col-form-label">Plan</label>
+                        <div class="form-group col-6">
+                            <label for="ddPlan" class="form-text font-weight-bold">Plan</label>
                             <asp:DropDownList ID="ddPlan" runat="server" CssClass="form-control"  AutoPostBack="True"></asp:DropDownList>
                         </div>
                     </div>
@@ -125,7 +130,7 @@
                 <asp:Button ID="btnNuevo" Text="Nuevo" runat="server"
                     CssClass="btn btn-outline-success btn-sm" OnClick="btnNuevo_Click"  />
                 <asp:Button ID="btnEditar" Text="Editar" runat="server"
-                    CssClass="btn btn-outline-secondary btn-sm" Enabled="false" />
+                    CssClass="btn btn-outline-secondary btn-sm" Enabled="false" OnClick="btnEditar_Click" />
                 <asp:Button ID="btnEliminar" Text="Eliminar" runat="server"
                     CssClass="btn btn-outline-secondary btn-sm" Enabled="false"  />
                 <asp:Button ID="btnDeseleccionar" CssClass="btn btn-outline-danger btn-sm" runat="server" 
@@ -147,7 +152,7 @@
                     SelectedRowStyle-ForeColor="White"
                     DataKeyNames="ID"
                     CssClass="table table-bordered table-sm table-responsive table-hover" 
-                     >
+                    OnSelectedIndexChanged="gvUsuarios_SelectedIndexChanged" >
                 <Columns>
                     <asp:BoundField HeaderText="ID" DataField="Id" />
                     <asp:BoundField HeaderText="NombreUsuario" DataField="NombreUsuario" />
