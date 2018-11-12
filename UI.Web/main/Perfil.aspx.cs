@@ -21,8 +21,6 @@ namespace UI.Web
             if (!IsPostBack) {
                 if (Session["username"] != null && Session["tipo"] != null) {
                     alertSuccess.Visible = false;
-                    lblPass.Visible = false;
-                    lblCambios.Visible = false;
                     MapearDeDatos();
                 }
                 else {
@@ -59,8 +57,7 @@ namespace UI.Web
 
                 MapearADatos();
                 ul.Save(UsuarioActual);
-                lblCambios.Visible = true;
-                lblPass.Visible = false;
+                lblSuccess.Text = "Los cambios han sido guardados";
                 alertSuccess.Visible = true;
             }
             UpdatePanelDatos.Update();
@@ -86,10 +83,8 @@ namespace UI.Web
                 UsuarioActual.Clave = Hashing.HashPassword(txtNuevaPass1.Text);
                 ul.SavePassword(UsuarioActual);
                 ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "Pop", "$('#ModalPass').modal('hide');", true);
-                lblCambios.Visible = false;
-                lblPass.Visible = true;
+                lblSuccess.Text = "La contraseña ha sido cambiada";
                 alertSuccess.Visible = true;
-                
             }
             else {
                 txtViejaPass.CssClass = "form-control is-invalid";
@@ -103,26 +98,20 @@ namespace UI.Web
         private bool Validar() {
             bool isvalid = true;
 
-            if (string.IsNullOrEmpty(txtTel.Text) == true || int.Parse(txtTel.Text) == 0) {
-                txtTel.CssClass = "form-control is-invalid";
-                isvalid = false;
-            }
+            if (Validaciones.ValTexto(txtTel.Text))txtTel.CssClass = "form-control";
             else {
-                txtTel.CssClass = "form-control";
+                txtTel.CssClass = "form-control is-invalid";
+                isvalid = false;    
             }
-            if (string.IsNullOrEmpty(txtDirec.Text) == true || string.IsNullOrWhiteSpace(txtDirec.Text)) {
+            if (Validaciones.ValTexto(txtDirec.Text)) txtDirec.CssClass = "form-control";
+            else {
                 txtDirec.CssClass = "form-control is-invalid";
                 isvalid = false;
             }
+            if (Validaciones.ValEmail(txtEmail.Text)) txtEmail.CssClass = "form-control";
             else {
-                txtDirec.CssClass = "form-control";
-            }
-            if (!new EmailAddressAttribute().IsValid(txtEmail.Text)) {
                 txtEmail.CssClass = "form-control is-invalid";
-                isvalid = false;
-            }
-            else {
-                txtEmail.CssClass = "form-control";
+                isvalid = false;            
             }
             return isvalid;
         }

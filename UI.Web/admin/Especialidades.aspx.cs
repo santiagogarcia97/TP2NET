@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using System.Data;
 using Business.Entities;
 using Business.Logic;
+using Util;
 
 namespace UI.Web.admin {
     public partial class Especialidades : System.Web.UI.Page {
@@ -48,8 +49,9 @@ namespace UI.Web.admin {
             }
         }
         private void Listar() {
-            EspecialidadLogic el = new EspecialidadLogic();
-            gvEspecialidades.DataSource = el.GetListado();
+            List<Especialidad> especialidades = EspecialidadLogic.GetAll().Where(x => x.Habilitado == true).ToList();
+
+            gvEspecialidades.DataSource = Listado.Generar(especialidades);
             gvEspecialidades.DataBind();
             gvEspecialidades.SelectedIndex = -1;
             algo();
@@ -176,13 +178,10 @@ namespace UI.Web.admin {
         }
 
         private bool Validar() {
-            if (string.IsNullOrEmpty(txtDescripcion.Text) ||
-                string.IsNullOrWhiteSpace(txtDescripcion.Text)) {
-                txtDescripcion.CssClass = "form-control is-invalid";
+            if (Validaciones.ValTexto(txtDescripcion.Text)) return true;
+            else{ 
+            txtDescripcion.CssClass = "form-control is-invalid";
                 return false;
-            }
-            else {
-                return true;
             }
         }
     }

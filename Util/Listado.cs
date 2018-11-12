@@ -142,10 +142,132 @@ namespace Util {
             return Listado;
         }
 
+        public static DataTable Generar(List<Comision> comisiones)
+        {
+            DataTable Listado = new DataTable();
+            Listado.Columns.Add("ID", typeof(int));
+            Listado.Columns.Add("Descripcion", typeof(string));
+            Listado.Columns.Add("AnioEspecialidad", typeof(int));
+            Listado.Columns.Add("Plan", typeof(string));
 
+            List<Plan> planes = PlanLogic.GetAll();
+            List<Especialidad> especialidades = EspLogic.GetAll();
 
+            foreach (Comision com in comisiones) {
+                DataRow Linea = Listado.NewRow();
 
+                Linea["ID"] = com.ID;
+                Linea["Descripcion"] = com.Descripcion;
+                Linea["AnioEspecialidad"] = com.AnioEspecialidad;
 
+                Plan plan = planes.FirstOrDefault(x => x.ID == com.IDPlan);
+                Especialidad esp = especialidades.FirstOrDefault(x => x.ID == plan.IDEspecialidad);
+                Linea["Plan"] = esp.Descripcion + " - " + plan.Descripcion;
+
+                Listado.Rows.Add(Linea);
+            }
+
+            return Listado;
+        }
+
+        public static DataTable Generar(List<DocenteCurso> dclist)
+        {
+            List<Usuario> usuarios = UserLogic.GetAll().Where(x=>x.TipoPersona==Usuario.TiposPersona.Docente).ToList();
+            List<Curso> cursos = CursoLogic.GetAll();
+            List<Comision> comisiones = ComLogic.GetAll();
+            List<Materia> materias = MatLogic.GetAll();
+
+            DataTable Listado = new DataTable();
+            Listado.Columns.Add("ID", typeof(int));
+            Listado.Columns.Add("Curso", typeof(string));
+            Listado.Columns.Add("Docente", typeof(string));
+            Listado.Columns.Add("Cargo", typeof(string));
+
+            foreach (DocenteCurso dc in dclist) {
+                DataRow Linea = Listado.NewRow();
+                Linea["ID"] = dc.ID;
+                Linea["Cargo"] = dc.Cargo.ToString();
+
+                Curso curso = cursos.FirstOrDefault(x => x.ID == dc.IDCurso);
+                Materia materia = materias.FirstOrDefault(x => x.ID == curso.IDMateria);
+                Comision comision = comisiones.FirstOrDefault(x => x.ID == curso.IDComision);
+                Usuario docente = usuarios.FirstOrDefault(x => x.ID == dc.IDDocente);
+                Linea["Curso"] = comision.Descripcion + " - " + materia.Descripcion;
+                Linea["Docente"] = docente.Legajo.ToString() + " - " + docente.Apellido + " " + docente.Nombre;
+
+                Listado.Rows.Add(Linea);
+            }
+            return Listado;
+        }
+
+        public static DataTable Generar(List<Especialidad> especialidades)
+        {
+            DataTable Listado = new DataTable();
+            Listado.Columns.Add("Id", typeof(int));
+            Listado.Columns.Add("Descripcion", typeof(string));
+
+            foreach (Especialidad esp in especialidades) {
+                DataRow Linea = Listado.NewRow();
+
+                Linea["ID"] = esp.ID;
+                Linea["Descripcion"] = esp.Descripcion;
+
+                Listado.Rows.Add(Linea);
+            }
+            return Listado;
+        }
+
+        public static DataTable Generar(List<Materia> materias)
+        {
+            DataTable Listado = new DataTable();
+            Listado.Columns.Add("ID", typeof(int));
+            Listado.Columns.Add("Descripcion", typeof(string));
+            Listado.Columns.Add("HSSemanales", typeof(int));
+            Listado.Columns.Add("HSTotales", typeof(int));
+            Listado.Columns.Add("Plan", typeof(string));
+
+            List<Plan> planes = PlanLogic.GetAll();
+            List<Especialidad> especialidades = EspLogic.GetAll();
+
+            foreach (Materia mat in materias) {
+                DataRow Linea = Listado.NewRow();
+
+                Linea["ID"] = mat.ID;
+                Linea["Descripcion"] = mat.Descripcion;
+                Linea["HSSemanales"] = mat.HSSemanales;
+                Linea["HSTotales"] = mat.HSTotales;
+
+                Plan plan = planes.FirstOrDefault(x => x.ID == mat.IDPlan);
+                Especialidad esp = especialidades.FirstOrDefault(x => x.ID == plan.IDEspecialidad);
+                Linea["Plan"] = esp.Descripcion + " - " + plan.Descripcion;
+
+                Listado.Rows.Add(Linea);
+            }
+            return Listado;
+        }
+
+        public static DataTable Generar(List<Plan> planes)
+        {
+            DataTable Listado = new DataTable();
+            Listado.Columns.Add("ID", typeof(int));
+            Listado.Columns.Add("Descripcion", typeof(string));
+            Listado.Columns.Add("Especialidad", typeof(string));
+
+            List<Especialidad> especialidades = EspLogic.GetAll();
+
+            foreach (Plan plan in planes) {
+                DataRow Linea = Listado.NewRow();
+
+                Linea["ID"] = plan.ID;
+                Linea["Descripcion"] = plan.Descripcion;
+
+                Especialidad esp = especialidades.FirstOrDefault(x => x.ID == plan.IDEspecialidad);
+                Linea["Especialidad"] = esp.Descripcion;
+
+                Listado.Rows.Add(Linea);
+            }
+            return Listado;
+        }
 
 
 

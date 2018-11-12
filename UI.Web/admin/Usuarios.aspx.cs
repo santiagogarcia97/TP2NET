@@ -64,7 +64,7 @@ namespace UI.Web {
             gvUsuarios.DataSource = Listado.Generar(users);
             gvUsuarios.DataBind();
             gvUsuarios.SelectedIndex = -1;
- //           ButtonState();
+            ButtonState();
         }
         private void ClearForm()
         {
@@ -131,18 +131,29 @@ namespace UI.Web {
                 btnAceptar.Text = "Guardar";
             }
         }
-/*
+
         private void LoadEntity()
         {
-            CursoActual.AnioCalendario = int.Parse(txtAnio.Text);
-            CursoActual.Cupo = int.Parse(txtCupo.Text);
-            CursoActual.IDComision = Int32.Parse(ddCom.SelectedValue);
-            CursoActual.IDMateria = Int32.Parse(ddMat.SelectedValue);
+            UsuarioActual.Nombre = txtNombre.Text;
+            UsuarioActual.Apellido = txtApellido.Text;
+
+            DateTime dt;
+            DateTime.TryParseExact(txtFechaNac.Text, Util.Validaciones.FormatosFecha, null, DateTimeStyles.None, out dt);
+            UsuarioActual.FechaNacimiento = dt;
+            UsuarioActual.Direccion = txtDirec.Text;
+            UsuarioActual.Telefono = txtTel.Text;
+            UsuarioActual.Email = txtEmail.Text;
+            UsuarioActual.NombreUsuario = txtUser.Text;
+            UsuarioActual.TipoPersona = (Usuario.TiposPersona)int.Parse(ddTipo.SelectedValue);
+            UsuarioActual.IDPlan = int.Parse(ddPlan.SelectedValue);
+
+            if (FormMode == FormModes.Alta) UsuarioActual.Clave = Hashing.HashPassword(txtPass.Text);
+
         }
         private void SaveEntity()
         {
-            CursoLogic.Save(CursoActual);
-        }*/
+            UserLogic.Save(UsuarioActual);
+        }
         private void ButtonState()
         {
 
@@ -151,6 +162,8 @@ namespace UI.Web {
                 btnEditar.Enabled = false;
                 btnEliminar.CssClass = "btn btn-outline-secondary btn-sm";
                 btnEliminar.Enabled = false;
+                btnCambiaPass.CssClass = "btn btn-outline-secondary btn-sm";
+                btnCambiaPass.Enabled = false;
                 btnDeseleccionar.Visible = false;
             }
             else {
@@ -158,6 +171,8 @@ namespace UI.Web {
                 btnEditar.Enabled = true;
                 btnEliminar.CssClass = "btn btn-outline-success btn-sm";
                 btnEliminar.Enabled = true;
+                btnCambiaPass.CssClass = "btn btn-outline-success btn-sm";
+                btnCambiaPass.Enabled = true;
                 btnDeseleccionar.Visible = true;
             }
             UpdatePanelButtons.Update();
@@ -171,7 +186,9 @@ namespace UI.Web {
        protected void btnNuevo_Click(object sender, EventArgs e)
         {
             this.FormMode = FormModes.Alta;
+            SelectedID = 0;
             SetFormControlCSS();
+            divPass.Visible = true;
             ClearForm();
             EnableForm(true);
             UpdatePanelModal.Update();
@@ -188,20 +205,21 @@ namespace UI.Web {
             ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "Pop", "$('#ModalUsuarios').modal('show');", true);
         }
 
-/* 
+ 
         protected void btnEliminar_Click(object sender, EventArgs e)
         {
             FormMode = FormModes.Baja;
             SetFormControlCSS();
+            LoadForm();
             EnableForm(false);
-            LoadForm(this.SelectedID);
-            ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "Pop", "$('#ModalCursos').modal('show');", true);
+            UpdatePanelModal.Update();
+            ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "Pop", "$('#ModalUsuarios').modal('show');", true);
         }
 
-        protected void btnDeseleccionar_Click(object sender, EventArgs e)
+       protected void btnDeseleccionar_Click(object sender, EventArgs e)
         {
-            gvCursos.SelectedIndex = -1;
-            gvCursos_SelectedIndexChanged(sender, e);
+            gvUsuarios.SelectedIndex = -1;
+            gvUsuarios_SelectedIndexChanged(sender, e);
             UpdatePanelGrid.Update();
         }
 
@@ -210,89 +228,118 @@ namespace UI.Web {
             if (Validar() == true) {
                 switch (FormMode) {
                     case FormModes.Baja:
-                        CursoActual = new Curso {
+                        UsuarioActual = new Usuario {
                             ID = SelectedID,
                             State = BusinessEntity.States.Deleted
                         };
                         break;
                     case FormModes.Modificacion:
-                        CursoActual = new Curso {
+                        UsuarioActual = new Usuario {
                             ID = SelectedID,
                             Habilitado = true,
                             State = BusinessEntity.States.Modified
                         };
-                        LoadEntity();
                         break;
                     case FormModes.Alta:
-                        CursoActual = new Curso {
+                        UsuarioActual = new Usuario {
                             Habilitado = true,
                             State = BusinessEntity.States.New
                         };
-                        LoadEntity();
                         break;
                 }
+                LoadEntity();
                 SaveEntity();
                 SelectedID = 0;
                 Listar();
-                ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "Pop", "$('#ModalCursos').modal('hide');", true);
+                ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "Pop", "$('#ModalUsuarios').modal('hide');", true);
                 UpdatePanelGrid.Update();
             }
-            UpdatePanelModal.Update();
+            else {
+                UpdatePanelModal.Update();
+            }
         }
         private bool Validar()
         {
             bool isvalid = true;
 
-            if (string.IsNullOrEmpty(txtAnio.Text) ||
-                 string.IsNullOrWhiteSpace(txtAnio.Text) ||
-                 int.Parse(txtAnio.Text) == 0) {
-                txtAnio.CssClass = "form-control is-invalid";
+           if (!Validaciones.ValTexto(txtNombre.Text)) {
+                txtNombre.CssClass = "form-control is-invalid";
                 isvalid = false;
             }
-            else {
-                txtAnio.CssClass = "form-control";
-            }
-            if (string.IsNullOrEmpty(txtCupo.Text) ||
-                string.IsNullOrWhiteSpace(txtCupo.Text) ||
-                int.Parse(txtCupo.Text) == 0) {
-                txtCupo.CssClass = "form-control is-invalid";
+            else txtNombre.CssClass = "form-control";
+
+            if (!Validaciones.ValTexto(txtApellido.Text)) {
+                txtApellido.CssClass = "form-control is-invalid";
                 isvalid = false;
             }
-            else {
-                txtCupo.CssClass = "form-control";
+            else txtApellido.CssClass = "form-control";
+
+            if (!Validaciones.ValFecha(txtFechaNac.Text)) {
+                txtFechaNac.CssClass = "form-control is-invalid";
+                isvalid = false;
             }
-            if (ddEsp.SelectedValue == string.Empty || int.Parse(ddEsp.SelectedValue) == 0) {
+            else txtFechaNac.CssClass = "form-control";
+            
+            if (!Validaciones.ValTexto(txtDirec.Text)) {
+                txtDirec.CssClass = "form-control is-invalid";
+                isvalid = false;
+            }
+            else txtDirec.CssClass = "form-control";
+
+            if (!Validaciones.ValTexto(txtTel.Text)) {
+                txtTel.CssClass = "form-control is-invalid";
+                isvalid = false;
+            }
+            else txtTel.CssClass = "form-control";
+
+            if (!Validaciones.ValEmail(txtEmail.Text)) {
+                txtEmail.CssClass = "form-control is-invalid";
+                isvalid = false;
+            }
+            else txtEmail.CssClass = "form-control";
+
+            if (SelectedID != 0) {
+                if (!Validaciones.ValUsername(txtUser.Text)) {
+                    txtUser.CssClass = "form-control is-invalid";
+                    isvalid = false;
+                }
+                else txtUser.CssClass = "form-control";
+            }
+            else {
+                if (!Validaciones.ValUsername(txtUser.Text) || Validaciones.ValUsernameExists(txtUser.Text) || SelectedID != 0) {
+                    txtUser.CssClass = "form-control is-invalid";
+                    isvalid = false;
+                }
+                else txtUser.CssClass = "form-control";
+            }
+
+            if (!Validaciones.ValTexto(txtPass.Text) || FormMode!=FormModes.Alta) {
+                txtPass.CssClass = "form-control is-invalid";
+                isvalid = false;
+            }
+            else txtPass.CssClass = "form-control";
+
+            if (int.Parse(ddTipo.SelectedValue)==0) {
+                ddTipo.CssClass = "form-control is-invalid";
+                isvalid = false;
+            }
+            else ddTipo.CssClass = "form-control";
+
+            if (int.Parse(ddEsp.SelectedValue) == 0) {
                 ddEsp.CssClass = "form-control is-invalid";
                 isvalid = false;
             }
-            else {
-                ddEsp.CssClass = "form-control";
-            }
+            else ddEsp.CssClass = "form-control";
+
             if (ddPlan.SelectedValue == string.Empty || int.Parse(ddPlan.SelectedValue) == 0) {
                 ddPlan.CssClass = "form-control is-invalid";
                 isvalid = false;
             }
-            else {
-                ddPlan.CssClass = "form-control";
-            }
-            if (ddCom.SelectedValue == string.Empty || int.Parse(ddCom.SelectedValue) == 0) {
-                ddCom.CssClass = "form-control is-invalid";
-                isvalid = false;
-            }
-            else {
-                ddCom.CssClass = "form-control";
-            }
-            if (ddMat.SelectedValue == string.Empty || int.Parse(ddMat.SelectedValue) == 0) {
-                ddMat.CssClass = "form-control is-invalid";
-                isvalid = false;
-            }
-            else {
-                ddMat.CssClass = "form-control";
-            }
+            else ddPlan.CssClass = "form-control";
 
             return isvalid;
         }
-*/
+
         private void SetFormControlCSS()
         {
             txtNombre.CssClass = "form-control";
@@ -307,15 +354,12 @@ namespace UI.Web {
             ddEsp.CssClass = "form-control";
             ddPlan.CssClass = "form-control";
         }
-/*
+
         protected void ddEsp_SelectedIndexChanged(object sender, EventArgs e)
         {
             GenerarPlanes(int.Parse(ddEsp.SelectedValue));
         }
-        protected void ddPlan_SelectedIndexChanged(object sender, EventArgs e)
-        {
 
-        }*/
         protected void GenerarPlanes(int idEsp)
         {
             ddPlan.DataValueField = "id_plan";
@@ -339,6 +383,31 @@ namespace UI.Web {
             ddTipo.DataSource = GenerarComboBox.getTiposPersona();
             ddTipo.DataBind();
             ddTipo.SelectedValue = 0.ToString();
+        }
+
+        protected void btnCambiaPass_Click(object sender, EventArgs e)
+        {
+            txtNuevaPass1.Text = string.Empty;
+            txtNuevaPass2.Text = string.Empty;
+            txtNuevaPass1.CssClass = "form-control";
+            txtNuevaPass2.CssClass = "form-control";
+            UpdatePanelCambiaPass.Update();
+            ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "Pop", "$('#ModalPass').modal('show');", true);
+        }
+
+        protected void btnGuardarPass_Click(object sender, EventArgs e)
+        {
+            if (txtNuevaPass1.Text.Equals(txtNuevaPass2.Text)) {
+                UsuarioActual = UserLogic.GetOne(SelectedID);
+                UsuarioActual.Clave = Hashing.HashPassword(txtNuevaPass1.Text);
+                UserLogic.SavePassword(UsuarioActual);
+                ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "Pop", "$('#ModalPass').modal('hide');", true);
+            }
+            else {
+                txtNuevaPass1.CssClass = "form-control is-invalid";
+                txtNuevaPass2.CssClass = "form-control is-invalid";
+            }
+            UpdatePanelCambiaPass.Update();
         }
     }
 }

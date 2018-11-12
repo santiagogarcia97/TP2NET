@@ -50,7 +50,9 @@ namespace UI.Web.admin {
             }
         }
         private void Listar() {
-            gvDC.DataSource = DocenteCursoLogic.GetListado();
+            List<DocenteCurso> dclist = DocenteCursoLogic.GetAll().Where(x => x.Habilitado == true).ToList();
+
+            gvDC.DataSource = Listado.Generar(dclist);
             gvDC.DataBind();
             gvDC.SelectedIndex = -1;
             ButtonState();

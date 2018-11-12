@@ -52,7 +52,9 @@ namespace UI.Web.admin
         }
         private void Listar()
         {
-            gvIns.DataSource = AlumnoInscripcionLogic.GetListado();
+            List<AlumnoInscripcion> ais = AlumnoInscripcionLogic.GetAll().Where(x => x.Habilitado == true).ToList();
+
+            gvIns.DataSource = Listado.Generar(ais);
             gvIns.DataBind();
             gvIns.SelectedIndex = -1;
             ButtonState();
@@ -195,24 +197,17 @@ namespace UI.Web.admin
         {
             bool isvalid = true;
 
-            if (string.IsNullOrEmpty(txtNota.Text) ||
-                string.IsNullOrWhiteSpace(txtNota.Text) ||
-                int.Parse(txtNota.Text) == 0)
-            {
-                txtNota.CssClass = "form-control is-invalid";
-                isvalid = false;
-            }
-            else
-            {
-                txtNota.CssClass = "form-control";
-            }
-            if (ddAlumno.SelectedValue == string.Empty || int.Parse(ddAlumno.SelectedValue) == 0)
-            {
+            if (Validaciones.ValTexto(txtNota.Text) && int.Parse(txtNota.Text) != 0) txtNota.CssClass = "form-control";
+                else{
+                    txtNota.CssClass = "form-control is-invalid";
+                    isvalid = false;
+                }
+
+            if (ddAlumno.SelectedValue == string.Empty || int.Parse(ddAlumno.SelectedValue) == 0){
                 ddAlumno.CssClass = "form-control is-invalid";
                 isvalid = false;
             }
-            else
-            {
+            else{
                 ddAlumno.CssClass = "form-control";
             }
             if (ddCondicion.SelectedValue == string.Empty || int.Parse(ddCondicion.SelectedValue) == 0)

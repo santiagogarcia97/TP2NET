@@ -52,7 +52,9 @@ namespace UI.Web.admin {
             }
         }
         private void Listar() {
-            gvMat.DataSource = MateriaLogic.GetListado();
+            List<Materia> mats = MateriaLogic.GetAll().Where(x => x.Habilitado == true).ToList();
+
+            gvMat.DataSource = Listado.Generar(mats);
             gvMat.DataBind();
             gvMat.SelectedIndex = -1;
             ButtonState();
@@ -198,31 +200,20 @@ namespace UI.Web.admin {
         private bool Validar() {
             bool isvalid = true;
 
-            if (string.IsNullOrEmpty(txtDescripcion.Text) ||
-                 string.IsNullOrWhiteSpace(txtDescripcion.Text)) {
+            if (Validaciones.ValTexto(txtDescripcion.Text)) txtDescripcion.CssClass = "form-control";
+            else {
                 txtDescripcion.CssClass = "form-control is-invalid";
                 isvalid = false;
             }
+            if (Validaciones.ValTexto(txtHSSem.Text) && int.Parse(txtHSSem.Text) != 0) txtHSSem.CssClass = "form-control";
             else {
-                txtDescripcion.CssClass = "form-control";
-            }
-            if (string.IsNullOrEmpty(txtHSSem.Text) ||
-                string.IsNullOrWhiteSpace(txtHSSem.Text) ||
-                int.Parse(txtHSSem.Text) == 0) {
                 txtHSSem.CssClass = "form-control is-invalid";
                 isvalid = false;
             }
+            if (Validaciones.ValTexto(txtHSTot.Text) && int.Parse(txtHSTot.Text) != 0) txtHSSem.CssClass = "form-control";
             else {
-                txtHSSem.CssClass = "form-control";
-            }
-            if (string.IsNullOrEmpty(txtHSTot.Text) ||
-                string.IsNullOrWhiteSpace(txtHSTot.Text) ||
-                int.Parse(txtHSTot.Text) == 0) {
                 txtHSTot.CssClass = "form-control is-invalid";
                 isvalid = false;
-            }
-            else {
-                txtHSTot.CssClass = "form-control";
             }
             if (ddEsp.SelectedValue == string.Empty || int.Parse(ddEsp.SelectedValue) == 0) {
                 ddEsp.CssClass = "form-control is-invalid";

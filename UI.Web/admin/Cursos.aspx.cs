@@ -52,10 +52,9 @@ namespace UI.Web.admin {
             }
         }
         private void Listar() {
-            Usuario user = new Usuario();
-            user.TipoPersona = Usuario.TiposPersona.Administrador;
+            List<Curso> cursos = CursoLogic.GetAll().Where(x => x.Habilitado == true).ToList();
 
-            gvCursos.DataSource = CursoLogic.GetListado(user);
+            gvCursos.DataSource = Listado.Generar(cursos);
             gvCursos.DataBind();
             gvCursos.SelectedIndex = -1;
             ButtonState();

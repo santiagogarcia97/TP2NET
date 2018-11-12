@@ -52,7 +52,9 @@ namespace UI.Web.admin {
             }
         }
         private void Listar() {
-            gvCom.DataSource = ComisionLogic.GetListado();
+            List<Comision> comisiones = ComisionLogic.GetAll().Where(x => x.Habilitado == true).ToList();
+
+            gvCom.DataSource = Listado.Generar(comisiones);
             gvCom.DataBind();
             gvCom.SelectedIndex = -1;
             ButtonState();
@@ -194,37 +196,27 @@ namespace UI.Web.admin {
         private bool Validar() {
             bool isvalid = true;
 
-            if (string.IsNullOrEmpty(txtDescripcion.Text) ||
-                 string.IsNullOrWhiteSpace(txtDescripcion.Text)) {
-                txtDescripcion.CssClass = "form-control is-invalid";
-                isvalid = false;
-            }
-            else {
-                txtDescripcion.CssClass = "form-control";
-            }
-            if (string.IsNullOrEmpty(txtAnio.Text) ||
-                string.IsNullOrWhiteSpace(txtAnio.Text)) {
-                txtAnio.CssClass = "form-control is-invalid";
-                isvalid = false;
-            }
-            else {
-                txtAnio.CssClass = "form-control";
-            }
+            if (Validaciones.ValTexto(txtDescripcion.Text)) txtDescripcion.CssClass = "form-control";
+                else {
+                    txtDescripcion.CssClass = "form-control is-invalid";
+                    isvalid = false;
+                }
+            if (Validaciones.ValAnio(int.Parse(txtAnio.Text))) txtAnio.CssClass = "form-control";            
+                else {
+                     txtAnio.CssClass = "form-control is-invalid";
+                    isvalid = false; 
+                }
             if (ddEsp.SelectedValue == string.Empty || int.Parse(ddEsp.SelectedValue) == 0) {
                 ddEsp.CssClass = "form-control is-invalid";
                 isvalid = false;
             }
-            else {
-                ddEsp.CssClass = "form-control";
-            }
+                else ddEsp.CssClass = "form-control";
             if (ddPlan.SelectedValue == string.Empty || int.Parse(ddPlan.SelectedValue) == 0) {
                 ddPlan.CssClass = "form-control is-invalid";
                 isvalid = false;
             }
-            else {
-                ddPlan.CssClass = "form-control";
-            }
-
+                else ddPlan.CssClass = "form-control";
+            
             return isvalid;
         }
 

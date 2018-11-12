@@ -88,24 +88,27 @@
         </div>
          <br />
 
-        <div class="form-row">
-            <asp:UpdatePanel ID="UpdatePanelDatos" runat="server" UpdateMode="Conditional">
-                <Triggers>
-                    <asp:AsyncPostBackTrigger ControlID="btnGuardar"/>
-                    <asp:AsyncPostBackTrigger ControlID="btnAceptar"/>
-                </Triggers>
-                <ContentTemplate>
-                    <div id="alertSuccess" class="alert alert-success col-sm" runat="server" visible="false">
-                        <asp:Label ID="lblPass" runat="server" Text="La contraseña ha sido cambiada" visible="false"></asp:Label>
-                        <asp:Label ID="lblCambios" runat="server" Text="Los cambios se han guardado con exito" visible="false"></asp:Label>
+
+        <asp:UpdatePanel ID="UpdatePanelDatos" runat="server" UpdateMode="Conditional">
+            <Triggers>
+                <asp:AsyncPostBackTrigger ControlID="btnAceptar"/>
+            </Triggers>
+            <ContentTemplate>
+                <div class="form-row">  
+                    <div class="col-5">
+                        <div id="alertSuccess" class="alert alert-success" runat="server" visible="false">
+                            <asp:Label ID="lblSuccess" runat="server" Text="lblSuccess"></asp:Label>
+                        </div>
                     </div>
-                </ContentTemplate>
-            </asp:UpdatePanel>
-            <div class="text-right col-sm">
-                <asp:Button ID="btnPass" CssClass="btn btn-lg btn-outline-secondary" runat="server" Text="Cambiar clave" OnClick="btnPass_Click" />
-                <asp:Button ID="btnGuardar" CssClass="btn btn-lg btn-outline-success" runat="server" Text="Guardar cambios" OnClick="btnGuardar_Click"/>
-            </div>
-        </div>
+                    <div class="col-7 text-right">
+                        <asp:Button ID="btnPass" CssClass="btn btn-lg btn-outline-secondary" runat="server" Text="Cambiar clave" OnClick="btnPass_Click" />
+                        <asp:Button ID="btnGuardar" CssClass="btn btn-lg btn-outline-success" runat="server" Text="Guardar cambios" OnClick="btnGuardar_Click"/>
+                    </div>
+                </div>
+            </ContentTemplate>
+        </asp:UpdatePanel>
+
+
     </div>   
 
 </asp:Content>

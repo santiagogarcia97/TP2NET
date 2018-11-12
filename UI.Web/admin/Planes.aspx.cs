@@ -56,8 +56,9 @@ namespace UI.Web {
             }
         }
         private void Listar() {
-            PlanLogic el = new PlanLogic();
-            gvPlanes.DataSource = el.GetListado();
+            List<Plan> planes = PlanLogic.GetAll().Where(x => x.Habilitado == true).ToList();
+
+            gvPlanes.DataSource = Listado.Generar(planes);
             gvPlanes.DataBind();
             gvPlanes.SelectedIndex = -1;
             ButtonState();
@@ -190,13 +191,10 @@ namespace UI.Web {
         private bool Validar() {
             bool isvalid = true;
 
-            if (string.IsNullOrEmpty(txtDescripcion.Text) ||
-                 string.IsNullOrWhiteSpace(txtDescripcion.Text)) {
+            if (Validaciones.ValTexto(txtDescripcion.Text))  txtDescripcion.CssClass = "form-control";
+            else {
                 txtDescripcion.CssClass = "form-control is-invalid";
                 isvalid = false;
-            }
-            else {
-                txtDescripcion.CssClass = "form-control";
             }
             if (ddEsp.SelectedValue == string.Empty || int.Parse(ddEsp.SelectedValue) == 0) {
                 ddEsp.CssClass = "form-control is-invalid";

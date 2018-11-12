@@ -9,7 +9,7 @@ using Business.Logic;
 using System.Globalization;
 
 namespace Util {
-    public static class Validar {
+    public static class Validaciones {
 
         private const string RegExEmail = @"[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?";
         private const string RegExTel = @"/\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/";
@@ -60,7 +60,7 @@ namespace Util {
         }
         public static bool ValFecha(string fecha) {
             DateTime dt;
-            return DateTime.TryParseExact(fecha, Util.Validar.FormatosFecha, null, DateTimeStyles.None, out dt);
+            return DateTime.TryParseExact(fecha, FormatosFecha, null, DateTimeStyles.None, out dt);
         }
         public static bool ValTipo(int tipo) {
             return Enum.IsDefined(typeof(Usuario.TiposPersona), tipo);
