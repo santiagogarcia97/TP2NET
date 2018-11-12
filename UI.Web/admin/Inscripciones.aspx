@@ -101,5 +101,8 @@
             </ContentTemplate>
         </asp:UpdatePanel>
     </div>
-
+    <div runat="server" id="divSinIns" visible="false">
+        <br />
+        <p class="text-center">No hay inscripciones disponibles</p>
+    </div>
 </asp:Content>

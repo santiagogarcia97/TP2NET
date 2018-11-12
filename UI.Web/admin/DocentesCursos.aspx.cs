@@ -52,10 +52,15 @@ namespace UI.Web.admin {
         private void Listar() {
             List<DocenteCurso> dclist = DocenteCursoLogic.GetAll().Where(x => x.Habilitado == true).ToList();
 
-            gvDC.DataSource = Listado.Generar(dclist);
-            gvDC.DataBind();
-            gvDC.SelectedIndex = -1;
-            ButtonState();
+            if (dclist.Count == 0) {
+                divSinDC.Visible = true;
+            }
+            else {
+                gvDC.DataSource = Listado.Generar(dclist);
+                gvDC.DataBind();
+                gvDC.SelectedIndex = -1;
+                ButtonState();
+            }
         }
         private void ClearForm() {
             txtID.Text = "";

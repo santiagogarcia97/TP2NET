@@ -54,10 +54,16 @@ namespace UI.Web.admin {
         private void Listar() {
             List<Comision> comisiones = ComisionLogic.GetAll().Where(x => x.Habilitado == true).ToList();
 
+            if (comisiones.Count == 0) {
+                divSinComisiones.Visible = true;
+            }
+            else {
             gvCom.DataSource = Listado.Generar(comisiones);
             gvCom.DataBind();
             gvCom.SelectedIndex = -1;
             ButtonState();
+            }
+
         }
         private void ClearForm() {
             txtID.Text = "";

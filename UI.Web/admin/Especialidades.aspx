@@ -85,5 +85,8 @@
             </ContentTemplate>
         </asp:UpdatePanel>
     </div>
-
+    <div runat="server" id="divSinEsp" visible="false">
+        <br />
+        <p class="text-center">No hay especialidades disponibles</p>
+    </div>
 </asp:Content>

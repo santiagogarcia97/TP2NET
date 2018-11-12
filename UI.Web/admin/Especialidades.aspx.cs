@@ -51,10 +51,16 @@ namespace UI.Web.admin {
         private void Listar() {
             List<Especialidad> especialidades = EspecialidadLogic.GetAll().Where(x => x.Habilitado == true).ToList();
 
-            gvEspecialidades.DataSource = Listado.Generar(especialidades);
-            gvEspecialidades.DataBind();
-            gvEspecialidades.SelectedIndex = -1;
-            algo();
+            if (especialidades.Count == 0) {
+                divSinEsp.Visible = true;
+            }
+            else {
+                gvEspecialidades.DataSource = Listado.Generar(especialidades);
+                gvEspecialidades.DataBind();
+                gvEspecialidades.SelectedIndex = -1;
+                algo();
+            }
+
         }
         private void ClearForm() {
             inputID.Text = "";

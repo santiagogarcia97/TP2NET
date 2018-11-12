@@ -54,10 +54,15 @@ namespace UI.Web.admin
         {
             List<AlumnoInscripcion> ais = AlumnoInscripcionLogic.GetAll().Where(x => x.Habilitado == true).ToList();
 
-            gvIns.DataSource = Listado.Generar(ais);
-            gvIns.DataBind();
-            gvIns.SelectedIndex = -1;
-            ButtonState();
+            if (ais.Count == 0) {
+                divSinIns.Visible = true;
+            }
+            else {
+                gvIns.DataSource = Listado.Generar(ais);
+                gvIns.DataBind();
+                gvIns.SelectedIndex = -1;
+                ButtonState();
+            }
         }
 
         private void EnableForm(bool enable)

@@ -89,5 +89,8 @@
             </ContentTemplate>
         </asp:UpdatePanel>
     </div>
-
+    <div runat="server" id="divSinPlanes" visible="false">
+        <br />
+        <p class="text-center">No hay planes disponibles</p>
+    </div>
 </asp:Content>

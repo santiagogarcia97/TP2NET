@@ -54,10 +54,16 @@ namespace UI.Web.admin {
         private void Listar() {
             List<Materia> mats = MateriaLogic.GetAll().Where(x => x.Habilitado == true).ToList();
 
-            gvMat.DataSource = Listado.Generar(mats);
-            gvMat.DataBind();
-            gvMat.SelectedIndex = -1;
-            ButtonState();
+            if (mats.Count == 0) {
+                divSinMaterias.Visible = true;
+            }
+            else {
+                gvMat.DataSource = Listado.Generar(mats);
+                gvMat.DataBind();
+                gvMat.SelectedIndex = -1;
+                ButtonState();
+            }
+
         }
         private void ClearForm() {
             txtID.Text = "";

@@ -51,13 +51,19 @@ namespace UI.Web.admin {
                 }
             }
         }
-        private void Listar() {
+        private void Listar()
+        {
             List<Curso> cursos = CursoLogic.GetAll().Where(x => x.Habilitado == true).ToList();
 
-            gvCursos.DataSource = Listado.Generar(cursos);
-            gvCursos.DataBind();
-            gvCursos.SelectedIndex = -1;
-            ButtonState();
+            if (cursos.Count == 0) {
+                divSinCursos.Visible = true;
+            }
+            else {
+                gvCursos.DataSource = Listado.Generar(cursos);
+                gvCursos.DataBind();
+                gvCursos.SelectedIndex = -1;
+                ButtonState();
+            }
         }
         private void ClearForm() {
             txtID.Text = "";

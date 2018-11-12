@@ -61,10 +61,15 @@ namespace UI.Web {
         {
             List<Usuario> users = UserLogic.GetAll();
 
-            gvUsuarios.DataSource = Listado.Generar(users);
-            gvUsuarios.DataBind();
-            gvUsuarios.SelectedIndex = -1;
-            ButtonState();
+            if (users.Count == 0) {
+                divSinUsers.Visible = true;
+            }
+            else {
+                gvUsuarios.DataSource = Listado.Generar(users);
+                gvUsuarios.DataBind();
+                gvUsuarios.SelectedIndex = -1;
+                ButtonState();
+            }
         }
         private void ClearForm()
         {
@@ -298,15 +303,9 @@ namespace UI.Web {
             }
             else txtEmail.CssClass = "form-control";
 
-            if (SelectedID != 0) {
-                if (!Validaciones.ValUsername(txtUser.Text)) {
-                    txtUser.CssClass = "form-control is-invalid";
-                    isvalid = false;
-                }
-                else txtUser.CssClass = "form-control";
-            }
+            if (UsuarioActual.NombreUsuario.Equals(txtUser.Text)) txtUser.CssClass = "form-control";
             else {
-                if (!Validaciones.ValUsername(txtUser.Text) || Validaciones.ValUsernameExists(txtUser.Text) || SelectedID != 0) {
+                if (!Validaciones.ValUsername(txtUser.Text) || Validaciones.ValUsernameExists(txtUser.Text)) {
                     txtUser.CssClass = "form-control is-invalid";
                     isvalid = false;
                 }

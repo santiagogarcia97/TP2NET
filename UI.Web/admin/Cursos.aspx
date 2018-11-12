@@ -113,5 +113,8 @@
             </ContentTemplate>
         </asp:UpdatePanel>
     </div>
-
+    <div runat="server" id="divSinCursos" visible="false">
+        <br />
+        <p class="text-center">No hay cursos disponibles</p>
+    </div>
 </asp:Content>

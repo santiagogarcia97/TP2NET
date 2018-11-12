@@ -58,10 +58,16 @@ namespace UI.Web {
         private void Listar() {
             List<Plan> planes = PlanLogic.GetAll().Where(x => x.Habilitado == true).ToList();
 
-            gvPlanes.DataSource = Listado.Generar(planes);
-            gvPlanes.DataBind();
-            gvPlanes.SelectedIndex = -1;
-            ButtonState();
+            if (planes.Count == 0) {
+                divSinPlanes.Visible = true;
+            }
+            else {
+                gvPlanes.DataSource = Listado.Generar(planes);
+                gvPlanes.DataBind();
+                gvPlanes.SelectedIndex = -1;
+                ButtonState();
+            }
+
         }
         private void ClearForm() {
             txtID.Text = "";

@@ -108,4 +108,8 @@
             </ContentTemplate>
         </asp:UpdatePanel>
     </div>
+    <div runat="server" id="divSinMaterias" visible="false">
+        <br />
+        <p class="text-center">No hay materias disponibles</p>
+    </div>
 </asp:Content>

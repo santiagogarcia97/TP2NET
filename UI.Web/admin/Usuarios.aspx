@@ -211,5 +211,8 @@
             </ContentTemplate>
         </asp:UpdatePanel>
     </div>
-
+    <div runat="server" id="divSinUsers" visible="false">
+        <br />
+        <p class="text-center">No hay usuarios disponibles</p>
+    </div>
 </asp:Content>

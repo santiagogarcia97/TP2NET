@@ -102,5 +102,8 @@
             </ContentTemplate>
         </asp:UpdatePanel>
     </div>
-
+    <div runat="server" id="divSinComisiones" visible="false">
+        <br />
+        <p class="text-center">No hay comisiones disponibles</p>
+    </div>
 </asp:Content>
