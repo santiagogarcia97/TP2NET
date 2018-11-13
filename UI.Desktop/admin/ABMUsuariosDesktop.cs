@@ -179,6 +179,27 @@ namespace UI.Desktop {
             lblRedTel.Visible = Validaciones.ValTexto(txtTel.Text) ? false : true;
             lblRedEmail.Visible = Validaciones.ValEmail(txtEmail.Text) ? false : true;
             lblRedUser.Visible = Validaciones.ValUsername(txtNombreUsuario.Text) ? false : true;
+
+            if (Validaciones.ValTexto(txtNombreUsuario.Text) && Validaciones.ValUsername(txtNombreUsuario.Text)) {
+                if (Modo == ModoForm.Alta && !Validaciones.ValUsernameExists(txtNombreUsuario.Text)) {
+                    lblRedUser.Visible = false;
+                }
+                else if (Modo == ModoForm.Modificacion) {
+                    UsuarioLogic UserLogic = new UsuarioLogic();
+                    Usuario aux = UserLogic.GetOne(int.Parse(labelID.Text));
+                    if (aux.NombreUsuario.Equals(txtNombreUsuario.Text)) lblRedUser.Visible = false;
+                    else {
+                        lblRedUser.Visible = true;
+                    }
+                }
+                else {
+                    lblRedUser.Visible = true;
+                }
+            }
+            else {
+                lblRedUser.Visible = true;
+            }
+
             lblRedTipo.Visible = (cbxTipo.SelectedValue == null || (int)cbxTipo.SelectedValue == 0) ? true : false;
             lblRedPlan.Visible = (cbEsp.SelectedValue == null || cbxPlan.SelectedValue == null ||
                                   (int)cbEsp.SelectedValue == 0 || (int)cbxPlan.SelectedValue == 0) ? true : false;

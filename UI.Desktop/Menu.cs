@@ -39,27 +39,20 @@ namespace UI.Desktop {
         }
 
         private void MenuAlumno(){
-            gbAdmin.Visible = false;
             TSMIabms.Visible = false;
             TSMIMisCursos.Visible = false;
-            GenerarEstadisticas();
-            gbAcademico.Visible = true;
             planesToolStripMenuItem.Visible = false;
             cursosToolStripMenuItem.Visible = false;
         }
         private void MenuDocente() {
             TSMIabms.Visible = false;
             TSMIMisInscripciones.Visible = false;
-            gbAdmin.Visible = false;
-            gbAcademico.Visible = true;
             planesToolStripMenuItem.Visible = false;
             inscripcionesToolStripMenuItem.Visible = false;
         }
         private void MenuAdmin() {
             TSMIMisInscripciones.Visible = false;
             TSMIMisCursos.Visible = false;
-            gbAdmin.Visible = true;
-            gbAcademico.Visible = false;
             inscripcionesToolStripMenuItem.Visible = false;
             cursosToolStripMenuItem.Visible = false;
         }
@@ -106,14 +99,6 @@ namespace UI.Desktop {
         private void Menu_Load(object sender, EventArgs e) {
             lblBienvenido.Text = "Bienvenido " + UsuarioActual.Nombre + "!";
             lblLegajo.Text = "Legajo: " + UsuarioActual.Legajo;
-        }
-        private void GenerarEstadisticas() {
-            AlumnoInscripcionLogic ail = new AlumnoInscripcionLogic();
-            List<AlumnoInscripcion> inscripciones = ail.GetAllFromUser(UsuarioActual.ID);
-            lblAprobadas.Text = inscripciones.Count(x => x.Condicion == AlumnoInscripcion.Condiciones.Aprobado).ToString();
-            lblCursando.Text = inscripciones.Count(x => x.Condicion == AlumnoInscripcion.Condiciones.Cursando).ToString();
-            lblRegularizadas.Text = inscripciones.Count(x => x.Condicion == AlumnoInscripcion.Condiciones.Regular).ToString();
-            lblLibres.Text = inscripciones.Count(x => x.Condicion == AlumnoInscripcion.Condiciones.Libre).ToString();
         }
 
         private void btnGuardar_Click(object sender, EventArgs e) {

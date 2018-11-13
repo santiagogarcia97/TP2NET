@@ -11,7 +11,6 @@ namespace Business.Logic {
 
         private UsuarioAdapter _UsuarioData;
         public UsuarioAdapter UsuarioData { get => _UsuarioData; set => _UsuarioData = value; }
-
         public UsuarioLogic() {
             UsuarioData = new UsuarioAdapter();
         }
@@ -21,10 +20,14 @@ namespace Business.Logic {
         public Usuario GetOne(int id) {
             return UsuarioData.GetOne(id);
         }
-        public Usuario GetOne(String username){
-            return UsuarioData.GetOne(username);
+        public Usuario GetOne(String username) {
+            try {
+                return UsuarioData.GetOne(username);
+            }
+            catch(Exception ex) {
+                throw ex;
+            }
         }
-
         public void Save(Usuario user) {
             UsuarioData.Save(user);
         }
@@ -36,5 +39,6 @@ namespace Business.Logic {
             legajo++;
             return legajo;
         }
+
     }
 }

@@ -19,24 +19,29 @@ namespace UI.Desktop
             InitializeComponent();
         }
 
-        private void btnIngresar_Click(object sender, EventArgs e)
-        {
+        private void btnIngresar_Click(object sender, EventArgs e) {
             this.Enabled = false;
-            UsuarioLogic ul = new UsuarioLogic();
-            Usuario user = ul.GetOne(txtUsuario.Text);
-            if(txtUsuario.Text.Equals(user.NombreUsuario) && Hashing.ValidatePassword(txtPassword.Text, user.Clave)){
-                this.Visible = false;
+            try {
+                UsuarioLogic ul = new UsuarioLogic();
+                Usuario user = ul.GetOne(txtUsuario.Text);
+                if (txtUsuario.Text.Equals(user.NombreUsuario) && Hashing.ValidatePassword(txtPassword.Text, user.Clave)) {
+                    this.Visible = false;
 
-                Menu main = new Menu(user);
-                main.ShowDialog();
+                    Menu main = new Menu(user);
+                    main.ShowDialog();
 
-                this.Visible = true;
+                    this.Visible = true;
+                }
+                else {
+                    MessageBox.Show("Usuario o Contraseña incorrecto.");
+                }
             }
-            else {
-                MessageBox.Show("Usuario o Contraseña incorrecto.");
+            catch(Exception ex) {
+                MessageBox.Show("Error de Servidor. \n" + ex.Message);
             }
             txtPassword.Text = string.Empty;
             this.Enabled = true;
+                   
         }
 
         private void btnSalir_Click(object sender, EventArgs e) {

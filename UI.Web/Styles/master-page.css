@@ -45,6 +45,14 @@ body {
     overflow: auto;
 }
 
+.inicio {
+    width: auto;
+    max-width: 576px;
+    padding: 20px;
+    margin:auto;
+    overflow: auto;
+}
+
 .perfil {
     width: 100%;
     max-width: 720px;

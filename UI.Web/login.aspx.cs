@@ -16,6 +16,8 @@ namespace UI.Web {
         protected void Page_Load(object sender, EventArgs e) {
             if (!IsPostBack)
             {
+                lblError.Visible = false;
+                lblBadLogin.Visible = false;
                 if (Session["username"] != null && Session["tipo"] != null)
                 {
                     Response.Redirect("/main/inicio.aspx");
@@ -24,20 +26,24 @@ namespace UI.Web {
         }
 
         protected void aceptarLinkButton_Click(object sender,EventArgs e) {
-            UsuarioLogic ul = new UsuarioLogic();
-            Usuario user = ul.GetOne(txtUser.Text);
-            if(txtUser.Text.Equals(user.NombreUsuario) && Hashing.ValidatePassword(txtPassword.Text, user.Clave)) {
-                Session["username"] = user.NombreUsuario;
-                Session["tipo"] = user.TipoPersona;
-                Response.Redirect("/main/inicio.aspx");
+            try {
+                UsuarioLogic ul = new UsuarioLogic();
+                Usuario user = ul.GetOne(txtUser.Text);
+                if (txtUser.Text.Equals(user.NombreUsuario) && Hashing.ValidatePassword(txtPassword.Text, user.Clave)) {
+                    Session["username"] = user.NombreUsuario;
+                    Session["tipo"] = user.TipoPersona;
+                    Response.Redirect("/main/inicio.aspx");
+                }
+                else {
+                    lblError.Visible = false;
+                    lblBadLogin.Visible = true;
+                    UpdatePanelBtn.Update();
+                }
             }
-            else if(txtUser.Text.Equals(user.NombreUsuario) && !Hashing.ValidatePassword(txtPassword.Text, user.Clave)) {
-                lblBadPass.Visible = true;
-                lblBadUser.Visible = false;
-            }
-            else {
-                lblBadPass.Visible = false;
-                lblBadUser.Visible = true;
+            catch (Exception ex){
+                lblError.Visible = true;
+                lblBadLogin.Visible = false;
+                UpdatePanelBtn.Update();
             }
         }
     }

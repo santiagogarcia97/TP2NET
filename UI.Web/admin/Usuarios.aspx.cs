@@ -266,8 +266,7 @@ namespace UI.Web {
                 UpdatePanelModal.Update();
             }
         }
-        private bool Validar()
-        {
+        private bool Validar() {
             bool isvalid = true;
             UsuarioActual = UserLogic.GetOne(SelectedID);
 
@@ -288,7 +287,7 @@ namespace UI.Web {
                 isvalid = false;
             }
             else txtFechaNac.CssClass = "form-control";
-            
+
             if (!Validaciones.ValTexto(txtDirec.Text)) {
                 txtDirec.CssClass = "form-control is-invalid";
                 isvalid = false;
@@ -307,23 +306,28 @@ namespace UI.Web {
             }
             else txtEmail.CssClass = "form-control";
 
-            /*          if (string.IsNullOrEmpty(UsuarioActual.NombreUsuario) || 
-                          UsuarioActual.NombreUsuario.Equals(txtUser.Text)) txtUser.CssClass = "form-control";
-                      else {
-                      if (!Validaciones.ValUsername(txtUser.Text) || Validaciones.ValUsernameExists(txtUser.Text)) {
-                          txtUser.CssClass = "form-control is-invalid";
-                          isvalid = false;
-                      }
-                      else txtUser.CssClass = "form-control";
-                      }
-          /*/
-            if (FormMode == FormModes.Alta) {
-                if (Validaciones.ValTexto(txtPass.Text)) txtPass.CssClass = "form-control";
+            if (Validaciones.ValTexto(txtUser.Text) && Validaciones.ValUsername(txtUser.Text)) {
+                if (FormMode == FormModes.Alta && !Validaciones.ValUsernameExists(txtUser.Text)) {
+                    txtUser.CssClass = "form-control";
+                }
+                else if (FormMode == FormModes.Modificacion) {
+                    Usuario aux = UserLogic.GetOne(int.Parse(lblID.Text));
+                    if (aux.NombreUsuario.Equals(txtUser.Text)) txtUser.CssClass = "form-control";
+                    else {
+                        txtPass.CssClass = "form-control is-invalid";
+                        isvalid = false;
+                    }
+                }
                 else {
                     txtPass.CssClass = "form-control is-invalid";
                     isvalid = false;
                 }
             }
+            else {
+                txtPass.CssClass = "form-control is-invalid";
+                isvalid = false;
+            }
+
 
 
             if (int.Parse(ddTipo.SelectedValue)==0) {

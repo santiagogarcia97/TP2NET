@@ -43,24 +43,21 @@
             this.lblRedDirec = new System.Windows.Forms.Label();
             this.lblRedTel = new System.Windows.Forms.Label();
             this.lblRedEmail = new System.Windows.Forms.Label();
-            this.tlpAdmin = new System.Windows.Forms.TableLayoutPanel();
             this.panelBottom = new System.Windows.Forms.Panel();
             this.btnSalir = new System.Windows.Forms.Button();
             this.panelDatos = new System.Windows.Forms.Panel();
             this.gbDatos = new System.Windows.Forms.GroupBox();
-            this.gbAcademico = new System.Windows.Forms.GroupBox();
-            this.tlpAcademico = new System.Windows.Forms.TableLayoutPanel();
+            this.gbInfo = new System.Windows.Forms.GroupBox();
+            this.tlpInfo = new System.Windows.Forms.TableLayoutPanel();
             this.label11 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.lblAprobadas = new System.Windows.Forms.Label();
-            this.lblCursando = new System.Windows.Forms.Label();
-            this.lblRegularizadas = new System.Windows.Forms.Label();
-            this.lblLibres = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
             this.panelInfo = new System.Windows.Forms.Panel();
-            this.gbAdmin = new System.Windows.Forms.GroupBox();
             this.panelBienvenido = new System.Windows.Forms.Panel();
             this.lblLegajo = new System.Windows.Forms.Label();
             this.lblBienvenido = new System.Windows.Forms.Label();
@@ -82,15 +79,13 @@
             this.planesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.inscripcionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cursosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.TSMIacerca = new System.Windows.Forms.ToolStripMenuItem();
             this.tlpDatos.SuspendLayout();
             this.panelBottom.SuspendLayout();
             this.panelDatos.SuspendLayout();
             this.gbDatos.SuspendLayout();
-            this.gbAcademico.SuspendLayout();
-            this.tlpAcademico.SuspendLayout();
+            this.gbInfo.SuspendLayout();
+            this.tlpInfo.SuspendLayout();
             this.panelInfo.SuspendLayout();
-            this.gbAdmin.SuspendLayout();
             this.panelBienvenido.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -369,29 +364,6 @@
             this.lblRedEmail.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.lblRedEmail.Visible = false;
             // 
-            // tlpAdmin
-            // 
-            this.tlpAdmin.BackColor = System.Drawing.SystemColors.Control;
-            this.tlpAdmin.ColumnCount = 4;
-            this.tlpAdmin.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tlpAdmin.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tlpAdmin.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tlpAdmin.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tlpAdmin.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlpAdmin.Location = new System.Drawing.Point(3, 16);
-            this.tlpAdmin.Name = "tlpAdmin";
-            this.tlpAdmin.RowCount = 8;
-            this.tlpAdmin.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tlpAdmin.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tlpAdmin.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tlpAdmin.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tlpAdmin.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tlpAdmin.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tlpAdmin.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tlpAdmin.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tlpAdmin.Size = new System.Drawing.Size(236, 327);
-            this.tlpAdmin.TabIndex = 0;
-            // 
             // panelBottom
             // 
             this.panelBottom.Controls.Add(this.btnSalir);
@@ -433,189 +405,169 @@
             this.gbDatos.TabStop = false;
             this.gbDatos.Text = "Modificar datos";
             // 
-            // gbAcademico
+            // gbInfo
             // 
-            this.gbAcademico.Controls.Add(this.tlpAcademico);
-            this.gbAcademico.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gbAcademico.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbAcademico.Location = new System.Drawing.Point(0, 0);
-            this.gbAcademico.Name = "gbAcademico";
-            this.gbAcademico.Size = new System.Drawing.Size(242, 346);
-            this.gbAcademico.TabIndex = 1;
-            this.gbAcademico.TabStop = false;
-            this.gbAcademico.Text = "Informacion";
-            this.gbAcademico.Visible = false;
+            this.gbInfo.Controls.Add(this.tlpInfo);
+            this.gbInfo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gbInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gbInfo.Location = new System.Drawing.Point(0, 0);
+            this.gbInfo.Name = "gbInfo";
+            this.gbInfo.Size = new System.Drawing.Size(242, 346);
+            this.gbInfo.TabIndex = 1;
+            this.gbInfo.TabStop = false;
+            this.gbInfo.Text = "Informacion";
             // 
-            // tlpAcademico
+            // tlpInfo
             // 
-            this.tlpAcademico.BackColor = System.Drawing.SystemColors.Control;
-            this.tlpAcademico.ColumnCount = 4;
-            this.tlpAcademico.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tlpAcademico.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tlpAcademico.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tlpAcademico.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tlpAcademico.Controls.Add(this.label11, 0, 1);
-            this.tlpAcademico.Controls.Add(this.label1, 0, 2);
-            this.tlpAcademico.Controls.Add(this.label2, 0, 3);
-            this.tlpAcademico.Controls.Add(this.label3, 0, 4);
-            this.tlpAcademico.Controls.Add(this.label10, 0, 5);
-            this.tlpAcademico.Controls.Add(this.lblAprobadas, 2, 2);
-            this.tlpAcademico.Controls.Add(this.lblCursando, 2, 3);
-            this.tlpAcademico.Controls.Add(this.lblRegularizadas, 2, 4);
-            this.tlpAcademico.Controls.Add(this.lblLibres, 2, 5);
-            this.tlpAcademico.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlpAcademico.Location = new System.Drawing.Point(3, 18);
-            this.tlpAcademico.Name = "tlpAcademico";
-            this.tlpAcademico.RowCount = 12;
-            this.tlpAcademico.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 15F));
-            this.tlpAcademico.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tlpAcademico.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tlpAcademico.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tlpAcademico.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tlpAcademico.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tlpAcademico.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tlpAcademico.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tlpAcademico.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tlpAcademico.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tlpAcademico.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tlpAcademico.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tlpAcademico.Size = new System.Drawing.Size(236, 325);
-            this.tlpAcademico.TabIndex = 1;
-            this.tlpAcademico.Visible = false;
+            this.tlpInfo.BackColor = System.Drawing.SystemColors.Control;
+            this.tlpInfo.ColumnCount = 4;
+            this.tlpInfo.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tlpInfo.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tlpInfo.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tlpInfo.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tlpInfo.Controls.Add(this.label11, 0, 1);
+            this.tlpInfo.Controls.Add(this.label1, 0, 2);
+            this.tlpInfo.Controls.Add(this.label3, 0, 4);
+            this.tlpInfo.Controls.Add(this.label10, 0, 5);
+            this.tlpInfo.Controls.Add(this.label14, 0, 11);
+            this.tlpInfo.Controls.Add(this.label13, 0, 12);
+            this.tlpInfo.Controls.Add(this.label15, 0, 10);
+            this.tlpInfo.Controls.Add(this.label16, 0, 9);
+            this.tlpInfo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tlpInfo.Location = new System.Drawing.Point(3, 18);
+            this.tlpInfo.Name = "tlpInfo";
+            this.tlpInfo.RowCount = 16;
+            this.tlpInfo.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 15F));
+            this.tlpInfo.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tlpInfo.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tlpInfo.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tlpInfo.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tlpInfo.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tlpInfo.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tlpInfo.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tlpInfo.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tlpInfo.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tlpInfo.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tlpInfo.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tlpInfo.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tlpInfo.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tlpInfo.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tlpInfo.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tlpInfo.Size = new System.Drawing.Size(236, 325);
+            this.tlpInfo.TabIndex = 1;
             // 
             // label11
             // 
             this.label11.AutoSize = true;
-            this.tlpAcademico.SetColumnSpan(this.label11, 2);
+            this.tlpInfo.SetColumnSpan(this.label11, 4);
             this.label11.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label11.Location = new System.Drawing.Point(3, 15);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(112, 25);
+            this.label11.Size = new System.Drawing.Size(230, 25);
             this.label11.TabIndex = 10;
-            this.label11.Text = "Materias";
-            this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label11.Text = "Sistema Academico";
+            this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.tlpAcademico.SetColumnSpan(this.label1, 2);
+            this.tlpInfo.SetColumnSpan(this.label1, 4);
             this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(3, 40);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(112, 25);
+            this.tlpInfo.SetRowSpan(this.label1, 2);
+            this.label1.Size = new System.Drawing.Size(230, 50);
             this.label1.TabIndex = 2;
-            this.label1.Text = "Aprobadas";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.tlpAcademico.SetColumnSpan(this.label2, 2);
-            this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(3, 65);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(112, 25);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Cursando";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label1.Text = "Tecnologias de Desarrollo de Software IDE";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.tlpAcademico.SetColumnSpan(this.label3, 2);
+            this.tlpInfo.SetColumnSpan(this.label3, 4);
             this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(3, 90);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(112, 25);
+            this.label3.Size = new System.Drawing.Size(230, 25);
             this.label3.TabIndex = 4;
-            this.label3.Text = "Regularizadas";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label3.Text = "Universidad Tecnologica Nacional";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.tlpAcademico.SetColumnSpan(this.label10, 2);
+            this.tlpInfo.SetColumnSpan(this.label10, 4);
             this.label10.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.Location = new System.Drawing.Point(3, 115);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(112, 25);
+            this.label10.Size = new System.Drawing.Size(230, 25);
             this.label10.TabIndex = 5;
-            this.label10.Text = "Libre";
-            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label10.Text = "Facultad Regional de Rosario";
+            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // lblAprobadas
+            // label14
             // 
-            this.lblAprobadas.AutoSize = true;
-            this.lblAprobadas.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblAprobadas.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAprobadas.Location = new System.Drawing.Point(121, 40);
-            this.lblAprobadas.Name = "lblAprobadas";
-            this.lblAprobadas.Size = new System.Drawing.Size(53, 25);
-            this.lblAprobadas.TabIndex = 6;
-            this.lblAprobadas.Text = "lblAp";
-            this.lblAprobadas.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label14.AutoSize = true;
+            this.tlpInfo.SetColumnSpan(this.label14, 4);
+            this.label14.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Location = new System.Drawing.Point(3, 265);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(230, 25);
+            this.label14.TabIndex = 12;
+            this.label14.Text = "43721 - Cardona Ruiz, Joaquin";
+            this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // lblCursando
+            // label13
             // 
-            this.lblCursando.AutoSize = true;
-            this.lblCursando.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblCursando.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCursando.Location = new System.Drawing.Point(121, 65);
-            this.lblCursando.Name = "lblCursando";
-            this.lblCursando.Size = new System.Drawing.Size(53, 25);
-            this.lblCursando.TabIndex = 7;
-            this.lblCursando.Text = "lblCur";
-            this.lblCursando.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label13.AutoSize = true;
+            this.tlpInfo.SetColumnSpan(this.label13, 4);
+            this.label13.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(3, 290);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(230, 25);
+            this.label13.TabIndex = 11;
+            this.label13.Text = "43685 - Garcia, Santiago";
+            this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // lblRegularizadas
+            // label15
             // 
-            this.lblRegularizadas.AutoSize = true;
-            this.lblRegularizadas.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblRegularizadas.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRegularizadas.Location = new System.Drawing.Point(121, 90);
-            this.lblRegularizadas.Name = "lblRegularizadas";
-            this.lblRegularizadas.Size = new System.Drawing.Size(53, 25);
-            this.lblRegularizadas.TabIndex = 8;
-            this.lblRegularizadas.Text = "lblReg";
-            this.lblRegularizadas.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label15.AutoSize = true;
+            this.tlpInfo.SetColumnSpan(this.label15, 4);
+            this.label15.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Location = new System.Drawing.Point(3, 240);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(230, 25);
+            this.label15.TabIndex = 13;
+            this.label15.Text = "43719 - Caracini, Bruno";
+            this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // lblLibres
+            // label16
             // 
-            this.lblLibres.AutoSize = true;
-            this.lblLibres.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblLibres.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLibres.Location = new System.Drawing.Point(121, 115);
-            this.lblLibres.Name = "lblLibres";
-            this.lblLibres.Size = new System.Drawing.Size(53, 25);
-            this.lblLibres.TabIndex = 9;
-            this.lblLibres.Text = "lblLibre";
-            this.lblLibres.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label16.AutoSize = true;
+            this.tlpInfo.SetColumnSpan(this.label16, 4);
+            this.label16.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Location = new System.Drawing.Point(3, 215);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(230, 25);
+            this.label16.TabIndex = 14;
+            this.label16.Text = "Comision 01 Turno Mañana";
+            this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panelInfo
             // 
-            this.panelInfo.Controls.Add(this.gbAcademico);
-            this.panelInfo.Controls.Add(this.gbAdmin);
+            this.panelInfo.Controls.Add(this.gbInfo);
             this.panelInfo.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelInfo.Location = new System.Drawing.Point(0, 59);
             this.panelInfo.Name = "panelInfo";
             this.panelInfo.Size = new System.Drawing.Size(242, 346);
             this.panelInfo.TabIndex = 0;
-            // 
-            // gbAdmin
-            // 
-            this.gbAdmin.Controls.Add(this.tlpAdmin);
-            this.gbAdmin.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gbAdmin.Location = new System.Drawing.Point(0, 0);
-            this.gbAdmin.Name = "gbAdmin";
-            this.gbAdmin.Size = new System.Drawing.Size(242, 346);
-            this.gbAdmin.TabIndex = 2;
-            this.gbAdmin.TabStop = false;
-            this.gbAdmin.Text = "Estadisticas";
-            this.gbAdmin.Visible = false;
             // 
             // panelBienvenido
             // 
@@ -655,8 +607,7 @@
             this.TSMIabms,
             this.TSMIMisCursos,
             this.TSMIMisInscripciones,
-            this.TSMIreportes,
-            this.TSMIacerca});
+            this.TSMIreportes});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(552, 24);
@@ -795,12 +746,6 @@
             this.cursosToolStripMenuItem.Text = "Cursos";
             this.cursosToolStripMenuItem.Click += new System.EventHandler(this.cursosToolStripMenuItem_Click);
             // 
-            // TSMIacerca
-            // 
-            this.TSMIacerca.Name = "TSMIacerca";
-            this.TSMIacerca.Size = new System.Drawing.Size(71, 20);
-            this.TSMIacerca.Text = "Acerca de";
-            // 
             // Menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -811,6 +756,7 @@
             this.Controls.Add(this.panelBienvenido);
             this.Controls.Add(this.panelBottom);
             this.Controls.Add(this.menuStrip1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "Menu";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -821,11 +767,10 @@
             this.panelBottom.ResumeLayout(false);
             this.panelDatos.ResumeLayout(false);
             this.gbDatos.ResumeLayout(false);
-            this.gbAcademico.ResumeLayout(false);
-            this.tlpAcademico.ResumeLayout(false);
-            this.tlpAcademico.PerformLayout();
+            this.gbInfo.ResumeLayout(false);
+            this.tlpInfo.ResumeLayout(false);
+            this.tlpInfo.PerformLayout();
             this.panelInfo.ResumeLayout(false);
-            this.gbAdmin.ResumeLayout(false);
             this.panelBienvenido.ResumeLayout(false);
             this.panelBienvenido.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
@@ -838,7 +783,6 @@
         #endregion
 
         private System.Windows.Forms.TableLayoutPanel tlpDatos;
-        private System.Windows.Forms.TableLayoutPanel tlpAdmin;
         private System.Windows.Forms.Panel panelBottom;
         private System.Windows.Forms.Button btnSalir;
         private System.Windows.Forms.Panel panelDatos;
@@ -862,21 +806,15 @@
         private System.Windows.Forms.TextBox txtEmail;
         private System.Windows.Forms.Button btnGuardar;
         private System.Windows.Forms.Button btnCambiarPass;
-        private System.Windows.Forms.TableLayoutPanel tlpAcademico;
+        private System.Windows.Forms.TableLayoutPanel tlpInfo;
         private System.Windows.Forms.Label lblRedDirec;
         private System.Windows.Forms.Label lblRedTel;
         private System.Windows.Forms.Label lblRedEmail;
-        private System.Windows.Forms.GroupBox gbAcademico;
+        private System.Windows.Forms.GroupBox gbInfo;
         private System.Windows.Forms.GroupBox gbDatos;
-        private System.Windows.Forms.GroupBox gbAdmin;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label lblAprobadas;
-        private System.Windows.Forms.Label lblCursando;
-        private System.Windows.Forms.Label lblRegularizadas;
-        private System.Windows.Forms.Label lblLibres;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem TSMIabms;
@@ -893,9 +831,12 @@
         private System.Windows.Forms.ToolStripMenuItem TSMImateriasInscripto;
         private System.Windows.Forms.ToolStripMenuItem TSMIinscribirseACursado;
         private System.Windows.Forms.ToolStripMenuItem TSMIreportes;
-        private System.Windows.Forms.ToolStripMenuItem TSMIacerca;
         private System.Windows.Forms.ToolStripMenuItem planesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem inscripcionesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cursosToolStripMenuItem;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label label16;
     }
 }

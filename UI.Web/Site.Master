@@ -59,7 +59,7 @@
                             <a class="nav-link" href="/main/misCursos.aspx">Mis cursos</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Reportes</a>
+                            <a class="nav-link" href="/reportes/reportes.aspx">Reportes</a>
                         </li>
                     </ul>
 
