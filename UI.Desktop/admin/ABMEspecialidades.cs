@@ -23,7 +23,7 @@ namespace UI.Desktop.admin
             this.dgvEspecialidades.DataSource = null;
             this.dgvEspecialidades.Refresh();
             EspecialidadLogic esp = new EspecialidadLogic();
-            List<Especialidad> especialidades = esp.GetAll();
+            List<Especialidad> especialidades = esp.GetAll().Where(x => x.Habilitado == true).ToList(); ;
             if (especialidades.Count() == 0)
             {
                 MessageBox.Show("No hay especialidades cargadas!");

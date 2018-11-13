@@ -30,9 +30,14 @@ namespace UI.Desktop.admin
             this.dgvCursos.Refresh();
 
             CursoLogic cl = new CursoLogic();
-            List<Curso> cursos = cl.GetAll();
-            this.dgvCursos.DataSource = Listado.Generar(cursos);
+            List<Curso> cursos = cl.GetAll().Where(x => x.Habilitado == true).ToList();
             
+            if (cursos.Count() == 0) {
+                MessageBox.Show("No hay cursos cargados!");
+            }
+            else {
+                this.dgvCursos.DataSource = Listado.Generar(cursos);
+            }
         }
 
         private void Cursos_Load(object sender, EventArgs e)

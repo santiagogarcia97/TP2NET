@@ -28,8 +28,14 @@ namespace UI.Desktop.admin{
             this.dgvAlumnoInscripciones.Refresh();
 
             AlumnoInscripcionLogic insl = new AlumnoInscripcionLogic();
-            List<AlumnoInscripcion> inscripciones = insl.GetAll();
-            this.dgvAlumnoInscripciones.DataSource = Listado.Generar(inscripciones);
+            List<AlumnoInscripcion> inscripciones = insl.GetAll().Where(x => x.Habilitado == true).ToList();
+
+            if (inscripciones.Count() == 0) {
+                MessageBox.Show("No hay inscripciones cargadas!");
+            }
+            else {
+                this.dgvAlumnoInscripciones.DataSource = Listado.Generar(inscripciones);
+            }
         }
 
         private void tsbEliminar_Click(object sender, EventArgs e){

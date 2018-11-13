@@ -31,12 +31,12 @@
             this.labelID = new System.Windows.Forms.Label();
             this.CondicionLabel = new System.Windows.Forms.Label();
             this.cbCondicion = new System.Windows.Forms.ComboBox();
-            this.btnAceptar = new System.Windows.Forms.Button();
             this.lblAlumno = new System.Windows.Forms.Label();
             this.lblLegajo = new System.Windows.Forms.Label();
             this.lblRedNota = new System.Windows.Forms.Label();
             this.lblRedCond = new System.Windows.Forms.Label();
             this.nudNota = new System.Windows.Forms.NumericUpDown();
+            this.btnAceptar = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudNota)).BeginInit();
             this.SuspendLayout();
@@ -45,13 +45,12 @@
             // 
             this.tableLayoutPanel1.AutoSize = true;
             this.tableLayoutPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.tableLayoutPanel1.ColumnCount = 6;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 3F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 23F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 3F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33F));
+            this.tableLayoutPanel1.ColumnCount = 5;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 5F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 3F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12F));
             this.tableLayoutPanel1.Controls.Add(this.IDLabel, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.LegajoLabel, 1, 3);
             this.tableLayoutPanel1.Controls.Add(this.AlumnoLabel, 1, 2);
@@ -59,12 +58,12 @@
             this.tableLayoutPanel1.Controls.Add(this.labelID, 3, 1);
             this.tableLayoutPanel1.Controls.Add(this.CondicionLabel, 1, 5);
             this.tableLayoutPanel1.Controls.Add(this.cbCondicion, 3, 5);
-            this.tableLayoutPanel1.Controls.Add(this.btnAceptar, 4, 8);
             this.tableLayoutPanel1.Controls.Add(this.lblAlumno, 3, 2);
             this.tableLayoutPanel1.Controls.Add(this.lblLegajo, 3, 3);
             this.tableLayoutPanel1.Controls.Add(this.lblRedNota, 4, 6);
             this.tableLayoutPanel1.Controls.Add(this.lblRedCond, 4, 5);
             this.tableLayoutPanel1.Controls.Add(this.nudNota, 3, 6);
+            this.tableLayoutPanel1.Controls.Add(this.btnAceptar, 3, 8);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -78,17 +77,16 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 15F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(296, 200);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(272, 200);
             this.tableLayoutPanel1.TabIndex = 3;
             // 
             // IDLabel
             // 
             this.IDLabel.AutoSize = true;
             this.IDLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.IDLabel.Location = new System.Drawing.Point(11, 15);
+            this.IDLabel.Location = new System.Drawing.Point(16, 15);
             this.IDLabel.Name = "IDLabel";
-            this.IDLabel.Size = new System.Drawing.Size(62, 25);
+            this.IDLabel.Size = new System.Drawing.Size(75, 25);
             this.IDLabel.TabIndex = 0;
             this.IDLabel.Text = "ID";
             this.IDLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -97,9 +95,9 @@
             // 
             this.LegajoLabel.AutoSize = true;
             this.LegajoLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LegajoLabel.Location = new System.Drawing.Point(11, 65);
+            this.LegajoLabel.Location = new System.Drawing.Point(16, 65);
             this.LegajoLabel.Name = "LegajoLabel";
-            this.LegajoLabel.Size = new System.Drawing.Size(62, 25);
+            this.LegajoLabel.Size = new System.Drawing.Size(75, 25);
             this.LegajoLabel.TabIndex = 23;
             this.LegajoLabel.Text = "Legajo";
             this.LegajoLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -108,9 +106,9 @@
             // 
             this.AlumnoLabel.AutoSize = true;
             this.AlumnoLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.AlumnoLabel.Location = new System.Drawing.Point(11, 40);
+            this.AlumnoLabel.Location = new System.Drawing.Point(16, 40);
             this.AlumnoLabel.Name = "AlumnoLabel";
-            this.AlumnoLabel.Size = new System.Drawing.Size(62, 25);
+            this.AlumnoLabel.Size = new System.Drawing.Size(75, 25);
             this.AlumnoLabel.TabIndex = 24;
             this.AlumnoLabel.Text = "Alumno";
             this.AlumnoLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -119,9 +117,9 @@
             // 
             this.NotaLabel.AutoSize = true;
             this.NotaLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.NotaLabel.Location = new System.Drawing.Point(11, 130);
+            this.NotaLabel.Location = new System.Drawing.Point(16, 130);
             this.NotaLabel.Name = "NotaLabel";
-            this.NotaLabel.Size = new System.Drawing.Size(62, 25);
+            this.NotaLabel.Size = new System.Drawing.Size(75, 25);
             this.NotaLabel.TabIndex = 27;
             this.NotaLabel.Text = "Nota";
             this.NotaLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -130,9 +128,9 @@
             // 
             this.labelID.AutoSize = true;
             this.labelID.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelID.Location = new System.Drawing.Point(87, 15);
+            this.labelID.Location = new System.Drawing.Point(105, 15);
             this.labelID.Name = "labelID";
-            this.labelID.Size = new System.Drawing.Size(91, 25);
+            this.labelID.Size = new System.Drawing.Size(130, 25);
             this.labelID.TabIndex = 29;
             this.labelID.Text = " -";
             this.labelID.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -141,9 +139,9 @@
             // 
             this.CondicionLabel.AutoSize = true;
             this.CondicionLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.CondicionLabel.Location = new System.Drawing.Point(11, 105);
+            this.CondicionLabel.Location = new System.Drawing.Point(16, 105);
             this.CondicionLabel.Name = "CondicionLabel";
-            this.CondicionLabel.Size = new System.Drawing.Size(62, 25);
+            this.CondicionLabel.Size = new System.Drawing.Size(75, 25);
             this.CondicionLabel.TabIndex = 30;
             this.CondicionLabel.Text = "Condicion";
             this.CondicionLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -153,30 +151,19 @@
             this.cbCondicion.Dock = System.Windows.Forms.DockStyle.Fill;
             this.cbCondicion.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbCondicion.FormattingEnabled = true;
-            this.cbCondicion.Location = new System.Drawing.Point(87, 108);
+            this.cbCondicion.Location = new System.Drawing.Point(105, 108);
             this.cbCondicion.Name = "cbCondicion";
-            this.cbCondicion.Size = new System.Drawing.Size(91, 21);
+            this.cbCondicion.Size = new System.Drawing.Size(130, 21);
             this.cbCondicion.TabIndex = 31;
-            // 
-            // btnAceptar
-            // 
-            this.btnAceptar.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnAceptar.Location = new System.Drawing.Point(184, 173);
-            this.btnAceptar.Name = "btnAceptar";
-            this.btnAceptar.Size = new System.Drawing.Size(91, 24);
-            this.btnAceptar.TabIndex = 9;
-            this.btnAceptar.Text = "Guardar";
-            this.btnAceptar.UseVisualStyleBackColor = true;
-            this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
             // 
             // lblAlumno
             // 
             this.lblAlumno.AutoSize = true;
             this.tableLayoutPanel1.SetColumnSpan(this.lblAlumno, 2);
             this.lblAlumno.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblAlumno.Location = new System.Drawing.Point(87, 40);
+            this.lblAlumno.Location = new System.Drawing.Point(105, 40);
             this.lblAlumno.Name = "lblAlumno";
-            this.lblAlumno.Size = new System.Drawing.Size(188, 25);
+            this.lblAlumno.Size = new System.Drawing.Size(164, 25);
             this.lblAlumno.TabIndex = 37;
             this.lblAlumno.Text = "lblAlumno";
             this.lblAlumno.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -186,9 +173,9 @@
             this.lblLegajo.AutoSize = true;
             this.tableLayoutPanel1.SetColumnSpan(this.lblLegajo, 2);
             this.lblLegajo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblLegajo.Location = new System.Drawing.Point(87, 65);
+            this.lblLegajo.Location = new System.Drawing.Point(105, 65);
             this.lblLegajo.Name = "lblLegajo";
-            this.lblLegajo.Size = new System.Drawing.Size(188, 25);
+            this.lblLegajo.Size = new System.Drawing.Size(164, 25);
             this.lblLegajo.TabIndex = 38;
             this.lblLegajo.Text = "lblLegajo";
             this.lblLegajo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -199,9 +186,9 @@
             this.lblRedNota.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblRedNota.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblRedNota.ForeColor = System.Drawing.Color.Red;
-            this.lblRedNota.Location = new System.Drawing.Point(184, 130);
+            this.lblRedNota.Location = new System.Drawing.Point(241, 130);
             this.lblRedNota.Name = "lblRedNota";
-            this.lblRedNota.Size = new System.Drawing.Size(91, 25);
+            this.lblRedNota.Size = new System.Drawing.Size(28, 25);
             this.lblRedNota.TabIndex = 36;
             this.lblRedNota.Text = "*";
             this.lblRedNota.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -213,9 +200,9 @@
             this.lblRedCond.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblRedCond.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblRedCond.ForeColor = System.Drawing.Color.Red;
-            this.lblRedCond.Location = new System.Drawing.Point(184, 105);
+            this.lblRedCond.Location = new System.Drawing.Point(241, 105);
             this.lblRedCond.Name = "lblRedCond";
-            this.lblRedCond.Size = new System.Drawing.Size(91, 25);
+            this.lblRedCond.Size = new System.Drawing.Size(28, 25);
             this.lblRedCond.TabIndex = 35;
             this.lblRedCond.Text = "*";
             this.lblRedCond.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -224,21 +211,32 @@
             // nudNota
             // 
             this.nudNota.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.nudNota.Location = new System.Drawing.Point(87, 133);
+            this.nudNota.Location = new System.Drawing.Point(105, 133);
             this.nudNota.Maximum = new decimal(new int[] {
             10,
             0,
             0,
             0});
             this.nudNota.Name = "nudNota";
-            this.nudNota.Size = new System.Drawing.Size(91, 20);
+            this.nudNota.Size = new System.Drawing.Size(130, 20);
             this.nudNota.TabIndex = 39;
+            // 
+            // btnAceptar
+            // 
+            this.btnAceptar.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnAceptar.Location = new System.Drawing.Point(144, 173);
+            this.btnAceptar.Name = "btnAceptar";
+            this.btnAceptar.Size = new System.Drawing.Size(91, 24);
+            this.btnAceptar.TabIndex = 9;
+            this.btnAceptar.Text = "Guardar";
+            this.btnAceptar.UseVisualStyleBackColor = true;
+            this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
             // 
             // CargaNotas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(296, 200);
+            this.ClientSize = new System.Drawing.Size(272, 200);
             this.Controls.Add(this.tableLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;

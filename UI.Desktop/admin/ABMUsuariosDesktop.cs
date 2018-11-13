@@ -31,8 +31,7 @@ namespace UI.Desktop {
             txtClave.Visible = true;
             btnCambiarClave.Visible = false;
 
-            UsuarioLogic ul = new UsuarioLogic();
-            labelLegajo.Text = ul.getNewLegajo().ToString();
+            labelLegajo.Text = "-";
             //chkHabilitado.Checked = true;
             GenerarEsp(0);
         }
@@ -111,7 +110,6 @@ namespace UI.Desktop {
             if(Modo == ModoForm.Alta || Modo == ModoForm.Modificacion) {
                 UsuarioActual = new Usuario();
                 UsuarioActual.Habilitado = true;
-                UsuarioActual.Legajo = Int32.Parse(labelLegajo.Text);
                 UsuarioActual.Nombre = txtNombre.Text;
                 UsuarioActual.Apellido = txtApellido.Text;
                 DateTime dt;

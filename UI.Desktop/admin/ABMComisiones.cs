@@ -25,8 +25,14 @@ namespace UI.Desktop.admin
             this.dgvComisiones.Refresh();
 
             ComisionLogic cl = new ComisionLogic();
-            List<Comision> comisiones = new List<Comision>();
-            this.dgvComisiones.DataSource = Listado.Generar(comisiones);
+            List<Comision> comisiones = cl.GetAll().Where(x => x.Habilitado == true).ToList();
+            if (comisiones.Count() == 0) {
+                MessageBox.Show("No hay comisiones cargadas!");
+            }
+            else {
+                this.dgvComisiones.DataSource = Listado.Generar(comisiones);
+            }
+            
             
         }
 

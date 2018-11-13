@@ -238,7 +238,7 @@
             // fecha_nac
             // 
             this.fecha_nac.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.fecha_nac.DataPropertyName = "FechaNacimiento";
+            this.fecha_nac.DataPropertyName = "FechaNac";
             this.fecha_nac.HeaderText = "Fecha Nac";
             this.fecha_nac.MinimumWidth = 70;
             this.fecha_nac.Name = "fecha_nac";
@@ -275,7 +275,7 @@
             // plan
             // 
             this.plan.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.plan.DataPropertyName = "IDPlan";
+            this.plan.DataPropertyName = "Plan";
             this.plan.HeaderText = "Plan";
             this.plan.MinimumWidth = 40;
             this.plan.Name = "plan";

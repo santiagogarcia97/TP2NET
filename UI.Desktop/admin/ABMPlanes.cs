@@ -24,9 +24,13 @@ namespace UI.Desktop.admin
             this.dgvPlanes.Refresh();
 
             PlanLogic pl = new PlanLogic();
-            List<Plan> planes = pl.GetAll();
-            this.dgvPlanes.DataSource = Listado.Generar(planes);
-            
+            List<Plan> planes = pl.GetAll().Where(x => x.Habilitado == true).ToList();
+            if (planes.Count() == 0) {
+                MessageBox.Show("No hay planes cargados!");
+            }
+            else {
+                this.dgvPlanes.DataSource = Listado.Generar(planes);
+            }
         }
 
         private void Planes_Load(object sender, EventArgs e) {

@@ -1,5 +1,5 @@
 ﻿namespace UI.Desktop {
-    partial class InscribirMaterias {
+    partial class InscribirCursos {
         /// <summary>
         /// Required designer variable.
         /// </summary>

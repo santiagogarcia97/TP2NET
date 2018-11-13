@@ -25,8 +25,14 @@ namespace UI.Desktop.admin
             this.dgvMaterias.Refresh();
 
             MateriaLogic ml = new MateriaLogic();
-            List<Materia> mats = ml.GetAll();
-            this.dgvMaterias.DataSource = Listado.Generar(mats);
+            List<Materia> mats = ml.GetAll().Where(x => x.Habilitado == true).ToList();
+            
+            if (mats.Count() == 0) {
+                MessageBox.Show("No hay materias cargadas!");
+            }
+            else {
+                this.dgvMaterias.DataSource = Listado.Generar(mats);
+            }
         }
 
         private void Materias_Load(object sender, EventArgs e) {

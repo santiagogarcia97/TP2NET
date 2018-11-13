@@ -71,11 +71,11 @@
     <Compile Include="CambiarClave.Designer.cs">
       <DependentUpon>CambiarClave.cs</DependentUpon>
     </Compile>
-    <Compile Include="InscribirMaterias.cs">
+    <Compile Include="InscribirCursos.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="InscribirMaterias.Designer.cs">
-      <DependentUpon>InscribirMaterias.cs</DependentUpon>
+    <Compile Include="InscribirCursos.Designer.cs">
+      <DependentUpon>InscribirCursos.cs</DependentUpon>
     </Compile>
     <Compile Include="CargaNotas.cs">
       <SubType>Form</SubType>
@@ -216,8 +216,8 @@
     <EmbeddedResource Include="CambiarClave.resx">
       <DependentUpon>CambiarClave.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="InscribirMaterias.resx">
-      <DependentUpon>InscribirMaterias.cs</DependentUpon>
+    <EmbeddedResource Include="InscribirCursos.resx">
+      <DependentUpon>InscribirCursos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CargaNotas.resx">
       <DependentUpon>CargaNotas.cs</DependentUpon>

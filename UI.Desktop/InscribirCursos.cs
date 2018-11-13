@@ -12,19 +12,19 @@ using Business.Entities;
 using Util;
 
 namespace UI.Desktop {
-    public partial class InscribirMaterias : ApplicationForm {
+    public partial class InscribirCursos : ApplicationForm {
         private AlumnoInscripcion _InscripcionActual;
         private Usuario _UsuarioActual;
 
         public AlumnoInscripcion InscripcionActual { get => _InscripcionActual; set => _InscripcionActual = value; }
         public Usuario UsuarioActual { get => _UsuarioActual; set => _UsuarioActual = value; }
 
-        public InscribirMaterias() {
+        public InscribirCursos() {
             InitializeComponent();
             this.dgvCursos.AutoGenerateColumns = false;
         }
 
-        public InscribirMaterias(ModoForm modo, Usuario user) : this() {
+        public InscribirCursos(ModoForm modo, Usuario user) : this() {
             UsuarioActual = user;
             Modo = modo;
         }

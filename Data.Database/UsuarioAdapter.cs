@@ -162,7 +162,7 @@ namespace Data.Database
             try {
                 this.OpenConnection();
                 SqlCommand cmdSave = new SqlCommand("UPDATE usuarios SET nombre=@nombre,apellido=@apellido,direccion=@direccion,email=@email," +
-                    "telefono=@telefono,fecha_nac=@fecha_nac,legajo=@legajo," +
+                    "telefono=@telefono,fecha_nac=@fecha_nac," +
                     "tipo_persona=@tipo_persona,nombre_usuario=@nombre_usuario," +
                     "user_hab=@user_hab,cambia_clave=@cambia_clave,id_plan=@id_plan WHERE id_usuario=@id", SqlConn);
 
@@ -173,7 +173,6 @@ namespace Data.Database
                 cmdSave.Parameters.Add("@email", SqlDbType.VarChar, 50).Value = usuario.Email;
                 cmdSave.Parameters.Add("@telefono", SqlDbType.VarChar, 50).Value = usuario.Telefono;
                 cmdSave.Parameters.Add("@fecha_nac", SqlDbType.DateTime).Value = usuario.FechaNacimiento;
-                cmdSave.Parameters.Add("@legajo", SqlDbType.Int).Value = usuario.Legajo;
                 cmdSave.Parameters.Add("@tipo_persona", SqlDbType.Int).Value = (int)usuario.TipoPersona;
                 cmdSave.Parameters.Add("@nombre_usuario", SqlDbType.VarChar, 50).Value = usuario.NombreUsuario;
                 cmdSave.Parameters.Add("@user_hab", SqlDbType.Bit).Value = usuario.Habilitado;

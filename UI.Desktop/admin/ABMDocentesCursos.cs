@@ -28,8 +28,14 @@ namespace UI.Desktop.admin
             this.dgvDocenteCurso.Refresh();
 
             DocenteCursoLogic dcl = new DocenteCursoLogic();
-            List<DocenteCurso> dclist = dcl.GetAll();
-            this.dgvDocenteCurso.DataSource = Listado.Generar(dclist);
+            List<DocenteCurso> dclist = dcl.GetAll().Where(x => x.Habilitado == true).ToList(); ;
+           
+            if (dclist.Count() == 0) {
+                MessageBox.Show("No hay Docentes-Cursos cargados!");
+            }
+            else {
+                this.dgvDocenteCurso.DataSource = Listado.Generar(dclist);
+            }
         }
 
         private void tsbNuevo_Click(object sender, EventArgs e){

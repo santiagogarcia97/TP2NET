@@ -166,7 +166,7 @@ namespace UI.Desktop {
         }
 
         private void TSMIinscribirseACursado_Click(object sender, EventArgs e) {
-            InscribirMaterias aid = new InscribirMaterias(ApplicationForm.ModoForm.Alta, UsuarioActual);
+            InscribirCursos aid = new InscribirCursos(ApplicationForm.ModoForm.Alta, UsuarioActual);
             aid.ShowDialog();
         }
 

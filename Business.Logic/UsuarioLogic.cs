@@ -29,6 +29,7 @@ namespace Business.Logic {
             }
         }
         public void Save(Usuario user) {
+            if (user.State == BusinessEntity.States.New) user.Legajo = this.getNewLegajo();
             UsuarioData.Save(user);
         }
         public void SavePassword(Usuario user) {

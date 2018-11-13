@@ -22,12 +22,13 @@ namespace UI.Desktop.admin
 
         public void Listar() {
             UsuarioLogic ul = new UsuarioLogic();
-            List<Usuario> usuarios = ul.GetAll();
-            if (usuarios.Count() == 0)
-            {
+            List<Usuario> usuarios = ul.GetAll().Where(x => x.Habilitado == true).ToList();
+            if (usuarios.Count() == 0) {
                 MessageBox.Show("No hay usuarios cargados!");
             }
-            this.dgvUsuarios.DataSource = Listado.Generar(usuarios);
+            else {
+                this.dgvUsuarios.DataSource = Listado.Generar(usuarios);
+            }
         }
 
         private void Usuarios_Load(object sender, EventArgs e) {
