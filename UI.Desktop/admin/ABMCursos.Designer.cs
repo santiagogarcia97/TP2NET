@@ -1,5 +1,7 @@
-﻿namespace UI.Desktop {
-    partial class ABMCursos {
+﻿namespace UI.Desktop.admin
+{
+    partial class ABMCursos
+    {
         /// <summary>
         /// Required designer variable.
         /// </summary>
@@ -9,7 +11,8 @@
         /// Clean up any resources being used.
         /// </summary>
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-        protected override void Dispose(bool disposing) {
+        protected override void Dispose(bool disposing)
+        {
             if (disposing && (components != null)) {
                 components.Dispose();
             }
@@ -22,7 +25,8 @@
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
-        private void InitializeComponent() {
+        private void InitializeComponent()
+        {
             this.tcCursos = new System.Windows.Forms.ToolStripContainer();
             this.tlUsuario = new System.Windows.Forms.TableLayoutPanel();
             this.dgvCursos = new System.Windows.Forms.DataGridView();

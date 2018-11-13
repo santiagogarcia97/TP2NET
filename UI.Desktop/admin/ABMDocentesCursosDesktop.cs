@@ -12,7 +12,8 @@ using Business.Entities;
 using Util;
 
 
-namespace UI.Desktop {
+namespace UI.Desktop.admin
+{
     public partial class ABMDocentesCursosDesktop : ApplicationForm {
 
         private DocenteCurso _DocenteCursoActual;
@@ -23,12 +24,12 @@ namespace UI.Desktop {
 
             cbCurso.DisplayMember = "desc_curso";
             cbCurso.ValueMember = "id_curso";
-            cbCurso.DataSource = GenerarComboBox.getCursos();
+          //  cbCurso.DataSource = GenerarComboBox.getCursos();
             cbCurso.SelectedValue = 0;
 
             cbDocente.DisplayMember = "desc_docente";
             cbDocente.ValueMember = "id_docente";
-            cbDocente.DataSource = GenerarComboBox.getDocentes();
+     //       cbDocente.DataSource = GenerarComboBox.getDocentes();
             cbDocente.SelectedValue = 0;
 
             cbCargo.DisplayMember = "desc_cargo";

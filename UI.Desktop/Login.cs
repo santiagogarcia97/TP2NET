@@ -32,11 +32,8 @@ namespace UI.Desktop
 
                 this.Visible = true;
             }
-            else if(txtUsuario.Text.Equals(user.NombreUsuario) && !Hashing.ValidatePassword(txtPassword.Text, user.Clave)) {
-                MessageBox.Show("La contraseña es incorrecta.");
-            }
             else {
-                MessageBox.Show("El usuario no existe.");
+                MessageBox.Show("Usuario o Contraseña incorrecto.");
             }
             txtPassword.Text = string.Empty;
             this.Enabled = true;

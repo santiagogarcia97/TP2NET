@@ -9,8 +9,9 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Business.Logic;
 using Business.Entities;
+using Util;
 
-namespace UI.Desktop{
+namespace UI.Desktop.admin{
     public partial class ABMAlumnoInscripciones : ApplicationForm{
 
         public ABMAlumnoInscripciones(){
@@ -26,14 +27,20 @@ namespace UI.Desktop{
             this.dgvAlumnoInscripciones.DataSource = null;
             this.dgvAlumnoInscripciones.Refresh();
 
-            AlumnoInscripcionLogic ins = new AlumnoInscripcionLogic();
-            this.dgvAlumnoInscripciones.DataSource = ins.GetListado();
+            AlumnoInscripcionLogic insl = new AlumnoInscripcionLogic();
+            List<AlumnoInscripcion> inscripciones = insl.GetAll();
+            this.dgvAlumnoInscripciones.DataSource = Listado.Generar(inscripciones);
         }
 
         private void tsbEliminar_Click(object sender, EventArgs e){
-          //      InscribirMaterias alumnoInscripcionDesktop = new InscribirMaterias(ApplicationForm.ModoForm.Baja, UsuarioActual);
-     //           alumnoInscripcionDesktop.ShowDialog();
-                this.Listar();
+ /*           if (this.dgvAlumnoInscripciones.SelectedRows.Count != 0) {
+                int ID = (int)this.dgvAlumnoInscripciones.SelectedRows[0].Cells["id"].Value;
+                AlumnoInscripcionLogic ins = new AlumnoInscripcionLogic();
+                AlumnoInscripcion inscripcion = ins.GetOne(ID);
+                CargaNotas cn = new CargaNotas(inscripcion);
+                cn.ShowDialog();
+            }*/
+            this.Listar();
         }
 
         private void btnSalir_Click(object sender, EventArgs e){

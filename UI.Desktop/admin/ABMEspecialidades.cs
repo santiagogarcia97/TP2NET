@@ -9,8 +9,10 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Business.Logic;
 using Business.Entities;
+using Util;
 
-namespace UI.Desktop {
+namespace UI.Desktop.admin
+{
     public partial class ABMEspecialidades : ApplicationForm {
         public ABMEspecialidades() {
             InitializeComponent();

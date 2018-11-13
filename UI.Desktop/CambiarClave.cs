@@ -16,8 +16,8 @@ namespace UI.Desktop {
 
         private Usuario _UsuarioActual;
         public CambiarClave(Usuario user) {
-            UsuarioActual = user;
             InitializeComponent();
+            UsuarioActual = user;
         }
 
 
@@ -28,7 +28,7 @@ namespace UI.Desktop {
         }
 
         private void btnAceptar_Click(object sender, EventArgs e) {
-            if (txtPass1.Text.Equals(txtPass2.Text) && !string.IsNullOrWhiteSpace(txtPass1.Text)) {
+            if (txtPass1.Text.Equals(txtPass2.Text) && Validaciones.ValClave(txtPass2.Text)) {
                 UsuarioActual.Clave = Hashing.HashPassword(txtPass1.Text);
                 UsuarioLogic ul = new UsuarioLogic();
                 ul.SavePassword(UsuarioActual);

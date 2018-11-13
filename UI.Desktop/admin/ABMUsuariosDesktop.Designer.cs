@@ -48,7 +48,7 @@
             this.btnCambiarClave = new System.Windows.Forms.Button();
             this.txtClave = new System.Windows.Forms.TextBox();
             this.cbxTipo = new System.Windows.Forms.ComboBox();
-            this.cbxEsp = new System.Windows.Forms.ComboBox();
+            this.cbEsp = new System.Windows.Forms.ComboBox();
             this.cbxPlan = new System.Windows.Forms.ComboBox();
             this.btnAceptar = new System.Windows.Forms.Button();
             this.labelLegajo = new System.Windows.Forms.Label();
@@ -98,7 +98,7 @@
             this.tableLayoutPanel1.Controls.Add(this.txtNombreUsuario, 2, 12);
             this.tableLayoutPanel1.Controls.Add(this.panelClave, 2, 13);
             this.tableLayoutPanel1.Controls.Add(this.cbxTipo, 2, 14);
-            this.tableLayoutPanel1.Controls.Add(this.cbxEsp, 2, 15);
+            this.tableLayoutPanel1.Controls.Add(this.cbEsp, 2, 15);
             this.tableLayoutPanel1.Controls.Add(this.cbxPlan, 3, 15);
             this.tableLayoutPanel1.Controls.Add(this.btnAceptar, 2, 17);
             this.tableLayoutPanel1.Controls.Add(this.labelLegajo, 2, 2);
@@ -391,16 +391,16 @@
             this.cbxTipo.Size = new System.Drawing.Size(118, 21);
             this.cbxTipo.TabIndex = 50;
             // 
-            // cbxEsp
+            // cbEsp
             // 
-            this.cbxEsp.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbxEsp.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbxEsp.FormattingEnabled = true;
-            this.cbxEsp.Location = new System.Drawing.Point(117, 358);
-            this.cbxEsp.Name = "cbxEsp";
-            this.cbxEsp.Size = new System.Drawing.Size(118, 21);
-            this.cbxEsp.TabIndex = 51;
-            this.cbxEsp.SelectedValueChanged += new System.EventHandler(this.cbxEsp_SelectedValueChanged);
+            this.cbEsp.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.cbEsp.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbEsp.FormattingEnabled = true;
+            this.cbEsp.Location = new System.Drawing.Point(117, 358);
+            this.cbEsp.Name = "cbEsp";
+            this.cbEsp.Size = new System.Drawing.Size(118, 21);
+            this.cbEsp.TabIndex = 51;
+            this.cbEsp.SelectedValueChanged += new System.EventHandler(this.cbxEsp_SelectedValueChanged);
             // 
             // cbxPlan
             // 
@@ -565,7 +565,7 @@
             this.lblRedNom.Text = "*";
             this.lblRedNom.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // ABMUsuarioDesktop
+            // ABMUsuariosDesktop
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -576,7 +576,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(400, 472);
-            this.Name = "ABMUsuarioDesktop";
+            this.Name = "ABMUsuariosDesktop";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "UsuarioDesktop";
             this.Load += new System.EventHandler(this.UsuarioDesktop_Load);
@@ -610,7 +610,7 @@
         private System.Windows.Forms.TextBox txtNombreUsuario;
         private System.Windows.Forms.TextBox txtClave;
         private System.Windows.Forms.ComboBox cbxTipo;
-        private System.Windows.Forms.ComboBox cbxEsp;
+        private System.Windows.Forms.ComboBox cbEsp;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label8;

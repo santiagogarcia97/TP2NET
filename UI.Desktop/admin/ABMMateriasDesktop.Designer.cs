@@ -1,5 +1,7 @@
-﻿namespace UI.Desktop {
-    partial class ABMMateriasDesktop {
+﻿namespace UI.Desktop.admin
+{
+    partial class ABMMateriasDesktop
+    {
         /// <summary>
         /// Required designer variable.
         /// </summary>
@@ -9,7 +11,8 @@
         /// Clean up any resources being used.
         /// </summary>
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-        protected override void Dispose(bool disposing) {
+        protected override void Dispose(bool disposing)
+        {
             if (disposing && (components != null)) {
                 components.Dispose();
             }
@@ -22,7 +25,8 @@
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
-        private void InitializeComponent() {
+        private void InitializeComponent()
+        {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.IDLabel = new System.Windows.Forms.Label();
             this.DescLabel = new System.Windows.Forms.Label();
@@ -273,7 +277,7 @@
             this.lblRedHST.Text = "*";
             this.lblRedHST.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // ABMMateriaDesktop
+            // ABMMateriasDesktop
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -281,7 +285,7 @@
             this.Controls.Add(this.tableLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
-            this.Name = "ABMMateriaDesktop";
+            this.Name = "ABMMateriasDesktop";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "MateriaDesktop";
             this.Load += new System.EventHandler(this.MateriaDesktop_Load);

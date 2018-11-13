@@ -12,7 +12,8 @@ using Business.Entities;
 using Util;
 
 
-namespace UI.Desktop {
+namespace UI.Desktop.admin
+{
     public partial class ABMComisionesDesktop : ApplicationForm {
 
         private Comision _ComisionActual;
@@ -20,18 +21,11 @@ namespace UI.Desktop {
 
         public ABMComisionesDesktop() {
             InitializeComponent();
-
-            //Se genera el comobox de especialidades
-            //getEspecialidades devuelve un DataTable con un columna de ID y otra de Descripcion
-            //La de ID se usa como valor interno al seleccionar una opcion y la Desc es la que se muestra al usuario
-            cbEsp.ValueMember = "id_esp";
-            cbEsp.DisplayMember = "desc_esp";
-            cbEsp.DataSource = GenerarComboBox.getEspecialidades();
-            cbEsp.SelectedValue = 0;
         }
 
         public ABMComisionesDesktop(ModoForm modo) : this() {
             Modo = modo;
+            GenerarEsp(0);
         }
 
         public ABMComisionesDesktop(int ID, ModoForm modo) : this() {
@@ -42,7 +36,8 @@ namespace UI.Desktop {
             PlanLogic pl = new PlanLogic();
             Plan plan = pl.GetOne(ComisionActual.IDPlan);
 
-            GenerarPlanes(plan.IDEspecialidad);
+            GenerarEsp(plan.IDEspecialidad);
+            GenerarPlanes(plan.IDEspecialidad, plan.ID);
 
             //El plan se pasa como argumento para tener el id de la especilidad y seleccionarlo en el combobox
             MapearDeDatos(plan);
@@ -77,12 +72,13 @@ namespace UI.Desktop {
 
         public override void MapearADatos() {
             if(Modo == ModoForm.Alta || Modo == ModoForm.Modificacion) {
-                ComisionActual = new Comision();
-                ComisionActual.Descripcion = txtDescripcion.Text;
-                ComisionActual.AnioEspecialidad = (int)nudAnio.Value;
-                ComisionActual.IDPlan = (int)cbPlan.SelectedValue;
+                ComisionActual = new Comision {
+                    Descripcion = txtDescripcion.Text,
+                    AnioEspecialidad = (int)nudAnio.Value,
+                    IDPlan = (int)cbPlan.SelectedValue,
 
-                ComisionActual.Habilitado = true;
+                    Habilitado = true
+                };
 
                 if (Modo == ModoForm.Alta) {
                     ComisionActual.State = BusinessEntity.States.New;
@@ -104,27 +100,22 @@ namespace UI.Desktop {
         }
 
         public override bool Validar() {
-            lblRedDesc.Visible = (string.IsNullOrWhiteSpace(txtDescripcion.Text)) ? true : false;
-            lblRedAnio.Visible = (nudAnio.Value == 1900) ? true : false;
+            lblRedDesc.Visible = (Validaciones.ValTexto(txtDescripcion.Text)) ? false : true;
+            lblRedAnio.Visible = Validaciones.ValAnio((int)nudAnio.Value) ? false : true;
             lblRedPlan.Visible = (cbEsp.SelectedValue == null || cbPlan.SelectedValue == null ||
                                     (int)cbEsp.SelectedValue == 0 || (int)cbPlan.SelectedValue == 0) ? true : false;
 
-            if (lblRedDesc.Visible == true ||
-                lblRedAnio.Visible == true ||
-                lblRedPlan.Visible == true) {
-                return false;
-            }
-            else {
-                return true;
-            }
+            return !(lblRedDesc.Visible ||
+                lblRedAnio.Visible ||
+                lblRedPlan.Visible); 
         }
 
-        private void GenerarPlanes(int idEsp) {
+        private void GenerarPlanes(int idEsp, int idPlanActual) {
             //Se genera el comobox de planes el funcionamiento es igual al de especialidades solo que se pasa
             //el id de la esp para filtrar los planes de dicha esp
             cbPlan.ValueMember = "id_plan";
             cbPlan.DisplayMember = "desc_plan";
-            cbPlan.DataSource = GenerarComboBox.getPlanes(idEsp);
+            cbPlan.DataSource = GenerarComboBox.getPlanes(idEsp, idPlanActual);
             cbPlan.SelectedValue = 0;
         }
 
@@ -134,8 +125,15 @@ namespace UI.Desktop {
                 this.Close();
             }
             else {
-                MessageBox.Show("Complete todos los campos.");
+                MessageBox.Show("Compruebe los datos ingresados.");
             }
+        }
+        private void GenerarEsp(int idEspActual)
+        {
+            cbEsp.ValueMember = "id_esp";
+            cbEsp.DisplayMember = "desc_esp";
+            cbEsp.DataSource = GenerarComboBox.getEspecialidades(idEspActual);
+            cbEsp.SelectedValue = 0;
         }
 
         private void btnCancelar_Click(object sender, EventArgs e) {
@@ -148,7 +146,7 @@ namespace UI.Desktop {
                 //pasando como argumento el id de la especialidad para mostrar solo los planes que
                 //corresponden a dicha especialidad
                 cbPlan.Text = "";
-                GenerarPlanes((int)cbEsp.SelectedValue);
+                GenerarPlanes((int)cbEsp.SelectedValue, Modo == ModoForm.Alta ? 0 : ComisionActual.IDPlan);
             }
         }
     }

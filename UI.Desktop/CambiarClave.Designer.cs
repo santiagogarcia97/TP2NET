@@ -36,9 +36,9 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(13, 13);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(107, 13);
+            this.label1.Size = new System.Drawing.Size(68, 13);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Ingresar nueva clave";
+            this.label1.Text = "Nueva clave";
             // 
             // txtPass1
             // 
@@ -54,9 +54,9 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(16, 65);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(162, 13);
+            this.label2.Size = new System.Drawing.Size(87, 13);
             this.label2.TabIndex = 2;
-            this.label2.Text = "Vuelva a ingresar la nueva clave";
+            this.label2.Text = "Reingresar clave";
             // 
             // txtPass2
             // 
@@ -101,7 +101,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "CambiarClave";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "CambiarClave";
+            this.Text = "Cambiar Clave";
             this.ResumeLayout(false);
             this.PerformLayout();
 

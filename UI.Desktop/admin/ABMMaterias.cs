@@ -9,8 +9,10 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Business.Entities;
 using Business.Logic;
+using Util;
 
-namespace UI.Desktop {
+namespace UI.Desktop.admin
+{
     public partial class ABMMaterias : Form {
         public ABMMaterias() {
             InitializeComponent();
@@ -23,7 +25,8 @@ namespace UI.Desktop {
             this.dgvMaterias.Refresh();
 
             MateriaLogic ml = new MateriaLogic();
-            this.dgvMaterias.DataSource = ml.GetListado();
+            List<Materia> mats = ml.GetAll();
+            this.dgvMaterias.DataSource = Listado.Generar(mats);
         }
 
         private void Materias_Load(object sender, EventArgs e) {

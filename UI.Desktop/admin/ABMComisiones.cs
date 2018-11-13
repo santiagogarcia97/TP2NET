@@ -9,8 +9,10 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Business.Logic;
 using Business.Entities;
+using Util;
 
-namespace UI.Desktop {
+namespace UI.Desktop.admin
+{
     public partial class ABMComisiones : Form {
         public ABMComisiones() {
             InitializeComponent();
@@ -23,7 +25,8 @@ namespace UI.Desktop {
             this.dgvComisiones.Refresh();
 
             ComisionLogic cl = new ComisionLogic();
-            this.dgvComisiones.DataSource = cl.GetListado();
+            List<Comision> comisiones = new List<Comision>();
+            this.dgvComisiones.DataSource = Listado.Generar(comisiones);
             
         }
 

@@ -9,8 +9,10 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Business.Entities;
 using Business.Logic;
+using Util;
 
-namespace UI.Desktop {
+namespace UI.Desktop.admin
+{
     public partial class ABMPlanes : Form {
         public ABMPlanes() {
             InitializeComponent();
@@ -22,7 +24,8 @@ namespace UI.Desktop {
             this.dgvPlanes.Refresh();
 
             PlanLogic pl = new PlanLogic();
-            this.dgvPlanes.DataSource = pl.GetListado();
+            List<Plan> planes = pl.GetAll();
+            this.dgvPlanes.DataSource = Listado.Generar(planes);
             
         }
 

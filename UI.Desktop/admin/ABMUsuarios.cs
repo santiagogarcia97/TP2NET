@@ -9,8 +9,9 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Business.Entities;
 using Business.Logic;
+using Util;
 
-namespace UI.Desktop
+namespace UI.Desktop.admin
 {
     public partial class ABMUsuarios : Form
     {
@@ -26,7 +27,7 @@ namespace UI.Desktop
             {
                 MessageBox.Show("No hay usuarios cargados!");
             }
-            this.dgvUsuarios.DataSource = usuarios;
+            this.dgvUsuarios.DataSource = Listado.Generar(usuarios);
         }
 
         private void Usuarios_Load(object sender, EventArgs e) {

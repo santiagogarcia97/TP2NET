@@ -10,6 +10,8 @@ using System.Windows.Forms;
 using System.ComponentModel.DataAnnotations;
 using Business.Entities;
 using Business.Logic;
+using Util;
+using UI.Desktop.admin;
 
 namespace UI.Desktop {
     public partial class Menu : Form {
@@ -21,42 +23,35 @@ namespace UI.Desktop {
             InitializeComponent();
 
             UsuarioActual = user;
-            switch ((int)UsuarioActual.TipoPersona) {
-                case 1:
+            switch (UsuarioActual.TipoPersona) {
+                case Usuario.TiposPersona.Alumno:
                     MenuAlumno();
                     break;
-                case 2:
+                case Usuario.TiposPersona.Docente:
                     MenuDocente();
                     break;
-                case 3:
+                case Usuario.TiposPersona.Administrador:
                     MenuAdmin();
                     break;
             }
+            MapearDeDatos();
         }
 
         private void MenuAlumno(){
-            panelAD.Visible = true;
-            tlpAcademico.Visible = true;
-            tlpDatos.Visible = true;
-            panelAdmin.Visible = false;
+            gbAdmin.Visible = false;
             TSMIabms.Visible = false;
             TSMIMisCursos.Visible = false;
-            MapearDeDatos();
             GenerarEstadisticas();
         }
         private void MenuDocente() {
-            panelAD.Visible = true;
-            tlpAcademico.Visible = true;
-            tlpDatos.Visible = true;
-            panelAdmin.Visible = false;
             TSMIabms.Visible = false;
             TSMIMisInscripciones.Visible = false;
-            MapearDeDatos();
+            gbAdmin.Visible = false;
         }
         private void MenuAdmin() {
-            panelAdmin.Visible = true;
             TSMIMisInscripciones.Visible = false;
             TSMIMisCursos.Visible = false;
+            gbAdmin.Visible = true;
         }
 
         private void MapearDeDatos() {
@@ -75,9 +70,9 @@ namespace UI.Desktop {
                 UsuarioActual.State = BusinessEntity.States.Modified;
         }
         private bool Validar() {
-            lblRedDirec.Visible = (string.IsNullOrWhiteSpace(txtDireccion.Text)) ? true : false;
-            lblRedTel.Visible = (string.IsNullOrWhiteSpace(txtTelefono.Text)) ? true : false;
-            lblRedEmail.Visible = (new EmailAddressAttribute().IsValid(txtEmail.Text)) ? false : true;
+            lblRedDirec.Visible = (Validaciones.ValTexto(txtDireccion.Text)) ? true : false;
+            lblRedTel.Visible = (Validaciones.ValTexto(txtTelefono.Text)) ? true : false;
+            lblRedEmail.Visible = (Validaciones.ValTexto(txtEmail.Text)) ? true : false;
 
             if (lblRedDirec.Visible == true ||
                 lblRedEmail.Visible == true ||
@@ -130,11 +125,11 @@ namespace UI.Desktop {
             }
         }
 
-        private void btnInscripciones_Click(object sender, EventArgs e) {
+   /*     private void btnInscripciones_Click(object sender, EventArgs e) {
             MisInscripciones ai = new MisInscripciones(UsuarioActual);
             ai.ShowDialog();
         }
-
+*/
         private void btnCambiarPass_Click(object sender, EventArgs e) {
             CambiarClave aux = new CambiarClave(UsuarioActual);
             aux.ShowDialog();
@@ -166,7 +161,7 @@ namespace UI.Desktop {
         }
 
         private void TSMIcursos_Click(object sender, EventArgs e) {
-            ABMCursos formCursos = new ABMCursos(UsuarioActual);
+            ABMCursos formCursos = new ABMCursos();
             formCursos.ShowDialog();
         }
 

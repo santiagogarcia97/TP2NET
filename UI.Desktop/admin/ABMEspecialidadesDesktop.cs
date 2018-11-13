@@ -9,23 +9,24 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Business.Logic;
 using Business.Entities;
+using Util;
 
-
-namespace UI.Desktop {
+namespace UI.Desktop.admin
+{
     public partial class ABMEspecialidadesDesktop : ApplicationForm {
 
-        private Business.Entities.Especialidad especialidadActual;
-        public Especialidad EspecialidadActual { get => especialidadActual; set => especialidadActual = value; }
+        private Especialidad _EspecialidadActual;
+        public Especialidad EspecialidadActual { get => _EspecialidadActual; set => _EspecialidadActual = value; }
 
         public ABMEspecialidadesDesktop() {
             InitializeComponent();
         }
 
-        public ABMEspecialidadesDesktop(ModoForm modo) : this() {
+        public ABMEspecialidadesDesktop(ModoForm modo) : this() {//alta
             Modo = modo;
         }
 
-        public ABMEspecialidadesDesktop(int ID, ModoForm modo) : this() {
+        public ABMEspecialidadesDesktop(int ID, ModoForm modo) : this() {//baja o mod
             Modo = modo;
             EspecialidadLogic auxEspecialidad = new EspecialidadLogic();
             EspecialidadActual = auxEspecialidad.GetOne(ID);
@@ -33,7 +34,7 @@ namespace UI.Desktop {
         }
 
         public override void MapearDeDatos() {
-            txtID.Text = EspecialidadActual.ID.ToString();
+            lblID.Text = EspecialidadActual.ID.ToString();
             txtDescripcion.Text = EspecialidadActual.Descripcion;
 
             switch (Modo) {
@@ -51,10 +52,11 @@ namespace UI.Desktop {
         public override void MapearADatos() {
             switch (Modo) {                                      
                 case ModoForm.Alta:
-                    EspecialidadActual = new Especialidad();
-                    EspecialidadActual.Descripcion = txtDescripcion.Text;
-                    especialidadActual.Habilitado = true;
-                    EspecialidadActual.State = BusinessEntity.States.New;
+                    EspecialidadActual = new Especialidad {
+                        Descripcion = txtDescripcion.Text,
+                        Habilitado = true,
+                        State = BusinessEntity.States.New
+                    };
                     break;
                 case ModoForm.Modificacion:
                     EspecialidadActual.Descripcion = txtDescripcion.Text;
@@ -73,7 +75,11 @@ namespace UI.Desktop {
         }
 
         public override bool Validar() {
-            return !(string.IsNullOrWhiteSpace(txtDescripcion.Text));
+            if (Validaciones.ValTexto(txtDescripcion.Text)) return true;
+            else{
+                lblRedDesc.Visible = true;
+                return false;
+            }
         }
 
         private void btnAceptar_Click(object sender, EventArgs e) {
@@ -82,7 +88,7 @@ namespace UI.Desktop {
                 this.Close();
             }
             else {
-                MessageBox.Show("Complete todos los campos.");
+                MessageBox.Show("Compruebe los datos ingresados.");
             }
         }
     }

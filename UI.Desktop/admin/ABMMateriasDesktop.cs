@@ -12,25 +12,19 @@ using Business.Entities;
 using Util;
 
 
-namespace UI.Desktop {
+namespace UI.Desktop.admin
+{
     public partial class ABMMateriasDesktop : ApplicationForm {
 
-        private Materia _materiaActual;
-        public Materia MateriaActual {get { return _materiaActual; }set { _materiaActual = value; }}
+        private Materia _MateriaActual;
+        public Materia MateriaActual {get { return _MateriaActual; }set { _MateriaActual = value; }}
 
         public ABMMateriasDesktop() {
             InitializeComponent();
-
-            //Se genera el comobox de especialidades
-            //getEspecialidades devuelve un DataTable con un columna de ID y otra de Descripcion
-            //La de ID se usa como valor interno al seleccionar una opcion y la Desc es la que se muestra al usuario
-            cbEsp.ValueMember = "id_esp";
-            cbEsp.DisplayMember = "desc_esp";
-            cbEsp.DataSource = GenerarComboBox.getEspecialidades();
-            cbEsp.SelectedValue = 0;
         }
         public ABMMateriasDesktop(ModoForm modo) : this() {
             Modo = modo;
+            GenerarEsp(0);
         }
 
         public ABMMateriasDesktop(int ID, ModoForm modo) : this() {
@@ -41,7 +35,8 @@ namespace UI.Desktop {
             PlanLogic pl = new PlanLogic();
             Plan plan = pl.GetOne(MateriaActual.IDPlan);
 
-            GenerarPlanes(plan.IDEspecialidad);
+            GenerarEsp(MateriaActual.IDPlan);
+            GenerarPlanes(plan.IDEspecialidad, MateriaActual.IDPlan);
 
             MapearDeDatos(plan);
             //El plan se pasa como argumento para tener el id de la especilidad y seleccionarlo en el combobox
@@ -79,13 +74,14 @@ namespace UI.Desktop {
 
         public override void MapearADatos() {
             if (Modo == ModoForm.Alta || Modo == ModoForm.Modificacion) {
-                MateriaActual = new Materia();
-                MateriaActual.Descripcion = txtDescripcion.Text;
-                MateriaActual.HSSemanales = (int)nudHSSem.Value;
-                MateriaActual.HSTotales = (int)nudHSTot.Value;
-                MateriaActual.IDPlan = (int)cbPlan.SelectedValue;
+                MateriaActual = new Materia {
+                    Descripcion = txtDescripcion.Text,
+                    HSSemanales = (int)nudHSSem.Value,
+                    HSTotales = (int)nudHSTot.Value,
+                    IDPlan = (int)cbPlan.SelectedValue,
 
-                MateriaActual.Habilitado = true;
+                    Habilitado = true
+                };
 
                 if (Modo == ModoForm.Alta) {
                     MateriaActual.State = BusinessEntity.States.New;
@@ -99,12 +95,12 @@ namespace UI.Desktop {
                 MateriaActual.State = BusinessEntity.States.Deleted;
             }
         }
-        private void GenerarPlanes(int idEsp) {
+        private void GenerarPlanes(int idEsp, int idPlanActual) {
             //Se genera el comobox de planes el funcionamiento es igual al de especialidades solo que se pasa
             //el id de la esp para filtrar los planes de dicha esp
             cbPlan.ValueMember = "id_plan";
             cbPlan.DisplayMember = "desc_plan";
-            cbPlan.DataSource = GenerarComboBox.getPlanes(idEsp);
+            cbPlan.DataSource = GenerarComboBox.getPlanes(idEsp, idPlanActual);
             cbPlan.SelectedValue = 0;
         }
 
@@ -115,21 +111,17 @@ namespace UI.Desktop {
         }
 
         public override bool Validar() {
-            lblRedDesc.Visible = (string.IsNullOrWhiteSpace(txtDescripcion.Text)) ? true : false;
-            lblRedHSS.Visible = (nudHSSem.Value == 0) ? true : false;
-            lblRedHST.Visible = (nudHSTot.Value == 0) ? true : false;
+            lblRedDesc.Visible = (Validaciones.ValTexto(txtDescripcion.Text)) ? false : true;
+            lblRedHSS.Visible = Validaciones.ValHSSem((int)nudHSSem.Value) ? false : true;
+            lblRedHST.Visible = Validaciones.ValHSTot((int)nudHSTot.Value) ? false : true;
             lblRedPlan.Visible = ((int)cbEsp.SelectedValue == 0 || (int)cbPlan.SelectedValue == 0 ||
                                     cbEsp.SelectedValue == null || cbPlan.SelectedValue == null) ? true : false;
 
-            if (lblRedDesc.Visible == true ||
-                lblRedHSS.Visible == true ||
-                lblRedHST.Visible == true ||
-                lblRedPlan.Visible == true) {
-                return false;
-            }
-            else {
-                return true;
-            }
+            return !(lblRedDesc.Visible ||
+                lblRedHSS.Visible ||
+                lblRedHST.Visible ||
+                lblRedPlan.Visible); 
+
         }
 
         private void btnAceptar_Click(object sender, EventArgs e) {
@@ -138,17 +130,24 @@ namespace UI.Desktop {
                 this.Close();
             }
             else {
-                MessageBox.Show("Complete todos los campos.");
+                    MessageBox.Show("Compruebe los datos ingresados.");
+                }
             }
-        }
+            private void GenerarEsp(int idEspActual)
+            {
+                cbEsp.ValueMember = "id_esp";
+                cbEsp.DisplayMember = "desc_esp";
+                cbEsp.DataSource = GenerarComboBox.getEspecialidades(idEspActual);
+                cbEsp.SelectedValue = 0;
+            }
 
-        private void cbEsp_SelectedValueChanged(object sender, EventArgs e) {
+            private void cbEsp_SelectedValueChanged(object sender, EventArgs e) {
             if (cbEsp.SelectedValue != null) {
                 //Si el valor del combobox de especialidades cambia, se vuelven a generar los planes
                 //pasando como argumento el id de la especialidad para mostrar solo los planes que
                 //corresponden a dicha especialidad
                 cbPlan.Text = "";
-                GenerarPlanes((int)cbEsp.SelectedValue);
+                GenerarPlanes((int)cbEsp.SelectedValue, Modo == ModoForm.Alta ? 0 : MateriaActual.IDPlan);
             }
         }
     }

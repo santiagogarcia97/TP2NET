@@ -1,4 +1,5 @@
-﻿namespace UI.Desktop {
+﻿namespace UI.Desktop.admin
+{
     partial class ABMComisionesDesktop {
         /// <summary>
         /// Required designer variable.

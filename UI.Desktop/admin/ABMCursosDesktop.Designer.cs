@@ -1,4 +1,4 @@
-﻿namespace UI.Desktop
+﻿namespace UI.Desktop.admin
 {
     partial class ABMCursosDesktop
     {
@@ -13,8 +13,7 @@
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
-            if (disposing && (components != null))
-            {
+            if (disposing && (components != null)) {
                 components.Dispose();
             }
             base.Dispose(disposing);
@@ -330,7 +329,7 @@
             this.lblRedAnio.Text = "*";
             this.lblRedAnio.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // ABMCursoDesktop
+            // ABMCursosDesktop
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -338,7 +337,7 @@
             this.Controls.Add(this.tableLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
-            this.Name = "ABMCursoDesktop";
+            this.Name = "ABMCursosDesktop";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "CursoDesktop";
             this.Load += new System.EventHandler(this.CursoDesktop_Load);

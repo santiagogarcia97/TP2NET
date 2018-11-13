@@ -47,10 +47,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ABMAlumnoInscripciones.cs">
+    <Compile Include="admin\ABMAlumnoInscripciones.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ABMAlumnoInscripciones.Designer.cs">
+    <Compile Include="admin\ABMAlumnoInscripciones.Designer.cs">
       <DependentUpon>ABMAlumnoInscripciones.cs</DependentUpon>
     </Compile>
     <Compile Include="CambiarClave.cs">
@@ -71,16 +71,16 @@
     <Compile Include="CargaNotas.Designer.cs">
       <DependentUpon>CargaNotas.cs</DependentUpon>
     </Compile>
-    <Compile Include="ABMDocentesCursos.cs">
+    <Compile Include="admin\ABMDocentesCursos.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ABMDocentesCursos.Designer.cs">
+    <Compile Include="admin\ABMDocentesCursos.Designer.cs">
       <DependentUpon>ABMDocentesCursos.cs</DependentUpon>
     </Compile>
-    <Compile Include="ABMDocentesCursosDesktop.cs">
+    <Compile Include="admin\ABMDocentesCursosDesktop.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ABMDocentesCursosDesktop.Designer.cs">
+    <Compile Include="admin\ABMDocentesCursosDesktop.Designer.cs">
       <DependentUpon>ABMDocentesCursosDesktop.cs</DependentUpon>
     </Compile>
     <Compile Include="MisInscripciones.cs">
@@ -89,46 +89,46 @@
     <Compile Include="MisInscripciones.Designer.cs">
       <DependentUpon>MisInscripciones.cs</DependentUpon>
     </Compile>
-    <Compile Include="ApplicationForm.cs">
+    <Compile Include="admin\ApplicationForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ApplicationForm.Designer.cs">
+    <Compile Include="admin\ApplicationForm.Designer.cs">
       <DependentUpon>ApplicationForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="ABMComisionesDesktop.cs">
+    <Compile Include="admin\ABMComisionesDesktop.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ABMComisionesDesktop.Designer.cs">
+    <Compile Include="admin\ABMComisionesDesktop.Designer.cs">
       <DependentUpon>ABMComisionesDesktop.cs</DependentUpon>
     </Compile>
-    <Compile Include="ABMCursosDesktop.cs">
+    <Compile Include="admin\ABMCursosDesktop.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ABMCursosDesktop.Designer.cs">
+    <Compile Include="admin\ABMCursosDesktop.Designer.cs">
       <DependentUpon>ABMCursosDesktop.cs</DependentUpon>
     </Compile>
-    <Compile Include="ABMCursos.cs">
+    <Compile Include="admin\ABMCursos.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ABMCursos.Designer.cs">
+    <Compile Include="admin\ABMCursos.Designer.cs">
       <DependentUpon>ABMCursos.cs</DependentUpon>
     </Compile>
-    <Compile Include="ABMEspecialidadesDesktop.cs">
+    <Compile Include="admin\ABMEspecialidadesDesktop.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ABMEspecialidadesDesktop.Designer.cs">
+    <Compile Include="admin\ABMEspecialidadesDesktop.Designer.cs">
       <DependentUpon>ABMEspecialidadesDesktop.cs</DependentUpon>
     </Compile>
-    <Compile Include="ABMComisiones.cs">
+    <Compile Include="admin\ABMComisiones.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ABMComisiones.Designer.cs">
+    <Compile Include="admin\ABMComisiones.Designer.cs">
       <DependentUpon>ABMComisiones.cs</DependentUpon>
     </Compile>
-    <Compile Include="ABMEspecialidades.cs">
+    <Compile Include="admin\ABMEspecialidades.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ABMEspecialidades.Designer.cs">
+    <Compile Include="admin\ABMEspecialidades.Designer.cs">
       <DependentUpon>ABMEspecialidades.cs</DependentUpon>
     </Compile>
     <Compile Include="Login.cs">
@@ -137,16 +137,16 @@
     <Compile Include="Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
-    <Compile Include="ABMMateriasDesktop.cs">
+    <Compile Include="admin\ABMMateriasDesktop.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ABMMateriasDesktop.Designer.cs">
+    <Compile Include="admin\ABMMateriasDesktop.Designer.cs">
       <DependentUpon>ABMMateriasDesktop.cs</DependentUpon>
     </Compile>
-    <Compile Include="ABMMaterias.cs">
+    <Compile Include="admin\ABMMaterias.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ABMMaterias.Designer.cs">
+    <Compile Include="admin\ABMMaterias.Designer.cs">
       <DependentUpon>ABMMaterias.cs</DependentUpon>
     </Compile>
     <Compile Include="Menu.cs">
@@ -155,34 +155,37 @@
     <Compile Include="Menu.Designer.cs">
       <DependentUpon>Menu.cs</DependentUpon>
     </Compile>
-    <Compile Include="ABMPlanesDesktop.cs">
+    <Compile Include="admin\ABMPlanesDesktop.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ABMPlanesDesktop.Designer.cs">
+    <Compile Include="admin\ABMPlanesDesktop.Designer.cs">
       <DependentUpon>ABMPlanesDesktop.cs</DependentUpon>
     </Compile>
-    <Compile Include="ABMPlanes.cs">
+    <Compile Include="admin\ABMPlanes.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ABMPlanes.Designer.cs">
+    <Compile Include="admin\ABMPlanes.Designer.cs">
       <DependentUpon>ABMPlanes.cs</DependentUpon>
     </Compile>
-    <Compile Include="ABMUsuariosDesktop.cs">
+    <Compile Include="admin\ABMUsuariosDesktop.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ABMUsuariosDesktop.Designer.cs">
+    <Compile Include="admin\ABMUsuariosDesktop.Designer.cs">
       <DependentUpon>ABMUsuariosDesktop.cs</DependentUpon>
     </Compile>
-    <Compile Include="ABMUsuarios.cs">
+    <Compile Include="admin\ABMUsuarios.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ABMUsuarios.Designer.cs">
+    <Compile Include="admin\ABMUsuarios.Designer.cs">
       <DependentUpon>ABMUsuarios.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="ABMAlumnoInscripciones.resx">
+    <EmbeddedResource Include="admin\ABMAlumnoInscripciones.resx">
       <DependentUpon>ABMAlumnoInscripciones.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CambiarClave.resx">
+      <DependentUpon>CambiarClave.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="InscribirMaterias.resx">
       <DependentUpon>InscribirMaterias.cs</DependentUpon>
@@ -190,58 +193,58 @@
     <EmbeddedResource Include="CargaNotas.resx">
       <DependentUpon>CargaNotas.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ABMDocentesCursos.resx">
+    <EmbeddedResource Include="admin\ABMDocentesCursos.resx">
       <DependentUpon>ABMDocentesCursos.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ABMDocentesCursosDesktop.resx">
+    <EmbeddedResource Include="admin\ABMDocentesCursosDesktop.resx">
       <DependentUpon>ABMDocentesCursosDesktop.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MisInscripciones.resx">
       <DependentUpon>MisInscripciones.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ApplicationForm.resx">
+    <EmbeddedResource Include="admin\ApplicationForm.resx">
       <DependentUpon>ApplicationForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ABMComisionesDesktop.resx">
+    <EmbeddedResource Include="admin\ABMComisionesDesktop.resx">
       <DependentUpon>ABMComisionesDesktop.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ABMCursosDesktop.resx">
+    <EmbeddedResource Include="admin\ABMCursosDesktop.resx">
       <DependentUpon>ABMCursosDesktop.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ABMCursos.resx">
+    <EmbeddedResource Include="admin\ABMCursos.resx">
       <DependentUpon>ABMCursos.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ABMEspecialidadesDesktop.resx">
+    <EmbeddedResource Include="admin\ABMEspecialidadesDesktop.resx">
       <DependentUpon>ABMEspecialidadesDesktop.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ABMComisiones.resx">
+    <EmbeddedResource Include="admin\ABMComisiones.resx">
       <DependentUpon>ABMComisiones.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ABMEspecialidades.resx">
+    <EmbeddedResource Include="admin\ABMEspecialidades.resx">
       <DependentUpon>ABMEspecialidades.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ABMMateriasDesktop.resx">
+    <EmbeddedResource Include="admin\ABMMateriasDesktop.resx">
       <DependentUpon>ABMMateriasDesktop.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ABMMaterias.resx">
+    <EmbeddedResource Include="admin\ABMMaterias.resx">
       <DependentUpon>ABMMaterias.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Menu.resx">
       <DependentUpon>Menu.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ABMPlanesDesktop.resx">
+    <EmbeddedResource Include="admin\ABMPlanesDesktop.resx">
       <DependentUpon>ABMPlanesDesktop.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ABMPlanes.resx">
+    <EmbeddedResource Include="admin\ABMPlanes.resx">
       <DependentUpon>ABMPlanes.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ABMUsuariosDesktop.resx">
+    <EmbeddedResource Include="admin\ABMUsuariosDesktop.resx">
       <DependentUpon>ABMUsuariosDesktop.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ABMUsuarios.resx">
+    <EmbeddedResource Include="admin\ABMUsuarios.resx">
       <DependentUpon>ABMUsuarios.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">

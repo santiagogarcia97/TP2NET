@@ -9,23 +9,19 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Business.Logic;
 using Business.Entities;
+using Util;
 
-namespace UI.Desktop {
+namespace UI.Desktop.admin
+{
     public partial class ABMCursos : ApplicationForm
     {
         private Usuario _UsuarioActual;
         public Usuario UsuarioActual { get => _UsuarioActual; set => _UsuarioActual = value; }
 
-        public ABMCursos(){
+        public ABMCursos()
+        {
             InitializeComponent();
             this.dgvCursos.AutoGenerateColumns = false;
-        }
-        public ABMCursos(Usuario user) : this() {
-            UsuarioActual = user;
-            if ((int)UsuarioActual.TipoPersona == 2) {
-                tsbEliminar.Visible = false;
-                tsbNuevo.Visible = false;
-            }
         }
 
         public void Listar() {
@@ -34,7 +30,8 @@ namespace UI.Desktop {
             this.dgvCursos.Refresh();
 
             CursoLogic cl = new CursoLogic();
-            this.dgvCursos.DataSource = cl.GetListado(UsuarioActual);
+            List<Curso> cursos = cl.GetAll();
+            this.dgvCursos.DataSource = Listado.Generar(cursos);
             
         }
 
@@ -52,19 +49,25 @@ namespace UI.Desktop {
 
         private void tsbEditar_Click(object sender, EventArgs e)
         {
-            if (this.dgvCursos.SelectedRows.Count != 0)
-            {
+            if (this.dgvCursos.SelectedRows.Count != 0) {
                 int ID = (int)this.dgvCursos.SelectedRows[0].Cells["id"].Value;
-                if ((int)UsuarioActual.TipoPersona == 3) {
-                    ABMCursosDesktop cursoDesktop = new ABMCursosDesktop(ID, ApplicationForm.ModoForm.Modificacion);
-                    cursoDesktop.ShowDialog();
-                }
-                else if((int)UsuarioActual.TipoPersona == 2) {
-                    MisInscripciones ai = new MisInscripciones(UsuarioActual, ID);
-                    ai.ShowDialog();                   
-                }
+                ABMCursosDesktop cursoDesktop = new ABMCursosDesktop(ID, ApplicationForm.ModoForm.Modificacion);
+                cursoDesktop.ShowDialog();
                 this.Listar();
             }
+            /*      if (this.dgvCursos.SelectedRows.Count != 0)
+                  {
+                      int ID = (int)this.dgvCursos.SelectedRows[0].Cells["id"].Value;
+                      if ((int)UsuarioActual.TipoPersona == 3) {
+                          ABMCursosDesktop cursoDesktop = new ABMCursosDesktop(ID, ApplicationForm.ModoForm.Modificacion);
+                          cursoDesktop.ShowDialog();
+                      }
+                      else if((int)UsuarioActual.TipoPersona == 2) {
+                          MisInscripciones ai = new MisInscripciones(UsuarioActual, ID);
+                          ai.ShowDialog();                   
+                      }
+                      this.Listar();
+                  }*/
         }
 
         private void tsbEliminar_Click(object sender, EventArgs e)

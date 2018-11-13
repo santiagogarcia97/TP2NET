@@ -9,8 +9,10 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Business.Logic;
 using Business.Entities;
+using Util;
 
-namespace UI.Desktop{
+namespace UI.Desktop.admin
+{
     public partial class ABMDocentesCursos : ApplicationForm{
 
         public ABMDocentesCursos(){
@@ -26,7 +28,8 @@ namespace UI.Desktop{
             this.dgvDocenteCurso.Refresh();
 
             DocenteCursoLogic dcl = new DocenteCursoLogic();
-            this.dgvDocenteCurso.DataSource = dcl.GetListado();
+            List<DocenteCurso> dclist = dcl.GetAll();
+            this.dgvDocenteCurso.DataSource = Listado.Generar(dclist);
         }
 
         private void tsbNuevo_Click(object sender, EventArgs e){

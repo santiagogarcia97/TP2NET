@@ -1,5 +1,7 @@
-﻿namespace UI.Desktop {
-    partial class ABMMaterias {
+﻿namespace UI.Desktop.admin
+{
+    partial class ABMPlanes
+    {
         /// <summary>
         /// Required designer variable.
         /// </summary>
@@ -9,7 +11,8 @@
         /// Clean up any resources being used.
         /// </summary>
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-        protected override void Dispose(bool disposing) {
+        protected override void Dispose(bool disposing)
+        {
             if (disposing && (components != null)) {
                 components.Dispose();
             }
@@ -22,27 +25,26 @@
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
-        private void InitializeComponent() {
+        private void InitializeComponent()
+        {
             this.tcUsuarios = new System.Windows.Forms.ToolStripContainer();
-            this.tlMaterias = new System.Windows.Forms.TableLayoutPanel();
-            this.btnActualizar = new System.Windows.Forms.Button();
-            this.dgvMaterias = new System.Windows.Forms.DataGridView();
+            this.tlPlanes = new System.Windows.Forms.TableLayoutPanel();
+            this.dgvPlanes = new System.Windows.Forms.DataGridView();
             this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.hs_semanales = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.hs_totales = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.id_plan = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.id_especialidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnSalir = new System.Windows.Forms.Button();
-            this.tsMaterias = new System.Windows.Forms.ToolStrip();
+            this.btnActualizar = new System.Windows.Forms.Button();
+            this.tsPlanes = new System.Windows.Forms.ToolStrip();
             this.tsbNuevo = new System.Windows.Forms.ToolStripButton();
             this.tsbEditar = new System.Windows.Forms.ToolStripButton();
             this.tsbEliminar = new System.Windows.Forms.ToolStripButton();
             this.tcUsuarios.ContentPanel.SuspendLayout();
             this.tcUsuarios.TopToolStripPanel.SuspendLayout();
             this.tcUsuarios.SuspendLayout();
-            this.tlMaterias.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvMaterias)).BeginInit();
-            this.tsMaterias.SuspendLayout();
+            this.tlPlanes.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPlanes)).BeginInit();
+            this.tsPlanes.SuspendLayout();
             this.SuspendLayout();
             // 
             // tcUsuarios
@@ -50,71 +52,58 @@
             // 
             // tcUsuarios.ContentPanel
             // 
-            this.tcUsuarios.ContentPanel.Controls.Add(this.tlMaterias);
+            this.tcUsuarios.ContentPanel.Controls.Add(this.tlPlanes);
             this.tcUsuarios.ContentPanel.Size = new System.Drawing.Size(784, 336);
             this.tcUsuarios.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tcUsuarios.Location = new System.Drawing.Point(0, 0);
             this.tcUsuarios.Name = "tcUsuarios";
             this.tcUsuarios.Size = new System.Drawing.Size(784, 361);
-            this.tcUsuarios.TabIndex = 3;
+            this.tcUsuarios.TabIndex = 2;
             this.tcUsuarios.Text = "toolStripContainer1";
             // 
             // tcUsuarios.TopToolStripPanel
             // 
-            this.tcUsuarios.TopToolStripPanel.Controls.Add(this.tsMaterias);
+            this.tcUsuarios.TopToolStripPanel.Controls.Add(this.tsPlanes);
             // 
-            // tlMaterias
+            // tlPlanes
             // 
-            this.tlMaterias.ColumnCount = 2;
-            this.tlMaterias.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlMaterias.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tlMaterias.Controls.Add(this.btnActualizar, 0, 1);
-            this.tlMaterias.Controls.Add(this.dgvMaterias, 0, 0);
-            this.tlMaterias.Controls.Add(this.btnSalir, 1, 1);
-            this.tlMaterias.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlMaterias.Location = new System.Drawing.Point(0, 0);
-            this.tlMaterias.Name = "tlMaterias";
-            this.tlMaterias.RowCount = 2;
-            this.tlMaterias.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlMaterias.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tlMaterias.Size = new System.Drawing.Size(784, 336);
-            this.tlMaterias.TabIndex = 0;
+            this.tlPlanes.ColumnCount = 2;
+            this.tlPlanes.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tlPlanes.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tlPlanes.Controls.Add(this.dgvPlanes, 0, 0);
+            this.tlPlanes.Controls.Add(this.btnActualizar, 0, 1);
+            this.tlPlanes.Controls.Add(this.btnSalir, 1, 1);
+            this.tlPlanes.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tlPlanes.Location = new System.Drawing.Point(0, 0);
+            this.tlPlanes.Name = "tlPlanes";
+            this.tlPlanes.RowCount = 2;
+            this.tlPlanes.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tlPlanes.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tlPlanes.Size = new System.Drawing.Size(784, 336);
+            this.tlPlanes.TabIndex = 0;
             // 
-            // btnActualizar
+            // dgvPlanes
             // 
-            this.btnActualizar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnActualizar.Location = new System.Drawing.Point(625, 310);
-            this.btnActualizar.Name = "btnActualizar";
-            this.btnActualizar.Size = new System.Drawing.Size(75, 23);
-            this.btnActualizar.TabIndex = 1;
-            this.btnActualizar.Text = "Actualizar";
-            this.btnActualizar.UseVisualStyleBackColor = true;
-            this.btnActualizar.Click += new System.EventHandler(this.Materias_Load);
-            // 
-            // dgvMaterias
-            // 
-            this.dgvMaterias.AllowUserToAddRows = false;
-            this.dgvMaterias.AllowUserToDeleteRows = false;
-            this.dgvMaterias.AllowUserToResizeColumns = false;
-            this.dgvMaterias.AllowUserToResizeRows = false;
-            this.dgvMaterias.BackgroundColor = System.Drawing.Color.White;
-            this.dgvMaterias.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvMaterias.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgvPlanes.AllowUserToAddRows = false;
+            this.dgvPlanes.AllowUserToDeleteRows = false;
+            this.dgvPlanes.AllowUserToResizeColumns = false;
+            this.dgvPlanes.AllowUserToResizeRows = false;
+            this.dgvPlanes.BackgroundColor = System.Drawing.Color.White;
+            this.dgvPlanes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvPlanes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.id,
             this.descripcion,
-            this.hs_semanales,
-            this.hs_totales,
-            this.id_plan});
-            this.tlMaterias.SetColumnSpan(this.dgvMaterias, 2);
-            this.dgvMaterias.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvMaterias.Location = new System.Drawing.Point(3, 3);
-            this.dgvMaterias.MultiSelect = false;
-            this.dgvMaterias.Name = "dgvMaterias";
-            this.dgvMaterias.ReadOnly = true;
-            this.dgvMaterias.RowHeadersVisible = false;
-            this.dgvMaterias.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvMaterias.Size = new System.Drawing.Size(778, 301);
-            this.dgvMaterias.TabIndex = 0;
+            this.id_especialidad});
+            this.tlPlanes.SetColumnSpan(this.dgvPlanes, 2);
+            this.dgvPlanes.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvPlanes.Location = new System.Drawing.Point(3, 3);
+            this.dgvPlanes.MultiSelect = false;
+            this.dgvPlanes.Name = "dgvPlanes";
+            this.dgvPlanes.ReadOnly = true;
+            this.dgvPlanes.RowHeadersVisible = false;
+            this.dgvPlanes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvPlanes.Size = new System.Drawing.Size(778, 301);
+            this.dgvPlanes.TabIndex = 0;
             // 
             // id
             // 
@@ -134,29 +123,12 @@
             this.descripcion.Name = "descripcion";
             this.descripcion.ReadOnly = true;
             // 
-            // hs_semanales
+            // id_especialidad
             // 
-            this.hs_semanales.DataPropertyName = "HSSemanales";
-            this.hs_semanales.HeaderText = "Horas Semanales";
-            this.hs_semanales.MinimumWidth = 130;
-            this.hs_semanales.Name = "hs_semanales";
-            this.hs_semanales.ReadOnly = true;
-            this.hs_semanales.Width = 130;
-            // 
-            // hs_totales
-            // 
-            this.hs_totales.DataPropertyName = "HSTotales";
-            this.hs_totales.HeaderText = "Horas Totales";
-            this.hs_totales.MinimumWidth = 100;
-            this.hs_totales.Name = "hs_totales";
-            this.hs_totales.ReadOnly = true;
-            // 
-            // id_plan
-            // 
-            this.id_plan.DataPropertyName = "Plan";
-            this.id_plan.HeaderText = "Plan";
-            this.id_plan.Name = "id_plan";
-            this.id_plan.ReadOnly = true;
+            this.id_especialidad.DataPropertyName = "Especialidad";
+            this.id_especialidad.HeaderText = "Especialidad";
+            this.id_especialidad.Name = "id_especialidad";
+            this.id_especialidad.ReadOnly = true;
             // 
             // btnSalir
             // 
@@ -168,17 +140,28 @@
             this.btnSalir.UseVisualStyleBackColor = true;
             this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
             // 
-            // tsMaterias
+            // btnActualizar
             // 
-            this.tsMaterias.Dock = System.Windows.Forms.DockStyle.None;
-            this.tsMaterias.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.btnActualizar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnActualizar.Location = new System.Drawing.Point(625, 310);
+            this.btnActualizar.Name = "btnActualizar";
+            this.btnActualizar.Size = new System.Drawing.Size(75, 23);
+            this.btnActualizar.TabIndex = 1;
+            this.btnActualizar.Text = "Actualizar";
+            this.btnActualizar.UseVisualStyleBackColor = true;
+            this.btnActualizar.Click += new System.EventHandler(this.Planes_Load);
+            // 
+            // tsPlanes
+            // 
+            this.tsPlanes.Dock = System.Windows.Forms.DockStyle.None;
+            this.tsPlanes.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsbNuevo,
             this.tsbEditar,
             this.tsbEliminar});
-            this.tsMaterias.Location = new System.Drawing.Point(3, 0);
-            this.tsMaterias.Name = "tsMaterias";
-            this.tsMaterias.Size = new System.Drawing.Size(81, 25);
-            this.tsMaterias.TabIndex = 0;
+            this.tsPlanes.Location = new System.Drawing.Point(3, 0);
+            this.tsPlanes.Name = "tsPlanes";
+            this.tsPlanes.Size = new System.Drawing.Size(81, 25);
+            this.tsPlanes.TabIndex = 0;
             // 
             // tsbNuevo
             // 
@@ -213,26 +196,26 @@
             this.tsbEliminar.ToolTipText = "Eliminar";
             this.tsbEliminar.Click += new System.EventHandler(this.tsbEliminar_Click);
             // 
-            // ABMMaterias
+            // ABMPlanes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 361);
             this.Controls.Add(this.tcUsuarios);
             this.MinimumSize = new System.Drawing.Size(600, 300);
-            this.Name = "ABMMaterias";
+            this.Name = "ABMPlanes";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Materias";
-            this.Load += new System.EventHandler(this.Materias_Load);
+            this.Text = "Planes";
+            this.Load += new System.EventHandler(this.Planes_Load);
             this.tcUsuarios.ContentPanel.ResumeLayout(false);
             this.tcUsuarios.TopToolStripPanel.ResumeLayout(false);
             this.tcUsuarios.TopToolStripPanel.PerformLayout();
             this.tcUsuarios.ResumeLayout(false);
             this.tcUsuarios.PerformLayout();
-            this.tlMaterias.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvMaterias)).EndInit();
-            this.tsMaterias.ResumeLayout(false);
-            this.tsMaterias.PerformLayout();
+            this.tlPlanes.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPlanes)).EndInit();
+            this.tsPlanes.ResumeLayout(false);
+            this.tsPlanes.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -240,18 +223,16 @@
         #endregion
 
         private System.Windows.Forms.ToolStripContainer tcUsuarios;
-        private System.Windows.Forms.TableLayoutPanel tlMaterias;
-        private System.Windows.Forms.DataGridView dgvMaterias;
+        private System.Windows.Forms.TableLayoutPanel tlPlanes;
+        private System.Windows.Forms.DataGridView dgvPlanes;
         private System.Windows.Forms.Button btnSalir;
         private System.Windows.Forms.Button btnActualizar;
-        private System.Windows.Forms.ToolStrip tsMaterias;
+        private System.Windows.Forms.ToolStrip tsPlanes;
         private System.Windows.Forms.ToolStripButton tsbNuevo;
         private System.Windows.Forms.ToolStripButton tsbEditar;
         private System.Windows.Forms.ToolStripButton tsbEliminar;
         private System.Windows.Forms.DataGridViewTextBoxColumn id;
         private System.Windows.Forms.DataGridViewTextBoxColumn descripcion;
-        private System.Windows.Forms.DataGridViewTextBoxColumn hs_semanales;
-        private System.Windows.Forms.DataGridViewTextBoxColumn hs_totales;
-        private System.Windows.Forms.DataGridViewTextBoxColumn id_plan;
+        private System.Windows.Forms.DataGridViewTextBoxColumn id_especialidad;
     }
 }

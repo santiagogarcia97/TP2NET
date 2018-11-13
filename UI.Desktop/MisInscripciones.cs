@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Business.Logic;
 using Business.Entities;
+using Util;
 
 namespace UI.Desktop{
     public partial class MisInscripciones : ApplicationForm{
@@ -42,7 +43,7 @@ namespace UI.Desktop{
             this.dgvAlumnoInscripciones.DataSource = null;
             this.dgvAlumnoInscripciones.Refresh();
 
-            AlumnoInscripcionLogic ins = new AlumnoInscripcionLogic();
+   /*         AlumnoInscripcionLogic ins = new AlumnoInscripcionLogic();
             List<AlumnoInscripcion> inscripciones = new List<AlumnoInscripcion>();
             if ((int)UsuarioActual.TipoPersona == 1) {
                 inscripciones = ins.GetAll().Where(x => x.IDAlumno == UsuarioActual.ID).ToList();
@@ -56,43 +57,16 @@ namespace UI.Desktop{
             if (inscripciones.Count() == 0){
                 MessageBox.Show("No hay inscripciones cargadas!");
             }
+*/
+            AlumnoInscripcionLogic insl = new AlumnoInscripcionLogic();
+            List<AlumnoInscripcion> inscripciones = insl.GetAll().Where(x => x.IDAlumno == UsuarioActual.ID).ToList();
 
-            DataTable Listado = new DataTable();
-            Listado.Columns.Add("ID", typeof(int));
-            Listado.Columns.Add("Alumno", typeof(string));
-            Listado.Columns.Add("Curso", typeof(string));
-            Listado.Columns.Add("Nota", typeof(string));
-            Listado.Columns.Add("Condicion", typeof(string));
-
-            UsuarioLogic ul = new UsuarioLogic();
-            List<Usuario> usuarios = ul.GetAll();
-            CursoLogic curl = new CursoLogic();
-            List<Curso> cursos = curl.GetAll();
-            MateriaLogic matl = new MateriaLogic();
-            List<Materia> materias = matl.GetAll();
-            ComisionLogic coml = new ComisionLogic();
-            List<Comision> comisiones = coml.GetAll();
-
-            foreach(AlumnoInscripcion ai in inscripciones) {
-                DataRow Linea = Listado.NewRow();
-
-                Linea["ID"] = ai.ID;
-                Linea["Nota"] = (ai.Nota == 0) ? "-" : ai.Nota.ToString();
-                Linea["Condicion"] = ai.Condicion.ToString();
-
-                Usuario user = usuarios.FirstOrDefault(x => x.ID == ai.IDAlumno);
-                Linea["Alumno"] = user.Legajo + " - " + user.Apellido + ", " + user.Nombre;
-
-                Curso curso = cursos.FirstOrDefault(x => x.ID == ai.IDCurso);
-                Materia materia = materias.FirstOrDefault(x => x.ID == curso.IDMateria);
-                Comision comision = comisiones.FirstOrDefault(x => x.ID == curso.IDComision);
-                Linea["Curso"] = comision.Descripcion + " - " + materia.Descripcion;
-                
-                Listado.Rows.Add(Linea);
+            if (inscripciones.Count == 0) {
+                MessageBox.Show("No esta inscripto a ningun curso.");
             }
-
-
-            this.dgvAlumnoInscripciones.DataSource = Listado;
+            else {
+                this.dgvAlumnoInscripciones.DataSource = Listado.Generar(inscripciones);
+            }
         }
 
         private void tsbNuevo_Click(object sender, EventArgs e){
