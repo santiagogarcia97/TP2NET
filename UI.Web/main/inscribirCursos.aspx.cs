@@ -27,12 +27,17 @@ namespace UI.Web {
         public Usuario UsuarioActual { get => _UsuarioActual; set => _UsuarioActual = value; }
 
         protected void Page_Load(object sender, EventArgs e) {
-            if (!IsPostBack) {
-                SelectedID = 0;
-                UsuarioLogic ul = new UsuarioLogic();
-                UsuarioActual = ul.GetOne(Session["username"].ToString());
-                lblEstado.Text = "Cursos habilitados para " + UsuarioActual.Apellido + ", " + UsuarioActual.Nombre + " al día " + DateTime.Now.ToString();
-                Listar();
+            if (Session["tipo"] == null || (int)Session["tipo"] != 1) {
+                Response.Redirect("/login.aspx");
+            }
+            else {
+                if (!IsPostBack) {
+                    SelectedID = 0;
+                    UsuarioLogic ul = new UsuarioLogic();
+                    UsuarioActual = ul.GetOne(Session["username"].ToString());
+                    lblEstado.Text = "Cursos habilitados para " + UsuarioActual.Apellido + ", " + UsuarioActual.Nombre + " al día " + DateTime.Now.ToString();
+                    Listar();
+                }
             }
         }
 

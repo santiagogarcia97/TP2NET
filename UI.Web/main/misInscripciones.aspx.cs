@@ -17,11 +17,16 @@ namespace UI.Web {
                 Response.Redirect("/inicio.aspx");
             }
             else {
-                if (!IsPostBack) {
-                    UsuarioLogic ul = new UsuarioLogic();
-                    Usuario usuario = ul.GetOne(Session["username"].ToString());
-                    lblAlumno.Text = "Estado de inscripciones de " + usuario.Apellido + ", " + usuario.Nombre + " al día " + DateTime.Now.ToString();
-                    Listar();
+                if (Session["tipo"] == null || (int)Session["tipo"] != 1) {
+                    Response.Redirect("/login.aspx");
+                }
+                else {
+                    if (!IsPostBack) {
+                        UsuarioLogic ul = new UsuarioLogic();
+                        Usuario usuario = ul.GetOne(Session["username"].ToString());
+                        lblAlumno.Text = "Estado de inscripciones de " + usuario.Apellido + ", " + usuario.Nombre + " al día " + DateTime.Now.ToString();
+                        Listar();
+                    }
                 }
             }
         }
