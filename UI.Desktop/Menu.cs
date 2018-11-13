@@ -12,6 +12,7 @@ using Business.Entities;
 using Business.Logic;
 using Util;
 using UI.Desktop.admin;
+using UI.Desktop.reportes;
 
 namespace UI.Desktop {
     public partial class Menu : Form {
@@ -42,16 +43,22 @@ namespace UI.Desktop {
             TSMIabms.Visible = false;
             TSMIMisCursos.Visible = false;
             GenerarEstadisticas();
+            gbAcademico.Visible = true;
+            planesToolStripMenuItem.Visible = false;
         }
         private void MenuDocente() {
             TSMIabms.Visible = false;
             TSMIMisInscripciones.Visible = false;
             gbAdmin.Visible = false;
+            gbAcademico.Visible = true;
+            planesToolStripMenuItem.Visible = false;
         }
         private void MenuAdmin() {
             TSMIMisInscripciones.Visible = false;
             TSMIMisCursos.Visible = false;
             gbAdmin.Visible = true;
+            gbAcademico.Visible = false;
+            inscripcionesToolStripMenuItem.Visible = false;
         }
 
         private void MapearDeDatos() {
@@ -183,6 +190,17 @@ namespace UI.Desktop {
         private void TSMIinscripciones_Click(object sender, EventArgs e) {
             ABMAlumnoInscripciones formAI = new ABMAlumnoInscripciones();
             formAI.ShowDialog();
+        }
+
+
+        private void planesToolStripMenuItem_Click(object sender, EventArgs e) {
+            frmReportes reps = new frmReportes();
+            reps.ShowDialog();
+        }
+
+        private void inscripcionesToolStripMenuItem_Click(object sender, EventArgs e) {
+            frmReportes reps = new frmReportes(UsuarioActual.ID);
+            reps.ShowDialog();
         }
     }
 }
