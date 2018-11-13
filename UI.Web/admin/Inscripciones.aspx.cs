@@ -47,6 +47,7 @@ namespace UI.Web.admin
                 if (!IsPostBack) {
                     Listar();
                     gvIns.HeaderRow.TableSection = TableRowSection.TableHeader;
+                    GenerarCondiciones();
                 }
             }
         }
@@ -67,19 +68,28 @@ namespace UI.Web.admin
 
         private void EnableForm(bool enable)
         {
-            txtNota.Enabled = enable;
-            ddCurso.Enabled = enable;
+            txtNota.Enabled = enable;        
             ddCondicion.Enabled = enable;
-            ddAlumno.Enabled = enable;
+            txtAlumno.Enabled = false;
+            txtCurso.Enabled = false;
         }
-        private void LoadForm(int id)
+        private void LoadForm()
         {
-            AlumnoInscripcionActual = AlumnoInscripcionLogic.GetOne(id);
+            AlumnoInscripcionActual = AlumnoInscripcionLogic.GetOne(SelectedID);
+            UsuarioLogic ul = new UsuarioLogic();
+            Usuario user = ul.GetOne(AlumnoInscripcionActual.IDAlumno);
+            CursoLogic cl = new CursoLogic();
+            Curso cur = cl.GetOne(AlumnoInscripcionActual.IDCurso);
+            MateriaLogic matl = new MateriaLogic();
+            Materia mat = matl.GetOne(cur.IDMateria);
+            ComisionLogic coml = new ComisionLogic();
+            Comision com = coml.GetOne(cur.IDComision);
+
 
             txtID.Text = AlumnoInscripcionActual.ID.ToString();
             txtNota.Text = AlumnoInscripcionActual.Nota.ToString();
-            ddAlumno.SelectedValue = AlumnoInscripcionActual.IDAlumno.ToString();
-            ddCurso.SelectedValue = AlumnoInscripcionActual.IDCurso.ToString();
+            txtAlumno.Text = user.Legajo + " - " + user.Apellido + ", " + user.Nombre;
+            txtCurso.Text = com.Descripcion + " - " + mat.Descripcion;
             ddCondicion.SelectedValue = ((int)AlumnoInscripcionActual.Condicion).ToString();
 
             if (this.FormMode == FormModes.Baja)
@@ -97,8 +107,9 @@ namespace UI.Web.admin
 
         private void LoadEntity()
         {
-            AlumnoInscripcionActual.IDAlumno = int.Parse(ddAlumno.SelectedValue);
-            AlumnoInscripcionActual.IDCurso = int.Parse(ddCurso.SelectedValue);
+            AlumnoInscripcion aux = AlumnoInscripcionLogic.GetOne(SelectedID);
+            AlumnoInscripcionActual.IDAlumno = aux.IDAlumno;
+            AlumnoInscripcionActual.IDCurso = aux.IDCurso;
             AlumnoInscripcionActual.Condicion = (AlumnoInscripcion.Condiciones)int.Parse(ddCondicion.SelectedValue);
             AlumnoInscripcionActual.Nota = int.Parse(txtNota.Text);
         }
@@ -138,7 +149,7 @@ namespace UI.Web.admin
             SetFormControlCSS();
             EnableForm(true);
             FormMode = FormModes.Modificacion;
-            LoadForm(this.SelectedID);
+            LoadForm();
             ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "Pop", "$('#ModalInscripciones').modal('show');", true);
         }
 
@@ -148,7 +159,7 @@ namespace UI.Web.admin
             FormMode = FormModes.Baja;
             SetFormControlCSS();
             EnableForm(false);
-            LoadForm(this.SelectedID);
+            LoadForm();
             ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "Pop", "$('#ModalInscripciones').modal('show');", true);
         }
 
@@ -179,7 +190,6 @@ namespace UI.Web.admin
                             Habilitado = true,
                             State = BusinessEntity.States.Modified
                         };
-                        LoadEntity();
                         break;
                     case FormModes.Alta:
                         AlumnoInscripcionActual = new AlumnoInscripcion
@@ -190,6 +200,7 @@ namespace UI.Web.admin
                         LoadEntity();
                         break;
                 }
+                LoadEntity();
                 SaveEntity();
                 SelectedID = 0;
                 Listar();
@@ -208,13 +219,6 @@ namespace UI.Web.admin
                     isvalid = false;
                 }
 
-            if (ddAlumno.SelectedValue == string.Empty || int.Parse(ddAlumno.SelectedValue) == 0){
-                ddAlumno.CssClass = "form-control is-invalid";
-                isvalid = false;
-            }
-            else{
-                ddAlumno.CssClass = "form-control";
-            }
             if (ddCondicion.SelectedValue == string.Empty || int.Parse(ddCondicion.SelectedValue) == 0)
             {
                 ddCondicion.CssClass = "form-control is-invalid";
@@ -224,15 +228,6 @@ namespace UI.Web.admin
             {
                 ddCondicion.CssClass = "form-control";
             }
-            if (ddCurso.SelectedValue == string.Empty || int.Parse(ddCurso.SelectedValue) == 0)
-            {
-                ddCurso.CssClass = "form-control is-invalid";
-                isvalid = false;
-            }
-            else
-            {
-                ddCurso.CssClass = "form-control";
-            }
 
             return isvalid;
         }
@@ -240,9 +235,7 @@ namespace UI.Web.admin
         private void SetFormControlCSS()
         {
             txtNota.CssClass = "form-control";
-            ddCurso.CssClass = "form-control";
             ddCondicion.CssClass = "form-control";
-            ddAlumno.CssClass = "form-control";
         }
         protected void GenerarCondiciones()
         {

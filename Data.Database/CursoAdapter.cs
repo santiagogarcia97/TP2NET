@@ -74,7 +74,7 @@ namespace Data.Database {
         public void Delete(Curso curso) {
             try {
                 this.OpenConnection();
-                SqlCommand cmdDelete = new SqlCommand("UPDATE cursos SET curso_hab@false WHERE id_curso=@id",SqlConn);
+                SqlCommand cmdDelete = new SqlCommand("UPDATE cursos SET curso_hab=@false WHERE id_curso=@id",SqlConn);
                 cmdDelete.Parameters.Add("@id",SqlDbType.Int).Value = curso.ID;
                 cmdDelete.Parameters.Add("@false",SqlDbType.Bit).Value = false;
                 cmdDelete.ExecuteNonQuery();

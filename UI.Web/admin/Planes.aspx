@@ -16,18 +16,25 @@
                 </div>
                 
                 <div class="modal-body">
-                    <div class="form-group">
-                        <label for="txtID" class="col-form-label">ID</label>
-                        <asp:TextBox id="txtID" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                    <div class="form-group row">
+                    <label for="txtID" class="col-4 form-text font-weight-bold">ID</label>
+                        <div class="col-8 form-text">
+                            <asp:Label ID="txtID" runat="server" Text="Label"></asp:Label>
+                        </div>
                     </div>
                             
-                    <div class="form-group">
-                        <label for="txtDescripcion" class="col-form-label">Descripción</label>
-                        <asp:TextBox ID="txtDescripcion" runat="server" CssClass="form-control"></asp:TextBox>
+                    <div class="form-group row">
+                    <label for="txtDescripcion" class="col-4 form-text font-weight-bold">Descripción</label>
+                        <div class="col-8">
+                            <asp:TextBox ID="txtDescripcion" runat="server" Text="Label"></asp:TextBox>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="ddEsp" class="col-form-label">Especialidad</label>
-                        <asp:DropDownList ID="ddEsp" runat="server" CssClass="form-control"></asp:DropDownList>
+
+                    <div class="form-group row">
+                        <label for="ddAlumno" class="col-4 form-text font-weight-bold">Especialidad</label>
+                        <div class="col-8">
+                            <asp:DropDownList ID="ddEsp" runat="server" CssClass="form-control"></asp:DropDownList>
+                        </div>
                     </div>
                 </div>
 

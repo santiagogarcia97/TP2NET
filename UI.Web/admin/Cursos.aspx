@@ -15,43 +15,51 @@
                 </div>
                 
                 <div class="modal-body">
-                    <div class="form-group">
-                        <label for="txtID" class="col-form-label">ID</label>
-                        <asp:TextBox id="txtID" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label for="ddEsp" class="col-form-label">Especialidad</label>
-                            <asp:DropDownList ID="ddEsp" runat="server" CssClass="form-control" OnSelectedIndexChanged="ddEsp_SelectedIndexChanged" AutoPostBack="True"></asp:DropDownList>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="ddPlan" class="col-form-label">Plan</label>
-                            <asp:DropDownList ID="ddPlan" runat="server" CssClass="form-control" OnSelectedIndexChanged="ddPlan_SelectedIndexChanged" AutoPostBack="True"></asp:DropDownList>
+                    <div class="form-group row">
+                    <label for="txtID" class="col-4 form-text font-weight-bold">ID</label>
+                        <div class="col-8 form-text">
+                            <asp:Label ID="txtID" runat="server" Text="Label"></asp:Label>
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        <label for="ddCom" class="col-form-label">Comision</label>
-                        <asp:DropDownList ID="ddCom" runat="server" CssClass="form-control"></asp:DropDownList>
+                    <div class="form-group row">
+                        <div class="form-group col-6">
+                            <label for="ddEsp" class="form-text font-weight-bold">Especialidad</label>
+                            <asp:DropDownList ID="ddEsp" runat="server" CssClass="form-control" AutoPostBack="True" OnSelectedIndexChanged="ddEsp_SelectedIndexChanged"></asp:DropDownList>
+                        </div>
+                        <div class="form-group col-6">
+                            <label for="ddPlan" class="form-text font-weight-bold">Plan</label>
+                            <asp:DropDownList ID="ddPlan" runat="server" CssClass="form-control"  AutoPostBack="True" OnSelectedIndexChanged="ddPlan_SelectedIndexChanged"></asp:DropDownList>
+                        </div>
                     </div>
 
-                    <div class="form-group">
-                        <label for="ddMat" class="col-form-label">Materia</label>
+                    <div class="form-group row">
+                        <label for="ddTipo" class="col-4 form-text font-weight-bold">Comision</label>
+                        <div class="col-8">
+                            <asp:DropDownList ID="ddCom" runat="server" CssClass="form-control"></asp:DropDownList>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="ddTipo" class="col-4 form-text font-weight-bold">Materia</label>
+                        <div class="col-8">
                         <asp:DropDownList ID="ddMat" runat="server" CssClass="form-control"></asp:DropDownList>
+                        </div>
                     </div>
 
-                    <div class="form-group">
-                        <label for="txtAnio" class="col-form-label">Año</label>
-                        <asp:TextBox ID="txtAnio" TextMode="Number" min="1900" max="3000" step="1" runat="server" CssClass="form-control"></asp:TextBox>
-                    </div>
+                    <div class="form-group row">
+                    <label for="txtAnio" class="col-4 form-text font-weight-bold">Año</label>
+                        <div class="col-8">
+                            <asp:TextBox ID="txtAnio" TextMode="Number" min="1900" max="3000" step="1" runat="server" CssClass="form-control"></asp:TextBox>
+                        </div>
+                    </div> 
 
-                    <div class="form-group">
-                        <label for="txtCupo" class="col-form-label">Cupo</label>
-                        <asp:TextBox ID="txtCupo" TextMode="Number" min="0" max="200" step="1" runat="server" CssClass="form-control"></asp:TextBox>
-                    </div>
+                    <div class="form-group row">
+                    <label for="txtCupo" class="col-4 form-text font-weight-bold">Cupo</label>
+                        <div class="col-8">
+                            <asp:TextBox ID="txtCupo" TextMode="Number" min="0" max="200" step="1" runat="server" CssClass="form-control"></asp:TextBox>
+                        </div>
+                    </div> 
                 </div>
-
                 <div class="modal-footer" runat="server">
                     <asp:Button ID="btnAceptar" runat="server" Text="btnAceptar" class="btn btn-primary" OnClick="btnAceptar_Click" />
                     <asp:Button ID="btnCancelar" runat="server" Text="Cerrar" class="btn btn-secondary" data-dismiss="modal" />

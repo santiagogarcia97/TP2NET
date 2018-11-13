@@ -49,17 +49,18 @@ namespace UI.Web {
                 Response.End();
             }
             else {
+                if (SelectedID != 0) UsuarioActual = UserLogic.GetOne(SelectedID);
                 if (!IsPostBack) {
                     Listar();
                     gvUsuarios.HeaderRow.TableSection = TableRowSection.TableHeader;
-                    GenerarEsp();
+                    GenerarEsp(0);
                     GenerarTipos();
                 }
             }
         }
         private void Listar()
         {
-            List<Usuario> users = UserLogic.GetAll();
+            List<Usuario> users = UserLogic.GetAll().Where(x => x.Habilitado == true).ToList();
 
             if (users.Count == 0) {
                 divSinUsers.Visible = true;
@@ -123,8 +124,10 @@ namespace UI.Web {
             divPass.Visible = false;
 
             ddTipo.SelectedValue = ((int)UsuarioActual.TipoPersona).ToString();
+
+            GenerarEsp(plan.IDEspecialidad);
+            GenerarPlanes(plan.IDEspecialidad, UsuarioActual.IDPlan);
             ddEsp.SelectedValue = plan.IDEspecialidad.ToString();
-            GenerarPlanes(plan.IDEspecialidad);
             ddPlan.SelectedValue = UsuarioActual.IDPlan.ToString();
 
             if (this.FormMode == FormModes.Baja) {
@@ -266,8 +269,9 @@ namespace UI.Web {
         private bool Validar()
         {
             bool isvalid = true;
+            UsuarioActual = UserLogic.GetOne(SelectedID);
 
-           if (!Validaciones.ValTexto(txtNombre.Text)) {
+            if (!Validaciones.ValTexto(txtNombre.Text)) {
                 txtNombre.CssClass = "form-control is-invalid";
                 isvalid = false;
             }
@@ -303,20 +307,24 @@ namespace UI.Web {
             }
             else txtEmail.CssClass = "form-control";
 
-            if (UsuarioActual.NombreUsuario.Equals(txtUser.Text)) txtUser.CssClass = "form-control";
-            else {
-                if (!Validaciones.ValUsername(txtUser.Text) || Validaciones.ValUsernameExists(txtUser.Text)) {
-                    txtUser.CssClass = "form-control is-invalid";
+            /*          if (string.IsNullOrEmpty(UsuarioActual.NombreUsuario) || 
+                          UsuarioActual.NombreUsuario.Equals(txtUser.Text)) txtUser.CssClass = "form-control";
+                      else {
+                      if (!Validaciones.ValUsername(txtUser.Text) || Validaciones.ValUsernameExists(txtUser.Text)) {
+                          txtUser.CssClass = "form-control is-invalid";
+                          isvalid = false;
+                      }
+                      else txtUser.CssClass = "form-control";
+                      }
+          /*/
+            if (FormMode == FormModes.Alta) {
+                if (Validaciones.ValTexto(txtPass.Text)) txtPass.CssClass = "form-control";
+                else {
+                    txtPass.CssClass = "form-control is-invalid";
                     isvalid = false;
                 }
-                else txtUser.CssClass = "form-control";
             }
 
-            if (!Validaciones.ValTexto(txtPass.Text) || FormMode!=FormModes.Alta) {
-                txtPass.CssClass = "form-control is-invalid";
-                isvalid = false;
-            }
-            else txtPass.CssClass = "form-control";
 
             if (int.Parse(ddTipo.SelectedValue)==0) {
                 ddTipo.CssClass = "form-control is-invalid";
@@ -356,24 +364,25 @@ namespace UI.Web {
 
         protected void ddEsp_SelectedIndexChanged(object sender, EventArgs e)
         {
-            GenerarPlanes(int.Parse(ddEsp.SelectedValue));
+            if (FormMode == FormModes.Alta) GenerarPlanes(int.Parse(ddEsp.SelectedValue), 0);
+            else GenerarPlanes(int.Parse(ddEsp.SelectedValue), UsuarioActual.IDPlan);
         }
 
-        protected void GenerarPlanes(int idEsp)
+        protected void GenerarPlanes(int idEsp, int idPlanActual)
         {
             ddPlan.DataValueField = "id_plan";
             ddPlan.DataTextField = "desc_plan";
-            ddPlan.DataSource = GenerarComboBox.getPlanes(idEsp);
+            ddPlan.DataSource = GenerarComboBox.getPlanes(idEsp, idPlanActual);
             ddPlan.DataBind();
             ddPlan.SelectedValue = 0.ToString();
+            UpdatePanelPlan.Update();
         }
-        protected void GenerarEsp()
+        protected void GenerarEsp(int idEspActual)
         {
             ddEsp.DataValueField = "id_esp";
             ddEsp.DataTextField = "desc_esp";
-            ddEsp.DataSource = GenerarComboBox.getEspecialidades();
+            ddEsp.DataSource = GenerarComboBox.getEspecialidades(idEspActual);
             ddEsp.DataBind();
-            ddPlan.SelectedValue = 0.ToString();
         }
         protected void GenerarTipos()
         {
@@ -396,7 +405,7 @@ namespace UI.Web {
 
         protected void btnGuardarPass_Click(object sender, EventArgs e)
         {
-            if (txtNuevaPass1.Text.Equals(txtNuevaPass2.Text)) {
+            if (txtNuevaPass1.Text.Equals(txtNuevaPass2.Text) && Validaciones.ValClave(txtNuevaPass1.Text)) {
                 UsuarioActual = UserLogic.GetOne(SelectedID);
                 UsuarioActual.Clave = Hashing.HashPassword(txtNuevaPass1.Text);
                 UserLogic.SavePassword(UsuarioActual);

@@ -88,22 +88,27 @@
                     <div class="form-group row">
                         <label for="ddTipo" class="col-4 form-text font-weight-bold">Tipo de usuario</label>
                         <div class="col-8">
-                            <asp:DropDownList ID="ddTipo" runat="server" CssClass="form-control" AutoPostBack="True"></asp:DropDownList>
+                            <asp:DropDownList ID="ddTipo" runat="server" CssClass="form-control" AutoPostBack="false"></asp:DropDownList>
                         </div>
                     </div>
 
                     <hr />
-                    
-                    <div class="form-group row">
-                        <div class="form-group col-6">
-                            <label for="ddEsp" class="form-text font-weight-bold">Especialidad</label>
-                            <asp:DropDownList ID="ddEsp" runat="server" CssClass="form-control" AutoPostBack="True" OnSelectedIndexChanged="ddEsp_SelectedIndexChanged"></asp:DropDownList>
-                        </div>
-                        <div class="form-group col-6">
-                            <label for="ddPlan" class="form-text font-weight-bold">Plan</label>
-                            <asp:DropDownList ID="ddPlan" runat="server" CssClass="form-control"  AutoPostBack="false"></asp:DropDownList>
-                        </div>
-                    </div>
+                    <asp:UpdatePanel ID="UpdatePanelPlan" runat="server" UpdateMode="Conditional">
+                        <ContentTemplate>
+                            <div class="form-group row">
+                                <div class="form-group col-6">
+                                    <label for="ddEsp" class="form-text font-weight-bold">Especialidad</label>
+                                    <asp:DropDownList ID="ddEsp" runat="server" CssClass="form-control" AutoPostBack="True" 
+                                        OnSelectedIndexChanged="ddEsp_SelectedIndexChanged"></asp:DropDownList>
+                                </div>
+                                <div class="form-group col-6">
+                                    <label for="ddPlan" class="form-text font-weight-bold">Plan</label>
+                                    <asp:DropDownList ID="ddPlan" runat="server" CssClass="form-control"  AutoPostBack="false"></asp:DropDownList>
+                                </div>
+                            </div>
+                        </ContentTemplate>
+                    </asp:UpdatePanel>
+
                 </div>
 
                 <div class="modal-footer" runat="server">
@@ -131,13 +136,13 @@
                 
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for="txtNuevaPass1" class="col-form-label">Nueva Contraseña</label>
-                        <asp:TextBox id="txtNuevaPass1" TextMode="Password" runat="server" CssClass="form-control"></asp:TextBox>
+                        <label for="txtEmail" class="form-text font-weight-bold">Nueva Contraseña</label>
+                        <asp:TextBox ID="txtNuevaPass1" runat="server" CssClass="form-control" TextMode="Password"></asp:TextBox>
                     </div>
-                            
                     <div class="form-group">
-                        <label for="txtNuevaPass2" class="col-form-label">Reingresar Contraseña</label>
-                        <asp:TextBox id="txtNuevaPass2" TextMode="Password" runat="server" CssClass="form-control"></asp:TextBox>
+                        <label for="txtEmail" class="form-text font-weight-bold">Reingresar Contraseña</label>
+                        <asp:TextBox ID="txtNuevaPass2" runat="server" CssClass="form-control" TextMode="Password"></asp:TextBox>
+
                     </div>
                 </div>
 

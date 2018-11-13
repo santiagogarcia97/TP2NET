@@ -16,18 +16,17 @@
                 
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for="txtNuevaPass1" class="col-form-label">Nueva Contraseña</label>
-                        <asp:TextBox id="txtNuevaPass1" TextMode="Password" runat="server" CssClass="form-control"></asp:TextBox>
+                        <label for="txtNuevaPass1" class="form-text font-weight-bold">Nueva Contraseña</label>
+                        <asp:TextBox ID="txtNuevaPass1" runat="server" CssClass="form-control" TextMode="Password"></asp:TextBox>
                     </div>
-                            
                     <div class="form-group">
-                        <label for="txtNuevaPass2" class="col-form-label">Reingresar Contraseña</label>
-                        <asp:TextBox id="txtNuevaPass2" TextMode="Password" runat="server" CssClass="form-control"></asp:TextBox>
+                        <label for="txtNuevaPass2" class="form-text font-weight-bold">Reingresar Contraseña</label>
+                        <asp:TextBox ID="txtNuevaPass2" runat="server" CssClass="form-control" TextMode="Password"></asp:TextBox>
                     </div>
                     <hr />
                     <div class="form-group">
-                        <label for="txtViejaPass" class="col-form-label">Contraseña actual</label>
-                        <asp:TextBox id="txtViejaPass" TextMode="Password" runat="server" CssClass="form-control"></asp:TextBox>
+                        <label for="txtViejaPass" class="form-text font-weight-bold">Contraseña actual</label>
+                        <asp:TextBox ID="txtViejaPass" runat="server" CssClass="form-control" TextMode="Password"></asp:TextBox>
                     </div>
                 </div>
 

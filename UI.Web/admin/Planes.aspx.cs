@@ -48,10 +48,6 @@ namespace UI.Web {
                 if (!IsPostBack) {
                     Listar();
                     gvPlanes.HeaderRow.TableSection = TableRowSection.TableHeader;
-                    ddEsp.DataValueField = "id_esp";
-                    ddEsp.DataTextField = "desc_esp";
-                    ddEsp.DataSource = GenerarComboBox.getEspecialidades();
-                    ddEsp.DataBind();
                 }
             }
         }
@@ -70,6 +66,7 @@ namespace UI.Web {
 
         }
         private void ClearForm() {
+            GenerarEsp(0);
             txtID.Text = "";
             txtDescripcion.Text = string.Empty;
             ddEsp.SelectedValue = 0.ToString();
@@ -85,6 +82,8 @@ namespace UI.Web {
             PlanActual = PlanLogic.GetOne(id);
             txtID.Text = PlanActual.ID.ToString();
             txtDescripcion.Text = PlanActual.Descripcion;
+
+            GenerarEsp(PlanActual.IDEspecialidad);
             ddEsp.SelectedValue = PlanActual.IDEspecialidad.ToString();
             if (this.FormMode == FormModes.Baja) {
                 modalHeader.Text = "Eliminar Plan";
@@ -217,6 +216,12 @@ namespace UI.Web {
             txtDescripcion.CssClass = "form-control";
             ddEsp.CssClass = "form-control";
         }
-
+        protected void GenerarEsp(int idEspActual)
+        {
+            ddEsp.DataValueField = "id_esp";
+            ddEsp.DataTextField = "desc_esp";
+            ddEsp.DataSource = GenerarComboBox.getEspecialidades(idEspActual);
+            ddEsp.DataBind();
+        }
     }
 }

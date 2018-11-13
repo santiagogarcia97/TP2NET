@@ -37,25 +37,25 @@ namespace UI.Web.admin {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtID;
+        protected global::System.Web.UI.WebControls.Label txtID;
         
         /// <summary>
-        /// ddAlumno control.
+        /// txtAlumno control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddAlumno;
+        protected global::System.Web.UI.WebControls.TextBox txtAlumno;
         
         /// <summary>
-        /// ddCurso control.
+        /// txtCurso control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddCurso;
+        protected global::System.Web.UI.WebControls.TextBox txtCurso;
         
         /// <summary>
         /// ddCondicion control.

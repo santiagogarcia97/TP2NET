@@ -31,13 +31,13 @@ namespace UI.Web.admin {
         protected global::System.Web.UI.WebControls.Label modalHeader;
         
         /// <summary>
-        /// inputID control.
+        /// txtID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox inputID;
+        protected global::System.Web.UI.WebControls.Label txtID;
         
         /// <summary>
         /// txtDescripcion control.

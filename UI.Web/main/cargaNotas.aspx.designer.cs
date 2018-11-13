@@ -31,22 +31,22 @@ namespace UI.Web.main {
         protected global::System.Web.UI.WebControls.Label modalHeader;
         
         /// <summary>
-        /// lblID control.
+        /// txtID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblID;
+        protected global::System.Web.UI.WebControls.Label txtID;
         
         /// <summary>
-        /// lblAlumno control.
+        /// txtAlumno control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblAlumno;
+        protected global::System.Web.UI.WebControls.TextBox txtAlumno;
         
         /// <summary>
         /// ddCondicion control.

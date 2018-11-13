@@ -19,7 +19,7 @@ namespace Util {
          */
      
         
-        public static DataTable getEspecialidades() {
+        public static DataTable getEspecialidades(int idEspActual) {
             DataTable dtEspecialidades = new DataTable();
             dtEspecialidades.Columns.Add("id_esp", typeof(int));
             dtEspecialidades.Columns.Add("desc_esp", typeof(string));
@@ -27,13 +27,13 @@ namespace Util {
             List<Especialidad> especialidades = el.GetAll();
             dtEspecialidades.Rows.Add(new object[] { 0, string.Empty });
             foreach (Especialidad esp in especialidades) {
-                if (esp.Habilitado) {
+                if (esp.Habilitado || esp.ID ==idEspActual) {
                     dtEspecialidades.Rows.Add(new object[] { esp.ID, esp.Descripcion });
                 }
             }
             return dtEspecialidades;
         }
-        public static DataTable getPlanes(int idEsp) {
+        public static DataTable getPlanes(int idEsp, int idPlanActual) {
             DataTable dtPlanes = new DataTable();
             dtPlanes.Columns.Add("id_plan", typeof(int));
             dtPlanes.Columns.Add("desc_plan", typeof(string));
@@ -41,7 +41,7 @@ namespace Util {
             List<Plan> planes = pl.GetAll();
             dtPlanes.Rows.Add(new object[] { 0, string.Empty });
             foreach (Plan plan in planes) {
-                if (plan.IDEspecialidad == idEsp && plan.Habilitado) {
+                if ((plan.IDEspecialidad == idEsp && plan.Habilitado) || plan.ID==idPlanActual) {
                     dtPlanes.Rows.Add(new object[] { plan.ID, plan.Descripcion });
                 }
             }
@@ -59,7 +59,7 @@ namespace Util {
 
             return dtTiposPersona;
         }
-        public static DataTable getMaterias(int idPlan) {
+        public static DataTable getMaterias(int idPlan, int idMatActual) {
             DataTable dtMaterias = new DataTable();
             dtMaterias.Columns.Add("id_mat", typeof(int));
             dtMaterias.Columns.Add("desc_mat", typeof(string));
@@ -67,13 +67,13 @@ namespace Util {
             List<Materia> materias = ml.GetAll();
             dtMaterias.Rows.Add(new object[] { 0, string.Empty });
             foreach (Materia materia in materias) {
-                if (materia.IDPlan == idPlan && materia.Habilitado) {
+                if ((materia.IDPlan == idPlan && materia.Habilitado) || materia.ID == idMatActual) {
                     dtMaterias.Rows.Add(new object[] { materia.ID, materia.Descripcion });
                 }
             }
             return dtMaterias;
         }
-        public static DataTable getComisiones(int idPlan) {
+        public static DataTable getComisiones(int idPlan, int idComActual) {
             DataTable dtComisiones = new DataTable();
             dtComisiones.Columns.Add("id_com", typeof(int));
             dtComisiones.Columns.Add("desc_com", typeof(string));
@@ -81,7 +81,7 @@ namespace Util {
             List<Comision> comisiones = cl.GetAll();
             dtComisiones.Rows.Add(new object[] { 0, string.Empty });
             foreach (Comision com in comisiones) {
-                if (com.IDPlan == idPlan && com.Habilitado) {
+                if ((com.IDPlan == idPlan && com.Habilitado) || com.ID==idComActual) {
                     dtComisiones.Rows.Add(new object[] { com.ID, com.Descripcion });
                 }
             }
@@ -114,7 +114,7 @@ namespace Util {
             return dtCargos;
         }
 
-        public static DataTable getCursos() {
+        public static DataTable getCursos(int idCurActual) {
             DataTable dtCursos = new DataTable();
             dtCursos.Columns.Add("id_curso", typeof(int));
             dtCursos.Columns.Add("desc_curso", typeof(string));
@@ -123,7 +123,7 @@ namespace Util {
             CursoLogic cursol = new CursoLogic();
             MateriaLogic matl = new MateriaLogic();
             ComisionLogic coml = new ComisionLogic();
-            List<Curso> cursos = cursol.GetAll().Where(x => x.Habilitado == true).ToList();
+            List<Curso> cursos = cursol.GetAll().Where(x => x.Habilitado == true || x.ID == idCurActual).ToList();
             List<Materia> materias = matl.GetAll();
             List<Comision> comisiones = coml.GetAll();
 
@@ -136,14 +136,14 @@ namespace Util {
             return dtCursos;
         }
 
-        public static DataTable getDocentes() {
+        public static DataTable getDocentes(int idDocActual) {
             DataTable dtDocentes = new DataTable();
             dtDocentes.Columns.Add("id_docente", typeof(int));
             dtDocentes.Columns.Add("desc_docente", typeof(string));
             dtDocentes.Rows.Add(new object[] { 0, string.Empty });
 
             UsuarioLogic ul = new UsuarioLogic();
-            List<Usuario> usuarios = ul.GetAll().Where(x => (int)x.TipoPersona == 2).ToList();
+            List<Usuario> usuarios = ul.GetAll().Where(x => (int)x.TipoPersona == 2 || x.ID == idDocActual).ToList();
 
             foreach (Usuario docente in usuarios) {
                 dtDocentes.Rows.Add(new object[] { docente.ID, docente.Legajo + " - " + docente.Apellido + ", " + docente.Nombre });

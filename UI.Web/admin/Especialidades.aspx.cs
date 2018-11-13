@@ -63,7 +63,7 @@ namespace UI.Web.admin {
 
         }
         private void ClearForm() {
-            inputID.Text = "";
+            txtID.Text = "";
             txtDescripcion.Text = string.Empty;
             modalHeader.Text = "Nueva Especialidad";
             btnAceptar.Text = "Crear";
@@ -74,7 +74,7 @@ namespace UI.Web.admin {
         }
         private void LoadForm(int id) {
             EspecialidadActual = EspecialidadLogic.GetOne(id);
-            inputID.Text = EspecialidadActual.ID.ToString();
+            txtID.Text = EspecialidadActual.ID.ToString();
             txtDescripcion.Text = EspecialidadActual.Descripcion;
             if (this.FormMode == FormModes.Baja) {
                 modalHeader.Text = "Eliminar Especialidad";

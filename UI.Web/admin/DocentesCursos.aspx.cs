@@ -44,8 +44,16 @@ namespace UI.Web.admin {
                 if (!IsPostBack) {
                     Listar();
                     GenerarCargos();
-                    GenerarCursos();
-                    GenerarDocentes();
+                    if(SelectedID != 0) {
+                        DocenteCursoActual = DocenteCursoLogic.GetOne(SelectedID);
+                        GenerarCursos(DocenteCursoActual.IDCurso);
+                        GenerarDocentes(DocenteCursoActual.IDDocente);
+                    }
+                    else {
+                        GenerarCursos(0);
+                        GenerarDocentes(0);
+                    }
+
                 }
             }
         }
@@ -78,6 +86,8 @@ namespace UI.Web.admin {
         }
         private void LoadForm(int id) {
             DocenteCursoActual = DocenteCursoLogic.GetOne(id);
+            GenerarCursos(DocenteCursoActual.IDCurso);
+            GenerarDocentes(DocenteCursoActual.IDDocente);
 
             txtID.Text = DocenteCursoActual.ID.ToString();
             ddCargo.SelectedValue = ((int)DocenteCursoActual.Cargo).ToString();
@@ -224,18 +234,18 @@ namespace UI.Web.admin {
             ddDocente.CssClass = "form-control";
         }
 
-        protected void GenerarDocentes() {
+        protected void GenerarDocentes(int idDocActual) {
             ddDocente.DataValueField = "id_docente";
             ddDocente.DataTextField = "desc_docente";
-            ddDocente.DataSource = GenerarComboBox.getDocentes();
+            ddDocente.DataSource = GenerarComboBox.getDocentes(idDocActual);
             ddDocente.DataBind();
             ddDocente.SelectedValue = 0.ToString();
             UpdatePanelModal.Update();
         }
-        protected void GenerarCursos() {
+        protected void GenerarCursos(int idCurActual) {
             ddCurso.DataValueField = "id_curso";
             ddCurso.DataTextField = "desc_curso";
-            ddCurso.DataSource = GenerarComboBox.getCursos();
+            ddCurso.DataSource = GenerarComboBox.getCursos(idCurActual);
             ddCurso.DataBind();
             ddCurso.SelectedValue = 0.ToString();
             UpdatePanelModal.Update();

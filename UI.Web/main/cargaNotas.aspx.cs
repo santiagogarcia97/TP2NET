@@ -72,8 +72,8 @@ namespace UI.Web.main {
             UsuarioLogic ul = new UsuarioLogic();
             Usuario user = ul.GetOne(AlumnoInscripcionActual.IDAlumno);
 
-            lblID.Text = AlumnoInscripcionActual.ID.ToString();
-            lblAlumno.Text = user.Legajo.ToString() + " - " + user.Apellido + ", " + user.Nombre; 
+            txtID.Text = AlumnoInscripcionActual.ID.ToString();
+            txtAlumno.Text = user.Legajo.ToString() + " - " + user.Apellido + ", " + user.Nombre; 
             txtNota.Text = AlumnoInscripcionActual.Nota.ToString();
 
             ddCondicion.SelectedValue = ((int)AlumnoInscripcionActual.Condicion).ToString();
@@ -117,45 +117,24 @@ namespace UI.Web.main {
         private bool Validar() {
             bool isvalid = true;
 
-            if (string.IsNullOrEmpty(txtNota.Text) ||
-                string.IsNullOrWhiteSpace(txtNota.Text) ||
-                int.Parse(txtNota.Text) == 0) {
+            if (Validaciones.ValTexto(txtNota.Text)) txtNota.CssClass = "form-control";
+            else {
                 txtNota.CssClass = "form-control is-invalid";
                 isvalid = false;
             }
-            else {
-                txtNota.CssClass = "form-control";
-            }
-   /*         if (ddAlumno.SelectedValue == string.Empty || int.Parse(ddAlumno.SelectedValue) == 0) {
-                ddAlumno.CssClass = "form-control is-invalid";
-                isvalid = false;
-            }
-            else {
-                ddAlumno.CssClass = "form-control";
-            }
+
             if (ddCondicion.SelectedValue == string.Empty || int.Parse(ddCondicion.SelectedValue) == 0) {
                 ddCondicion.CssClass = "form-control is-invalid";
                 isvalid = false;
             }
-            else {
-                ddCondicion.CssClass = "form-control";
-            }
-            if (ddCurso.SelectedValue == string.Empty || int.Parse(ddCurso.SelectedValue) == 0) {
-                ddCurso.CssClass = "form-control is-invalid";
-                isvalid = false;
-            }
-            else {
-                ddCurso.CssClass = "form-control";
-            }
-*/
+            else ddCondicion.CssClass = "form-control";
+
             return isvalid;
         }
 
         private void SetFormControlCSS() {
             txtNota.CssClass = "form-control";
-   //         d.CssClass = "form-control";
             ddCondicion.CssClass = "form-control";
-   //         ddAlumno.CssClass = "form-control";
         }
         protected void GenerarCondiciones() {
             ddCondicion.DataValueField = "id_cond";

@@ -15,35 +15,38 @@
                 </div>
                 
                 <div class="modal-body">
-                    <div class="form-group">
-                        <label for="txtID" class="col-form-label">ID</label>
-                        <asp:TextBox id="txtID" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                    <div class="form-group row">
+                    <label for="txtID" class="col-4 form-text font-weight-bold">ID</label>
+                        <div class="col-8 form-text">
+                            <asp:Label ID="txtID" runat="server" Text="Label"></asp:Label>
+                        </div>
                     </div>
                             
-                    <div class="form-group">
-                        <label for="txtDescripcion" class="col-form-label">Descripción</label>
-                        <asp:TextBox ID="txtDescripcion" runat="server" CssClass="form-control"></asp:TextBox>
+                    <div class="form-group row">
+                    <label for="txtDescripcion" class="col-4 form-text font-weight-bold">Descripción</label>
+                        <div class="col-8">
+                            <asp:TextBox ID="txtDescripcion" runat="server" Text="Label"></asp:TextBox>
+                        </div>
                     </div>
 
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label for="txtHSSem" class="col-form-label">Hrs Semanales</label>
+                    <div class="form-group row">
+                        <div class="form-group col-6">
+                            <label for="ddHSSem" class="form-text font-weight-bold">Hrs Semanales</label>
                             <asp:TextBox ID="txtHSSem" TextMode="Number" min="0" max="100" step="1" runat="server" CssClass="form-control"></asp:TextBox>
                         </div>
-                        <div class="form-group col-md-6">
-                            <label for="txtHSTot" class="col-form-label">Hrs Totales</label>
+                        <div class="form-group col-6">
+                            <label for="ddHSTot" class="form-text font-weight-bold">Hrs Totales</label>
                             <asp:TextBox ID="txtHSTot" TextMode="Number" min="0" max="300" step="1" runat="server" CssClass="form-control"></asp:TextBox>
                         </div>
                     </div>
-
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label for="ddEsp" class="col-form-label">Especialidad</label>
-                            <asp:DropDownList ID="ddEsp" runat="server" CssClass="form-control" OnSelectedIndexChanged="ddEsp_SelectedIndexChanged" AutoPostBack="True"></asp:DropDownList>
+                    <div class="form-group row">
+                        <div class="form-group col-6">
+                            <label for="ddEsp" class="form-text font-weight-bold">Especialidad</label>
+                            <asp:DropDownList ID="ddEsp" runat="server" CssClass="form-control" AutoPostBack="True" OnSelectedIndexChanged="ddEsp_SelectedIndexChanged"></asp:DropDownList>
                         </div>
-                        <div class="form-group col-md-6">
-                            <label for="ddPlan" class="col-form-label">Plan</label>
-                            <asp:DropDownList ID="ddPlan" runat="server" CssClass="form-control"></asp:DropDownList>
+                        <div class="form-group col-6">
+                            <label for="ddPlan" class="form-text font-weight-bold">Plan</label>
+                            <asp:DropDownList ID="ddPlan" runat="server" CssClass="form-control"  AutoPostBack="false"></asp:DropDownList>
                         </div>
                     </div>
                 </div>

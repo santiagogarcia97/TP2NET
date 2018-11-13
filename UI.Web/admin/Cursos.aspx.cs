@@ -44,10 +44,6 @@ namespace UI.Web.admin {
                 if (!IsPostBack) {
                     Listar();
                     gvCursos.HeaderRow.TableSection = TableRowSection.TableHeader;
-                    ddEsp.DataValueField = "id_esp";
-                    ddEsp.DataTextField = "desc_esp";
-                    ddEsp.DataSource = GenerarComboBox.getEspecialidades();
-                    ddEsp.DataBind();
                 }
             }
         }
@@ -66,6 +62,7 @@ namespace UI.Web.admin {
             }
         }
         private void ClearForm() {
+            GenerarEsp(0);
             txtID.Text = "";
             txtAnio.Text = DateTime.Today.Year.ToString();
             ddPlan.SelectedValue = 0.ToString();
@@ -95,11 +92,15 @@ namespace UI.Web.admin {
             txtID.Text = CursoActual.ID.ToString();
             txtCupo.Text = CursoActual.Cupo.ToString();
             txtAnio.Text = CursoActual.AnioCalendario.ToString();
+
+            GenerarEsp(plan.IDEspecialidad);
             ddEsp.SelectedValue = plan.IDEspecialidad.ToString();
-            GenerarPlanes(plan.IDEspecialidad);
+
+            GenerarPlanes(plan.IDEspecialidad, mat.ID);
             ddPlan.SelectedValue = mat.IDPlan.ToString();
-            GenerarMaterias(plan.ID);
-            GenerarComisiones(plan.ID);
+
+            GenerarMaterias(plan.ID, CursoActual.ID);
+            GenerarComisiones(plan.ID, CursoActual.IDComision);
             ddCom.SelectedValue = CursoActual.IDComision.ToString();
             ddMat.SelectedValue = CursoActual.IDMateria.ToString();
 
@@ -273,35 +274,49 @@ namespace UI.Web.admin {
         }
 
         protected void ddEsp_SelectedIndexChanged(object sender, EventArgs e) {
-            GenerarPlanes(int.Parse(ddEsp.SelectedValue));
+            if (FormMode == FormModes.Alta) GenerarPlanes(int.Parse(ddEsp.SelectedValue), 0);
+            else GenerarPlanes(int.Parse(ddEsp.SelectedValue), CursoActual.IDMateria);
         }
+    
         protected void ddPlan_SelectedIndexChanged(object sender, EventArgs e) {
-            GenerarComisiones(int.Parse(ddPlan.SelectedValue));
-            GenerarMaterias(int.Parse(ddPlan.SelectedValue));
+            if (FormMode == FormModes.Alta) GenerarMaterias(int.Parse(ddPlan.SelectedValue), 0);
+            else GenerarMaterias(int.Parse(ddPlan.SelectedValue), CursoActual.IDMateria);
+            if (FormMode == FormModes.Alta) GenerarComisiones(int.Parse(ddPlan.SelectedValue), 0);
+            else GenerarComisiones(int.Parse(ddPlan.SelectedValue), CursoActual.IDComision);
         }
-        protected void GenerarPlanes(int idEsp) {
+        protected void GenerarPlanes(int idEsp, int idMat) {
+            MateriaLogic ml = new MateriaLogic();
+            Materia mat = ml.GetOne(idMat);
+
             ddPlan.DataValueField = "id_plan";
             ddPlan.DataTextField = "desc_plan";
-            ddPlan.DataSource = GenerarComboBox.getPlanes(idEsp);
+            ddPlan.DataSource = GenerarComboBox.getPlanes(idEsp, mat.IDPlan);
             ddPlan.DataBind();
             ddPlan.SelectedValue = 0.ToString();
             UpdatePanelModal.Update();
         }
-        protected void GenerarMaterias(int idPlan) {
+        protected void GenerarMaterias(int idPlan,int idMatActual) {
             ddMat.DataValueField = "id_mat";
             ddMat.DataTextField = "desc_mat";
-            ddMat.DataSource = GenerarComboBox.getMaterias(idPlan);
+            ddMat.DataSource = GenerarComboBox.getMaterias(idPlan, idMatActual);
             ddMat.DataBind();
             ddMat.SelectedValue = 0.ToString();
             UpdatePanelModal.Update();
         }
-        protected void GenerarComisiones(int idPlan) {
+        protected void GenerarComisiones(int idPlan, int idComActual) {
             ddCom.DataValueField = "id_com";
             ddCom.DataTextField = "desc_com";
-            ddCom.DataSource = GenerarComboBox.getComisiones(idPlan);
+            ddCom.DataSource = GenerarComboBox.getComisiones(idPlan, idComActual);
             ddCom.DataBind();
             ddCom.SelectedValue = 0.ToString();
             UpdatePanelModal.Update();
+        }
+        protected void GenerarEsp(int idEspActual)
+        {
+            ddEsp.DataValueField = "id_esp";
+            ddEsp.DataTextField = "desc_esp";
+            ddEsp.DataSource = GenerarComboBox.getEspecialidades(idEspActual);
+            ddEsp.DataBind();
         }
     }
 }

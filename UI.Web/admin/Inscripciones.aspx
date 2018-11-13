@@ -16,30 +16,37 @@
                 </div>
                 
                 <div class="modal-body">
-                    <div class="form-group">
-                        <label for="txtID" class="col-form-label">ID</label>
-                        <asp:TextBox id="txtID" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                    <div class="form-group row">
+                    <label for="txtID" class="col-4 form-text font-weight-bold">ID</label>
+                        <div class="col-8 form-text">
+                            <asp:Label ID="txtID" runat="server" Text="Label"></asp:Label>
+                        </div>
                     </div>
-
-                    <div class="form-group">
-                        <label for="ddAlumno" class="col-form-label">Alumno</label>
-                        <asp:DropDownList ID="ddAlumno" runat="server" CssClass="form-control"></asp:DropDownList>
+                    <div class="form-group row">
+                        <label for="txtAlumno" class="col-4 form-text font-weight-bold">Alumno</label>
+                        <div class="col-8">
+                            <asp:TextBox ID="txtAlumno" runat="server" CssClass="form-control"></asp:TextBox>
+                        </div>
                     </div>
-                    
-                    <div class="form-group">
-                        <label for="ddCurso" class="col-form-label">Curso</label>
-                        <asp:DropDownList ID="ddCurso" runat="server" CssClass="form-control"></asp:DropDownList>
+                    <div class="form-group row">
+                        <label for="txtCurso" class="col-4 form-text font-weight-bold">Curso</label>
+                        <div class="col-8">
+                            <asp:TextBox ID="txtCurso" runat="server" CssClass="form-control"></asp:TextBox>
+                        </div>
                     </div>
-
-                    <div class="form-group">
-                        <label for="ddCondicion" class="col-form-label">Condicion</label>
-                        <asp:DropDownList ID="ddCondicion" runat="server" CssClass="form-control"></asp:DropDownList>
+                    <div class="form-group row">
+                        <label for="ddCondicion" class="col-4 form-text font-weight-bold">Condición</label>
+                        <div class="col-8">
+                            <asp:DropDownList ID="ddCondicion" runat="server" CssClass="form-control"></asp:DropDownList>
+                        </div>
                     </div>
-
-                    <div class="form-group">
-                        <label for="ddCondicion" class="col-form-label">Condicion</label>
-                        <asp:TextBox id="txtNota" TextMode="Number" min="0" max="10" step="1" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
-                    </div>
+                   
+                    <div class="form-group row">
+                    <label for="txtCupo" class="col-4 form-text font-weight-bold">Nota</label>
+                        <div class="col-8">
+                            <asp:TextBox ID="txtNota" TextMode="Number" min="0" max="10" step="1" runat="server" CssClass="form-control"></asp:TextBox>
+                        </div>
+                    </div> 
 
                 </div>
 

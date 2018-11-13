@@ -37,7 +37,7 @@ namespace UI.Web.admin {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtID;
+        protected global::System.Web.UI.WebControls.Label txtID;
         
         /// <summary>
         /// ddEsp control.
