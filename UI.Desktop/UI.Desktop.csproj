@@ -291,6 +291,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="reportes\repInscripciones.rdlc" />
     <EmbeddedResource Include="reportes\repCursos.rdlc" />
+    <EmbeddedResource Include="reportes\repUsuarios.rdlc" />
     <EmbeddedResource Include="reportes\repPlanes.rdlc" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

@@ -41,20 +41,14 @@ namespace UI.Desktop {
         private void MenuAlumno(){
             TSMIabms.Visible = false;
             TSMIMisCursos.Visible = false;
-            planesToolStripMenuItem.Visible = false;
-            cursosToolStripMenuItem.Visible = false;
         }
         private void MenuDocente() {
             TSMIabms.Visible = false;
             TSMIMisInscripciones.Visible = false;
-            planesToolStripMenuItem.Visible = false;
-            inscripcionesToolStripMenuItem.Visible = false;
         }
         private void MenuAdmin() {
             TSMIMisInscripciones.Visible = false;
             TSMIMisCursos.Visible = false;
-            inscripcionesToolStripMenuItem.Visible = false;
-            cursosToolStripMenuItem.Visible = false;
         }
 
         private void MapearDeDatos() {
@@ -175,23 +169,12 @@ namespace UI.Desktop {
             formAI.ShowDialog();
         }
 
-
-        private void planesToolStripMenuItem_Click(object sender, EventArgs e) {
-            frmReportes reps = new frmReportes();
-            reps.ShowDialog();
-        }
-
-        private void inscripcionesToolStripMenuItem_Click(object sender, EventArgs e) {
-            frmReportes reps = new frmReportes(UsuarioActual.ID);
-            reps.ShowDialog();
-        }
-
         private void TSMIMisCursos_Click(object sender, EventArgs e) {
             MisCursos misCursos = new MisCursos(UsuarioActual);
             misCursos.ShowDialog();
         }
 
-        private void cursosToolStripMenuItem_Click(object sender, EventArgs e) {
+        private void btnReporte_Click(object sender, EventArgs e) {
             frmReportes reps = new frmReportes(UsuarioActual);
             reps.ShowDialog();
         }

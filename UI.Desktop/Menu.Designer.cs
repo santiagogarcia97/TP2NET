@@ -76,9 +76,6 @@
             this.TSMImateriasInscripto = new System.Windows.Forms.ToolStripMenuItem();
             this.TSMIinscribirseACursado = new System.Windows.Forms.ToolStripMenuItem();
             this.TSMIreportes = new System.Windows.Forms.ToolStripMenuItem();
-            this.planesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.inscripcionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.cursosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tlpDatos.SuspendLayout();
             this.panelBottom.SuspendLayout();
             this.panelDatos.SuspendLayout();
@@ -717,34 +714,10 @@
             // 
             // TSMIreportes
             // 
-            this.TSMIreportes.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.planesToolStripMenuItem,
-            this.inscripcionesToolStripMenuItem,
-            this.cursosToolStripMenuItem});
             this.TSMIreportes.Name = "TSMIreportes";
             this.TSMIreportes.Size = new System.Drawing.Size(65, 20);
             this.TSMIreportes.Text = "Reportes";
-            // 
-            // planesToolStripMenuItem
-            // 
-            this.planesToolStripMenuItem.Name = "planesToolStripMenuItem";
-            this.planesToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
-            this.planesToolStripMenuItem.Text = "Planes";
-            this.planesToolStripMenuItem.Click += new System.EventHandler(this.planesToolStripMenuItem_Click);
-            // 
-            // inscripcionesToolStripMenuItem
-            // 
-            this.inscripcionesToolStripMenuItem.Name = "inscripcionesToolStripMenuItem";
-            this.inscripcionesToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
-            this.inscripcionesToolStripMenuItem.Text = "Inscripciones";
-            this.inscripcionesToolStripMenuItem.Click += new System.EventHandler(this.inscripcionesToolStripMenuItem_Click);
-            // 
-            // cursosToolStripMenuItem
-            // 
-            this.cursosToolStripMenuItem.Name = "cursosToolStripMenuItem";
-            this.cursosToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
-            this.cursosToolStripMenuItem.Text = "Cursos";
-            this.cursosToolStripMenuItem.Click += new System.EventHandler(this.cursosToolStripMenuItem_Click);
+            this.TSMIreportes.Click += new System.EventHandler(this.btnReporte_Click);
             // 
             // Menu
             // 
@@ -831,9 +804,6 @@
         private System.Windows.Forms.ToolStripMenuItem TSMImateriasInscripto;
         private System.Windows.Forms.ToolStripMenuItem TSMIinscribirseACursado;
         private System.Windows.Forms.ToolStripMenuItem TSMIreportes;
-        private System.Windows.Forms.ToolStripMenuItem planesToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem inscripcionesToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem cursosToolStripMenuItem;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label15;

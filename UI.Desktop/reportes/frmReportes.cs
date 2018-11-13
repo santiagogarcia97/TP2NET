@@ -15,18 +15,24 @@ using Util;
 namespace UI.Desktop.reportes {
     public partial class frmReportes : Form {
 
-        public frmReportes() {
-            InitializeComponent();
-            ReportePlanes();
-        }
-        public frmReportes(int idAlumno){
-            InitializeComponent();
-            ReporteIns(idAlumno);
-        }
         public frmReportes(Usuario user) {
             InitializeComponent();
-            ReporteCursos(user);
+            switch (user.TipoPersona) {
+                case Usuario.TiposPersona.Administrador:
+                    ReportePlanes();
+                    msAdmin.Visible = true;
+                    break;
+                case Usuario.TiposPersona.Alumno:
+                    ReporteIns(user.ID);
+                    msAdmin.Visible = false;
+                    break;
+                case Usuario.TiposPersona.Docente:
+                    ReporteCursos(user.ID);
+                    msAdmin.Visible = false;
+                    break;
+            }
         }
+
 
         private void ReportePlanes() {
 
@@ -57,11 +63,25 @@ namespace UI.Desktop.reportes {
             this.rvReportes.RefreshReport();
 
         }
-        private void ReporteCursos(Usuario Docente) {
+        private void ReporteUsuarios() {
+            UsuarioLogic ul = new UsuarioLogic();
+            List<Usuario> usuarios = ul.GetAll();
+            DataTable dt = Listado.Generar(usuarios);
+
+            this.rvReportes.LocalReport.ReportEmbeddedResource = "UI.Desktop.reportes.repUsuarios.rdlc";
+            ReportDataSource DataSet1 = new ReportDataSource("Usuarios", dt);
+            this.rvReportes.LocalReport.DataSources.Clear();
+            this.rvReportes.LocalReport.DataSources.Add(DataSet1);
+            this.rvReportes.LocalReport.Refresh();
+
+            this.rvReportes.RefreshReport();
+
+        }
+        private void ReporteCursos(int idDoc) {
             List<Curso> cursos = new List<Curso>();
 
             DocenteCursoLogic dcl = new DocenteCursoLogic();
-            List<DocenteCurso> dclist = dcl.GetAllFromUser(Docente.ID);
+            List<DocenteCurso> dclist = dcl.GetAllFromUser(idDoc);
             CursoLogic cl = new CursoLogic();
 
             foreach (DocenteCurso dc in dclist) {
@@ -78,6 +98,14 @@ namespace UI.Desktop.reportes {
 
             this.rvReportes.RefreshReport();
 
+        }
+
+        private void planesToolStripMenuItem_Click(object sender, EventArgs e) {
+            ReportePlanes();
+        }
+
+        private void usuariosToolStripMenuItem_Click(object sender, EventArgs e) {
+            ReporteUsuarios();
         }
     }
 }

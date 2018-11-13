@@ -40,7 +40,7 @@ namespace UI.Web {
                     UpdatePanelBtn.Update();
                 }
             }
-            catch (Exception ex){
+            catch (Exception){
                 lblError.Visible = true;
                 lblBadLogin.Visible = false;
                 UpdatePanelBtn.Update();
