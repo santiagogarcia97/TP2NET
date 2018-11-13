@@ -233,6 +233,7 @@
             this.Name = "ABMDocentesCursosDesktop";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "DocentesCursosDesktop";
+            this.Load += new System.EventHandler(this.ABMDocentesCursosDesktop_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);

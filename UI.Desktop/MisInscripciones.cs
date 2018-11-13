@@ -43,7 +43,7 @@ namespace UI.Desktop{
             this.dgvAlumnoInscripciones.DataSource = null;
             this.dgvAlumnoInscripciones.Refresh();
 
-   /*         AlumnoInscripcionLogic ins = new AlumnoInscripcionLogic();
+            AlumnoInscripcionLogic ins = new AlumnoInscripcionLogic();
             List<AlumnoInscripcion> inscripciones = new List<AlumnoInscripcion>();
             if ((int)UsuarioActual.TipoPersona == 1) {
                 inscripciones = ins.GetAll().Where(x => x.IDAlumno == UsuarioActual.ID).ToList();
@@ -57,9 +57,6 @@ namespace UI.Desktop{
             if (inscripciones.Count() == 0){
                 MessageBox.Show("No hay inscripciones cargadas!");
             }
-*/
-            AlumnoInscripcionLogic insl = new AlumnoInscripcionLogic();
-            List<AlumnoInscripcion> inscripciones = insl.GetAll().Where(x => x.IDAlumno == UsuarioActual.ID).ToList();
 
             if (inscripciones.Count == 0) {
                 MessageBox.Show("No esta inscripto a ningun curso.");
@@ -92,6 +89,7 @@ namespace UI.Desktop{
                 AlumnoInscripcion inscripcion = ins.GetOne(ID);
                 CargaNotas cn = new CargaNotas(inscripcion);
                 cn.ShowDialog();
+                this.Listar();
             }
         }
     }

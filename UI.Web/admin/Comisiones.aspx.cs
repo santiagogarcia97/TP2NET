@@ -205,7 +205,7 @@ namespace UI.Web.admin {
                     txtDescripcion.CssClass = "form-control is-invalid";
                     isvalid = false;
                 }
-            if (Validaciones.ValAnio(int.Parse(txtAnio.Text))) txtAnio.CssClass = "form-control";            
+            if (Validaciones.ValTexto(txtAnio.Text) && Validaciones.ValAnio(int.Parse(txtAnio.Text))) txtAnio.CssClass = "form-control";            
                 else {
                      txtAnio.CssClass = "form-control is-invalid";
                     isvalid = false; 

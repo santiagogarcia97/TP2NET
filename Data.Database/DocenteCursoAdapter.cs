@@ -158,13 +158,13 @@ namespace Data.Database
             try{
                 this.OpenConnection();
                 SqlCommand cmdSave = new SqlCommand("UPDATE docentes_cursos SET id_docente = @id_docente, " +
-                    "id_curso = @id_curso, cargo = @cargo, dc_hab = @dc_hab" +
+                    "id_curso = @id_curso, cargo = @cargo, dc_hab = @dc_hab " +
                     "WHERE id_dictado=@id", SqlConn);
 
                 cmdSave.Parameters.Add("@id", SqlDbType.Int).Value = dc.ID;
                 cmdSave.Parameters.Add("@id_docente", SqlDbType.Int).Value = dc.IDDocente;
                 cmdSave.Parameters.Add("@id_curso", SqlDbType.Int).Value = dc.IDCurso;
-                cmdSave.Parameters.Add("@cargo", SqlDbType.Int).Value = dc.Cargo.ToString();
+                cmdSave.Parameters.Add("@cargo", SqlDbType.Int).Value = (int)dc.Cargo;
                 cmdSave.Parameters.Add("@dc_hab", SqlDbType.Bit).Value = dc.Habilitado;
                 cmdSave.ExecuteNonQuery();
             }

@@ -23,6 +23,10 @@ namespace UI.Desktop.reportes {
             InitializeComponent();
             ReporteIns(idAlumno);
         }
+        public frmReportes(Usuario user) {
+            InitializeComponent();
+            ReporteCursos(user);
+        }
 
         private void ReportePlanes() {
 
@@ -46,6 +50,28 @@ namespace UI.Desktop.reportes {
 
             this.rvReportes.LocalReport.ReportEmbeddedResource = "UI.Desktop.reportes.repInscripciones.rdlc";
             ReportDataSource DataSet1 = new ReportDataSource("Inscripciones", dt);
+            this.rvReportes.LocalReport.DataSources.Clear();
+            this.rvReportes.LocalReport.DataSources.Add(DataSet1);
+            this.rvReportes.LocalReport.Refresh();
+
+            this.rvReportes.RefreshReport();
+
+        }
+        private void ReporteCursos(Usuario Docente) {
+            List<Curso> cursos = new List<Curso>();
+
+            DocenteCursoLogic dcl = new DocenteCursoLogic();
+            List<DocenteCurso> dclist = dcl.GetAllFromUser(Docente.ID);
+            CursoLogic cl = new CursoLogic();
+
+            foreach (DocenteCurso dc in dclist) {
+                cursos.Add(cl.GetOne(dc.IDCurso));
+            }
+
+            DataTable dt = Listado.Generar(cursos);
+
+            this.rvReportes.LocalReport.ReportEmbeddedResource = "UI.Desktop.reportes.repCursos.rdlc";
+            ReportDataSource DataSet1 = new ReportDataSource("Cursos", dt);
             this.rvReportes.LocalReport.DataSources.Clear();
             this.rvReportes.LocalReport.DataSources.Add(DataSet1);
             this.rvReportes.LocalReport.Refresh();

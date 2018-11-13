@@ -21,25 +21,6 @@ namespace UI.Desktop.admin
 
         public ABMDocentesCursosDesktop() {
             InitializeComponent();
-
-            cbCurso.DisplayMember = "desc_curso";
-            cbCurso.ValueMember = "id_curso";
-          //  cbCurso.DataSource = GenerarComboBox.getCursos();
-            cbCurso.SelectedValue = 0;
-
-            cbDocente.DisplayMember = "desc_docente";
-            cbDocente.ValueMember = "id_docente";
-     //       cbDocente.DataSource = GenerarComboBox.getDocentes();
-            cbDocente.SelectedValue = 0;
-
-            cbCargo.DisplayMember = "desc_cargo";
-            cbCargo.ValueMember = "id_cargo";
-            cbCargo.DataSource = GenerarComboBox.getCargos();
-            cbCargo.SelectedValue = 0;
-
-            lblCargoRed.Visible = false;
-            lblCursoRed.Visible = false;
-            lblDocenteRed.Visible = false;
         }
 
         public ABMDocentesCursosDesktop(ModoForm modo) : this() {
@@ -117,8 +98,35 @@ namespace UI.Desktop.admin
                 this.Close();
             }
             else {
-                MessageBox.Show("Complete todos los campos.");
+                MessageBox.Show("Compruebe los datos ingresados.");
             }
+        }
+        private void GenerarCursos(int idCursoActual) {
+            cbCurso.DisplayMember = "desc_curso";
+            cbCurso.ValueMember = "id_curso";
+            cbCurso.DataSource = GenerarComboBox.getCursos(idCursoActual);
+            cbCurso.SelectedValue = 0;
+        }
+        private void GenererDocentes(int idDocActual) {
+            cbDocente.DisplayMember = "desc_docente";
+            cbDocente.ValueMember = "id_docente";
+            cbDocente.DataSource = GenerarComboBox.getDocentes(idDocActual);
+            cbDocente.SelectedValue = 0;
+        }
+        private void GenerarCargos() {
+            cbCargo.DisplayMember = "desc_cargo";
+            cbCargo.ValueMember = "id_cargo";
+            cbCargo.DataSource = GenerarComboBox.getCargos();
+            cbCargo.SelectedValue = 0;
+        }
+
+        private void ABMDocentesCursosDesktop_Load(object sender, EventArgs e) {
+            GenerarCargos();
+            GenerarCursos(Modo == ModoForm.Alta ? 0 : DocenteCursoActual.IDCurso);
+            GenererDocentes(Modo == ModoForm.Alta ? 0 : DocenteCursoActual.IDDocente);
+            lblCargoRed.Visible = false;
+            lblCursoRed.Visible = false;
+            lblDocenteRed.Visible = false;
         }
     }
 }

@@ -79,9 +79,10 @@
             this.TSMImateriasInscripto = new System.Windows.Forms.ToolStripMenuItem();
             this.TSMIinscribirseACursado = new System.Windows.Forms.ToolStripMenuItem();
             this.TSMIreportes = new System.Windows.Forms.ToolStripMenuItem();
-            this.TSMIacerca = new System.Windows.Forms.ToolStripMenuItem();
             this.planesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.inscripcionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cursosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.TSMIacerca = new System.Windows.Forms.ToolStripMenuItem();
             this.tlpDatos.SuspendLayout();
             this.panelBottom.SuspendLayout();
             this.panelDatos.SuspendLayout();
@@ -738,7 +739,7 @@
             this.TSMIMisCursos.Name = "TSMIMisCursos";
             this.TSMIMisCursos.Size = new System.Drawing.Size(55, 20);
             this.TSMIMisCursos.Text = "Cursos";
-            this.TSMIMisCursos.Click += new System.EventHandler(this.TSMIcursos_Click);
+            this.TSMIMisCursos.Click += new System.EventHandler(this.TSMIMisCursos_Click);
             // 
             // TSMIMisInscripciones
             // 
@@ -767,30 +768,38 @@
             // 
             this.TSMIreportes.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.planesToolStripMenuItem,
-            this.inscripcionesToolStripMenuItem});
+            this.inscripcionesToolStripMenuItem,
+            this.cursosToolStripMenuItem});
             this.TSMIreportes.Name = "TSMIreportes";
             this.TSMIreportes.Size = new System.Drawing.Size(65, 20);
             this.TSMIreportes.Text = "Reportes";
             // 
-            // TSMIacerca
-            // 
-            this.TSMIacerca.Name = "TSMIacerca";
-            this.TSMIacerca.Size = new System.Drawing.Size(71, 20);
-            this.TSMIacerca.Text = "Acerca de";
-            // 
             // planesToolStripMenuItem
             // 
             this.planesToolStripMenuItem.Name = "planesToolStripMenuItem";
-            this.planesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.planesToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
             this.planesToolStripMenuItem.Text = "Planes";
             this.planesToolStripMenuItem.Click += new System.EventHandler(this.planesToolStripMenuItem_Click);
             // 
             // inscripcionesToolStripMenuItem
             // 
             this.inscripcionesToolStripMenuItem.Name = "inscripcionesToolStripMenuItem";
-            this.inscripcionesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.inscripcionesToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
             this.inscripcionesToolStripMenuItem.Text = "Inscripciones";
             this.inscripcionesToolStripMenuItem.Click += new System.EventHandler(this.inscripcionesToolStripMenuItem_Click);
+            // 
+            // cursosToolStripMenuItem
+            // 
+            this.cursosToolStripMenuItem.Name = "cursosToolStripMenuItem";
+            this.cursosToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
+            this.cursosToolStripMenuItem.Text = "Cursos";
+            this.cursosToolStripMenuItem.Click += new System.EventHandler(this.cursosToolStripMenuItem_Click);
+            // 
+            // TSMIacerca
+            // 
+            this.TSMIacerca.Name = "TSMIacerca";
+            this.TSMIacerca.Size = new System.Drawing.Size(71, 20);
+            this.TSMIacerca.Text = "Acerca de";
             // 
             // Menu
             // 
@@ -887,5 +896,6 @@
         private System.Windows.Forms.ToolStripMenuItem TSMIacerca;
         private System.Windows.Forms.ToolStripMenuItem planesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem inscripcionesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem cursosToolStripMenuItem;
     }
 }

@@ -53,6 +53,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MisCursos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MisCursos.Designer.cs">
+      <DependentUpon>MisCursos.cs</DependentUpon>
+    </Compile>
     <Compile Include="admin\ABMAlumnoInscripciones.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -201,6 +207,9 @@
     <Compile Include="reportes\frmReportes.Designer.cs">
       <DependentUpon>frmReportes.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="MisCursos.resx">
+      <DependentUpon>MisCursos.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="admin\ABMAlumnoInscripciones.resx">
       <DependentUpon>ABMAlumnoInscripciones.cs</DependentUpon>
     </EmbeddedResource>
@@ -281,6 +290,7 @@
       <DependentUpon>frmReportes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="reportes\repInscripciones.rdlc" />
+    <EmbeddedResource Include="reportes\repCursos.rdlc" />
     <EmbeddedResource Include="reportes\repPlanes.rdlc" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

@@ -45,6 +45,7 @@ namespace UI.Desktop {
             GenerarEstadisticas();
             gbAcademico.Visible = true;
             planesToolStripMenuItem.Visible = false;
+            cursosToolStripMenuItem.Visible = false;
         }
         private void MenuDocente() {
             TSMIabms.Visible = false;
@@ -52,6 +53,7 @@ namespace UI.Desktop {
             gbAdmin.Visible = false;
             gbAcademico.Visible = true;
             planesToolStripMenuItem.Visible = false;
+            inscripcionesToolStripMenuItem.Visible = false;
         }
         private void MenuAdmin() {
             TSMIMisInscripciones.Visible = false;
@@ -59,6 +61,7 @@ namespace UI.Desktop {
             gbAdmin.Visible = true;
             gbAcademico.Visible = false;
             inscripcionesToolStripMenuItem.Visible = false;
+            cursosToolStripMenuItem.Visible = false;
         }
 
         private void MapearDeDatos() {
@@ -132,11 +135,6 @@ namespace UI.Desktop {
             }
         }
 
-   /*     private void btnInscripciones_Click(object sender, EventArgs e) {
-            MisInscripciones ai = new MisInscripciones(UsuarioActual);
-            ai.ShowDialog();
-        }
-*/
         private void btnCambiarPass_Click(object sender, EventArgs e) {
             CambiarClave aux = new CambiarClave(UsuarioActual);
             aux.ShowDialog();
@@ -200,6 +198,16 @@ namespace UI.Desktop {
 
         private void inscripcionesToolStripMenuItem_Click(object sender, EventArgs e) {
             frmReportes reps = new frmReportes(UsuarioActual.ID);
+            reps.ShowDialog();
+        }
+
+        private void TSMIMisCursos_Click(object sender, EventArgs e) {
+            MisCursos misCursos = new MisCursos(UsuarioActual);
+            misCursos.ShowDialog();
+        }
+
+        private void cursosToolStripMenuItem_Click(object sender, EventArgs e) {
+            frmReportes reps = new frmReportes(UsuarioActual);
             reps.ShowDialog();
         }
     }
