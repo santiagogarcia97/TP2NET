@@ -41,6 +41,7 @@ namespace UI.Web.admin {
                 Response.End();
             }
             else {
+                if (SelectedID != 0) ComisionActual = ComisionLogic.GetOne(SelectedID);
                 if (!IsPostBack) {
                     Listar();
                     gvCom.HeaderRow.TableSection = TableRowSection.TableHeader;

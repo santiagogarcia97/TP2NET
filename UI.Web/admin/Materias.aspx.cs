@@ -41,7 +41,7 @@ namespace UI.Web.admin {
                 Response.End();
             }
             else {
-                
+                if (SelectedID != 0) MateriaActual = MateriaLogic.GetOne(SelectedID);
                 if (!IsPostBack) {
                     Listar();
                     gvMat.HeaderRow.TableSection = TableRowSection.TableHeader;

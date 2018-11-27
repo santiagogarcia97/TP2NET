@@ -41,6 +41,7 @@ namespace UI.Web.admin {
                 Response.End();
             }
             else {
+                if (SelectedID != 0) CursoActual = CursoLogic.GetOne(SelectedID);
                 if (!IsPostBack) {
                     Listar();
                     gvCursos.HeaderRow.TableSection = TableRowSection.TableHeader;
@@ -276,6 +277,7 @@ namespace UI.Web.admin {
         protected void ddEsp_SelectedIndexChanged(object sender, EventArgs e) {
             if (FormMode == FormModes.Alta) GenerarPlanes(int.Parse(ddEsp.SelectedValue), 0);
             else GenerarPlanes(int.Parse(ddEsp.SelectedValue), CursoActual.IDMateria);
+            ddPlan_SelectedIndexChanged(sender, e);
         }
     
         protected void ddPlan_SelectedIndexChanged(object sender, EventArgs e) {

@@ -41,7 +41,7 @@ namespace Util {
             List<Plan> planes = pl.GetAll();
             dtPlanes.Rows.Add(new object[] { 0, string.Empty });
             foreach (Plan plan in planes) {
-                if ((plan.IDEspecialidad == idEsp && plan.Habilitado) || plan.ID==idPlanActual) {
+                if ((plan.IDEspecialidad == idEsp && plan.Habilitado) || (plan.ID == idPlanActual && plan.IDEspecialidad == idEsp)){  
                     dtPlanes.Rows.Add(new object[] { plan.ID, plan.Descripcion });
                 }
             }
@@ -67,7 +67,7 @@ namespace Util {
             List<Materia> materias = ml.GetAll();
             dtMaterias.Rows.Add(new object[] { 0, string.Empty });
             foreach (Materia materia in materias) {
-                if ((materia.IDPlan == idPlan && materia.Habilitado) || materia.ID == idMatActual) {
+                if ((materia.IDPlan == idPlan && materia.Habilitado) || (materia.ID == idMatActual && materia.IDPlan == idPlan)) {
                     dtMaterias.Rows.Add(new object[] { materia.ID, materia.Descripcion });
                 }
             }
@@ -81,7 +81,7 @@ namespace Util {
             List<Comision> comisiones = cl.GetAll();
             dtComisiones.Rows.Add(new object[] { 0, string.Empty });
             foreach (Comision com in comisiones) {
-                if ((com.IDPlan == idPlan && com.Habilitado) || com.ID==idComActual) {
+                if ((com.IDPlan == idPlan && com.Habilitado) || (com.ID == idComActual && com.IDPlan == idPlan)) {
                     dtComisiones.Rows.Add(new object[] { com.ID, com.Descripcion });
                 }
             }
