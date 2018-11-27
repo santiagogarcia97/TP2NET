@@ -77,7 +77,7 @@ namespace UI.Web.main {
             txtNota.Text = AlumnoInscripcionActual.Nota.ToString();
 
             ddCondicion.SelectedValue = ((int)AlumnoInscripcionActual.Condicion).ToString();
-
+            btnAceptar.Text = "Guardar";
             UpdatePanelModal.Update();
         }
 

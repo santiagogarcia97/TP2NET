@@ -307,24 +307,24 @@ namespace UI.Web {
             else txtEmail.CssClass = "form-control";
 
             if (Validaciones.ValTexto(txtUser.Text) && Validaciones.ValUsername(txtUser.Text)) {
-                if (FormMode == FormModes.Alta && !Validaciones.ValUsernameExists(txtUser.Text)) {
+                if (FormMode == FormModes.Alta && Validaciones.ValUsernameExists(txtUser.Text)) {
                     txtUser.CssClass = "form-control";
                 }
                 else if (FormMode == FormModes.Modificacion) {
                     Usuario aux = UserLogic.GetOne(int.Parse(lblID.Text));
-                    if (aux.NombreUsuario.Equals(txtUser.Text)) txtUser.CssClass = "form-control";
+                    if (aux.NombreUsuario.Equals(txtUser.Text) || !Validaciones.ValUsernameExists(txtUser.Text)) txtUser.CssClass = "form-control";
                     else {
-                        txtPass.CssClass = "form-control is-invalid";
+                        txtUser.CssClass = "form-control is-invalid";
                         isvalid = false;
                     }
                 }
                 else {
-                    txtPass.CssClass = "form-control is-invalid";
+                    txtUser.CssClass = "form-control is-invalid";
                     isvalid = false;
                 }
             }
             else {
-                txtPass.CssClass = "form-control is-invalid";
+                txtUser.CssClass = "form-control is-invalid";
                 isvalid = false;
             }
 
